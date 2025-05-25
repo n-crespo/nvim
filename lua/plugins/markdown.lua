@@ -138,19 +138,46 @@ if vim.g.full_config then
   end
   table.insert(M, {
     {
-      "stevearc/conform.nvim",
+      "neovim/nvim-lspconfig",
       opts = {
-        formatters_by_ft = {
-          ["markdown"] = { "cbfmt" },
-          ["markdown.mdx"] = { "cbfmt" },
+        servers = {
+          marksman = {},
         },
       },
     },
     {
-      "neovim/nvim-lspconfig",
+      "mason-org/mason.nvim",
+      opts = { ensure_installed = { "markdownlint-cli2", "marksman" } },
+    },
+    {
+      "stevearc/conform.nvim",
       opts = {
-        servers = {
-          marksman = {}, -- enable marskamn lsp
+        formatters_by_ft = {
+          ["markdown"] = { "markdownlint-cli2", "cbfmt" },
+        },
+        formatters = {
+          ["markdownlint-cli2"] = {
+            condition = function(_, ctx)
+              local diag = vim.tbl_filter(function(d)
+                return d.source == "markdownlint"
+              end, vim.diagnostic.get(ctx.buf))
+              return #diag > 0
+            end,
+          },
+        },
+      },
+    },
+    {
+      "mfussenegger/nvim-lint",
+      opts = {
+        linters_by_ft = {
+          markdown = { "markdownlint-cli2" },
+        },
+        linters = {
+          ["markdownlint-cli2"] = {
+            -- explicitly provide config file (in dotfiles repo)
+            args = { "--config", vim.fn.expand("~/.markdownlint.yaml") },
+          },
         },
       },
     },
