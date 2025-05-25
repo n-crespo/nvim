@@ -26,6 +26,7 @@ return {
       extension = {
         c = { glyph = "", hl = "MiniIconsBlue" },
         h = { glyph = "", hl = "MiniIconsPurple" },
+        od = { glyph = "󰈤" },
       },
     },
     config = function(_, opts)
