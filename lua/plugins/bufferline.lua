@@ -69,6 +69,13 @@ return {
           highlight = "TabLineSel",
         },
         italic = false,
+        bold = false,
+      },
+      pick_selected = {
+        bg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
       },
       tab_separator_selected = {
         bg = {
@@ -86,6 +93,12 @@ return {
         bg = {
           attribute = "bg",
           highlight = "TabLineSel",
+        },
+      },
+      fill = {
+        bg = {
+          attribute = "bg",
+          highlight = "TabLineFill",
         },
       },
     },
