@@ -52,16 +52,9 @@ local M = {
         width = "block",
         icons = {},
       },
-      quote = {
-        icon = "┃",
-      },
-      bullet = {
-        icons = { "", "○", "◆", "◇" },
-      },
       checkbox = {
-        -- position = "overlay",
-        checked = { icon = "" },
-        unchecked = { icon = "" },
+        checked = { icon = " " },
+        unchecked = { icon = " " },
       },
       indent = { enabled = false },
     },
