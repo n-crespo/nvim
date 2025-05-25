@@ -175,7 +175,7 @@ function M.follow_link(tab)
     api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
     return
   end
-  -- prioritize markdown formatted link
+  -- follow a markdown formatted link (prioritized)
   if link and link.url then
     if link.url:match("^https?://") then
       vim.ui.open(link.url)
@@ -190,7 +190,7 @@ function M.follow_link(tab)
         fn.search("^#* " .. anchor:gsub("-", "[%- ]"))
         return
       end
-      -- try to follow a file path
+      -- try to follow a file path (assume relative since expected in markdown)
       if M.follow_path(link.url, tab) then
         -- try to go to anchor e.g. file.md#my-header or just #my-header
         local matches = fn.search("^#* " .. anchor:gsub("-", "[%- ]"))
@@ -205,16 +205,18 @@ function M.follow_link(tab)
         end
       end
     end
-  elseif word and word.text then -- follow a bare links (not in markdown syntax)
+  elseif word and word.text then
+    word.text = word.text:gsub("[.,:]$", "") -- remove trailing periods or commas
+    -- follow a bare links (not in markdown syntax)
     if word.text:match("^https?://") then -- a URL!
-      word.text = word.text:gsub("[.,:]$", "") -- remove trailing periods or commas
       vim.ui.open(word.text)
       return
     else
       local line_number = tonumber(word.text:match(":(%d+)$")) or nil
       word.text = word.text:gsub(":(%d+)$", "") -- cut out line numbers
-      -- try to follow file path!
-      if M.follow_path(word.text, tab) and line_number then -- a file path!
+      local abs_path = vim.fn.getcwd() .. "/" .. word.text -- try abs path as fallback
+      -- try to follow absolute or relative file path
+      if (M.follow_path(word.text, tab) or M.follow_path(abs_path, tab)) and line_number then -- a file path!
         api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
         vim.cmd("normal! zz") -- center the cursor
         return
