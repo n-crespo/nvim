@@ -117,25 +117,27 @@ function M.find_link_under_cursor()
   local line = fn.getline(cursor[1])
   local column = cursor[2] + 1
   local link_start, link_stop, text, url
-  local start = 1
-  repeat
-    -- repeats until it finds a link the cursor is inside or ends as nil
-    link_start, link_stop, text, url = line:find("%[(.-)%]%((.-)%)", start)
-    if link_start then
-      start = link_stop + 1
+  local current_match_start = 1 -- To keep track of where to start the next search
+
+  while true do
+    link_start, link_stop, text, url = line:find("%[([^%[%]]-)%]%(([^%)]-)%)", current_match_start)
+    if not link_start then
+      -- No more links found on this line
+      break
     end
-  until not link_start or (link_start <= column and link_stop >= column)
-  if link_start then
-    return {
-      link = "[" .. text .. "](" .. url .. ")",
-      start = link_start,
-      stop = link_stop,
-      text = text,
-      url = url,
-    }
-  else
-    return nil
+
+    if column >= link_start and column <= link_stop then
+      return {
+        link = "[" .. text .. "](" .. url .. ")",
+        start = link_start,
+        stop = link_stop,
+        text = text,
+        url = url,
+      }
+    end
+    current_match_start = link_stop + 1 -- start looking for next match at end of current
   end
+  return nil
 end
 
 --- Follows a given path string (optionally in a new tab). Returns true if path
@@ -176,7 +178,7 @@ function M.follow_link(tab)
     return
   end
   -- follow a markdown formatted link (prioritized)
-  if link and link.url then
+  if word and link and link.url then
     if link.url:match("^https?://") then
       vim.ui.open(link.url)
       return
