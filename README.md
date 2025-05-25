@@ -32,8 +32,8 @@ Some cool things in here are:
   - only show cursor line in active window (like reticle.nvim but in 15 LOC)
   - reliable auto save without formatting
 - my [keymaps](./lua/config/keymaps.lua)
-  - following all types of links with `<CR>`, `<S-CR>` to open in new tab
-  (replaces `gf`, `gx`)
+  - following all types of links/toggle checkboxes with `<CR>`, (replaces `gf`, `gx`)
+    - `<S-CR>` to open in new tab
   - wrap friendly `B` and `E` motions to replace `0` and `$`
   - auto fix last spelling error in insert mode: `<C-l>`
   - word/char count: `<C-S-C>`
