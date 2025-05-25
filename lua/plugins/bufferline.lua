@@ -24,13 +24,16 @@ return {
       always_show_bufferline = false,
       show_close_icon = false,
       show_buffer_close_icons = false,
+      show_buffer_icons = false,
       diagnostics = false,
       themable = false,
       modified_icon = "",
       separator_style = { "", "" },
 
       numbers = function(opts)
-        return string.format("%s", opts.raise(opts.id))
+        -- use the :h tabpagenr() instead of :h tabpageid
+        local tabpagenr = vim.fn.index(vim.api.nvim_list_tabpages(), opts.id) + 1
+        return string.format("%s", opts.raise(tabpagenr))
       end,
 
       -- no italics
