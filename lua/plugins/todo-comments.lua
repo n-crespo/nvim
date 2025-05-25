@@ -11,4 +11,24 @@ return {
       },
     },
   },
+  keys = {
+    {
+      "<leader>st",
+      function()
+        Snacks.picker.todo_comments({
+          cwd = require("custom.utils").get_dir_with_fallback(),
+        })
+      end,
+    },
+    {
+      "<leader>sT",
+      function()
+        Snacks.picker.todo_comments({
+          keywords = { "TODO", "FIX", "FIXME" },
+          cwd = require("custom.utils").get_dir_with_fallback(),
+        })
+      end,
+      desc = "Todo/Fix/Fixme",
+    },
+  },
 }
