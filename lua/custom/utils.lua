@@ -172,6 +172,26 @@ function M.follow_link(tab)
   tab = tab or false
   local word = M.find_word_under_cursor()
   local link = M.find_link_under_cursor() -- matches []() links only
+
+  -- toggle markdown checkboxes with <CR> on a '-'
+  if vim.bo.filetype == "markdown" and word and word.text == "-" then
+    local line = api.nvim_get_current_line()
+    local new_line = nil
+    if line:match("^%s*%- ") then -- Ensure the line starts with a dash followed by a space
+      if line:match("^%s*%- %[%s%]") then
+        new_line = line:gsub("%[%s%]", "[x]") -- "- [ ]"  to "- [x]"
+      elseif line:match("^%s*%- %[%s*x%s*%]") then
+        new_line = line:gsub("%[%s*x%s*%]%s*", "") -- "- [x]" to "-"
+      elseif line:match("^%s*%- ") and not line:match("%[.%]") then
+        new_line = line:gsub("^(%s*%- )", "%1[ ] ") -- "-" to "- [ ]"
+      end
+      if new_line then
+        api.nvim_set_current_line(new_line)
+        return
+      end
+    end
+  end
+
   -- don't break qflists
   if vim.bo.filetype == "qf" then
     api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
