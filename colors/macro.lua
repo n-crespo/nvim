@@ -294,8 +294,8 @@ local hlgroups = {
   LspCodeLens = { link = "Comment" },
   LspInfoBorder = { link = "FloatBorder" },
   LspReferenceRead = { link = "LspReferenceText" },
-  LspReferenceText = { bg = nil },
-  LspReferenceWrite = { bg = nil, underline = false },
+  LspReferenceText = { bg = nil, underline = true },
+  LspReferenceWrite = { bg = nil, underline = true },
   LspSignatureActiveParameter = { link = "WarningMsg" },
   -- }}}
 
