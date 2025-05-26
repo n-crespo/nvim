@@ -164,10 +164,11 @@ function M.follow_path(path, tab)
   return true
 end
 
---- A function I have <CR> mapped to. `gf` and `gx` all in one, with markdown
---- support and other improvements. Largely inspired by
---- http://github.com/ixru/nvim-markdown.
---- @param tab boolean open in new tab?
+--- Follow a link or toggle a checkbox under the cursor.
+--- Combines the functionality of `gf` and `gx`, with markdown support and other improvements.
+--- Inspired by http://github.com/ixru/nvim-markdown.
+---
+--- @param tab boolean? If true, opens the link in a new tab. Defaults to false.
 function M.follow_link(tab)
   tab = tab or false
   local word = M.find_word_under_cursor()
