@@ -33,7 +33,17 @@ return {
         require("codecompanion").chat()
       end,
       desc = "AI Chat",
-      mode = { "n", "v" },
+      mode = "n",
+    },
+    {
+      "<leader>ac",
+      function()
+        require("codecompanion").chat()
+        vim.cmd([[normal! o]])
+        vim.cmd([[normal! o]])
+      end,
+      desc = "AI Chat (with selection)",
+      mode = "v",
     },
     {
       "<leader>aa",
@@ -47,6 +57,7 @@ return {
     {
       "ga",
       function()
+        ---@diagnostic disable-next-line: missing-parameter
         require("codecompanion").add()
       end,
       mode = "v",
