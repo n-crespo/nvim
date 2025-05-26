@@ -4,7 +4,6 @@ return {
     "williamboman/mason.nvim",
     event = "LspAttach",
     opts = {
-      ensure_installed = { "marksman", "cbfmt" },
       ui = {
         border = "rounded",
         width = 0.8,
