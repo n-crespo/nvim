@@ -240,6 +240,10 @@ function M.follow_link(tab)
       local abs_path = vim.fn.getcwd() .. "/" .. word.text -- try abs path as fallback
       -- try to follow absolute or relative file path
       if (M.follow_path(word.text, tab) or M.follow_path(abs_path, tab)) and line_number then -- a file path!
+        local success, _ = pcall(api.nvim_win_set_cursor, 0, { line_number, 0 }) -- go to line number
+        if not success then
+          vim.notify("Unable to go to line number " .. line_number, vim.log.levels.WARN)
+        end
         api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
         vim.cmd("normal! zz") -- center the cursor
         return
