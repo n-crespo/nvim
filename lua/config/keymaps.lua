@@ -237,19 +237,6 @@ vim.keymap.set({ "n", "x" }, "gx", function()
   vim.ui.open(vim.fn.expand("<cfile>"))
 end, { silent = true })
 
--- Use ` to fold when in normal mode
-vim.keymap.set({ "n", "v" }, "`", function()
-  -- Get the current line number
-  local line = vim.fn.line(".")
-  -- Get the fold level of the current line
-  local foldlevel = vim.fn.foldlevel(line)
-  if foldlevel == 0 then
-    vim.notify("No fold found", vim.log.levels.WARN, { title = "Fold" })
-  else
-    vim.cmd("normal! za")
-  end
-end)
-
 -- clean ^Ms (windows newlines)
 vim.keymap.set("n", "<C-S-S>", function()
   vim.cmd([[silent! %s/\r//g]])

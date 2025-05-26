@@ -17,7 +17,7 @@ return {
       return ctx.plugin and 0 or 350
     end,
     plugins = {
-      marks = false,
+      marks = true,
       spelling = false,
       presets = { motions = false, operators = false },
     },
