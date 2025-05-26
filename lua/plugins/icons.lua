@@ -16,17 +16,17 @@ return {
     opts = {
       -- Override default glyph for "file" category (reuse highlight group)
       default = { file = { glyph = "󰈤" } },
+      extension = {
+        h = { glyph = "", hl = "MiniIconsPurple" },
+      },
       filetype = {
         cf = { glyph = "", hl = "MiniIconsBlue" },
         Rmd = { glyph = "", hl = "MiniIconsBlue" },
         rmd = { glyph = "", hl = "MiniIconsBlue" },
         autohotkey = { glyph = "", hl = "MiniIconsGreen" },
         minifiles = { glyph = "", hl = "MiniIconsYellow" },
-      },
-      extension = {
+        objdump = { glyph = "󰈤" },
         c = { glyph = "", hl = "MiniIconsBlue" },
-        h = { glyph = "", hl = "MiniIconsPurple" },
-        od = { glyph = "󰈤" },
       },
     },
     config = function(_, opts)
