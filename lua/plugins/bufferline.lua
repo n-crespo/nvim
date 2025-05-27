@@ -62,6 +62,7 @@ return {
           attribute = "bg",
           highlight = "TabLineSel",
         },
+        underline = true,
       },
       buffer_selected = {
         bg = {
@@ -70,30 +71,43 @@ return {
         },
         italic = false,
         bold = false,
+        underline = true,
       },
       pick_selected = {
         bg = {
           attribute = "bg",
           highlight = "TabLineSel",
         },
+        underline = true,
       },
       tab_separator_selected = {
         bg = {
           attribute = "bg",
           highlight = "TabLineSel",
         },
+        underline = true,
       },
       modified_selected = {
         bg = {
           attribute = "bg",
           highlight = "TabLineSel",
         },
+        fg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+        underline = true,
       },
       duplicate_selected = {
         bg = {
           attribute = "bg",
           highlight = "TabLineSel",
         },
+        fg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+        underline = true,
       },
       fill = {
         bg = {
