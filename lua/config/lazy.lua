@@ -20,7 +20,6 @@ require("lazy").setup({
     -- these will only be enabled if you set the environment variable
     -- NVIM_FULL_CONFIG to true. Extras in lazyvim.json are always enabled
     { import = "lazyvim.plugins.extras.dap.core", cond = full_config },
-    { import = "lazyvim.plugins.extras.ui.treesitter-context", cond = full_config },
     { import = "lazyvim.plugins.extras.util.dot", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.python", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.tailwind", cond = full_config },
