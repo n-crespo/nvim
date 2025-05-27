@@ -520,9 +520,7 @@ local hlgroups = {
   TreesitterContextLineNumberBottom = { underline = true, bg = c_macroBg0, sp = border_purple_ink },
   TreesitterContextBottom = { underline = true, bg = c_macroBg0, sp = border_purple_ink },
 
-  -- render markdown
-  RenderMarkdownBullet = { fg = c_macroTeal },
-
+  -- render-markdown.nvim
   RenderMarkdownH1Bg = { bg = c_winterRed2 },
   RenderMarkdownH2Bg = { bg = c_winterOrange },
   RenderMarkdownH3Bg = { bg = c_winterYellow },
