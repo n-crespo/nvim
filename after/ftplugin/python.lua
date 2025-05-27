@@ -4,7 +4,9 @@ if package.loaded["lspconfig"] and vim.g.full_config then
       pylsp = {
         plugins = {
           pycodestyle = {
-            ignore = { "E501" }, -- this disables errors about lines being too long
+            -- this disables errors about lines being too long,
+            -- line breaks between binary operators
+            ignore = { "E501", "W503" },
           },
         },
       },
