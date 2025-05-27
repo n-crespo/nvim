@@ -1,5 +1,5 @@
-local dark_gray = "#201d1d"
-local almost_white = "#C5C9C5"
+local dark_gray = "#1d1d1d"
+local almost_white = "#C9C9C9"
 local light_grey = "#2e2e2e"
 local subtle_grey = "#706F6D"
 
