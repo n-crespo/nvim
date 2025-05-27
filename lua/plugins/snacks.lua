@@ -19,6 +19,8 @@ return {
     input = { enabled = true },
     rename = { enabled = true },
     git = { enabled = true },
+    scope = { enabled = true },
+    notifier = { enabled = true },
     gitbrowse = { enabled = true },
     scratch = {
       ft = "scratch",
@@ -30,29 +32,6 @@ return {
       terminal = { wo = { winbar = "" } },
       notification = { winblend = 100 },
       border = "rounded",
-    },
-    scope = {
-      enabled = true,
-      keys = {
-        jump = {
-          ["[["] = {
-            min_size = 1, -- allow single line scopes
-            bottom = false,
-            cursor = false,
-            edge = true,
-            treesitter = { blocks = { enabled = false } },
-            desc = "jump to top edge of scope",
-          },
-          ["]]"] = {
-            min_size = 1, -- allow single line scopes
-            bottom = true,
-            cursor = false,
-            edge = true,
-            treesitter = { blocks = { enabled = false } },
-            desc = "jump to bottom edge of scope",
-          },
-        },
-      },
     },
   },
   keys = {
