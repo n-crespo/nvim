@@ -51,8 +51,8 @@ local M = {
         icons = {},
       },
       checkbox = {
-        checked = { icon = " " },
-        unchecked = { icon = " " },
+        checked = { icon = "󰄲" },
+        unchecked = { icon = "󰄱" },
       },
       indent = { enabled = false },
     },
