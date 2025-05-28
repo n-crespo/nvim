@@ -53,6 +53,7 @@ return {
         if picker_open() then
           return false
         end
+        return true
       end,
     },
     -- show selected tab with TabLineSel bg highlights
