@@ -58,6 +58,17 @@ return {
     },
     -- show selected tab with TabLineSel bg highlights
     highlights = {
+      tab_selected = {
+        underline = true,
+        bg = {
+          attribute = "bg",
+          highlight = "TabLineSel",
+        },
+        fg = {
+          attribute = "fg",
+          highlight = "TabLineSel",
+        },
+      },
       numbers_selected = {
         bg = {
           attribute = "bg",
