@@ -217,17 +217,25 @@ function M.follow_link(tab)
       end
       -- try to follow a file path (assume relative since expected in markdown)
       if M.follow_path(link.url, tab) then
-        -- try to go to anchor e.g. file.md#my-header or just #my-header
-        local matches = fn.search("^#* " .. anchor:gsub("-", "[%- ]"))
-        if matches == 0 and anchor:match("^L?(%d+)") then
-          -- try to go to line number
-          local line_number = anchor:gsub("L", "")
+        -- First, check if it's a line number (e.g., L10 or 10)
+        local line_number_match = anchor:match("^L?(%d+)$")
+        if line_number_match then
+          local line_number = tonumber(line_number_match)
           if line_number then
-            api.nvim_win_set_cursor(0, { tonumber(line_number), 0 })
+            api.nvim_win_set_cursor(0, { line_number, 0 })
             vim.cmd("normal! zz") -- center the cursor
             return
           end
         end
+        -- Try going to anchor (file.md#my-header) (only if file is md)
+        if link.url:match(".md$") and anchor ~= "" then
+          local matches = fn.search("^#* " .. anchor:gsub("-", "[%- ]"), "w")
+          if matches > 0 then -- Only return if a match was actually found
+            vim.cmd("normal! zz") -- center the cursor
+            return
+          end
+        end
+        return
       end
     end
   elseif word and word.text then
