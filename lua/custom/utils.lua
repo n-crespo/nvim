@@ -260,6 +260,12 @@ function M.follow_link(tab)
       end
     end
   end
+  -- toggle fold if one exists on the current line
+  if vim.fn.foldlevel(api.nvim_win_get_cursor(0)[1]) > 0 then
+    api.nvim_feedkeys(api.nvim_replace_termcodes("za", true, false, true), "n", false)
+    return
+  else
+  end
   -- just sent <CR> if no case was chosen
   api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
 end
