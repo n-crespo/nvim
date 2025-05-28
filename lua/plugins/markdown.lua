@@ -18,7 +18,6 @@ local M = {
     ---@type render.md.UserConfig
     ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     opts = {
-      anti_conceal = { enabled = false },
       render_modes = { "n", "c", "i", "\x16", "t", "no", "V", "nov", "noV", "vs", "v" },
       on = {
         render = function()
@@ -30,7 +29,6 @@ local M = {
       },
       file_types = { "markdown", "norg", "rmd", "org", "codecompanion" },
       latex = { enabled = false },
-      win_options = { conceallevel = { rendered = 2 } },
       code = {
         sign = true,
         width = "block",
