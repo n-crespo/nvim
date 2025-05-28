@@ -176,8 +176,8 @@ function M.follow_link(tab)
   local word = M.find_word_under_cursor()
   local link = M.find_link_under_cursor() -- matches []() links only
 
-  -- toggle markdown checkboxes with <CR> on a '-'
-  if vim.bo.filetype == "markdown" and word and word.text == "-" then
+  -- toggle markdown checkboxes with <S-CR> on a '-'
+  if tab and word and word.text == "-" and vim.bo.filetype == "markdown" then
     local line = api.nvim_get_current_line()
     local new_line = nil
     if line:match("^%s*%- ") then -- Ensure the line starts with a dash followed by a space
