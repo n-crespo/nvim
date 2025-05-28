@@ -36,6 +36,11 @@ return {
             end,
           },
         },
+        path = {
+          opts = {
+            show_hidden_files_by_default = true,
+          },
+        },
       },
     },
     completion = {
