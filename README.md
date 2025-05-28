@@ -7,9 +7,9 @@
 
 <!--toc:start-->
 - [Neovim Configuration](#neovim-configuration)
+  - [Cool Things](#cool-things)
   - [Dependencies](#dependencies)
   - [Install](#install)
-    - [Debian](#debian)
     - [Homebrew](#homebrew)
   - [Usage](#usage)
 <!--toc:end-->
@@ -17,31 +17,33 @@
 </details>
 
 My Neovim configuration based on the [LazyVim](https://www.lazyvim.org)
-distribution, with custom features to extend or remove unneeded functionality.
+distribution, with custom features to extend or remove functionality.
 
-Comes in two varieties: `main` and `lite` (default). Set the environment variable
-`NVIM_MAIN_CONFIG = 1` to enable the main config. `main` enables more language
-features and features that may be slow on older machines/servers.
+Comes in two varieties:
 
-Some cool things in here are:
+- `lite` (default).
+- `main` (fully featured, enables support for more languages)
 
-- my custom (borrowed/extended) [color scheme](./colors/macro.lua)
-- my custom [lualine](./lua/plugins/lualine.lua) config
+> Set the environment variable `NVIM_MAIN_CONFIG = 1` to switch to the main config.
+
+## Cool Things
+
+- my [keymaps](./lua/config/keymaps.lua)
+  - `<CR>`: follow links/toggle checkboxes, includes `gf`, `gx` functionality
+  - `<S-CR>` follow link in new tab
+  - `B`, `E`: wrap friendly version of `0` and `$`
+  - `<C-l>`: auto fix last spelling error in insert mode
+  - `<C-S-C>`: show word/char count
+  - `<C-S-S>`: clean `^M` (Windows artifacts)
 - [my auto commands](./lua/config/autocmds.lua)
   - remove trailing white space on save
-  - only show cursor line in active window (like reticle.nvim but in 15 LOC)
-  - reliable auto save without formatting
-- my [keymaps](./lua/config/keymaps.lua)
-  - following all types of links/toggle checkboxes with `<CR>`, (replaces `gf`, `gx`)
-    - `<S-CR>` to open in new tab
-  - wrap friendly `B` and `E` motions to replace `0` and `$`
-  - auto fix last spelling error in insert mode: `<C-l>`
-  - word/char count: `<C-S-C>`
-  - clean `^M` Windows artifacts: `<C-S-S>`
-- [mini.files](./lua/plugins/mini-files.lua), the best explorer
-- [nvim-spider](./lua/plugins/spider.lua) for better `w`, `e`, and `b` motions
-- my snacks.nvim [picker](./lua/plugins/picker.lua) and [terminal](./lua/plugins/terminal.lua) config
-  - with great integration with zoxide
+  - cursor line in active window only
+  - auto save without formatting
+- [nvim-spider](./lua/plugins/spider.lua): `w`, `e`, and `b` motions
+- my custom [color scheme](./colors/macro.lua) (borrowed/extended)
+- my snacks.nvim [picker](./lua/plugins/picker.lua) integration with zoxide
+- my custom [lualine](./lua/plugins/lualine.lua)
+- [mini.files](./lua/plugins/mini-files.lua)
 - ~31ms startup time
 
 ## Dependencies
@@ -63,20 +65,9 @@ Some cool things in here are:
 
 ## Install
 
-### Debian
-
 ```bash
 sudo apt-get install -y neovim
 sudo apt-get install python3-neovim
-```
-
-For nightly (optional):
-
-```bash
-sudo apt install -y software-properties-common
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install -y neovim # just do this line to get stable version
 ```
 
 ### Homebrew
