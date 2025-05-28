@@ -120,6 +120,7 @@ return {
             ["<S-Tab>"] = { "cycle_win", mode = { "i", "n" } },
             ["<C-Space>"] = { "toggle_live", mode = { "i", "n" } },
             ["<c-s>"] = { "edit_split", mode = { "i", "n" } },
+            ["<c-t>"] = { "trouble_open", mode = { "i", "n" } },
 
             -- scrolling
             ["<c-f>"] = { "preview_scroll_down", mode = { "i", "n" } },
