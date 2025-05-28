@@ -9,17 +9,18 @@ local function picker_open()
 end
 
 return {
-  "akinsho/bufferline.nvim",
-  enabled = true,
+  "n-crespo/bufferline.nvim",
+  event = "VeryLazy",
+  dev = { false },
   opts = {
     options = {
       mode = "tabs",
       tab_size = 10,
       enforce_regular_tabs = false,
       indicator = { style = "none" },
-
       -- hide things
       show_duplicate_prefix = true,
+      default_duplicate_prefix = "",
       show_tab_indicators = false,
       always_show_bufferline = false,
       show_close_icon = false,
@@ -29,15 +30,13 @@ return {
       themable = false,
       modified_icon = "",
       separator_style = { "", "" },
+      style_preset = require("bufferline").style_preset.no_italic,
 
       numbers = function(opts)
         -- use the :h tabpagenr() instead of :h tabpageid
         local tabpagenr = vim.fn.index(vim.api.nvim_list_tabpages(), opts.id) + 1
         return string.format("%s", opts.raise(tabpagenr))
       end,
-
-      -- no italics
-      style_preset = require("bufferline").style_preset.no_italic,
 
       -- don'd update tabline with random floating windows
       custom_filter = function(buf_number)
