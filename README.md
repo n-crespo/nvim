@@ -1,3 +1,5 @@
+![image](./images/image.png)
+
 # Neovim Configuration
 
 <details>
@@ -20,8 +22,6 @@ distribution, with custom features to extend or remove unneeded functionality.
 Comes in two varieties: `main` and `lite` (default). Set the environment variable
 `NVIM_MAIN_CONFIG = 1` to enable the main config. `main` enables more language
 features and features that may be slow on older machines/servers.
-
-![image](./images/image.png)
 
 Some cool things in here are:
 
