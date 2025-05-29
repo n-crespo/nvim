@@ -1,22 +1,18 @@
 ![image](./images/image.png)
 
-# Neovim Configuration
-
 <details>
   <summary> Table of Contents</summary>
 
 <!--toc:start-->
-- [Neovim Configuration](#neovim-configuration)
-  - [Cool Things](#cool-things)
+- [Cool Things](#cool-things)
+- [Install](#install)
   - [Dependencies](#dependencies)
-  - [Install](#install)
-    - [Homebrew](#homebrew)
-  - [Usage](#usage)
+- [Usage](#usage)
 <!--toc:end-->
 
 </details>
 
-My Neovim configuration based on the [LazyVim](https://www.lazyvim.org)
+My neovim configuration based on the [LazyVim](https://www.lazyvim.org)
 distribution, with custom features to extend or remove functionality.
 
 Comes in two varieties:
@@ -41,15 +37,18 @@ Comes in two varieties:
   - auto save without formatting
 - [nvim-spider](./lua/plugins/spider.lua): `w`, `e`, and `b` motions
 - my custom [color scheme](./colors/macro.lua) (borrowed/extended)
-- my snacks.nvim [picker](./lua/plugins/picker.lua) integration with zoxide
+- my [snacks.picker](./lua/plugins/picker.lua) integration with zoxide
 - my custom [lualine](./lua/plugins/lualine.lua)
 - [mini.files](./lua/plugins/mini-files.lua)
 - ~31ms startup time
 
-## Dependencies
+## Install
 
-> [!IMPORTANT]
-> see [my full dotfiles](https://www.github.com/n-crespo/dotfiles) for other system requirements
+```bash
+brew install neovim # add --HEAD to install nightly (optional)
+```
+
+### Dependencies
 
 - `neovim` (>= 0.11 preferred)
 - `gcc`
@@ -63,28 +62,15 @@ Comes in two varieties:
 - `xclip` (if using WSL)
 - `npm` (for some language servers)
 
-## Install
-
-```bash
-sudo apt-get install -y neovim
-sudo apt-get install python3-neovim
-```
-
-### Homebrew
-
-```bash
-brew install neovim # add --HEAD to install nightly (optional)
-```
-
 ## Usage
 
 Clone the repository and install the plugins:
 
 ```bash
-# this will not override any current neovim configuration files
+# will not override current config
 git clone git@github.com:n-crespo/nvim-config ~/.config/n-crespo/nvim-config
 #                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#             change this install path to ~/.config/nvim to override current config
+#                           change this path to ~/.config/nvim to override current config
 NVIM_APPNAME=n-crespo/nvim-config/ nvim --headless +"Lazy! sync" +qa
 ```
 
