@@ -63,5 +63,14 @@ return {
       mode = "v",
       desc = "Add to AI Chat",
     },
+    {
+      "<C-l>",
+      function()
+        ---@diagnostic disable-next-line: missing-parameter
+        require("codecompanion").add()
+      end,
+      mode = "v",
+      desc = "Add to AI Chat",
+    },
   },
 }
