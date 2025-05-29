@@ -69,8 +69,8 @@ if vim.fn.executable("R") == 1 then
         },
         hook = {
           on_filetype = function()
-            vim.keymap.set("n", "<Enter>", "<Plug>RDSendLine", { buffer = true })
-            vim.keymap.set("v", "<Enter>", "<Plug>RSendSelection", { buffer = true })
+            vim.keymap.set("n", "<C-Enter>", "<Plug>RDSendLine", { buffer = true })
+            vim.keymap.set("v", "<C-Enter>", "<Plug>RSendSelection", { buffer = true })
 
             local wk = require("which-key")
             wk.add({
