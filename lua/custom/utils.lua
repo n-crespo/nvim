@@ -213,6 +213,9 @@ function M.follow_link(tab)
       end
       -- follow anchor link if there's no URL
       if link.url == "" then
+        if tab then
+          vim.cmd([[tabe %]])
+        end
         fn.search("^#* " .. anchor:gsub("-", "[%- ]"))
         return
       end
@@ -247,7 +250,6 @@ function M.follow_link(tab)
     -- follow a bare links (not in markdown syntax)
     if word.text:match("^https?://") then -- a URL!
       vim.ui.open(word.text)
-      print("returning")
       return
     end
 
@@ -262,7 +264,6 @@ function M.follow_link(tab)
       end
       api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
       vim.cmd("normal! zz") -- center the cursor
-      print("returning")
       return
     end
   end
