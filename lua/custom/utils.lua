@@ -200,6 +200,7 @@ function M.follow_link(tab)
     api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
     return
   end
+
   -- follow a markdown formatted link (prioritized)
   if word and link and link.url then
     if link.url:match("^https?://") then
@@ -238,34 +239,52 @@ function M.follow_link(tab)
         return
       end
     end
-  elseif word and word.text then
+  end
+
+  -- examine the word we are currently on
+  if word and word.text then
     word.text = word.text:gsub("[.,:]$", "") -- remove trailing periods or commas
     -- follow a bare links (not in markdown syntax)
     if word.text:match("^https?://") then -- a URL!
       vim.ui.open(word.text)
+      print("returning")
       return
-    else
-      local line_number = tonumber(word.text:match(":(%d+)$")) or nil
-      word.text = word.text:gsub(":(%d+)$", "") -- cut out line numbers
-      local abs_path = vim.fn.getcwd() .. "/" .. word.text -- try abs path as fallback
-      -- try to follow absolute or relative file path
-      if (M.follow_path(word.text, tab) or M.follow_path(abs_path, tab)) and line_number then -- a file path!
-        local success, _ = pcall(api.nvim_win_set_cursor, 0, { line_number, 0 }) -- go to line number
-        if not success then
-          vim.notify("Unable to go to line number " .. line_number, vim.log.levels.WARN)
-        end
-        api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
-        vim.cmd("normal! zz") -- center the cursor
-        return
+    end
+
+    local line_number = tonumber(word.text:match(":(%d+)$")) or nil
+    word.text = word.text:gsub(":(%d+)$", "") -- cut out line numbers
+    local abs_path = vim.fn.getcwd() .. "/" .. word.text -- try abs path as fallback
+    -- try to follow absolute or relative file path
+    if (M.follow_path(word.text, tab) or M.follow_path(abs_path, tab)) and line_number then -- a file path!
+      local success, _ = pcall(api.nvim_win_set_cursor, 0, { line_number, 0 }) -- go to line number
+      if not success then
+        vim.notify("Unable to go to line number " .. line_number, vim.log.levels.WARN)
       end
+      api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
+      vim.cmd("normal! zz") -- center the cursor
+      print("returning")
+      return
     end
   end
+
+  -- try to follow bare link (this is what gf uses)
+  local current_word = vim.fn.expand("<cfile>")
+  if current_word then
+    if current_word:match("^https?://") then
+      vim.ui.open(current_word)
+      return
+    elseif M.follow_path(current_word, tab) then
+      return
+    end
+  end
+
   -- toggle fold if one exists on the current line
   if vim.fn.foldlevel(api.nvim_win_get_cursor(0)[1]) > 0 then
     api.nvim_feedkeys(api.nvim_replace_termcodes("za", true, false, true), "n", false)
     return
   else
   end
+
   -- just sent <CR> if no case was chosen
   api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
 end
