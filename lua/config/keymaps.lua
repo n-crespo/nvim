@@ -61,11 +61,11 @@ vim.keymap.set({ "n", "x" }, "<C-n>", "<M-j>", { remap = true, silent = true })
 
 vim.keymap.set("n", "<CR>", function()
   require("custom.utils").follow_link()
-end, { noremap = true, silent = true, desc = "Follow Link" })
+end, { noremap = true, silent = true, desc = "Follow link" })
 
 vim.keymap.set("n", "<s-CR>", function()
   require("custom.utils").follow_link(true)
-end, { noremap = true, silent = true, desc = "Follow Link (new tab)" })
+end, { noremap = true, silent = true, desc = "Follow link (in tab)" })
 
 -- --------------------------------------- PASTING + REGISTERS -------------------------------------
 
@@ -78,11 +78,11 @@ vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true, silent = true })
 vim.keymap.set("v", "p", '"_dp', { noremap = true, silent = true })
 -- this one is a bit weird
-vim.keymap.set("n", "X", "0D", { remap = true, desc = "Clear Line", silent = true })
+vim.keymap.set("n", "X", "0D", { remap = true, desc = "Clear line", silent = true })
 
 -- delete to register
-vim.keymap.set("v", "<leader>D", '"+d', { desc = "Delete and Copy", silent = true, remap = false })
-vim.keymap.set("n", "<leader>D", '"+dd', { desc = "Delete and Copy", silent = true })
+vim.keymap.set("v", "<leader>D", '"+d', { desc = "Delete and copy", silent = true, remap = false })
+vim.keymap.set("n", "<leader>D", '"+dd', { desc = "Delete and copy", silent = true })
 
 -- paste from system clipboard
 vim.keymap.set("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
@@ -96,16 +96,16 @@ vim.keymap.set(
   { expr = true, replace_keycodes = false, desc = "Select last changed/yanked text" }
 )
 
-vim.keymap.set("n", "yc", "yygccp", { remap = true, desc = "copy and comment current line" })
-vim.keymap.set("v", "Y", "ygvgc']p", { remap = true, desc = "copy and comment current line" })
+vim.keymap.set("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" })
+vim.keymap.set("v", "Y", "ygvgc']p", { remap = true, desc = "Copy and comment current line" })
 
 -- --------------------------------------- WINDOWS BUFFERS AND TABS --------------------------------
 -- rotate windows
-vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate Window" })
+vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
 
 -- tab navigation
-vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous Tab" })
-vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
+vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
 -- create a new tab
 vim.keymap.set("n", "<C-space>", function()
@@ -116,7 +116,7 @@ vim.keymap.set("n", "<C-space>", function()
   -- end
 end)
 
-vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 vim.keymap.set("n", "<leader>q", function()
   -- stylua: ignore
@@ -125,15 +125,15 @@ vim.keymap.set("n", "<leader>q", function()
   if not ok then
     vim.cmd("bdelete")
   end
-end, { desc = "Close Window", silent = true })
+end, { desc = "Close window", silent = true })
 
 vim.keymap.set("n", "<leader>Q", function()
   vim.cmd("bufdo bd")
-end, { desc = "Close All Buffers", silent = true })
+end, { desc = "Close all buffers", silent = true })
 
 -- splits
-vim.keymap.set("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical Split" })
-vim.keymap.set("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Vertical Split" })
+vim.keymap.set("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
+vim.keymap.set("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
 
 vim.keymap.set("n", "<leader>o", function()
   if vim.fn.executable("wsl-open") == 1 then
@@ -141,7 +141,7 @@ vim.keymap.set("n", "<leader>o", function()
   else
     vim.cmd([[silent! !open %]])
   end
-end, { desc = "Open File in System Viewer" })
+end, { desc = "Open buffer in system viewer" })
 
 -- exclude "desc" so they don't populate which-key
 vim.keymap.set("n", "<leader>1", "<cmd>silent! tabn 1<cr>", { silent = true })
@@ -162,7 +162,7 @@ vim.keymap.set("c", "<C-a>", "<Home>", { remap = true })
 vim.keymap.set("c", "<C-e>", "<End>", { remap = true })
 
 -- in insert mode auto-correct the last misspelled word
-vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto Correct", silent = true })
+vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })
 
 vim.keymap.set("i", "<C-Del>", "<C-o>de") -- traditional functionality of <C-delete>
 vim.keymap.set("i", "<M-BS>", "<C-u>") -- clean line (windows keymap)
@@ -204,7 +204,7 @@ vim.api.nvim_create_user_command("WQ", "wq", { nargs = 0 })
 vim.api.nvim_create_user_command("X", "LazyExtras", { nargs = 0 })
 
 -- force save as sudo, good for readonly files
-vim.api.nvim_create_user_command("WF", "silent! w !sudo tee %", { nargs = 0, desc = "Force Save" })
+vim.api.nvim_create_user_command("WF", "silent! w !sudo tee %", { nargs = 0, desc = "Force save" })
 
 -- use for formatting lines with markdown
 vim.cmd("cnoreabbrev F !prettier -w --parser=markdown")
@@ -212,20 +212,20 @@ vim.cmd("cnoreabbrev F !prettier -w --parser=markdown")
 -- ------------------------------------- MISC KEYMAPS ----------------------------------------------
 
 -- Replace the word cursor is on globally
-vim.keymap.set("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change Instances" })
+vim.keymap.set("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change instances" })
 
 -- Executes shell command from in here making file executable
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make Executable" })
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make executable" })
 
 -- apply last created macro over selected region
-vim.keymap.set("x", "Q", ":norm @@<cr>", { desc = "Play Q Macro", silent = true })
+vim.keymap.set("x", "Q", ":norm @@<cr>", { desc = "Play Q macro", silent = true })
 
 -- default mappings, just removing description so they're hidden from whichkey
 vim.keymap.set("x", "Y", "y$")
 vim.keymap.set("x", "&", ":&&<CR>")
 
 -- : (easier to hit when using in combination with <C-k>)
-vim.keymap.set({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Commmand Mode" })
+vim.keymap.set({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Commmand mode" })
 
 -- increment and decrement with plus and minus (since i override <c-a>)
 vim.keymap.set({ "n", "v" }, "+", "<c-a>", { noremap = true, silent = true })
@@ -277,7 +277,7 @@ end
 vim.keymap.set("n", "z=", spell_select)
 
 -- auto pick the first spelling suggestion and apply it
-vim.keymap.set("n", "<leader>fs", "1z=", { remap = false, silent = true, desc = "Fix Spelling" })
+vim.keymap.set("n", "<leader>fs", "1z=", { remap = false, silent = true, desc = "Fix spelling" })
 
 vim.keymap.set("n", "<leader>R", function()
   local plugins = require("lazy").plugins()
@@ -291,4 +291,4 @@ vim.keymap.set("n", "<leader>R", function()
   }, function(selected)
     require("lazy").reload({ plugins = { selected } })
   end)
-end, { desc = ":Lazy reload plugin" })
+end, { desc = "Reload plugin" })
