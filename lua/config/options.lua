@@ -21,6 +21,7 @@ opt.completeopt = "menu,menuone,noselect,noinsert,popup"
 -- opt.autochdir = true -- this breaks things
 vim.g.loaded_ruby_provider = 0 -- never use this
 vim.g.loaded_perl_provider = 0 -- never use this
+vim.g.loaded_python3_provider = 0
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.lazyvim_python_lsp = "pylsp"
@@ -29,9 +30,6 @@ vim.g.editorconfig = true
 
 if LazyVim.is_win() then
   LazyVim.terminal.setup("powershell")
-else
-  vim.g.loaded_python3_provider = "/usr/bin/python3"
-  vim.g.python3_host_prog = "/usr/bin/python3"
 end
 
 -- not needed anymore
