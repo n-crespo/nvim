@@ -149,19 +149,24 @@ end
 function M.follow_path(path, tab)
   local ecmd = tab and "tabe " or "e "
   path = path:gsub('^"(.-)[.,"]?$', "%1") -- remove quotes, trailing commas/peridos
-  -- an absolute path
-  if string.match(path, "^[~/]") and uv.fs_stat(fn.expand(path)) then
-    vim.cmd(ecmd .. path)
-  else
-    -- follow relative path if it exists (relative to curent buffer)
-    path = fn.expand("%:p:h") .. "/" .. path
+
+  if path:match("^[~/]") then
+    -- an absolute path (starts with ~ or /)
     if uv.fs_stat(fn.expand(path)) then
       vim.cmd(ecmd .. path)
+      return true
     else
-      return false
+      return false -- this is an invalid link
+    end
+  else
+    -- does it exist relative to current buffer?
+    local relative_path = fn.expand("%:p:h") .. "/" .. path
+    if uv.fs_stat(relative_path) then
+      vim.cmd(ecmd .. relative_path)
+      return true
     end
   end
-  return true
+  return false
 end
 
 --- Follow a link or toggle a fold. Optionally opens links in new tabs and
@@ -175,9 +180,10 @@ function M.follow_link(tab)
   tab = tab or false
   local word = M.find_word_under_cursor()
   local link = M.find_link_under_cursor() -- matches []() links only
+  local is_markdown = vim.bo.filetype == "markdown"
 
   -- toggle markdown checkboxes with <S-CR> on a '-'
-  if tab and word and word.text == "-" and vim.bo.filetype == "markdown" then
+  if tab and word and word.text == "-" and is_markdown then
     local line = api.nvim_get_current_line()
     local new_line = nil
     if line:match("^%s*%- ") then -- Ensure the line starts with a dash followed by a space
@@ -201,7 +207,7 @@ function M.follow_link(tab)
     return
   end
 
-  -- follow a markdown formatted link (prioritized)
+  -- first try to follow a markdown formatted link
   if word and link and link.url then
     if link.url:match("^https?://") then
       vim.ui.open(link.url)
@@ -253,24 +259,26 @@ function M.follow_link(tab)
       return
     end
 
-    local line_number = tonumber(word.text:match(":(%d+)$")) or nil
-    word.text = word.text:gsub(":(%d+)$", "") -- cut out line numbers
-    local abs_path = vim.fn.getcwd() .. "/" .. word.text -- try abs path as fallback
-    -- try to follow absolute or relative file path
-    if (M.follow_path(word.text, tab) or M.follow_path(abs_path, tab)) and line_number then -- a file path!
-      local success, _ = pcall(api.nvim_win_set_cursor, 0, { line_number, 0 }) -- go to line number
-      if not success then
-        vim.notify("Unable to go to line number " .. line_number, vim.log.levels.WARN)
+    -- cut out possible line number(s)
+    local line_number = tonumber(word.text:match(":(%d+).*$")) or nil
+    word.text = word.text:gsub(":(%d+).*$", "")
+
+    if M.follow_path(word.text, tab) then
+      if line_number then -- a file path!
+        local success, _ = pcall(api.nvim_win_set_cursor, 0, { line_number, 0 }) -- go to line number
+        if not success then
+          vim.notify("Unable to go to line number " .. line_number, vim.log.levels.WARN)
+        end
+        api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
+        vim.cmd("normal! zz")
       end
-      api.nvim_win_set_cursor(0, { line_number, 0 }) -- go to line number
-      vim.cmd("normal! zz") -- center the cursor
       return
     end
   end
 
   -- try to follow bare link (this is what gf uses)
   local current_word = vim.fn.expand("<cfile>")
-  if current_word then
+  if current_word ~= "" then -- cfile defaults to "", not nil!
     if current_word:match("^https?://") then
       vim.ui.open(current_word)
       return
@@ -279,10 +287,13 @@ function M.follow_link(tab)
     end
   end
 
-  -- toggle fold if one exists on the current line
-  if vim.fn.foldlevel(api.nvim_win_get_cursor(0)[1]) > 0 then
-    api.nvim_feedkeys(api.nvim_replace_termcodes("za", true, false, true), "n", false)
-    return
+  -- toggle markdown header fold if one exists on the current line
+  if is_markdown then
+    local line = api.nvim_get_current_line()
+    if line:match("^(%s*)(#+) (%S)(.*)$") and vim.fn.foldlevel(api.nvim_win_get_cursor(0)[1]) > 0 then
+      api.nvim_feedkeys(api.nvim_replace_termcodes("za", true, false, true), "n", false)
+      return
+    end
   else
   end
 
