@@ -46,12 +46,19 @@ return {
       style_preset = require("bufferline").style_preset.no_italic,
 
       name_formatter = function(buf)
-        local custom_name = vim.g["BufferLineCustomName" .. buf.tabnr]
+        local tabnr = buf.tabnr
+        local custom_name = vim.g["BufferLineCustomName" .. tabnr]
+        local name
         if custom_name and custom_name ~= "" then
-          return custom_name
+          name = custom_name
         else
-          return buf.name
+          name = buf.name
         end
+        vim.opt.title = true
+        if vim.api.nvim_win_get_tabpage(0) == tabnr then
+          vim.opt.titlestring = name
+        end
+        return name
       end,
 
       numbers = function(opts)
@@ -158,10 +165,9 @@ return {
       {
         "<leader>r",
         function()
-          local current_tab = vim.api.nvim_get_current_tabpage()
-          vim.ui.input({ prompt = "New Tab Name: " }, function(input)
-            if input or input == "" then
-              vim.g["BufferLineCustomName" .. current_tab] = input
+          vim.ui.input({ prompt = "Rename tab to: " }, function(input)
+            if input then
+              vim.cmd("BufferLineRename " .. input) -- custom defined vim cmd (see top of file)
             end
           end)
         end,
