@@ -7,6 +7,7 @@ return {
       "minifiles",
       "minifiles-help",
       "snacks_terminal",
+      "crunner",
     },
   },
 }

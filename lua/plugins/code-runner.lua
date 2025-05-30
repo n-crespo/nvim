@@ -1,26 +1,5 @@
-local group = vim.api.nvim_create_augroup("CodeRunner", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "close crunner buffers with q",
-  group = group,
-  pattern = "crunner",
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
-    vim.opt_local.scrolloff = 0
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
-  desc = "go to top of buffer when runner is opened",
-  group = group,
-  pattern = "crunner",
-  callback = function()
-    vim.cmd([[norm gg]])
-  end,
-})
-
 -- use R to run any file! very nice
--- this overrides the vim native replace mode, which i never use
+-- this overrides the vim native replace mode which i never use
 return {
   "CRAG666/code_runner.nvim",
   keys = {
@@ -30,6 +9,13 @@ return {
         require("code_runner").run_code()
       end,
       desc = "Run Code",
+    },
+    {
+      "q",
+      "<cmd>close<cr>",
+      buffer = true,
+      ft = "crunner",
+      silent = true,
     },
   },
   config = true,
