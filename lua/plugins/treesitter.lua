@@ -13,7 +13,15 @@ return {
   "nvim-treesitter/nvim-treesitter",
   event = "LazyFile",
   opts = {
-    incremental_selection = { enable = false },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "v<cr>", -- use S for this (flash)
+        scope_incremental = "<tab>",
+        node_incremental = "<cr>",
+        node_decremental = "<BS>",
+      },
+    },
     ensure_installed = {
       "bash",
       "csv",
@@ -22,6 +30,7 @@ return {
       "vimdoc",
       "css",
       "objdump",
+      "arduino",
     },
   },
 }
