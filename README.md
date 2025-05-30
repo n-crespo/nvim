@@ -1,17 +1,5 @@
 ![image](./images/image.png)
 
-<details>
-  <summary> Table of Contents</summary>
-
-<!--toc:start-->
-- [Cool Things](#cool-things)
-- [Install](#install)
-  - [Dependencies](#dependencies)
-- [Usage](#usage)
-<!--toc:end-->
-
-</details>
-
 My neovim configuration based on the [LazyVim](https://www.lazyvim.org)
 distribution, with custom features to extend or remove functionality.
 
