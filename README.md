@@ -1,26 +1,26 @@
 ![image](./images/image.png)
 
-My neovim configuration based on the [LazyVim](https://www.lazyvim.org)
+My Neovim configuration based on the [LazyVim](https://www.lazyvim.org)
 distribution, with custom features to extend or remove functionality.
 
 Comes in two varieties:
 
-- `lite` (default).
-- `main` (fully featured, enables support for more languages)
+- `lite` (default)
+- `full` (fully featured, enables support for more languages)
 
-> Set the environment variable `NVIM_MAIN_CONFIG = 1` to switch to the main config.
+> Set the environment variable `NVIM_FULL_CONFIG=1` to switch to the full config.
 
 ## Cool Things
 
 - my [keymaps](./lua/config/keymaps.lua)
   - `<CR>`: follow links/toggle checkboxes, includes `gf`, `gx` functionality
   - `<S-CR>` follow link in new tab
-  - `B`, `E`: wrap friendly version of `0` and `$`
-  - `<C-l>`: auto fix last spelling error in insert mode
+  - `B`, `E`: wrap-friendly version of `0` and `$`
+  - `<C-l>`: auto-fix last spelling error in insert mode
   - `<C-S-C>`: show word/char count
   - `<C-S-S>`: clean `^M` (Windows artifacts)
 - [my auto commands](./lua/config/autocmds.lua)
-  - remove trailing white space on save
+  - remove trailing whitespace on save
   - cursor line in active window only
   - auto save without formatting
 - [nvim-spider](./lua/plugins/spider.lua): `w`, `e`, and `b` motions
