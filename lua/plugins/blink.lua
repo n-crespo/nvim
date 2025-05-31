@@ -19,7 +19,6 @@ return {
     fuzzy = { sorts = { "exact", "score", "sort_text" } }, -- prioritize exact matches
     sources = {
       providers = {
-        snippets = { min_keyword_length = 2 },
         markdown = {
           name = "RenderMarkdown",
           module = "render-markdown.integ.blink",

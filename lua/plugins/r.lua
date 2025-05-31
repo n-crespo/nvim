@@ -115,8 +115,34 @@ if vim.fn.executable("R") == 1 then
       },
     },
     {
+      "saghen/blink.cmp",
+      optional = true,
+      dependencies = {
+        "R-nvim/cmp-r",
+      },
+      opts = {
+        sources = {
+          compat = {
+            cmp_r = { name = "cmp_r", module = "blink.compat.source" },
+          },
+        },
+      },
+    },
+    {
       "nvim-treesitter/nvim-treesitter",
       opts = { ensure_installed = { "r", "rnoweb" } },
+    },
+    {
+      "nvim-neotest/neotest",
+      optional = true,
+      dependencies = {
+        "shunsambongi/neotest-testthat",
+      },
+      opts = {
+        adapters = {
+          ["neotest-testthat"] = {},
+        },
+      },
     },
   }
 end

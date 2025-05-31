@@ -17,5 +17,10 @@
       ""
     ],
     "description": "Rmarkdown Header"
+  },
+  "code_block": {
+    "prefix": "cb",
+    "body": ["```{r}", "${1}", "```"],
+    "description": "Rmarkdown Code Block"
   }
 }
