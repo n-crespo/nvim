@@ -30,7 +30,6 @@ return {
       "vimdoc",
       "css",
       "objdump",
-      "arduino",
     },
   },
 }
