@@ -18,7 +18,6 @@ return {
     },
     fuzzy = { sorts = { "exact", "score", "sort_text" } }, -- prioritize exact matches
     sources = {
-      per_filetype = { codecompanion = { "codecompanion" } },
       providers = {
         snippets = { min_keyword_length = 2 },
         markdown = {
