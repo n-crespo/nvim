@@ -1,7 +1,7 @@
 -- makes installing and managing language servers a lot easier
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     event = "LspAttach",
     opts = {
       ui = {

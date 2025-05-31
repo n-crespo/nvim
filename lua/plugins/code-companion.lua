@@ -1,6 +1,7 @@
 vim.cmd([[cab cc CodeCompanion]]) -- works in visual mode too!
 return {
   "olimorris/codecompanion.nvim",
+  enabled = false,
   cmd = "CodeCompanion", -- allow the abbreviation :cc to load the plugin
   config = true,
   opts = {
