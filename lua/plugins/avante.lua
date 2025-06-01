@@ -3,13 +3,16 @@ return {
     "yetone/avante.nvim",
     event = "VeryLazy",
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
+    ---@class avante.Config
     opts = {
       hints = { enabled = false }, -- Default configuration
 
       ---@alias AvanteProvider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
       provider = "copilot",
       auto_suggestions_provider = "copilot",
-
+      copilot = {
+        disable_tools = false,
+      },
       -- File selector configuration
       --- @alias FileSelectorProvider "native" | "fzf" | "mini.pick" | "snacks" | "telescope" | string
       selector = {
