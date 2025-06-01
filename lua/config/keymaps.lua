@@ -121,10 +121,7 @@ vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" 
 vim.keymap.set("n", "<leader>q", function()
   -- stylua: ignore
   local close_window = function() vim.cmd("close") end
-  local ok, _ = pcall(close_window)
-  if not ok then
-    vim.cmd("bdelete")
-  end
+  local _, _ = pcall(close_window)
 end, { desc = "Close window", silent = true })
 
 vim.keymap.set("n", "<leader>Q", function()
@@ -152,6 +149,7 @@ vim.keymap.set("n", "<leader>5", "<cmd>silent! tabn 5<cr>", { silent = true })
 vim.keymap.set("n", "<leader>6", "<cmd>silent! tabn 6<cr>", { silent = true })
 vim.keymap.set("n", "<leader>7", "<cmd>silent! tabn 7<cr>", { silent = true })
 vim.keymap.set("n", "<leader>8", "<cmd>silent! tabn 8<cr>", { silent = true })
+vim.keymap.set("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
 
 -- --------------------------------- INSERT MODE + COMPLETION -------------------------------------
 
