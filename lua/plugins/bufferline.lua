@@ -69,16 +69,13 @@ return {
 
       -- don'd update tabline with random floating windows
       custom_filter = function(buf_number)
-        if ignored_bt[vim.bo[buf_number].buftype] then
-          return false
-        end
-        if vim.bo[buf_number].bufhidden ~= "" then
-          return false
-        end
-        if vim.api.nvim_buf_get_name(buf_number) == "" then
-          return false
-        end
-        if picker_open() then
+        if
+          ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = buf_number })]
+          or vim.api.nvim_get_option_value("bufhidden", { buf = buf_number }) ~= ""
+          or vim.api.nvim_buf_get_name(buf_number) == ""
+          or vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "snacks_dashboard"
+          or picker_open()
+        then
           return false
         end
         return true
