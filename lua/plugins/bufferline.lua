@@ -23,7 +23,7 @@ end, {
 
 return {
   "n-crespo/bufferline.nvim",
-  event = "VeryLazy",
+  event = "BufEnter",
   dev = { false },
   opts = {
     options = {
@@ -31,6 +31,7 @@ return {
       tab_size = 10,
       enforce_regular_tabs = false,
       indicator = { style = "none" },
+
       -- hide things
       show_duplicate_prefix = true,
       default_duplicate_prefix = "",
@@ -43,7 +44,6 @@ return {
       themable = false,
       modified_icon = "",
       separator_style = { "", "" },
-      style_preset = require("bufferline").style_preset.no_italic,
 
       name_formatter = function(buf)
         local tabnr = buf.tabnr
@@ -73,7 +73,6 @@ return {
           ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = buf_number })]
           or vim.api.nvim_get_option_value("bufhidden", { buf = buf_number }) ~= ""
           or vim.api.nvim_buf_get_name(buf_number) == ""
-          or vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "snacks_dashboard"
           or picker_open()
         then
           return false
@@ -158,7 +157,12 @@ return {
     return {
       { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
       { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "<leader>p", require("bufferline").pick },
+      {
+        "<leader>p",
+        function()
+          require("bufferline").pick()
+        end,
+      },
       {
         "<leader>r",
         function()
