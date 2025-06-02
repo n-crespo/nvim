@@ -209,7 +209,7 @@ return {
           return vim.notify("Zoxide is not installed", vim.log.levels.WARN)
         end
         Snacks.picker.zoxide({
-          title = "Load Session at...",
+          title = "Projects",
           -- load session at directory
           confirm = function(picker, item)
             picker:close()
@@ -222,7 +222,7 @@ return {
           end,
         })
       end,
-      desc = "Load Session",
+      desc = "Projects",
     },
     {
       "<leader>j",
