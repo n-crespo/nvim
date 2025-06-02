@@ -64,6 +64,8 @@ if vim.fn.executable("R") == 1 then
           "RDSendParagraph",
           "RViewDFs",
           "RDputObj",
+          "RUndebug",
+          "RDebug",
           "ROBToggle", -- object browser (?)
           "RSendSelection",
         },
@@ -71,6 +73,7 @@ if vim.fn.executable("R") == 1 then
           on_filetype = function()
             vim.keymap.set("n", "<C-Enter>", "<Plug>RDSendLine", { buffer = true })
             vim.keymap.set("v", "<C-Enter>", "<Plug>RSendSelection", { buffer = true })
+            vim.keymap.set("i", "<C-b>", "```{r}<cr><cr>```<up>", { buffer = true })
 
             local wk = require("which-key")
             wk.add({
@@ -119,6 +122,7 @@ if vim.fn.executable("R") == 1 then
       optional = true,
       dependencies = {
         "R-nvim/cmp-r",
+        "saghen/blink.compat",
       },
       opts = {
         sources = {
