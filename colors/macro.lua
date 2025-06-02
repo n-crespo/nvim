@@ -530,8 +530,6 @@ local hlgroups = {
 
   -- for lualine
   HostNameIcon = { fg = c_macroAsh, bg = nil },
-
-  AvanteSidebarWinSeparator = { link = "WinSeparator" },
   -- }}}2
 }
 -- }}}1

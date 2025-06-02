@@ -16,7 +16,7 @@ local M = {
     "MeanderingProgrammer/render-markdown.nvim",
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    ft = { "markdown", "norg", "rmd", "org", "Avante" },
+    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     opts = {
       render_modes = { "n", "c", "i", "\x16", "t", "no", "V", "nov", "noV", "vs", "v" },
       on = {
@@ -27,7 +27,7 @@ local M = {
           vim.wo.conceallevel = 0
         end,
       },
-      file_types = { "markdown", "norg", "rmd", "org", "Avante" },
+      file_types = { "markdown", "norg", "rmd", "org", "codecompanion" },
       latex = { enabled = false },
       code = {
         sign = true,
