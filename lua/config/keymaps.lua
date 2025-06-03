@@ -121,7 +121,10 @@ vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" 
 vim.keymap.set("n", "<leader>q", function()
   -- stylua: ignore
   local close_window = function() vim.cmd("close") end
-  local _, _ = pcall(close_window)
+  local ok, _ = pcall(close_window)
+  if not ok then
+    pcall(vim.cmd("bdelete"))
+  end
 end, { desc = "Close window", silent = true })
 
 vim.keymap.set("n", "<leader>Q", function()
