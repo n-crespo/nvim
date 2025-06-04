@@ -18,7 +18,15 @@ return {
               keymaps = {
                 modes = {
                   i = "<C-b>",
-                  n = { "<C-b>", "gb" },
+                  n = { "<C-b>" },
+                },
+              },
+            },
+            ["file"] = {
+              keymaps = {
+                modes = {
+                  i = "<C-f>",
+                  n = { "<C-f>" },
                 },
               },
             },
