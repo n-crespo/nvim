@@ -9,6 +9,7 @@ return {
     views = {
       mini = { win_options = { winblend = 0 } }, -- transparent lsp progress window
     },
+    cmdline = { view = "cmdline" },
     lsp = {
       hover = { enabled = true, silent = true },
       signature = { enabled = false },
