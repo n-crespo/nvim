@@ -1,15 +1,6 @@
+local spinner
 vim.cmd([[cab cc CodeCompanion]]) -- works in visual mode too!
 vim.cmd([[cab cmd CodeCompanionCmd]]) -- works in visual mode too!
-
--- -- Custom Lualine component function
--- local function codecompanion_modifiable_status()
---   local current_bufnr = vim.api.nvim_get_current_buf()
---   if not vim.api.nvim_get_option_value("modifiable", { buf = current_bufnr }) then
---     return "✨ Working on an answer..."
---   else
---     return "📝 Ask me anything!" -- Or perhaps '✏️' to indicate editable
---   end
--- end
 
 return {
   {
@@ -30,6 +21,22 @@ return {
                   n = { "<C-b>", "gb" },
                 },
               },
+            },
+          },
+          keymaps = {
+            send = {
+              callback = function(chat)
+                if not spinner then
+                  spinner = require("custom.spinner")
+                end
+                spinner:init()
+
+                vim.cmd("stopinsert")
+                chat:submit()
+                chat:add_buf_message({ role = "llm", content = "" })
+              end,
+              index = 1,
+              description = "Send",
             },
           },
         },

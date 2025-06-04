@@ -99,10 +99,6 @@ return {
         ------- RIGHT SIDE of statusline -----
         lualine_x = {
           {
-            require("custom.spinner"),
-            padding = 1,
-          },
-          {
             "diff",
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
