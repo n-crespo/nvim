@@ -1,4 +1,5 @@
 vim.cmd([[cab cc CodeCompanion]]) -- works in visual mode too!
+vim.cmd([[cab cmd CodeCompanionCmd]]) -- works in visual mode too!
 
 -- -- Custom Lualine component function
 -- local function codecompanion_modifiable_status()
@@ -18,10 +19,9 @@ return {
     cmd = "CodeCompanion", -- allow the abbreviation :cc to load the plugin
     config = true,
     opts = {
-      -- this defaults to 4o
       strategies = {
         chat = {
-          adapter = "githubmodels",
+          adapter = "copilot",
           slash_commands = {
             ["buffer"] = {
               keymaps = {
@@ -33,8 +33,8 @@ return {
             },
           },
         },
-        inline = { adapter = "githubmodels" },
-        cmd = { adapter = "githubmodels" },
+        inline = { adapter = "copilot" },
+        cmd = { adapter = "copilot" },
       },
       display = {
         chat = {
