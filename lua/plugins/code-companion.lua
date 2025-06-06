@@ -1,6 +1,6 @@
 local spinner
 vim.cmd([[cab cc CodeCompanion]]) -- works in visual mode too!
-vim.cmd([[cab cmd CodeCompanionCmd]]) -- works in visual mode too!
+vim.cmd([[cab cmd CodeCompanionCmd]])
 
 return {
   {
@@ -13,6 +13,12 @@ return {
       strategies = {
         chat = {
           adapter = "copilot",
+          tools = {
+            opts = {
+              auto_submit_errors = true,
+              auto_submit_success = true,
+            },
+          },
           slash_commands = {
             ["buffer"] = {
               keymaps = {
@@ -64,9 +70,10 @@ return {
     },
     keys = {
       {
-        "<leader>ae",
-        "<cmd>CodeCompanion<CR>",
-        mode = "v",
+        "<leader>k",
+        "<cmd>CodeCompanion<cr>",
+        desc = "Prompt Code Companion",
+        mode = { "n", "x" },
       },
       {
         "<leader>ac",

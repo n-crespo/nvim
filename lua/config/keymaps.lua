@@ -43,10 +43,10 @@ vim.keymap.set("n", "<M-ScrollWheelUp>", "zh") -- left scroll
 vim.keymap.set("n", "<M-ScrollWheelDown>", "zl") -- right scroll
 
 -- <C-S-J> as  <C-j>
-vim.keymap.set({ "n", "t" }, "<C-S-H>", "<cmd>wincmd h<cr>")
+-- vim.keymap.set({ "n", "t" }, "<C-S-H>", "<cmd>wincmd h<cr>")
 vim.keymap.set({ "n", "t" }, "<S-NL>", "<cmd>wincmd j<cr>")
-vim.keymap.set({ "n", "t" }, "<C-S-K>", "<cmd>wincmd k<cr>")
-vim.keymap.set({ "n", "t" }, "<C-S-L>", "<cmd>wincmd l<cr>")
+-- vim.keymap.set({ "n", "t" }, "<C-S-K>", "<cmd>wincmd k<cr>")
+-- vim.keymap.set({ "n", "t" }, "<C-S-L>", "<cmd>wincmd l<cr>")
 
 -- paste easier in terminal
 vim.keymap.set("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
