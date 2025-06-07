@@ -14,6 +14,7 @@ return {
       "<C-n>",
       function()
         if package.loaded["copilot.suggestion"] then
+          require("blink.cmp").cancel()
           require("copilot.suggestion").next()
         end
       end,
@@ -23,6 +24,7 @@ return {
       "<C-p>",
       function()
         if package.loaded["copilot.suggestion"] then
+          require("blink.cmp").cancel()
           require("copilot.suggestion").prev()
         end
       end,
