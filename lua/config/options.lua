@@ -29,7 +29,7 @@ vim.g.root_spec = { ".root", "lsp", { ".git", "lua" }, "cwd" }
 vim.g.editorconfig = true
 
 if LazyVim.is_win() then
-  LazyVim.terminal.setup("powershell")
+  LazyVim.terminal.setup("powershell -nologo")
 end
 
 -- not needed anymore
