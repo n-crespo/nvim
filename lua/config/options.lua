@@ -27,6 +27,7 @@ vim.g.maplocalleader = "\\"
 vim.g.lazyvim_python_lsp = "pylsp"
 vim.g.root_spec = { ".root", "lsp", { ".git", "lua" }, "cwd" }
 vim.g.editorconfig = true
+opt.completeopt = { "menuone", "popup", "noinsert" }
 
 if LazyVim.is_win() then
   LazyVim.terminal.setup("powershell -nologo")

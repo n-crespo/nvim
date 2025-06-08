@@ -157,8 +157,8 @@ vim.keymap.set("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
 -- --------------------------------- INSERT MODE + COMPLETION -------------------------------------
 
 -- completion cycling in command mode
-vim.keymap.set("c", "<C-j>", "<C-n>", { remap = true })
-vim.keymap.set("c", "<C-k>", "<C-p>", { remap = true })
+vim.keymap.set({ "c", "i" }, "<C-j>", "<C-n>", { remap = true })
+vim.keymap.set({ "c", "i" }, "<C-k>", "<C-p>", { remap = true })
 vim.keymap.set("c", "<C-a>", "<Home>", { remap = true })
 vim.keymap.set("c", "<C-e>", "<End>", { remap = true })
 

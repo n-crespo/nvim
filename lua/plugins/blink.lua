@@ -84,8 +84,8 @@ return {
       ["<Tab>"] = { "select_and_accept", "fallback" }, -- for accepting from blink
       ["<C-CR>"] = { "select_and_accept", "fallback" }, -- for accepting from blink
       ["<C-e>"] = { "hide", "show", "fallback" },
-      ["<C-j>"] = { "select_next" },
-      ["<C-k>"] = { "select_prev" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
       ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
     },
   },
