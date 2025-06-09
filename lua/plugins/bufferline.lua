@@ -61,12 +61,6 @@ return {
         return name
       end,
 
-      numbers = function(opts)
-        -- use the :h tabpagenr() instead of :h tabpageid
-        local tabpagenr = vim.fn.index(vim.api.nvim_list_tabpages(), opts.id) + 1
-        return string.format("%s", opts.raise(tabpagenr))
-      end,
-
       -- don'd update tabline with random floating windows
       custom_filter = function(buf_number)
         if
@@ -81,77 +75,31 @@ return {
       end,
     },
     -- show selected tab with TabLineSel bg highlights
-    highlights = {
-      tab_selected = {
-        underline = true,
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        fg = {
-          attribute = "fg",
-          highlight = "TabLineSel",
-        },
-      },
-      numbers_selected = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        underline = true,
-      },
-      buffer_selected = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        italic = false,
-        bold = false,
-        underline = true,
-      },
-      pick_selected = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        underline = true,
-      },
-      tab_separator_selected = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        underline = true,
-      },
-      modified_selected = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        fg = {
-          attribute = "fg",
-          highlight = "TabLineSel",
-        },
-        underline = true,
-      },
-      duplicate_selected = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineSel",
-        },
-        fg = {
-          attribute = "fg",
-          highlight = "TabLineSel",
-        },
-        underline = true,
-      },
-      fill = {
-        bg = {
-          attribute = "bg",
-          highlight = "TabLineFill",
-        },
-      },
-    },
+    highlights = function()
+      local hl_names = {
+        "tab_selected",
+        "tab_separator_selected",
+        "close_button_selected",
+        "buffer_selected",
+        "numbers_selected",
+        "modified_selected",
+        "duplicate_selected",
+        "separator_selected",
+        "indicator_selected",
+        "pick_selected",
+      }
+      local hls = {}
+      for _, name in ipairs(hl_names) do
+        hls[name] = {
+          bg = {
+            attribute = "bg",
+            highlight = "TabLineSel",
+          },
+          italic = false,
+        }
+      end
+      return hls
+    end,
   },
   keys = function()
     return {
