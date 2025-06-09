@@ -44,6 +44,7 @@ return {
           {
             "filetype",
             icon_only = true,
+            padding = { left = 1 },
           },
           {
             LazyVim.lualine.pretty_path(),
