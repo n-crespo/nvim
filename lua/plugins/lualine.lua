@@ -138,9 +138,7 @@ return {
             end,
             padding = 1,
             color = {
-              fg = vim.g.full_config
-                  and string.format("%x", vim.api.nvim_get_hl(0, { name = "Directory", link = false }).fg)
-                or string.format("%x", vim.api.nvim_get_hl(0, { name = "DiagnosticWarn", link = false }).fg), -- grab yellow fg part of
+              fg = vim.g.full_config and Snacks.util.color("Special") or Snacks.util.color("DiagnosticWarn"), -- grab yellow fg part of
               bold = true,
             },
           },
