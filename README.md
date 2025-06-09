@@ -13,12 +13,11 @@ Comes in two varieties:
 ## Cool Things
 
 - my [keymaps](./lua/config/keymaps.lua)
-  - `<CR>`: follow links/toggle checkboxes, includes `gf`, `gx` functionality
+  - `<CR>`: follow links, toggle checkboxes, etc (includes `gf`, `gx` functionality)
   - `<S-CR>` follow link in new tab
   - `B`, `E`: wrap-friendly version of `0` and `$`
   - `<C-l>`: auto-fix last spelling error in insert mode
   - `<C-S-C>`: show word/char count
-  - `<C-S-S>`: clean `^M` (Windows artifacts)
 - [my auto commands](./lua/config/autocmds.lua)
   - remove trailing whitespace on save
   - cursor line in active window only
