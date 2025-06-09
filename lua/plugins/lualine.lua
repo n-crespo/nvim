@@ -42,23 +42,6 @@ return {
         },
         lualine_c = {
           {
-            function()
-              -- only show an icon when ssh-ed
-              if os.getenv("SSH_CONNECTION") ~= nil then
-                if LazyVim.is_win() then
-                  return "🪟"
-                end
-                return ""
-              end
-              return ""
-            end,
-            padding = { left = 1, right = 1 },
-            color = "HostNameIcon",
-          },
-          -- stylua: ignore
-          -- artificial padding
-          { function() return " " end, },
-          {
             "filetype",
             icon_only = true,
           },
@@ -98,6 +81,11 @@ return {
         },
         ------- RIGHT SIDE of statusline -----
         lualine_x = {
+          {
+            "hostname",
+            padding = { left = 1, right = 1 },
+            color = "HostNameIcon",
+          },
           {
             "diff",
             source = function()
