@@ -91,13 +91,11 @@ return {
       local hls = {}
       for _, name in ipairs(hl_names) do
         hls[name] = {
-          bg = {
-            attribute = "bg",
-            highlight = "TabLineSel",
-          },
+          bg = { attribute = "bg", highlight = "TabLineSel" },
           italic = false,
         }
       end
+      hls["duplicate"] = { italic = false } -- no italic duplicate prefix
       return hls
     end,
   },
