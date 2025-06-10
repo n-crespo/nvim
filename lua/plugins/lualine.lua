@@ -82,6 +82,12 @@ return {
         },
         ------- RIGHT SIDE of statusline -----
         lualine_x = {
+          -- stylua: ignore
+          {
+            function () return "" end,
+            cond = function() return LazyVim.is_win() end,
+            color = "HostNameIcon",
+          },
           {
             "hostname",
             padding = { left = 1, right = 1 },
