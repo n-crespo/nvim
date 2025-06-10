@@ -49,6 +49,7 @@ return {
         },
       },
       menu = {
+        border = "none",
         auto_show = true,
         draw = {
           columns = {
@@ -59,7 +60,7 @@ return {
       },
       documentation = {
         window = {
-          border = "single",
+          border = "rounded",
           winhighlight = "FloatBorder:FloatBorder",
         },
       },
