@@ -59,8 +59,8 @@ return {
     vim.api.nvim_create_autocmd({ "FileType" }, {
       pattern = { "minifiles" },
       callback = function()
-        vim.keymap.set("n", "<C-d>", "<C-d>", { buffer = true })
-        vim.keymap.set("n", "<C-u>", "<C-u>", { buffer = true })
+        vim.keymap.set("n", "<C-d>", "<C-d>", { remap = false, buffer = true })
+        vim.keymap.set("n", "<C-u>", "<C-u>", { remap = false, buffer = true })
       end,
     })
 
