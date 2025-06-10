@@ -2,6 +2,7 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    optional = true,
     keys = {
       { "<leader>aq", false },
       { "<leader>aa", false },
