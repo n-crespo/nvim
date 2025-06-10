@@ -99,6 +99,8 @@ vim.keymap.set(
 vim.keymap.set("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" })
 vim.keymap.set("v", "Y", "ygvgc']p", { remap = true, desc = "Copy and comment current line" })
 
+-- requires mini.surround
+vim.keymap.set("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })
 -- --------------------------------------- WINDOWS BUFFERS AND TABS --------------------------------
 -- rotate windows
 vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
