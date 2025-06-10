@@ -117,16 +117,15 @@ local M = {
 }
 
 -- enable marksman lsp/markdown-toc formatter in full config
-if vim.g.full_config then
+if vim.g.full_config and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0 then
   -- cbfmt requires a config file
-  if vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0 then
-    vim.api.nvim_echo({
-      {
-        "Please create a ~/.cbfmt.toml file for markdown codeblock formatting.",
-        "WarningMsg",
-      },
-    }, true, {})
-  end
+  --   vim.api.nvim_echo({
+  --     {
+  --       "Please create a ~/.cbfmt.toml file for markdown codeblock formatting.",
+  --       "WarningMsg",
+  --     },
+  --   }, true, {})
+  -- end
   table.insert(M, {
     {
       "neovim/nvim-lspconfig",
