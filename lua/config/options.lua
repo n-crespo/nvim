@@ -31,7 +31,7 @@ vim.g.editorconfig = true
 opt.completeopt = { "menuone", "popup", "noinsert" }
 
 if LazyVim.is_win() then
-  LazyVim.terminal.setup("powershell -nologo")
+  LazyVim.terminal.setup("pwsh -nologo")
 end
 
 -- not needed anymore
