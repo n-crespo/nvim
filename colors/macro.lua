@@ -515,10 +515,10 @@ local hlgroups = {
   NeoCodeiumLabel = { fg = c_macroFg0, bg = c_macroBg2 },
 
   -- treesitter context
-  TreesitterContext = { bg = c_macroBg0 },
-  TreesitterContextLineNumber = { bg = c_macroBg0, fg = border_purple_ink },
-  TreesitterContextLineNumberBottom = { underline = true, bg = c_macroBg0, sp = border_purple_ink },
-  TreesitterContextBottom = { underline = true, bg = c_macroBg0, sp = border_purple_ink },
+  TreesitterContext = { bg = nil },
+  TreesitterContextLineNumber = { bg = nil, fg = border_purple_ink },
+  TreesitterContextLineNumberBottom = { underline = true, bg = nil, sp = border_purple_ink },
+  TreesitterContextBottom = { underline = true, bg = nil, sp = border_purple_ink },
 
   -- render-markdown.nvim
   RenderMarkdownH1Bg = { bg = c_winterRed2 },
