@@ -44,8 +44,10 @@ return {
           {
             "filetype",
             icon_only = true,
-            padding = { left = 1 },
+            padding = { left = 1, right = 0 },
           },
+          -- stylua: ignore
+          { function() return " " end, cond = function () return vim.bo.filetype == '' end }, -- artificial padding
           {
             LazyVim.lualine.pretty_path(),
           },
