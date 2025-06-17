@@ -117,7 +117,14 @@ local M = {
 }
 
 -- enable marksman lsp/markdown-toc formatter in full config
-if vim.g.full_config and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0 then
+if
+  vim.g.full_config
+  and (
+    vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0
+    or vim.fn.getftype(vim.fn.expand("~/.cbfmt.toml")) == "link"
+  )
+then
+  vim.print("please make cbfmt file")
   -- cbfmt requires a config file
   --   vim.api.nvim_echo({
   --     {
