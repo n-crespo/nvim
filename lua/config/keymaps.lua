@@ -169,6 +169,7 @@ vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct
 
 vim.keymap.set("i", "<C-Del>", "<C-o>de") -- traditional functionality of <C-delete>
 vim.keymap.set("i", "<M-BS>", "<C-u>") -- clean line (windows keymap)
+vim.keymap.set("i", "<D-BS>", "<C-u>") -- clean line (windows keymap)
 vim.keymap.set("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear snippets
 
 -- indenting easier
