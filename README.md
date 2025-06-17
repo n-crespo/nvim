@@ -45,9 +45,10 @@ brew install neovim # add --HEAD to install nightly (optional)
 - `clang`
 - `node`
 - `ripgrep`/`rg`
+- `fd`
+- `npm` (for some language servers)
 - `wslu` (if using WSL)
 - `xclip` (if using WSL)
-- `npm` (for some language servers)
 
 ## Usage
 
