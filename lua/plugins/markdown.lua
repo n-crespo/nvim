@@ -124,7 +124,6 @@ if
     or vim.fn.getftype(vim.fn.expand("~/.cbfmt.toml")) == "link"
   )
 then
-  vim.print("please make cbfmt file")
   -- cbfmt requires a config file
   --   vim.api.nvim_echo({
   --     {
