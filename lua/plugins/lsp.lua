@@ -1,8 +1,3 @@
--- include borders in <leader>cd diagnostic floating window
-vim.diagnostic.config({
-  float = { border = "rounded" },
-})
-
 return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
