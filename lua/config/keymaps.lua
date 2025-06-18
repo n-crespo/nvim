@@ -113,6 +113,7 @@ vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 vim.keymap.set("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
 -- in some terminals <C-space> doesn't work, use <S-CR> or <C-S-M> instead
 vim.keymap.set("n", "<S-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
+vim.keymap.set("n", "<C-S-CR>", "<cmd>silent! tabe %<cr>", { desc = "New Tab" })
 
 vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
