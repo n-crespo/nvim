@@ -1,4 +1,5 @@
 -- adds rainbow delimiters when treesitter not available
+-- note: ONLY works when treesitter parser is NOT installed
 return {
   "luochen1990/rainbow",
   ft = "erlang",
