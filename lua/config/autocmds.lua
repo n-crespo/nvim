@@ -93,10 +93,3 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
     end
   end,
 })
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  desc = "Simple Syntax Highlighting for PVS files",
-  pattern = "*.pvs",
-  group = vim.api.nvim_create_augroup("PVS", { clear = true }),
-  command = "set ft=erlang",
-})
