@@ -102,7 +102,7 @@ local hlgroups = {
 
   -- note: the below makes your background transparent. edit your terminal's settings
   -- to set it to a different color, or just add something like bg = "#11111"
-  Normal = { fg = c_macroFg0, bg = nil },
+  Normal = { fg = c_macroFg0, bg = "#0D0C0C" },
   NormalFloat = { link = "NormalFloat" },
 
   ColorColumn = { link = "CursorLine" },
