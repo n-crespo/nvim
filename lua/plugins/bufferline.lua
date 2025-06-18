@@ -58,12 +58,17 @@ return {
         if vim.api.nvim_win_get_tabpage(0) == tabnr then
           vim.opt.titlestring = name
         end
+        if name == "" then
+          name = ":checkhealth" -- i think this only happens in health buffers
+        end
         return name
       end,
 
       -- don'd update tabline with random floating windows
       custom_filter = function(buf_number)
-        if
+        if vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "checkhealth" then
+          return true -- allow :checkhealth buffers
+        elseif
           ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = buf_number })]
           or vim.api.nvim_get_option_value("bufhidden", { buf = buf_number }) ~= ""
           or vim.api.nvim_buf_get_name(buf_number) == ""
