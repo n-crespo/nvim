@@ -1,6 +1,10 @@
 return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
+    vim.diagnostic.config({
+      float = { border = "single" },
+    })
+
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
     -- disable <C-k> insert mode keymap for focusing signature help window
     keys[#keys + 1] = { "<C-K>", false, mode = "i" }
