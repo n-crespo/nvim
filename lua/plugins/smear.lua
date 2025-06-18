@@ -1,7 +1,7 @@
 return {
   "sphamba/smear-cursor.nvim",
   opts = {
-    cursor_color = "#ffffff",
+    cursor_color = "#C5C9C9",
     smear_between_neighbor_lines = true,
     smear_insert_mode = true,
     legacy_computing_symbols_support = true,
