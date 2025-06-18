@@ -4,7 +4,7 @@ return {
     cursor_color = "#C5C9C9",
     smear_between_neighbor_lines = true,
     smear_insert_mode = true,
-    legacy_computing_symbols_support = false,
+    legacy_computing_symbols_support = true,
 
     stiffness = 0.8, -- 0.5      [0, 1]
     trailing_stiffness = 0.5, -- 0.4      [0, 1]
