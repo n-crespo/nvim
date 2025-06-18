@@ -509,6 +509,9 @@ local hlgroups = {
   SnacksIndentScope = { fg = border_purple_ink },
   SnacksPickerListCursorLine = { link = "Visual" },
   SnacksPickerPreviewCursorLine = { link = "CursorLine" },
+  -- how to highlight chars that from query that match item in list
+  -- using a special style here kinda sucks when searching highlights in picker
+  SnacksPickerMatch = {},
 
   -- neocodeium
   NeoCodeiumSuggestion = { link = "NonText" },
