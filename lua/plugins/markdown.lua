@@ -85,21 +85,25 @@ local M = {
   },
   {
     -- preview markdown
-    "n-crespo/peek.nvim",
+    "fmorroni/peek.nvim",
+    branch = "my-main",
     cond = vim.fn.executable("deno") == 1,
     ft = "markdown",
     build = "deno task --quiet build:fast",
     opts = function()
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+
       local opts = {
-        app = {
-          "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe",
-          "--new-window",
-        }, -- 'webview', 'browser', string or a table of strings
+        app = "webview",
         theme = "dark",
         close_on_bdelete = false,
       }
+
+      if vim.fn.has("wsl") == 1 then
+        opts.app = { "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe", "--new-window" }
+      end
+
       return opts
     end,
     keys = {
