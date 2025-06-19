@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   event = { "InsertEnter", "CmdlineEnter" },
-  build = "cargo build --release",
+  -- build = "cargo build --release",
   opts = {
     cmdline = {
       enabled = true,
