@@ -5,12 +5,11 @@ local uv = vim.loop
 local api = vim.api
 local fn = vim.fn
 
---- Get the parent directory of a buffer's file.
---- Returns nil if the buffer has no associated filepath.
+--- Get the parent directory of a buffer. Returns nil if this cannot be found.
 ---
 --- @param bufnr number Buffer number to inspect
---- @return string|nil Absolute path to the buffer's directory, or nil
-local function buf_dir(bufnr)
+--- @return string|nil path An absolute path to the buffer's directory, or nil
+local function path_to_buf(bufnr)
   local name = api.nvim_buf_get_name(bufnr)
   if name ~= "" then
     -- make it absolute and strip to the parent directory
@@ -18,57 +17,29 @@ local function buf_dir(bufnr)
   end
 end
 
---- Select the first valid directory from a list of candidates.
---- A directory is valid if it's non-empty and, if filename is provided,
---- the file exists in that directory.
----
---- @param candidates (string|nil)[] List of directory paths to try in order
---- @param filename string Filename to check existence (optional)
---- @return string|nil First directory that passes checks, or nil
-local function pick_dir(candidates, filename)
-  for _, d in ipairs(candidates) do
-    if type(d) == "string" and d ~= "" then
-      if filename == "" or uv.fs_stat(d .. "/" .. filename) then
-        return d
-      end
-    end
-  end
-end
-
 --- Determines a directory based on buffer context, with fallbacks.
----
---- Priority order:
----   1. Current buffer's directory (if file-backed)
----   2. Alternate buffer's directory (#) (if valid)
----   3. Current working directory
----
---- If a filename is provided, appends it only if that file exists.
---- Otherwise returns just the directory.
 ---
 --- @param filename string? Optional filename to append to the directory
 --- @return string dir Absolute path to the chosen directory or file path
 function M.get_dir_with_fallback(filename)
   filename = filename or ""
-  -- Candidate 1: current buffer dir (nil if no file)
-  local cur_dir = buf_dir(0)
-  -- Candidate 2: alternate buffer dir (#), or nil
-  local alt_bufnr = fn.bufnr("#")
-  local alt_dir = nil
-  if api.nvim_buf_is_valid(alt_bufnr) then
-    alt_dir = buf_dir(alt_bufnr)
-  end
-  local cwd = uv.cwd() -- Candidate 3: fallback to cwd
-  -- Pick the first that exists (and matches filename, if any)
-  local dir = pick_dir({ cur_dir, alt_dir, cwd }, filename) or cwd
-  -- If filename provided and the file exists, return full path
+
+  -- we probably have a regular file
   if filename ~= "" then
-    local full = dir .. "/" .. filename
-    if uv.fs_stat(full) then
-      return full
+    local buf_dir_guess = path_to_buf(0) .. "/" .. filename
+    if buf_dir_guess and uv.fs_stat(buf_dir_guess) then
+      return buf_dir_guess -- only if this is a valid directory
     end
   end
-  -- Otherwise just return the directory
-  return dir
+
+  -- try to use alternate buffer's directory
+  local alt_bufnr = fn.bufnr("#")
+  local alt_dir = api.nvim_buf_is_valid(alt_bufnr) and path_to_buf(alt_bufnr)
+
+  if alt_dir then
+    return alt_dir -- use alt buffer dir if valid
+  end
+  return uv.cwd() or "~" -- default to home directory
 end
 
 -- returns true if neovim has been started as a man pager
