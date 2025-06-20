@@ -67,6 +67,8 @@ vim.keymap.set("n", "<s-CR>", function()
   require("custom.utils").follow_link(true)
 end, { noremap = true, silent = true, desc = "Follow link (in tab)" })
 
+vim.keymap.set({ "n", "i" }, "<D-s>", "<C-s>", { remap = true })
+
 -- --------------------------------------- PASTING + REGISTERS -------------------------------------
 
 -- allow changing and deleting without overriding current paste registers
