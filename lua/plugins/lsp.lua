@@ -2,7 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
     vim.diagnostic.config({
-      float = { border = "single" },
+      float = { border = "rounded" },
     })
 
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
