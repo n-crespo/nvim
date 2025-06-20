@@ -1,5 +1,6 @@
 return {
   "sphamba/smear-cursor.nvim",
+  commit = "d11ce9d", -- i don't like the new animating thing
   opts = {
     anticipation = 0,
     damping = 1.1,
@@ -9,6 +10,7 @@ return {
     smear_insert_mode = true,
     legacy_computing_symbols_support = true,
     legacy_computing_symbols_support_vertical_bars = false,
+    gamma = 1,
 
     stiffness = 0.8, -- 0.5      [0, 1]
     trailing_stiffness = 0.5, -- 0.4      [0, 1]
