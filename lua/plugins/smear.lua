@@ -1,10 +1,14 @@
 return {
   "sphamba/smear-cursor.nvim",
   opts = {
+    anticipation = 0,
+    damping = 1.1,
     cursor_color = "#C5C9C9",
+    transparent_bg_fallback_color = "#1D1D1D",
     smear_between_neighbor_lines = true,
     smear_insert_mode = true,
     legacy_computing_symbols_support = true,
+    legacy_computing_symbols_support_vertical_bars = false,
 
     stiffness = 0.8, -- 0.5      [0, 1]
     trailing_stiffness = 0.5, -- 0.4      [0, 1]
