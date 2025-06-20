@@ -78,6 +78,13 @@ return {
       insert_mode_comment,
       mode = "i",
     },
+    {
+      "<C-_>",
+      -- super hacky way to insert mode commenting while retaining cursor
+      -- position
+      insert_mode_comment,
+      mode = "i",
+    },
     -- some terminals read <C-/> as <C-_>, so define those as well
     {
       "<C-_>",
