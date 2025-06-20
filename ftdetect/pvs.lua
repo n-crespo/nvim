@@ -4,3 +4,4 @@ vim.filetype.add({
   },
 })
 vim.treesitter.language.register("erlang", "pvs")
+vim.opt.commentstring = "% %s"
