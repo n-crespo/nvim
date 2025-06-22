@@ -95,20 +95,6 @@ return {
             padding = { left = 1, right = 1 },
             color = "HostNameIcon",
           },
-          {
-            "diff",
-            source = function()
-              local gitsigns = vim.b.gitsigns_status_dict
-              if gitsigns then
-                return {
-                  added = gitsigns.added,
-                  modified = gitsigns.changed,
-                  removed = gitsigns.removed,
-                }
-              end
-            end,
-            padding = { right = 1 },
-          },
         },
         lualine_y = {
           {
