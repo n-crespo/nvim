@@ -1,3 +1,9 @@
+vim.api.nvim_create_user_command(
+  "InclineToggle",
+  "lua require('incline').toggle()",
+  { nargs = 0, desc = "Toggle Incline" }
+)
+
 return {
   "b0o/incline.nvim",
   event = "LazyFile",
