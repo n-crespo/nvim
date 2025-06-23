@@ -3,6 +3,13 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     optional = true,
+    opts = {
+      mappings = {
+        complete = {
+          insert = "<C-CR>",
+        },
+      },
+    },
     keys = {
       { "<leader>aq", false },
       { "<leader>aa", false },

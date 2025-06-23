@@ -98,10 +98,5 @@ return {
       "<Plug>(comment_toggle_linewise_visual)gv",
       mode = "v",
     },
-    {
-      "<C-_>",
-      insert_mode_comment,
-      mode = "i",
-    },
   },
 }
