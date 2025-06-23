@@ -105,6 +105,7 @@ return {
             ["<C-a>"] = { nil, mode = { "i", "n" } },
             ["<Tab>"] = { "cycle_win", mode = { "i", "n" } },
             ["<S-CR>"] = { "tab", mode = { "i", "n" } },
+            ["<C-CR>"] = { "tab", mode = { "i", "n" } },
 
             ["<C-p>"] = { "history_back", mode = { "i", "n" } },
             ["<C-n>"] = { "history_forward", mode = { "i", "n" } },

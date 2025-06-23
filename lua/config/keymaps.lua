@@ -63,10 +63,14 @@ vim.keymap.set("n", "<CR>", function()
   require("custom.utils").follow_link()
 end, { noremap = true, silent = true, desc = "Follow link" })
 
+vim.keymap.set("n", "<S-CR>", function()
+  require("custom.utils").follow_link(true)
+end, { noremap = true, silent = true, desc = "Follow link in new tab" })
+
 -- create a new tab
 vim.keymap.set("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
 -- in some terminals <C-space> doesn't work, use <S-CR> or <C-S-M> instead
-vim.keymap.set("n", "<S-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
+vim.keymap.set("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
 
 vim.keymap.set({ "n", "i" }, "<D-s>", "<C-s>", { remap = true })
 

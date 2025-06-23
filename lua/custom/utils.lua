@@ -169,9 +169,11 @@ function M.follow_link(tab)
       end
       -- follow anchor link if there's no URL
       if link.url == "" then
+        -- re-open this buffer in a new tab (optionally)
         if tab then
           vim.cmd([[tabe %]])
         end
+        -- now follow the anchor link
         fn.search("^#* " .. anchor:gsub("-", "[%- ]"))
         return
       end
@@ -189,6 +191,9 @@ function M.follow_link(tab)
         end
         -- Try going to anchor (file.md#my-header) (only if file is md)
         if link.url:match(".md$") and anchor ~= "" then
+          if tab then
+            vim.cmd([[tabe %]])
+          end
           local matches = fn.search("^#* " .. anchor:gsub("-", "[%- ]"), "w")
           if matches > 0 then -- Only return if a match was actually found
             vim.cmd("normal! zz") -- center the cursor
@@ -236,8 +241,12 @@ function M.follow_link(tab)
       return
     end
   end
-  -- just sent <CR> if no case was chosen
-  api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+  -- open empty tab if nothing was chosen
+  if tab then
+    vim.cmd([[tabe]])
+  else
+    api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+  end
 end
 
 --- Toggles a Markdown-style checkbox on the current line.
