@@ -2,12 +2,6 @@
 
 local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 
--- returns true if picker is open (don't want tabline changing)
-local function picker_open()
-  local P = package.loaded["snacks.picker.core.picker"]
-  return P and #P.get() > 0
-end
-
 -- setup :BufferLineRename
 vim.api.nvim_create_user_command("BufferLineRename", function(opts)
   local current_tab = vim.api.nvim_get_current_tabpage()
@@ -72,7 +66,6 @@ return {
           ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = buf_number })]
           or vim.api.nvim_get_option_value("bufhidden", { buf = buf_number }) ~= ""
           or vim.api.nvim_buf_get_name(buf_number) == ""
-          or picker_open()
         then
           return false
         end
