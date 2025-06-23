@@ -140,43 +140,22 @@ function M.follow_path(path, tab)
   return false
 end
 
---- Follow a link or toggle a fold. Optionally opens links in new tabs and
---- toggles checkboxes.
+--- Follow a link under the cursor. Optionally opens links in a new tab.
 ---
 --- Combines the functionality of `gf`, `za` and `gx`, with markdown support and
 --- other improvements. Inspired by http://github.com/ixru/nvim-markdown.
 ---
 --- @param tab boolean? When true, links open in a new tab/checkboxes are toggled.
 function M.follow_link(tab)
-  tab = tab or false
-  local word = M.find_word_under_cursor()
-  local link = M.find_link_under_cursor() -- matches []() links only
-  local is_markdown = vim.bo.filetype == "markdown"
-
-  -- toggle markdown checkboxes with <S-CR> on a '-'
-  if tab and word and word.text == "-" and is_markdown then
-    local line = api.nvim_get_current_line()
-    local new_line = nil
-    if line:match("^%s*%- ") then -- Ensure the line starts with a dash followed by a space
-      if line:match("^%s*%- %[%s%]") then
-        new_line = line:gsub("%[%s%]", "[x]") -- "- [ ]"  to "- [x]"
-      elseif line:match("^%s*%- %[%s*x%s*%]") then
-        new_line = line:gsub("%[%s*x%s*%]%s*", "") -- "- [x]" to "-"
-      elseif line:match("^%s*%- ") and not line:match("%[.%]") then
-        new_line = line:gsub("^(%s*%- )", "%1[ ] ") -- "-" to "- [ ]"
-      end
-      if new_line then
-        api.nvim_set_current_line(new_line)
-        return
-      end
-    end
-  end
-
   -- don't break qflists
   if vim.bo.filetype == "qf" then
     api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
     return
   end
+
+  tab = tab or false
+  local word = M.find_word_under_cursor()
+  local link = M.find_link_under_cursor() -- matches []() links only
 
   -- first try to follow a markdown formatted link
   if word and link and link.url then
@@ -221,7 +200,7 @@ function M.follow_link(tab)
     end
   end
 
-  -- examine the word we are currently on
+  -- then try to follow non-markdown link
   if word and word.text then
     word.text = word.text:gsub("[.,:]$", "") -- remove trailing periods or commas
     -- follow a bare links (not in markdown syntax)
@@ -247,7 +226,7 @@ function M.follow_link(tab)
     end
   end
 
-  -- try to follow bare link (this is what gf uses)
+  -- fallback to using the a similar stratefy as `gf`/`gx` (works on bare links)
   local current_word = vim.fn.expand("<cfile>")
   if current_word ~= "" then -- cfile defaults to "", not nil!
     if current_word:match("^https?://") then
@@ -257,19 +236,32 @@ function M.follow_link(tab)
       return
     end
   end
-
-  -- toggle markdown header fold if one exists on the current line
-  if is_markdown then
-    local line = api.nvim_get_current_line()
-    if line:match("^(%s*)(#+) (%S)(.*)$") and vim.fn.foldlevel(api.nvim_win_get_cursor(0)[1]) > 0 then
-      api.nvim_feedkeys(api.nvim_replace_termcodes("za", true, false, true), "n", false)
-      return
-    end
-  else
-  end
-
   -- just sent <CR> if no case was chosen
   api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+end
+
+--- Toggles a Markdown-style checkbox on the current line.
+-- If the line starts with "- ", it cycles between:
+--   - "- "         → "- [ ] "
+--   - "- [ ]"      → "- [x]"
+--   - "- [x]"      → "- "
+-- Only operates on lines that start with a dash and a space.
+function M.toggle_checkbox()
+  local line = api.nvim_get_current_line()
+  local new_line = nil
+  if line:match("^%s*%- ") then -- Ensure the line starts with a dash followed by a space
+    if line:match("^%s*%- %[%s%]") then
+      new_line = line:gsub("%[%s%]", "[x]") -- "- [ ]"  to "- [x]"
+    elseif line:match("^%s*%- %[%s*x%s*%]") then
+      new_line = line:gsub("%[%s*x%s*%]%s*", "") -- "- [x]" to "-"
+    elseif line:match("^%s*%- ") and not line:match("%[.%]") then
+      new_line = line:gsub("^(%s*%- )", "%1[ ] ") -- "-" to "- [ ]"
+    end
+    if new_line then
+      api.nvim_set_current_line(new_line)
+      return
+    end
+  end
 end
 
 return M

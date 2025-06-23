@@ -11,6 +11,15 @@ local M = {
         "scratch",
       }
     end,
+    keys = {
+      {
+        "<C-CR>",
+        function()
+          require("custom.utils").toggle_checkbox()
+        end,
+        ft = "markdown",
+      },
+    },
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
