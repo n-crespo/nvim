@@ -63,9 +63,10 @@ vim.keymap.set("n", "<CR>", function()
   require("custom.utils").follow_link()
 end, { noremap = true, silent = true, desc = "Follow link" })
 
-vim.keymap.set("n", "<s-CR>", function()
-  require("custom.utils").follow_link(true)
-end, { noremap = true, silent = true, desc = "Follow link (in tab)" })
+-- create a new tab
+vim.keymap.set("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
+-- in some terminals <C-space> doesn't work, use <S-CR> or <C-S-M> instead
+vim.keymap.set("n", "<S-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
 
 vim.keymap.set({ "n", "i" }, "<D-s>", "<C-s>", { remap = true })
 
@@ -104,6 +105,7 @@ vim.keymap.set("v", "Y", "ygvgc']p", { remap = true, desc = "Copy and comment cu
 -- requires mini.surround
 vim.keymap.set("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })
 vim.keymap.set("x", "'", "gsa'", { remap = true, desc = "Surround Selection with Quotes" })
+
 -- --------------------------------------- WINDOWS BUFFERS AND TABS --------------------------------
 -- rotate windows
 vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
@@ -111,12 +113,6 @@ vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
 -- tab navigation
 vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
 vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
-
--- create a new tab
-vim.keymap.set("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
--- in some terminals <C-space> doesn't work, use <S-CR> or <C-S-M> instead
-vim.keymap.set("n", "<S-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
-vim.keymap.set("n", "<C-S-CR>", "<cmd>silent! tabe %<cr>", { desc = "New Tab" })
 
 vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
