@@ -241,14 +241,20 @@ vim.keymap.set({ "n", "x" }, "gx", function()
   vim.ui.open(vim.fn.expand("<cfile>"))
 end, { silent = true })
 
--- clean ^Ms (windows newlines created when pasting into WSL from winddows)
+-- clean ^Ms (windows newlines created when pasting into WSL from windows)
 vim.api.nvim_create_user_command("Clean", "silent! %s/\r//g", { nargs = 0, desc = "Clean newline characters" })
 
+-- -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
+-- vim.keymap.set("n", "<C-S-S>", function()
+--   vim.cmd([[silent! %s/\r//g]])
+--   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
+-- end, { remap = false, desc = "Clean ^M", silent = true })
+
 -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
-vim.keymap.set("n", "<C-S-S>", function()
-  vim.cmd([[silent! %s/\r//g]])
-  vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
-end, { remap = false, desc = "Clean ^M", silent = true })
+vim.keymap.set("n", "<C-D-S>", "<cmd>noa w<CR>", { remap = false, desc = "Save (noa)", silent = true })
+
+-- clean ^Ms (windows newlines created when pasting into WSL from winddows)
+vim.keymap.set("n", "<M-C-S>", "<cmd>noa w<CR>", { remap = false, desc = "Save (noa)", silent = true })
 
 -- get word count of current file
 vim.keymap.set("n", "<C-S-C>", function()
