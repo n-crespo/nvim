@@ -163,6 +163,7 @@ vim.keymap.set({ "c", "i" }, "<C-j>", "<C-n>", { remap = true })
 vim.keymap.set({ "c", "i" }, "<C-k>", "<C-p>", { remap = true })
 vim.keymap.set("c", "<C-a>", "<Home>", { remap = true })
 vim.keymap.set("c", "<C-e>", "<End>", { remap = true })
+vim.keymap.set("i", "<tab>", "<C-t>") -- traditional functionality of <C-delete>
 
 -- in insert mode auto-correct the last misspelled word
 vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })

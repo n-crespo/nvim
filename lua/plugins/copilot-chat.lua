@@ -33,6 +33,13 @@ return {
         desc = "Ask AI",
         mode = { "n", "v" },
       },
+      {
+        "<TAB>",
+        "<TAB>",
+        remap = false,
+        mode = "i",
+        ft = "copilot-chat",
+      },
     },
   },
   {
