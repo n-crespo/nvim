@@ -2,7 +2,7 @@ return {
   "sphamba/smear-cursor.nvim",
   opts = {
     anticipation = 0,
-    damping = 1,
+    damping = 0.99, -- setting this to 1 is a bit buggy
     cursor_color = "#c9c9c9",
     transparent_bg_fallback_color = "#1D1D1D",
     smear_between_neighbor_lines = true,
