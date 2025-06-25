@@ -533,6 +533,8 @@ local hlgroups = {
 
   -- for lualine
   HostNameIcon = { fg = c_macroAsh, bg = nil },
+
+  PvsFileIcon = { fg = "#007ad3" },
   -- }}}2
 }
 -- }}}1
