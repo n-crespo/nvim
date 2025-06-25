@@ -1,13 +1,9 @@
--- use the $SHELL env variable or fish
-vim.g.shell = vim.fn.has("wsl") ~= 0 and "/usr/bin/fish" or vim.o.shell
-
 return {
   "folke/snacks.nvim",
   opts = {
     terminal = {
       enabled = true,
       win = { keys = { nav_l = "<C-l>", nav_j = "<C-j>", nav_k = "<C-k>" } },
-      shell = vim.g.shell,
     },
   },
   keys = {
