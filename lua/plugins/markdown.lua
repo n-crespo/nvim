@@ -53,10 +53,11 @@ local M = {
         setext = false,
         sign = false,
         position = "inline",
-        border = false,
+        border = true,
         left_pad = 1,
         right_pad = 1,
         width = "block",
+        border_virtual = true,
         icons = {},
       },
       checkbox = {
