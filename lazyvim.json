@@ -6,7 +6,8 @@
     "lazyvim.plugins.extras.lang.clangd",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.ui.smear-cursor",
-    "lazyvim.plugins.extras.ui.treesitter-context"
+    "lazyvim.plugins.extras.ui.treesitter-context",
+    "lazyvim.plugins.extras.vscode"
   ],
   "install_version": 7,
   "news": {

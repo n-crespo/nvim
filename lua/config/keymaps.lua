@@ -115,8 +115,10 @@ vim.keymap.set("x", "'", "gsa'", { remap = true, desc = "Surround Selection with
 vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
 
 -- tab navigation
-vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
-vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+if not vim.g.vscode then
+  vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
+  vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+end
 
 vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
