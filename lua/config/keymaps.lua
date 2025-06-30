@@ -122,26 +122,27 @@ vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
 if not vim.g.vscode then
   vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
   vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+  vim.keymap.set("n", "<leader>q", function()
+    -- stylua: ignore
+    local close_window = function() vim.cmd("close") end
+    local ok, _ = pcall(close_window)
+    if not ok then
+      pcall(vim.cmd("bdelete"))
+    end
+  end, { desc = "Close window", silent = true })
+else
+  vim.keymap.set("n", "<leader>q", ":bd<cr>", { silent = true })
 end
 
 vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
-
-vim.keymap.set("n", "<leader>q", function()
-  -- stylua: ignore
-  local close_window = function() vim.cmd("close") end
-  local ok, _ = pcall(close_window)
-  if not ok then
-    pcall(vim.cmd("bdelete"))
-  end
-end, { desc = "Close window", silent = true })
 
 vim.keymap.set("n", "<leader>Q", function()
   vim.cmd("bufdo bd")
 end, { desc = "Close all buffers", silent = true })
 
 -- splits
-vim.keymap.set("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
-vim.keymap.set("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
+vim.keymap.set("n", "|", ":vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
+vim.keymap.set("n", "_", ":split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
 
 vim.keymap.set("n", "<leader>o", function()
   if vim.fn.executable("wsl-open") == 1 then
