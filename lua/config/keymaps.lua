@@ -20,6 +20,10 @@ vim.keymap.set("n", "\\k", "k", { remap = false })
 
 vim.keymap.set({ "n", "v" }, "go", "%", { desc = "Go to other pair" })
 
+vim.keymap.set("n", "<M-z>", function()
+  vim.wo.wrap = not vim.wo.wrap
+end, { desc = "Toggle Wrap" })
+
 -- go to visual end of line (unless wrap is disabled)
 vim.keymap.set({ "n", "v", "o" }, "E", function()
   if vim.opt.wrap:get() then
