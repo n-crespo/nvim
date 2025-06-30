@@ -6,7 +6,7 @@ return {
     opts = {
       mappings = {
         complete = {
-          insert = "<C-CR>",
+          insert = "<Tab>",
         },
       },
     },
@@ -35,7 +35,7 @@ return {
       },
       {
         "<TAB>",
-        "<TAB>",
+        "<C-CR>",
         remap = false,
         mode = "i",
         ft = "copilot-chat",
