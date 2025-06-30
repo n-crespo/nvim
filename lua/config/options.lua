@@ -29,6 +29,7 @@ vim.g.lazyvim_python_lsp = "pylsp"
 vim.g.root_spec = { ".root", "lsp", { ".git", "lua" }, "cwd" }
 vim.g.editorconfig = true
 opt.completeopt = { "menuone", "popup", "noinsert" }
+vim.o.modeline = false
 
 if LazyVim.is_win() then
   LazyVim.terminal.setup("pwsh -nologo")
