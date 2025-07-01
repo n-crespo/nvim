@@ -32,7 +32,7 @@ opt.completeopt = { "menuone", "popup", "noinsert" }
 vim.o.modeline = false
 
 if LazyVim.is_win() then
-  LazyVim.terminal.setup("pwsh -nologo")
+  LazyVim.terminal.setup("pwsh")
 end
 
 -- not needed anymore

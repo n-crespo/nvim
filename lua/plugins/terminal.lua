@@ -1,3 +1,4 @@
+local shell = vim.fn.has("wsl") == 1 and "/usr/bin/fish" or nil
 return {
   "folke/snacks.nvim",
   opts = {
@@ -13,7 +14,7 @@ return {
     {
       "<C-q>",
       function()
-        require("snacks.terminal").toggle(nil, {
+        require("snacks.terminal").toggle(shell, {
           win = { position = "bottom" },
           env = { SNACKS_TERM_ID = "bottom_terminal" },
         })
@@ -24,7 +25,7 @@ return {
     {
       "<C-s-/>",
       function()
-        require("snacks.terminal").toggle(nil, {
+        require("snacks.terminal").toggle(shell, {
           win = { position = "float", border = "rounded" },
           env = { SNACKS_TERM_ID = "floating_terminal" },
         })
