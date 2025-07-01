@@ -148,6 +148,11 @@ then
   -- end
   table.insert(M, {
     {
+      "nvim-treesitter/nvim-treesitter",
+      -- likes to not work on windows
+      ensure_installed = { "latex" }, -- proper math block colors
+    },
+    {
       "neovim/nvim-lspconfig",
       opts = {
         servers = {

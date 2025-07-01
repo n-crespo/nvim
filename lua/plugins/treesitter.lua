@@ -29,7 +29,6 @@ return {
       "vimdoc",
       "css",
       "objdump",
-      "latex",
     },
   },
 }
