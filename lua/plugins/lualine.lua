@@ -19,20 +19,17 @@ return {
       },
       sections = {
         ------- LEFT SIDE of statusline -----
-        lualine_a = {
+        lualine_a = {},
+        lualine_b = {
           -- stylua: ignore start
           { function() return " " end, },
-
           ---@diagnostic disable-next-line: assign-type-mismatch
           LazyVim.lualine.root_dir({ cwd = true }),
-
           { function() return " " end, },
           -- stylua: ignore stop
-        },
-        lualine_b = {
           {
             "branch",
-            padding = 1,
+            padding = { left = 1, right = 1 },
             draw_empty = false,
             icon = { "" },
           },
@@ -80,19 +77,7 @@ return {
           },
         },
         ------- RIGHT SIDE of statusline -----
-        lualine_x = {
-          -- stylua: ignore
-          {
-            function () return "" end,
-            cond = function() return LazyVim.is_win() end,
-            color = "Comment",
-          },
-          {
-            "hostname",
-            padding = { left = 1, right = 0 },
-            color = "Comment",
-          },
-        },
+        lualine_x = {},
         lualine_y = {
           {
             "location",
@@ -120,7 +105,22 @@ return {
               end
             end,
           },
-          { "progress", padding = { left = 0, right = 1 } },
+          { "progress", padding = 1 },
+          {
+            function()
+              return ""
+            end,
+            cond = function()
+              return LazyVim.is_win()
+            end,
+            padding = { left = 1, right = 0 },
+            color = "Comment",
+          },
+          {
+            "hostname",
+            padding = 1,
+            color = "Comment",
+          },
         },
         lualine_z = {
           {
