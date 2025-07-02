@@ -8,17 +8,14 @@ return {
     local icons = LazyVim.config.icons
     local opts = {
       options = {
-        -- always_show_tabline = false, -- causes flicker in dashboard, use autocmd workaround
-        theme = "gray",
-        disabled_filetypes = { statusline = { "snacks_dashboard" } },
-        always_divide_middle = true,
         padding = 0,
-        component_separators = { left = "", right = "" },
+        theme = "gray",
+        always_divide_middle = true,
         section_separators = { left = "", right = "" },
-        -- refresh = { statusline = 100 },
+        component_separators = { left = "", right = "" },
+        disabled_filetypes = { statusline = { "snacks_dashboard" } },
       },
       sections = {
-        ------- LEFT SIDE of statusline -----
         lualine_a = {},
         lualine_b = {
           -- stylua: ignore start

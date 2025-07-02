@@ -10,7 +10,7 @@ local light_grey = to_hex(vim.api.nvim_get_hl(0, { name = "Visual" }).bg)
 local subtle_grey = to_hex(vim.api.nvim_get_hl(0, { name = "Comment" }).fg)
 
 local hls = {
-  a = { fg = almost_white, bg = light_grey, bold = true },
+  a = { fg = almost_white, bg = nil, bold = true },
   b = { fg = subtle_grey, bg = nil },
   c = { fg = almost_white, bg = nil },
   d = { bg = light_grey },
