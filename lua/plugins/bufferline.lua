@@ -101,8 +101,8 @@ return {
     return {
       { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
       { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "<C-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "<C-s-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+      -- { "<C-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+      -- { "<C-s-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
       {
         "<leader>p",
         function()
