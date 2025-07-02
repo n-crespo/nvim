@@ -9,6 +9,22 @@ vim.keymap.set("x", "<C-b>", '"rc****<esc>h"rP', { buffer = true, desc = "Bold" 
 vim.keymap.set("x", "<C-i>", '"rc__<esc>"rP', { buffer = true, desc = "Italicize" })
 vim.opt.foldmethod = "expr" -- folds headers and lists nicely
 
+-- auto insert bullets in lists
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.formatoptions:append("r") -- `<CR>` in insert mode
+    vim.opt_local.formatoptions:append("o") -- `o` in normal mode
+    vim.opt_local.comments = {
+      "b:- [ ]", -- tasks
+      "b:- [x]",
+      "b:*", -- unordered list
+      "b:-",
+      "b:+",
+    }
+  end,
+})
+
 -----------------------------------------------
 ------------- TABLE FORMATTING ----------------
 -----------------------------------------------

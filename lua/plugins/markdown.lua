@@ -1,27 +1,5 @@
 local M = {
   {
-    "bullets-vim/bullets.vim",
-    ft = { "markdown", "text", "gitcommit", "scratch" },
-    config = function()
-      vim.g.bullets_set_mappings = 1
-      vim.g.bullets_enabled_file_types = {
-        "markdown",
-        "text",
-        "gitcommit",
-        "scratch",
-      }
-    end,
-    keys = {
-      {
-        "<C-CR>",
-        function()
-          require("custom.utils").toggle_checkbox()
-        end,
-        ft = "markdown",
-      },
-    },
-  },
-  {
     "MeanderingProgrammer/render-markdown.nvim",
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
