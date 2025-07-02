@@ -175,6 +175,14 @@ vim.keymap.set("n", "<D-[>", "<<")
 vim.keymap.set("i", "<D-[>", "<C-d>")
 vim.keymap.set("v", "<D-[>", "<gv")
 
+-- for windows
+vim.keymap.set("n", "<M-]>", ">>")
+vim.keymap.set("i", "<M-]>", "<C-t>")
+vim.keymap.set("v", "<M-]>", ">gv")
+vim.keymap.set("n", "<M-[>", "<<")
+vim.keymap.set("i", "<M-[>", "<C-d>")
+vim.keymap.set("v", "<M-[>", "<gv")
+
 -- follow links better
 vim.keymap.set({ "n", "x" }, "gx", function()
   vim.ui.open(vim.fn.expand("<cfile>"))
