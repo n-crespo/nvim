@@ -2,13 +2,33 @@
 
 local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 
--- this is needed since bufferline doesn't update the titlestring when the
--- tabline is hidden (when only one tabpage is open)
-vim.api.nvim_create_autocmd({ "VimEnter", "TabNew", "TabClosed", "TabEnter", "BufEnter", "BufWritePost" }, {
-  callback = function()
+-- HACK: bufferline doesn't update the titlestring when the tabline is hidden
+-- (when only one tabpage is open)... so i have this largely redundant autocmd
+-- to fix the titlestring when bufferline is unreliable
+vim.api.nvim_create_autocmd({ "VimEnter", "TabNew", "TabClosed", "BufEnter", "BufWritePost", "User" }, {
+  desc = "Update titlestring with buffer name if only one tabpage is open",
+  pattern = "BufferLineRenamed",
+  callback = function(ev)
     if #vim.api.nvim_list_tabpages() == 1 then
-      local buf = vim.api.nvim_get_current_buf()
-      local name = vim.api.nvim_buf_get_name(buf)
+      -- don't try to update if its not needed!
+      if vim.api.nvim_get_option_value("filetype", { scope = "local" }) == "checkhealth" then
+      elseif
+        ignored_bt[vim.api.nvim_get_option_value("buftype", { scope = "local" })]
+        or vim.api.nvim_get_option_value("bufhidden", { scope = "local" }) ~= ""
+        or vim.api.nvim_buf_get_name(ev.buf) == ""
+      then
+        return
+      end
+
+      local custom_name = vim.g["BufferLineCustomName" .. 1]
+      local name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+      if custom_name and custom_name ~= "" then
+        name = custom_name
+      end
+      if name == "" then
+        name = ":checkhealth" -- i think this only happens in health buffers
+      end
+
       if name == "" then
         name = "nvim"
       else
@@ -17,7 +37,6 @@ vim.api.nvim_create_autocmd({ "VimEnter", "TabNew", "TabClosed", "TabEnter", "Bu
       vim.o.titlestring = name
     end
   end,
-  desc = "Update titlestring with buffer name if only one tabpage is open",
 })
 
 vim.api.nvim_create_user_command("BufferLineRename", function(opts)
@@ -27,6 +46,7 @@ vim.api.nvim_create_user_command("BufferLineRename", function(opts)
   else
     vim.g["BufferLineCustomName" .. current_tab] = opts.args
   end
+  vim.api.nvim_exec_autocmds("User", { pattern = "BufferLineRenamed" })
 end, {
   nargs = "?",
   desc = "Rename the current tab",
@@ -69,7 +89,7 @@ return {
           name = ":checkhealth" -- i think this only happens in health buffers
         end
         vim.opt.title = true
-        if vim.api.nvim_win_get_tabpage(0) == tabnr and #vim.api.nvim_list_tabpages() > 1 then
+        if vim.api.nvim_win_get_tabpage(0) == tabnr then
           vim.opt.titlestring = name
         end
         return name
