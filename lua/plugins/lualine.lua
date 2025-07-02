@@ -35,9 +35,6 @@ return {
             padding = 1,
             draw_empty = false,
             icon = { "" },
-            color = {
-              "Conceal",
-            },
           },
         },
         lualine_c = {
@@ -88,12 +85,12 @@ return {
           {
             function () return "" end,
             cond = function() return LazyVim.is_win() end,
-            color = "HostNameIcon",
+            color = "Comment",
           },
           {
             "hostname",
             padding = { left = 1, right = 1 },
-            color = "HostNameIcon",
+            color = "Comment",
           },
         },
         lualine_y = {
@@ -128,12 +125,11 @@ return {
         lualine_z = {
           {
             function()
-              return vim.g.full_config and " " or ""
+              return vim.g.full_config and "" or ""
             end,
             padding = 1,
             color = {
-              fg = vim.g.full_config and Snacks.util.color("Special") or Snacks.util.color("DiagnosticWarn"), -- grab yellow fg part of
-              bold = true,
+              fg = vim.g.full_config and Snacks.util.color("DiffAdded") or Snacks.util.color("DiagnosticWarn"), -- grab yellow fg part of
             },
           },
         },

@@ -1,43 +1,27 @@
-local dark_gray = "#1d1d1d"
-local almost_white = "#C9C9C9"
-local light_grey = "#2e2e2e"
-local subtle_grey = "#706F6D"
+local function to_hex(color)
+  if not color then
+    return nil
+  end
+  return string.format("#%06x", color)
+end
+
+local almost_white = to_hex(vim.api.nvim_get_hl(0, { name = "Normal" }).fg)
+local light_grey = to_hex(vim.api.nvim_get_hl(0, { name = "Visual" }).bg)
+local subtle_grey = to_hex(vim.api.nvim_get_hl(0, { name = "Comment" }).fg)
+
+local hls = {
+  a = { fg = almost_white, bg = light_grey, bold = true },
+  b = { fg = subtle_grey, bg = nil },
+  c = { fg = almost_white, bg = nil },
+  d = { bg = light_grey },
+  z = { bg = nil },
+}
 
 return {
-  inactive = {
-    a = { fg = almost_white, bg = light_grey, bold = true },
-    b = { fg = subtle_grey, bg = dark_gray },
-    c = { fg = almost_white, bg = nil },
-    d = { bg = light_grey },
-  },
-  visual = {
-    a = { fg = almost_white, bg = light_grey, bold = true },
-    b = { fg = subtle_grey, bg = dark_gray },
-    c = { fg = almost_white, bg = nil },
-    d = { bg = light_grey },
-  },
-  replace = {
-    a = { fg = almost_white, bg = light_grey, bold = true },
-    b = { fg = subtle_grey, bg = dark_gray },
-    c = { fg = almost_white, bg = nil },
-    d = { bg = light_grey },
-  },
-  normal = {
-    a = { fg = almost_white, bg = light_grey, bold = true },
-    b = { fg = subtle_grey, bg = dark_gray },
-    c = { fg = almost_white, bg = nil },
-    d = { bg = light_grey },
-  },
-  insert = {
-    a = { fg = almost_white, bg = light_grey, bold = true },
-    b = { fg = subtle_grey, bg = dark_gray },
-    c = { fg = almost_white, bg = nil },
-    d = { bg = light_grey },
-  },
-  command = {
-    a = { fg = almost_white, bg = light_grey, bold = true },
-    b = { fg = subtle_grey, bg = dark_gray },
-    c = { fg = almost_white, bg = nil },
-    d = { bg = light_grey },
-  },
+  inactive = hls,
+  visual = hls,
+  replace = hls,
+  normal = hls,
+  insert = hls,
+  command = hls,
 }
