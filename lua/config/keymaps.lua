@@ -20,6 +20,8 @@ vim.keymap.set("n", "\\k", "k", { remap = false })
 
 vim.keymap.set({ "n", "v" }, "go", "%", { desc = "Go to other pair" })
 
+vim.keymap.set("x", "<bs>", "d", { remap = true })
+
 vim.keymap.set("n", "<M-z>", function()
   vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Wrap" })

@@ -15,10 +15,10 @@ return {
     incremental_selection = {
       enable = true,
       keymaps = {
-        init_selection = "v<cr>", -- use S for this (flash)
+        init_selection = "v<cr>",
         scope_incremental = "<tab>",
         node_incremental = "<cr>",
-        node_decremental = "<BS>",
+        node_decremental = "<S-CR>",
       },
     },
     ensure_installed = {
