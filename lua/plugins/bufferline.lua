@@ -2,7 +2,24 @@
 
 local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 
--- setup :BufferLineRename
+-- this is needed since bufferline doesn't update the titlestring when the
+-- tabline is hidden (when only one tabpage is open)
+vim.api.nvim_create_autocmd({ "VimEnter", "TabNew", "TabClosed", "TabEnter", "BufEnter", "BufWritePost" }, {
+  callback = function()
+    if #vim.api.nvim_list_tabpages() == 1 then
+      local buf = vim.api.nvim_get_current_buf()
+      local name = vim.api.nvim_buf_get_name(buf)
+      if name == "" then
+        name = "nvim"
+      else
+        name = vim.fn.fnamemodify(name, ":t")
+      end
+      vim.o.titlestring = name
+    end
+  end,
+  desc = "Update titlestring with buffer name if only one tabpage is open",
+})
+
 vim.api.nvim_create_user_command("BufferLineRename", function(opts)
   local current_tab = vim.api.nvim_get_current_tabpage()
   if opts.args == "" then
@@ -48,12 +65,12 @@ return {
         else
           name = buf.name
         end
-        vim.opt.title = true
-        if vim.api.nvim_win_get_tabpage(0) == tabnr then
-          vim.opt.titlestring = name
-        end
         if name == "" then
           name = ":checkhealth" -- i think this only happens in health buffers
+        end
+        vim.opt.title = true
+        if vim.api.nvim_win_get_tabpage(0) == tabnr and #vim.api.nvim_list_tabpages() > 1 then
+          vim.opt.titlestring = name
         end
         return name
       end,
