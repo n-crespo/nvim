@@ -23,9 +23,6 @@ vim.keymap.set("n", "<S-CR>", function()
   require("custom.utils").follow_link(true)
 end, { noremap = true, silent = true, desc = "Follow link in new tab" })
 
--- save on macos easier
-vim.keymap.set({ "n", "i" }, "<D-s>", "<C-s>", { remap = true })
-
 -- select entire file
 vim.keymap.set("n", "<C-a>", "ggVG")
 
@@ -293,10 +290,9 @@ vim.cmd("cnoreabbrev F !prettier -w --parser=markdown")
 -- clean ^Ms (windows newlines created when pasting into WSL from windows)
 vim.api.nvim_create_user_command("Clean", "silent! %s/\r//g", { nargs = 0, desc = "Clean newline characters" })
 
--- save without removing trialing whitespace
-vim.keymap.set("n", "<C-D-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
-
--- clean ^Ms (windows newlines created when pasting into WSL from winddows)
+-- save without removing trailing whitespace
+vim.keymap.set({ "n", "i" }, "<C-D-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
+vim.keymap.set({ "n", "i" }, "<D-s>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
 vim.keymap.set("n", "<M-C-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
 
 -- get word count of current file
