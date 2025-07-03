@@ -9,7 +9,7 @@ return {
     local opts = {
       options = {
         padding = 0,
-        theme = "gray",
+        theme = "minimal",
         always_divide_middle = true,
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
@@ -111,12 +111,12 @@ return {
               return LazyVim.is_win()
             end,
             padding = { left = 1, right = 0 },
-            color = "Comment",
+            color = nil,
           },
           {
             "hostname",
             padding = 1,
-            color = "Comment",
+            color = nil,
           },
         },
         lualine_z = {
