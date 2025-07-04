@@ -7,7 +7,7 @@ local function updateTitleString(ev)
     -- don't try to update if its not needed!
     local name
     if vim.api.nvim_get_option_value("filetype", { scope = "local" }) == "snacks_dashboard" then
-      name = "neovim"
+      name = "nvim"
     elseif vim.api.nvim_get_option_value("filetype", { scope = "local" }) == "checkhealth" then
     elseif
       ignored_bt[vim.api.nvim_get_option_value("buftype", { scope = "local" })]

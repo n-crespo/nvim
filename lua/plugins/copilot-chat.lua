@@ -2,6 +2,7 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     optional = true,
     opts = {
       mappings = {
