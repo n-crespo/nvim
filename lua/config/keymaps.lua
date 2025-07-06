@@ -29,7 +29,7 @@ vim.keymap.set("n", "<C-a>", "ggVG")
 -- select last changed/yanked text
 vim.keymap.set(
   "n",
-  "gV",
+  "gp",
   '"`[" . strpart(getregtype(), 0, 1) . "`]"',
   { expr = true, replace_keycodes = false, desc = "Select last changed/yanked text" }
 )
