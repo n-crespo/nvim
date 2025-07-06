@@ -12,7 +12,6 @@ return {
     "folke/tokyonight.nvim",
     enabled = false,
   },
-  -- these two disable catpuccin
   {
     "catppuccin", -- i don't use this
     enabled = false,
