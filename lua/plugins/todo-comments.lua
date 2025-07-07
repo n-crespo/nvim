@@ -1,5 +1,6 @@
 return {
   "folke/todo-comments.nvim",
+  vscode = true,
   opts = {
     highlight = {
       comments_only = false,

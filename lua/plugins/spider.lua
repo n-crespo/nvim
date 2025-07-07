@@ -2,6 +2,7 @@
 return {
   "chrisgrieser/nvim-spider",
   event = "LazyFile",
+  vscode = true,
   keys = {
     {
       "e",
