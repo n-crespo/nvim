@@ -248,6 +248,8 @@ vim.keymap.set("n", "<ScrollWheelUp>", "<C-y>")
 vim.keymap.set("n", "<ScrollWheelDown>", "<C-e>")
 vim.keymap.set("n", "<M-ScrollWheelUp>", "zh") -- left scroll
 vim.keymap.set("n", "<M-ScrollWheelDown>", "zl") -- right scroll
+vim.keymap.set("n", "<ScrollWheelLeft>", "zh") -- left scroll
+vim.keymap.set("n", "<ScrollWheelRight>", "zl") -- right scroll
 
 -- media control buttons (don't send keypresses)
 vim.keymap.set({ "i", "n" }, "", "<Nop>") -- volume up
