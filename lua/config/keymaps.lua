@@ -152,13 +152,6 @@ vim.keymap.set("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
 -----== MANY MODES ==-----
 --------------------------
 
--- indent easier
-vim.keymap.set("i", "<C-]>", "<C-t>")
-vim.keymap.set("i", "<C-S-Find>", "<C-d>")
-vim.keymap.set({ "n", "x" }, "<C-]>", ">>", { remap = true })
-vim.keymap.set({ "n", "x" }, "<C-S-Find>", "<<", { remap = true })
-
--- in case <C-[> cannot be read by terminal
 vim.keymap.set("i", "<C-.>", "<C-t>")
 vim.keymap.set("i", "<C-,>", "<C-d>")
 vim.keymap.set({ "n", "x" }, "<C-.>", ">>", { remap = true })
