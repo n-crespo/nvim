@@ -61,8 +61,8 @@ vim.keymap.set("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
 
 -- splits/windows
 vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
-vim.keymap.set("n", "|", ":vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
-vim.keymap.set("n", "_", ":split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
+vim.keymap.set("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
+vim.keymap.set("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
 
 -- z= with vim.ui.select() (selection UI)
 -- (you can also type a number to pick the nth suggestion)
@@ -244,8 +244,8 @@ vim.keymap.set("n", "<M-ScrollWheelDown>", "zl") -- right scroll
 vim.keymap.set("n", "<ScrollWheelLeft>", "zh") -- left scroll
 vim.keymap.set("n", "<ScrollWheelRight>", "zl") -- right scroll
 
-vim.keymap.set("n", "zk", "<C-y>", { desc = "Scroll viewport up" })
-vim.keymap.set("n", "zj", "<C-e>", { desc = "Scroll viewport down" })
+vim.keymap.set("n", "zk", "<C-y>", { desc = "Scroll viewport up", remap = true })
+vim.keymap.set("n", "zj", "<C-e>", { desc = "Scroll viewport down", remap = true })
 
 -- media control buttons (don't send keypresses)
 vim.keymap.set({ "i", "n" }, "", "<Nop>") -- volume up
@@ -313,6 +313,7 @@ end, { desc = "Display word and character count of the current file" })
 if not vim.g.vscode then
   vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
   vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+
   vim.keymap.set("n", "<leader>q", function()
     -- stylua: ignore
     local close_window = function() vim.cmd("close") end
@@ -322,7 +323,30 @@ if not vim.g.vscode then
     end
   end, { desc = "Close window", silent = true })
 else
-  vim.keymap.set("n", "<leader>q", ":bd<cr>", { silent = true })
+  vim.cmd([[
+    function! s:split(...) abort
+      let direction = a:1
+      let file = exists('a:2') ? a:2 : ''
+      call VSCodeCall(direction ==# 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
+      if !empty(file)
+        call VSCodeExtensionNz.otify('open-file', expand(file), 'all')
+      endif
+    endfunction
+
+    nnoremap _ <Cmd>call <SID>split('h')<CR>
+    nnoremap \| <Cmd>call <SID>split('v')<CR>
+  ]])
+
+  local vscode = require("vscode")
+  vim.notify = vscode.notify
+
+  vim.keymap.del("n", "<leader>qq")
+  vim.keymap.set(
+    "n",
+    "<leader>q",
+    "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>",
+    { silent = true }
+  )
 end
 
 -- vim.keymap.set({ "n", "t" }, "<C-S-H>", "<cmd>wincmd h<cr>")
