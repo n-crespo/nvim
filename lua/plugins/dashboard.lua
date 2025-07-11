@@ -2,6 +2,7 @@ return {
   "folke/snacks.nvim",
   opts = {
     dashboard = {
+      enabled = false,
       width = 45,
       preset = {
         keys = {
