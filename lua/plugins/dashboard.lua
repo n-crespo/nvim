@@ -2,7 +2,6 @@ return {
   "folke/snacks.nvim",
   opts = {
     dashboard = {
-      enabled = false,
       width = 45,
       preset = {
         keys = {
@@ -18,33 +17,13 @@ return {
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
-        header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
-]] .. (vim.g.full_config and "[full]" or "[lite]"),
-        -- header = ([[
-        -- neovim
-        -- ]]):gsub("^%s+", ""):gsub("\n%s+", "\n") .. (vim.g.full_config and "[full]" or "[lite]"),
+        header = vim.g.full_config and "[full]" or "[lite]",
       },
       sections = {
-        { section = "header", padding = 1 },
-        { section = "keys", gap = 0, padding = 1 },
-        {
-          -- title = "Projects",
-          icon = " ",
-          desc = "Projects",
-          section = "projects",
-          pane = 1,
-          padding = 1,
-          -- indent = 4,
-        },
-
+        { section = "header", padding = 3 },
+        { section = "keys", gap = 0, padding = 0 },
         -- { pane = 2, section = "projects", height = 5 },
-        { section = "startup" },
+        -- { section = "startup" },
       },
     },
   },
