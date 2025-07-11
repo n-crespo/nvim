@@ -2,7 +2,7 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    -- enabled = false,
+    enabled = false,
     build = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" or "make",
     ---@class avante.Config
     opts = {

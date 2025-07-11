@@ -4,7 +4,7 @@ vim.cmd([[cab cmd CodeCompanionCmd]])
 
 return {
   "olimorris/codecompanion.nvim",
-  enabled = false,
+  -- enabled = false,
   dependencies = { "saghen/blink.cmp" },
   cmd = "CodeCompanion", -- allow the abbreviation :cc to load the plugin
   config = true,
@@ -67,39 +67,39 @@ return {
       },
     },
   },
-  -- keys = {
-  --   {
-  --     "<leader>k",
-  --     "<cmd>CodeCompanion<cr>",
-  --     desc = "Prompt Code Companion",
-  --     mode = { "n", "x" },
-  --   },
-  --   {
-  --     "<leader>ac",
-  --     function()
-  --       require("codecompanion").chat()
-  --     end,
-  --     desc = "CodeCompanion Chat",
-  --     mode = "n",
-  --   },
-  --   {
-  --     "<leader>ac",
-  --     function()
-  --       require("codecompanion").chat()
-  --       vim.cmd([[normal! o]])
-  --       vim.cmd([[normal! o]])
-  --     end,
-  --     desc = "Add to CodeCompanion Chat",
-  --     mode = "v",
-  --   },
-  --   {
-  --     "<C-l>",
-  --     function()
-  --       ---@diagnostic disable-next-line: missing-parameter
-  --       require("codecompanion").add()
-  --     end,
-  --     mode = "v",
-  --     desc = "Add to CodeCompanion Chat",
-  --   },
-  -- },
+  keys = {
+    {
+      "<leader>k",
+      "<cmd>CodeCompanion<cr>",
+      desc = "Prompt Code Companion",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>ac",
+      function()
+        require("codecompanion").chat()
+      end,
+      desc = "CodeCompanion Chat",
+      mode = "n",
+    },
+    {
+      "<leader>ac",
+      function()
+        require("codecompanion").chat()
+        vim.cmd([[normal! o]])
+        vim.cmd([[normal! o]])
+      end,
+      desc = "Add to CodeCompanion Chat",
+      mode = "v",
+    },
+    {
+      "<C-l>",
+      function()
+        ---@diagnostic disable-next-line: missing-parameter
+        require("codecompanion").add()
+      end,
+      mode = "v",
+      desc = "Add to CodeCompanion Chat",
+    },
+  },
 }
