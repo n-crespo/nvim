@@ -22,5 +22,6 @@ return {
     distance_stop_animating = 0.5, -- 0.1      > 0
     never_draw_over_target = true,
     hide_target_hack = true,
+    smear_to_cmd = false,
   },
 }
