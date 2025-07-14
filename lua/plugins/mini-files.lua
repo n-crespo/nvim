@@ -31,10 +31,10 @@ return {
       go_in_vertical_plus = "|",
       go_home = "gh",
       go_here = "gH",
-      go_config = "gd",
+      go_config = "gc",
     },
     options = {
-      permanent_delete = false, -- files are sent to ~/.local/share/nvim/mini.files/trash/
+      permanent_delete = false, -- files are sent to ~/.local/share/nvim/mini.files/trash when true
       use_as_default_explorer = true, -- for nvim .
     },
   },
@@ -59,6 +59,8 @@ return {
     vim.api.nvim_create_autocmd({ "FileType" }, {
       pattern = { "minifiles" },
       callback = function()
+        -- vim.keymap.del("n", "gc", { buffer = true })
+        -- vim.keymap.del("n", "gcc", { buffer = true })
         vim.keymap.set("n", "<C-d>", "<C-d>", { remap = false, buffer = true })
         vim.keymap.set("n", "<C-u>", "<C-u>", { remap = false, buffer = true })
       end,
