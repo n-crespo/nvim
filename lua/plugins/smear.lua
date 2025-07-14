@@ -10,8 +10,10 @@ return {
     legacy_computing_symbols_support_vertical_bars = true,
     gamma = 1,
 
+    time_interval = 7, -- milliseconds, default 17
+
     stiffness = 0.8, -- 0.5      [0, 1]
-    trailing_stiffness = 0.5, -- 0.4      [0, 1]
+    trailing_stiffness = 0.6, -- 0.4      [0, 1]
 
     smear_insert_mode = true,
     stiffness_insert_mode = 0.8, -- 0.6      [0, 1]
