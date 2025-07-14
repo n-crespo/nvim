@@ -36,22 +36,6 @@ return {
             },
           },
         },
-        keymaps = {
-          send = {
-            callback = function(chat)
-              if not spinner then
-                spinner = require("custom.spinner")
-              end
-              spinner:init()
-
-              vim.cmd("stopinsert")
-              chat:submit()
-              chat:add_buf_message({ role = "llm", content = "" })
-            end,
-            index = 1,
-            description = "Send",
-          },
-        },
       },
       inline = { adapter = "copilot" },
       cmd = { adapter = "copilot" },
