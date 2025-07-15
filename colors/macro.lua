@@ -520,8 +520,8 @@ local hlgroups = {
   -- treesitter context
   TreesitterContext = { bg = nil },
   TreesitterContextLineNumber = { bg = nil, fg = border_purple_ink },
-  TreesitterContextLineNumberBottom = { underline = true, bg = nil, sp = border_purple_ink },
-  TreesitterContextBottom = { underline = true, bg = nil, sp = border_purple_ink },
+  TreesitterContextLineNumberBottom = { underdashed = false, bg = nil, sp = border_purple_ink },
+  TreesitterContextBottom = { underdashed = false, bg = nil, sp = border_purple_ink },
 
   -- render-markdown.nvim
   RenderMarkdownH1Bg = { bg = winterRed2 },
