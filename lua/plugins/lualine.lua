@@ -129,7 +129,10 @@ return {
       "<C-g>", -- :h CTRL_G
       function()
         vim.notify(
-          require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
+          vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~")
+            .. "\n("
+            .. require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
+            .. ")"
         )
       end,
     },
