@@ -224,7 +224,7 @@ local hlgroups = {
   ["@string.escape"] = { link = "Constant" },
   ["@string.regexp"] = { link = "Constant" },
   ["@string.special.url.comment"] = { fg = macroTeal, underline = true },
-  ["@markup.link.label.symbol"] = { fg = macroFg0 },
+  ["@markup.link.label.symbol"] = { fg = lotusBlue },
   ["@tag.attribute"] = { fg = macroFg0 },
   ["@tag.delimiter"] = { fg = macroGray1 },
   ["@diff.delta"] = { link = "DiffChanged" },
