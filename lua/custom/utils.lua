@@ -137,6 +137,11 @@ function M.follow_path(path, tab)
       return true
     end
   end
+  local with_cwd_prefix = vim.fn.getcwd(0, 0) .. "/" .. path
+  if uv.fs_stat(with_cwd_prefix) then
+    vim.cmd(ecmd .. with_cwd_prefix)
+    return true
+  end
   return false
 end
 
