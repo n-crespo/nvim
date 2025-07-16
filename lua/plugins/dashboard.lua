@@ -21,7 +21,7 @@ return {
       },
       sections = {
         { section = "header", padding = 3 },
-        { section = "keys", gap = 0, padding = 0 },
+        { section = "keys", gap = 1, padding = 0 },
         -- { pane = 2, section = "projects", height = 5 },
         -- { section = "startup" },
       },
