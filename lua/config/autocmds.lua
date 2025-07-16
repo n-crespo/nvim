@@ -83,6 +83,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- pluginless autosave
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
   group = vim.api.nvim_create_augroup("AutoSave", { clear = true }),
   desc = "Auto save buffers when focus is lost (skips formatting).",

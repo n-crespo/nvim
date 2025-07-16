@@ -12,27 +12,24 @@ Comes in two varieties:
 
 ## Cool Things
 
-- my [keymaps](./lua/config/keymaps.lua)
-  - `<CR>`: follow links, toggle checkboxes, etc (includes `gf`, `gx` functionality)
-  - `<S-CR>` follow link in new tab
-  - `B`, `E`: wrap-friendly version of `0` and `$`
-  - `<C-l>`: auto-fix last spelling error in insert mode
+- macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
+- zoxide integration in [snacks.picker](./lua/plugins/picker.lua)
+- sensible [markdown functionality](./lua/plugins/markdown.lua)
+- these [keymaps](./lua/config/keymaps.lua)
   - `<C-S-C>`: show word/char count
-- [my auto commands](./lua/config/autocmds.lua)
-  - remove trailing whitespace on save
-  - cursor line in active window only
-  - auto save without formatting
-- [nvim-spider](./lua/plugins/spider.lua): `w`, `e`, and `b` motions
-- my custom [color scheme](./colors/macro.lua) (borrowed/extended)
-- my [snacks.picker](./lua/plugins/picker.lua) integration with zoxide
-- my custom [lualine](./lua/plugins/lualine.lua)
-- [mini.files](./lua/plugins/mini-files.lua)
-- ~31ms startup time
+  - `<S-CR>`: follow link in new tab
+  - `<CR>`: follow links, `gf`, toggle checkboxes, etc
+  - `B`, `E`: wrap-friendly version of `0` and `$`
+  - `w`, `e`, and `b`: improved with [spider](./lua/plugins/spider.lua)
+- these [auto commands](./lua/config/autocmds.lua)
+  - plugin-less autosave
+  - trim trailing whitespace on save
+  - smarter cursor line (in active window only)
 
 ## Install
 
 ```bash
-brew install neovim # add --HEAD to install nightly (optional)
+brew install neovim
 ```
 
 ### Dependencies
