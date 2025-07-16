@@ -2,7 +2,7 @@ return {
   "sphamba/smear-cursor.nvim",
   opts = {
     anticipation = 0,
-    damping = 0.99, -- setting this to 1 is a bit buggy
+    damping = 0.999, -- setting this to 1 is a bit buggy
     cursor_color = "#c9c9c9",
     transparent_bg_fallback_color = "#0D0D0D",
     smear_between_neighbor_lines = true,
@@ -12,8 +12,8 @@ return {
 
     time_interval = 7, -- milliseconds, default 17
 
-    stiffness = 0.8, -- 0.5      [0, 1]
-    trailing_stiffness = 0.6, -- 0.4      [0, 1]
+    stiffness = 0.9, -- 0.5      [0, 1]
+    trailing_stiffness = 0.65, -- 0.4      [0, 1]
 
     smear_insert_mode = true,
     stiffness_insert_mode = 0.8, -- 0.6      [0, 1]
