@@ -349,7 +349,7 @@ local hlgroups = {
   htmlH5 = { fg = springViolet, bold = true },
   htmlH6 = { fg = macroViolet, bold = true },
   htmlItalic = { italic = true },
-  htmlLink = { fg = lotusBlue, underline = true },
+  htmlLink = { fg = lotusBlue, underline = true, sp = lotusBlue },
   htmlSpecialChar = { link = "SpecialChar" },
   htmlSpecialTagName = { fg = macroViolet },
   htmlString = { link = "String" },
