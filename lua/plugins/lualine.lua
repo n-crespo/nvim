@@ -32,16 +32,6 @@ return {
           },
         },
         lualine_c = {
-          {
-            "filetype",
-            icon_only = true,
-            padding = { left = 1, right = 0 },
-          },
-          -- stylua: ignore
-          { function() return " " end, cond = function () return vim.bo.filetype == '' end }, -- artificial padding
-          {
-            LazyVim.lualine.pretty_path(),
-          },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
@@ -134,4 +124,14 @@ return {
     }
     return opts
   end,
+  keys = {
+    {
+      "<C-g>", -- :h CTRL_G
+      function()
+        vim.notify(
+          require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
+        )
+      end,
+    },
+  },
 }
