@@ -98,7 +98,9 @@ vim.keymap.set("n", "<leader>R", function()
   end)
 end, { desc = "Reload plugin" })
 
+---------------------------
 -----== VISUAL MODE ==-----
+---------------------------
 
 -- search within selection by default when using / in visual mode
 vim.keymap.set("x", "/", "<Esc>/\\%V")
