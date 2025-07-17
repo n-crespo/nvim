@@ -7,7 +7,7 @@
 vim.keymap.set("i", "<C-b>", "****<left><left>", { buffer = true, silent = true })
 vim.keymap.set("x", "<C-b>", '"rc****<esc>h"rP', { buffer = true, desc = "Bold" })
 vim.keymap.set("x", "<C-i>", '"rc__<esc>"rP', { buffer = true, desc = "Italicize" })
-vim.opt.foldmethod = "expr" -- folds headers and lists nicely
+vim.opt_local.foldmethod = "expr" -- folds headers and lists nicely
 
 -- auto insert bullets in lists
 vim.api.nvim_create_autocmd("FileType", {
