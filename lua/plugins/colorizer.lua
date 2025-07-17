@@ -8,7 +8,7 @@ end, { nargs = 0 })
 return {
   "catgoose/nvim-colorizer.lua",
   cmd = "Colorizer",
-  ft = { "css", "html", "javascript", "typescript", "lua", "json", "noice" },
+  ft = { "css", "html", "javascript", "typescript", "noice" },
   opts = {
     lazy_load = false,
     filetypes = {
@@ -20,10 +20,7 @@ return {
       cmp_docs = { always_update = true },
     },
     -- exclude prompt and popup buftypes from highlight
-    buftypes = {
-      "!prompt",
-      "!popup",
-    },
+    buftypes = { "!prompt", "!popup", },
     user_default_options = {
       RGB = false, -- #RGB hex codes
       RGBA = false,
