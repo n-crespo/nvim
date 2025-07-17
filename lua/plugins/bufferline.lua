@@ -67,7 +67,7 @@ end, {
 
 return {
   "n-crespo/bufferline.nvim",
-  event = "BufEnter",
+  event = "LazyFile",
   dev = { false },
   opts = {
     options = {
