@@ -1,5 +1,11 @@
 -- use haskell highlighting in .kyx files and "keymaerax" codeblocks
-vim.filetype.add({
-  extension = { kyx = "keymaerax" },
-})
-vim.treesitter.language.register("haskell", "keymaerax")
+
+-- vim.api.nvim_create_autocmd({ "BufEnter", "BufReadPre" }, {
+--   pattern = "*.kyx",
+--   -- once = true,
+--   group = vim.api.nvim_create_augroup("keymaerax_ftdetect", { clear = true }),
+--   callback = function()
+--     vim.filetype.add({ extension = { kyx = "keymaeraX" } })
+--     vim.treesitter.language.register("haskell", "keymaeraX")
+--   end,
+-- })
