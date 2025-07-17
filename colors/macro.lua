@@ -15,86 +15,41 @@ vim.g.colors_name = "macro"
 
 -- {{{
 -- stylua: ignore start
-local autumnGreen          = "#76946A"
-local autumnRed            = "#C34043"
-local autumnOrange         = "#E87D3E"
-local autumnYellow         = "#DCA561"
-local carpYellow           = "#C8AE81"
-local katanaGray           = "#717C7C"
-local lotusBlue            = "#9FB5C9"
-local lotusGray            = "#716E61"
-local lotusRed0            = "#D7474B"
-local lotusRed1            = "#E84444"
-local lotusRed2            = "#D9A594"
-local macroAqua            = "#95AEAC"
-local macroAsh             = "#626462"
-local macroBg0             = "#0D0D0D"
-local normal_bg            = "#111111"
-local macroBg2             = "#1D1D1D"
-local macroBg3             = "#0D0D0D" -- changed from #282727 to fix box in lualine
-local selection_light_gray = "#2e2e2e"
-local macroBg5             = "#625E5A"
-local macroBlue0           = "#658594"
-local macroBlue1           = "#8BA4B0"
-local macroFg0             = "#C9C9C9"
-local macroFg1             = "#B4B3A7"
-local macroFg2             = "#A09F95"
-local macroGray0           = "#A6A69C"
-local macroGray1           = "#9E9B93"
-local macroGray2           = "#7A8382"
-local macroGreen0          = "#87A987"
-local macroGreen1          = "#8A9A7B"
-local macroGreen2          = "#2f3b2a"
-local macroOrange0         = "#B6927B"
-local macroOrange1         = "#B98D7B"
-local macroPink            = "#A292A3"
-local macroRed             = "#C4746E"
-local macroTeal            = "#949FB5"
-local macroViolet          = "#8992A7"
-local roninYellow          = "#FF9E3B"
-local springBlue           = "#7FB4CA"
-local springGreen          = "#98BB6C"
-local springViolet         = "#938AA9"
-local border_purple_ink    = "#5F5F87"
-local waveAqua0            = "#6A9589"
-local waveAqua1            = "#7AA89F"
-local waveBlue0            = "#223249"
-local waveBlue1            = "#2D4F67"
-local waveRed              = "#E46876"
-local winterBlue           = "#252535"
-local winterGreen          = "#2E322D"
-local winterRed            = "#43242B"
-local winterRed2           = "#332828"
-local winterYellow         = "#322E29"
-local winterPurple         = "#292E42"
-local winterOrange         = "#3B2B24"
+local normalBg              = "#0F0F0F"
+local cursorlineBg          = "#1D1D1D"
+local selectionBg           = "#2e2e2e"
+local ashGrey               = "#626462"
+local quoteFg               = "#A6A69C"
+local normalFg              = "#C9C9C9"
+
+local brightRed            = "#C34043"
+local dimRed               = "#C4746E"
+local darkRed              = "#43242B"
+
+local brightOrange         = "#FF9E3B"
+local dimOrange            = "#B98D7B"
+local darkOrange           = "#3B2B24"
+
+local dimYellow            = "#C8AE81"
+local darkYellow           = "#322E29"
+
+local brightGreen          = "#98BB6C"
+local dimGreen             = "#8A9A7B"
+local darkGreen            = "#2E322D"
+
+local brightBlue           = "#2D4F67" -- used in search
+local dimBlue              = "#9FB5C9"
+local darkBlue             = "#252535"
+
+local brightTeal           = "#949FB5"
+local dimTeal              = "#8992A7"
+
+local brightPurple         = "#5F5F87"
+local dimPurple            = "#A292A3" -- used for number
+local darkPurple           = "#292E42"
+
 -- stylua: ignore end
 -- }}}
-
--- Terminal colors {{{
--- stylua: ignore start
-
-vim.g.terminal_color_0  = macroBg0[1]
-vim.g.terminal_color_1  = macroRed[1]
-vim.g.terminal_color_2  = macroGreen1[1]
-vim.g.terminal_color_3  = carpYellow[1]
-vim.g.terminal_color_4  = macroBlue1[1]
-vim.g.terminal_color_5  = macroPink[1]
-vim.g.terminal_color_6  = macroAqua[1]
-vim.g.terminal_color_7  = macroFg0[1]
-vim.g.terminal_color_8  = selection_light_gray[1]
-vim.g.terminal_color_9  = waveRed[1]
-vim.g.terminal_color_10 = macroGreen0[1]
-vim.g.terminal_color_11 = autumnYellow[1]
-vim.g.terminal_color_12 = springBlue[1]
-vim.g.terminal_color_13 = springViolet[1]
-vim.g.terminal_color_14 = waveAqua1[1]
-vim.g.terminal_color_15 = macroFg0[1]
-
-vim.g.terminal_color_16 = macroOrange0[1]
-vim.g.terminal_color_17 = macroOrange1[1]
--- stylua: ignore end
---- }}}
 
 -- Highlight groups {{{1
 local hlgroups = {
@@ -102,131 +57,131 @@ local hlgroups = {
 
   -- note: the below makes your background transparent. edit your terminal's settings
   -- to set it to a different color, or just add something like bg = "#11111"
-  Normal = { fg = macroFg0, bg = macroBg0 },
+  Normal = { fg = normalFg, bg = normalBg },
   NormalFloat = { link = "NormalFloat" },
 
   ColorColumn = { link = "CursorLine" },
-  Conceal = { bold = true, fg = macroGray2 },
+  Conceal = { bold = true, fg = quoteFg },
   CurSearch = { link = "IncSearch" },
-  Cursor = { bg = macroFg0, fg = nil },
+  Cursor = { bg = normalFg, fg = nil },
   CursorColumn = { link = "CursorLine" },
   CursorIM = { link = "Cursor" },
-  CursorLine = { bg = macroBg2 },
-  CursorLineNr = { fg = macroGray0, bold = true },
+  CursorLine = { bg = cursorlineBg },
+  CursorLineNr = { fg = quoteFg, bold = true },
   DebugPC = { link = "DiffDelete" },
-  DiffAdd = { bg = winterGreen },
-  DiffAdded = { fg = autumnGreen },
-  DiffChange = { bg = winterBlue },
-  DiffChanged = { fg = autumnYellow },
-  DiffDelete = { bg = winterRed },
-  DiffDeleted = { fg = autumnRed },
+  DiffAdd = { bg = darkGreen },
+  DiffAdded = { fg = dimGreen },
+  DiffChange = { bg = darkBlue },
+  DiffChanged = { fg = dimYellow },
+  DiffDelete = { bg = darkRed },
+  DiffDeleted = { fg = brightRed },
   DiffNewFile = { link = "DiffAdded" },
   DiffOldFile = { link = "DiffDeleted" },
-  DiffRemoved = { link = "DiffDeleted" },
-  DiffText = { bg = border_purple_ink },
-  Directory = { fg = macroBlue1 },
-  EndOfBuffer = { fg = normal_bg },
-  ErrorMsg = { fg = lotusRed1 },
-  FloatBorder = { bg = nil, fg = border_purple_ink },
-  CompletionBorder = { bg = nil, fg = border_purple_ink },
-  FloatFooter = { bg = macroBg0, fg = macroBg5 },
-  FloatTitle = { bg = macroBg0, fg = macroGray2, bold = true },
+  DiffRemoved = { link = "DiffDeleted" }, --hello
+  DiffText = { bg = darkGreen, underdashed = true },
+  Directory = { fg = dimBlue },
+  EndOfBuffer = { fg = normalBg },
+  ErrorMsg = { fg = dimRed },
+  FloatBorder = { bg = nil, fg = brightPurple },
+  CompletionBorder = { bg = nil, fg = brightPurple },
+  FloatFooter = { bg = normalBg, fg = ashGrey },
+  FloatTitle = { bg = normalBg, fg = quoteFg, bold = true },
   FoldColumn = { link = "NonText" },
-  Folded = { bg = macroBg2, fg = lotusGray },
+  Folded = { bg = cursorlineBg, fg = ashGrey },
   Ignore = { link = "NonText" },
-  IncSearch = { bg = carpYellow, fg = waveBlue0 },
+  IncSearch = { bg = dimYellow, fg = brightBlue },
   LineNr = { link = "NonText" },
   MatchParen = { link = "Visual" },
-  ModeMsg = { fg = macroRed, bold = true },
-  MoreMsg = { fg = macroBlue0 },
-  MsgArea = { fg = macroFg1 },
-  MsgSeparator = { bg = macroBg0 },
-  NonText = { fg = macroBg5 },
+  ModeMsg = { fg = dimRed, bold = true },
+  MoreMsg = { fg = dimBlue },
+  MsgArea = { fg = quoteFg },
+  MsgSeparator = { bg = normalFg },
+  NonText = { fg = ashGrey },
   SnippetTabstop = { link = "Snippet" },
   NormalNC = { link = "Normal" },
-  Pmenu = { bg = macroBg2, fg = macroFg1 },
+  Pmenu = { bg = cursorlineBg, fg = normalFg },
   PmenuSbar = { link = "CursorColumn" },
   PmenuSel = { link = "Visual" },
-  PmenuThumb = { bg = macroBg5 },
+  PmenuThumb = { bg = ashGrey },
   PmenuExtra = { bg = nil, fg = nil },
   PmenuKind = { bg = nil, fg = nil },
   Question = { link = "MoreMsg" },
-  QuickFixLine = { bg = macroBg3 },
+  QuickFixLine = { bg = normalBg },
   Search = { link = "Visual" },
-  SignColumn = { fg = macroGray2 },
-  SpellBad = { underdashed = true, sp = lotusRed0 },
-  SpellCap = { underdashed = true, sp = carpYellow },
-  SpellLocal = { underdashed = true, sp = carpYellow },
-  SpellRare = { underdashed = true, sp = carpYellow },
-  StatusLine = { bg = nil, fg = macroFg0 },
-  StatusLineNC = { bg = macroBg2, fg = macroBg5 },
-  Substitute = { bg = autumnRed, fg = macroFg0 },
+  SignColumn = { fg = quoteFg },
+  SpellBad = { underdashed = true, sp = dimRed },
+  SpellCap = { underdashed = true, sp = dimYellow },
+  SpellLocal = { underdashed = true, sp = dimYellow },
+  SpellRare = { underdashed = true, sp = dimYellow },
+  StatusLine = { bg = nil, fg = normalFg },
+  StatusLineNC = { bg = cursorlineBg, fg = ashGrey },
+  Substitute = { bg = brightRed, fg = normalFg },
   TabLine = { link = "Comment" },
-  TabLineFill = { bg = nil, fg = macroFg1 },
-  TabLineSel = { bg = macroBg2, fg = macroFg0, bold = true },
+  TabLineFill = { bg = nil, fg = normalFg },
+  TabLineSel = { bg = cursorlineBg, fg = normalFg, bold = true },
   TermCursor = { link = "Cursor" },
-  TermCursorNC = { fg = normal_bg, bg = macroAsh },
-  Title = { bold = true, fg = macroBlue1 },
-  Underlined = { fg = macroTeal, underline = true },
+  TermCursorNC = { fg = normalBg, bg = ashGrey },
+  Title = { bold = true, fg = dimBlue },
+  Underlined = { fg = brightTeal, underline = true },
   VertSplit = { link = "WinSeparator" },
-  Visual = { bg = selection_light_gray },
+  Visual = { bg = selectionBg },
   VisualNOS = { link = "Visual" },
-  WarningMsg = { fg = roninYellow },
-  Whitespace = { fg = selection_light_gray },
+  WarningMsg = { fg = brightOrange },
+  Whitespace = { fg = selectionBg },
   WildMenu = { link = "Pmenu" },
-  WinBar = { bg = macroBg2, fg = macroFg0 },
-  WinBarNC = { bg = macroBg2, fg = macroFg1 },
-  WinSeparator = { fg = selection_light_gray },
+  WinBar = { bg = cursorlineBg, fg = normalFg },
+  WinBarNC = { bg = cursorlineBg, fg = normalFg },
+  WinSeparator = { fg = selectionBg },
   lCursor = { link = "Cursor" },
   -- }}}2
 
   -- Syntax {{{2
-  Boolean = { fg = macroOrange0, bold = true },
+  Boolean = { fg = dimOrange, bold = true },
   Character = { link = "String" },
-  Comment = { fg = macroAsh },
-  Constant = { fg = macroOrange0 },
-  Delimiter = { fg = macroGray1 },
-  Error = { fg = lotusRed1 },
-  Exception = { fg = macroRed },
+  Comment = { fg = ashGrey },
+  Constant = { fg = dimOrange },
+  Delimiter = { fg = quoteFg },
+  Error = { fg = dimRed },
+  Exception = { fg = dimRed },
   Float = { link = "Number" },
-  Function = { fg = macroBlue1 },
-  Identifier = { fg = macroFg0 },
-  Keyword = { fg = macroViolet },
-  Number = { fg = macroPink },
-  Operator = { fg = macroRed },
-  PreProc = { fg = macroRed },
-  Special = { fg = macroTeal },
-  SpecialKey = { fg = macroGray2 },
-  Statement = { fg = macroViolet },
-  String = { fg = macroGreen1 },
-  Todo = { fg = macroBg0, bg = macroBlue0, bold = true },
-  Type = { fg = macroAqua },
+  Function = { fg = dimBlue },
+  Identifier = { fg = normalFg },
+  Keyword = { fg = dimTeal },
+  Number = { fg = dimPurple },
+  Operator = { fg = dimRed },
+  PreProc = { fg = dimRed },
+  Special = { fg = brightTeal },
+  SpecialKey = { fg = quoteFg },
+  Statement = { fg = dimTeal },
+  String = { fg = dimGreen },
+  Todo = { fg = normalBg, bg = dimBlue, bold = true },
+  Type = { fg = dimBlue },
   -- }}}2
 
   -- Treesitter syntax {{{2
   ["@attribute"] = { link = "Constant" },
-  ["@constructor"] = { fg = macroTeal },
-  ["@constructor.lua"] = { fg = macroViolet },
-  ["@keyword.exception"] = { bold = true, fg = macroRed },
+  ["@constructor"] = { fg = brightTeal },
+  ["@constructor.lua"] = { fg = dimTeal },
+  ["@keyword.exception"] = { bold = true, fg = dimRed },
   ["@keyword.import"] = { link = "PreProc" },
   ["@keyword.luap"] = { link = "@string.regexp" },
-  ["@keyword.operator"] = { bold = true, fg = macroRed },
-  ["@keyword.return"] = { fg = macroRed, italic = true },
+  ["@keyword.operator"] = { bold = true, fg = dimRed },
+  ["@keyword.return"] = { fg = dimRed, italic = true },
   ["@module"] = { link = "Constant" },
   ["@operator"] = { link = "Operator" },
-  ["@nospell.latex"] = { fg = macroBlue1 },
-  ["@markup.math.latex"] = { fg = macroBlue1 },
-  ["@operator.latex"] = { fg = macroRed },
-  ["@variable.parameter"] = { fg = macroGray0 },
-  ["@punctuation.bracket"] = { fg = macroGray1 },
-  ["@punctuation.delimiter"] = { fg = macroGray1 },
-  ["@markup.list"] = { fg = macroTeal },
+  ["@nospell.latex"] = { fg = dimBlue },
+  ["@markup.math.latex"] = { fg = dimBlue },
+  ["@operator.latex"] = { fg = dimRed },
+  ["@variable.parameter"] = { fg = quoteFg },
+  ["@punctuation.bracket"] = { fg = quoteFg },
+  ["@punctuation.delimiter"] = { fg = quoteFg },
+  ["@markup.list"] = { fg = brightTeal },
   ["@string.escape"] = { link = "Constant" },
   ["@string.regexp"] = { link = "Constant" },
-  ["@string.special.url.comment"] = { fg = macroTeal, underline = true },
-  ["@markup.link.label.symbol"] = { fg = lotusBlue },
-  ["@tag.attribute"] = { fg = macroFg0 },
-  ["@tag.delimiter"] = { fg = macroGray1 },
+  ["@string.special.url.comment"] = { fg = brightTeal, underline = true },
+  ["@markup.link.label.symbol"] = { fg = dimBlue },
+  ["@tag.attribute"] = { fg = normalFg },
+  ["@tag.delimiter"] = { fg = quoteFg },
   ["@diff.delta"] = { link = "DiffChanged" },
   ["@diff.minus"] = { link = "DiffRemoved" },
   ["@diff.plus"] = { link = "DiffAdded" },
@@ -234,17 +189,19 @@ local hlgroups = {
   ["@markup.environment"] = { link = "Keyword" },
   ["@markup.environment.name"] = { link = "String" },
   ["@markup.raw"] = { link = "String" },
-  ["@comment.info"] = { bg = waveAqua0, fg = waveBlue0, bold = true },
+  ["@comment.info"] = { bg = nil, fg = brightBlue, bold = true }, -- bg turned to nil, old: "#6A9589"
   ["@markup.quote"] = { link = "@variable.parameter" },
   ["@markup.strong"] = { link = "markdownBold" },
   ["@markup.italic.markdown_inline"] = { italic = true },
   ["@markup.heading"] = { link = "Function" },
-  ["@markup.heading.1.markdown"] = { fg = macroRed, bg = winterRed2, bold = true },
-  ["@markup.heading.2.markdown"] = { fg = autumnOrange, bg = winterOrange, bold = true },
-  ["@markup.heading.3.markdown"] = { fg = autumnYellow, bg = winterYellow, bold = true },
-  ["@markup.heading.4.markdown"] = { fg = springGreen, bg = winterGreen, bold = true },
-  ["@markup.heading.5.markdown"] = { fg = springBlue, bg = waveBlue0, bold = true },
-  ["@markup.heading.6.markdown"] = { fg = springViolet, bg = winterPurple, bold = true },
+  -- stylua: ignore start
+  ["@markup.heading.1.markdown"] = { fg = dimRed,       bg = darkRed, bold = true },
+  ["@markup.heading.2.markdown"] = { fg = brightOrange, bg = darkOrange, bold = true },
+  ["@markup.heading.3.markdown"] = { fg = dimYellow,    bg = darkYellow, bold = true },
+  ["@markup.heading.4.markdown"] = { fg = brightGreen,  bg = darkGreen, bold = true },
+  ["@markup.heading.5.markdown"] = { fg = dimBlue,      bg = brightBlue, bold = true },
+  ["@markup.heading.6.markdown"] = { fg = brightPurple, bg = darkPurple, bold = true },
+  -- stylua: ignore end
   ["@markup.heading.1.marker.markdown"] = { link = "Delimiter" },
   ["@markup.heading.2.marker.markdown"] = { link = "Delimiter" },
   ["@markup.heading.3.marker.markdown"] = { link = "Delimiter" },
@@ -254,14 +211,14 @@ local hlgroups = {
   -- ["@markup.markdown_inline"] = { fg = c_macroFg0 },
   ["@markup.strikethrough.markdown_inline"] = { strikethrough = true },
   ["@comment.todo.checked"] = { link = "Comment" },
-  ["@comment.todo.unchecked"] = { fg = macroRed },
+  ["@comment.todo.unchecked"] = { fg = dimRed },
   ["@markup.link.label.markdown_inline"] = { link = "htmlLink" },
-  ["@markup.link.url.markdown_inline"] = { fg = macroAsh, underline = true },
+  ["@markup.link.url.markdown_inline"] = { fg = ashGrey, underline = true },
   -- below are overriden by todo-comments
   -- ["@comment.error"] = { bg = c_lotusRed1, fg = c_macroFg0, bold = true },
   -- ["@comment.warning"] = { bg = c_roninYellow, fg = c_waveBlue0, bold = true },
-  ["@variable"] = { fg = macroFg0 },
-  ["@variable.builtin"] = { fg = macroRed, italic = true },
+  ["@variable"] = { fg = normalFg },
+  ["@variable.builtin"] = { fg = dimRed, italic = true },
   -- }}}
 
   -- LSP semantic {{{2
@@ -269,7 +226,7 @@ local hlgroups = {
   ["@lsp.mod.typeHint"] = { link = "Type" },
   ["@lsp.type.builtinConstant"] = { link = "@constant.builtin" },
   ["@lsp.type.comment"] = { fg = "NONE" },
-  ["@lsp.type.macro"] = { fg = macroPink },
+  ["@lsp.type.macro"] = { fg = dimPurple },
   ["@lsp.type.magicFunction"] = { link = "@function.builtin" },
   ["@lsp.type.method"] = { link = "@function.method" },
   ["@lsp.type.namespace"] = { link = "@module" },
@@ -278,7 +235,7 @@ local hlgroups = {
   ["@lsp.type.variable"] = { fg = "NONE" },
   ["@lsp.typemod.function.builtin"] = { link = "@function.builtin" },
   ["@lsp.typemod.function.defaultLibrary"] = { link = "@function.builtin" },
-  ["@lsp.typemod.function.readonly"] = { bold = true, fg = macroBlue1 },
+  ["@lsp.typemod.function.readonly"] = { bold = true, fg = dimBlue },
   ["@lsp.typemod.keyword.documentation"] = { link = "Special" },
   ["@lsp.typemod.method.defaultLibrary"] = { link = "@function.builtin" },
   ["@lsp.typemod.operator.controlFlow"] = { link = "@keyword.exception" },
@@ -300,26 +257,26 @@ local hlgroups = {
   -- }}}
 
   -- Diagnostic {{{2
-  DiagnosticError = { fg = macroRed },
-  DiagnosticHint = { fg = macroAqua },
-  DiagnosticInfo = { fg = macroBlue1 },
-  DiagnosticOk = { fg = macroGreen1 },
-  DiagnosticWarn = { fg = carpYellow },
-  DiagnosticSignError = { fg = macroRed },
-  DiagnosticSignHint = { fg = macroAqua },
-  DiagnosticSignInfo = { fg = macroBlue1 },
-  DiagnosticSignWarn = { fg = carpYellow },
-  DiagnosticUnderlineError = { sp = macroRed, undercurl = true },
-  DiagnosticUnderlineHint = { sp = macroAqua, undercurl = true },
-  DiagnosticUnderlineInfo = { sp = macroBlue1, undercurl = true },
-  DiagnosticUnderlineWarn = { sp = carpYellow, undercurl = true },
-  DiagnosticVirtualTextError = { bg = winterRed, fg = macroRed },
-  DiagnosticVirtualTextHint = { bg = winterGreen, fg = macroAqua },
-  DiagnosticVirtualTextInfo = { bg = winterBlue, fg = macroBlue1 },
-  DiagnosticVirtualTextWarn = { bg = winterYellow, fg = carpYellow },
+  DiagnosticError = { fg = dimRed },
+  DiagnosticHint = { fg = dimBlue },
+  DiagnosticInfo = { fg = dimBlue },
+  DiagnosticOk = { fg = dimGreen },
+  DiagnosticWarn = { fg = dimYellow },
+  DiagnosticSignError = { fg = dimRed },
+  DiagnosticSignHint = { fg = dimBlue },
+  DiagnosticSignInfo = { fg = dimBlue },
+  DiagnosticSignWarn = { fg = dimYellow },
+  DiagnosticUnderlineError = { sp = dimRed, undercurl = true },
+  DiagnosticUnderlineHint = { sp = dimBlue, undercurl = true },
+  DiagnosticUnderlineInfo = { sp = dimBlue, undercurl = true },
+  DiagnosticUnderlineWarn = { sp = dimYellow, undercurl = true },
+  DiagnosticVirtualTextError = { bg = darkRed, fg = dimRed },
+  DiagnosticVirtualTextHint = { bg = darkGreen, fg = dimBlue },
+  DiagnosticVirtualTextInfo = { bg = darkBlue, fg = dimBlue },
+  DiagnosticVirtualTextWarn = { bg = darkYellow, fg = dimYellow },
   DiagnosticUnnecessary = {
-    fg = macroAsh,
-    sp = macroAqua,
+    fg = ashGrey,
+    sp = dimBlue,
     undercurl = false,
   },
   -- }}}
@@ -342,25 +299,25 @@ local hlgroups = {
   -- HTML
   htmlBold = { bold = true },
   htmlBoldItalic = { bold = true, italic = true },
-  htmlH1 = { fg = springBlue, bold = true },
-  htmlH2 = { fg = autumnYellow, bold = true },
-  htmlH3 = { fg = springGreen, bold = true },
-  htmlH4 = { fg = autumnGreen, bold = true },
-  htmlH5 = { fg = springViolet, bold = true },
-  htmlH6 = { fg = macroViolet, bold = true },
+  htmlH1 = { fg = dimBlue, bold = true },
+  htmlH2 = { fg = dimYellow, bold = true },
+  htmlH3 = { fg = brightGreen, bold = true },
+  htmlH4 = { fg = dimGreen, bold = true },
+  htmlH5 = { fg = brightPurple, bold = true },
+  htmlH6 = { fg = dimTeal, bold = true },
   htmlItalic = { italic = true },
-  htmlLink = { fg = lotusBlue, underline = true, sp = lotusBlue },
+  htmlLink = { fg = dimBlue, underline = true, sp = dimBlue },
   htmlSpecialChar = { link = "SpecialChar" },
-  htmlSpecialTagName = { fg = macroViolet },
+  htmlSpecialTagName = { fg = dimTeal },
   htmlString = { link = "String" },
   htmlTagName = { link = "Tag" },
   htmlTitle = { link = "Title" },
 
   -- Markdown
-  markdownBold = { bold = true, fg = carpYellow },
+  markdownBold = { bold = true, fg = dimYellow },
   markdownBoldItalic = { bold = true, italic = true },
-  markdownCode = { fg = macroGreen1 },
-  markdownCodeBlock = { fg = macroGreen1 },
+  markdownCode = { fg = dimGreen },
+  markdownCodeBlock = { fg = dimGreen },
   markdownError = { link = "NONE" },
   markdownEscape = { fg = "NONE" },
   markdownH1 = { link = "htmlH1" },
@@ -372,8 +329,8 @@ local hlgroups = {
   markdownListMarker = { link = "DiffChanged" },
 
   -- Checkhealth
-  healthError = { fg = lotusRed0 },
-  healthSuccess = { fg = springGreen },
+  healthError = { fg = dimRed },
+  healthSuccess = { fg = brightGreen },
   healthWarning = { link = "WarningMsg" },
   helpHeader = { link = "Title" },
   helpSectionDelim = { link = "Title" },
@@ -387,21 +344,21 @@ local hlgroups = {
   -- nvim-cmp
   BlinkCmpCompletion = { link = "Pmenu" },
   BlinkCmpMenu = { link = "Pmenu" },
-  BlinkCmpCompletionBorder = { bg = waveBlue0, fg = waveBlue1 },
+  BlinkCmpCompletionBorder = { bg = brightBlue, fg = brightBlue },
   BlinkCmpCompletionSbar = { link = "PmenuSbar" },
-  BlinkCmpCompletionSel = { bg = waveBlue1, fg = "NONE" },
+  BlinkCmpCompletionSel = { bg = brightBlue, fg = "NONE" },
   BlinkCmpCompletionThumb = { link = "PmenuThumb" },
   BlinkCmpDocumentation = { link = "NormalFloat" },
   BlinkCmpDocumentationBorder = { link = "FloatBorder" },
-  BlinkCmpItemAbbr = { fg = macroFg2 },
-  BlinkCmpItemAbbrDeprecated = { fg = macroAsh, strikethrough = true },
-  BlinkCmpItemAbbrMatch = { fg = macroRed },
+  BlinkCmpItemAbbr = { fg = quoteFg },
+  BlinkCmpItemAbbrDeprecated = { fg = ashGrey, strikethrough = true },
+  BlinkCmpItemAbbrMatch = { fg = dimRed },
   BlinkCmpItemAbbrMatchFuzzy = { link = "CmpItemAbbrMatch" },
   BlinkCmpKindClass = { link = "Type" },
   BlinkCmpKindConstant = { link = "Constant" },
   BlinkCmpKindConstructor = { link = "@constructor" },
   BlinkCmpKindCopilot = { link = "String" },
-  BlinkCmpKindDefault = { fg = katanaGray },
+  BlinkCmpKindDefault = { fg = ashGrey },
   BlinkCmpKindEnum = { link = "Type" },
   BlinkCmpKindEnumMember = { link = "Constant" },
   BlinkCmpKindField = { link = "@variable.member" },
@@ -415,18 +372,18 @@ local hlgroups = {
   BlinkCmpKindOperator = { link = "Operator" },
   BlinkCmpKindProperty = { link = "@property" },
   BlinkCmpKindReference = { link = "Type" },
-  BlinkCmpKindSnippet = { fg = macroTeal },
+  BlinkCmpKindSnippet = { fg = brightTeal },
   BlinkCmpKindStruct = { link = "Type" },
-  BlinkCmpKindText = { fg = macroFg2 },
+  BlinkCmpKindText = { fg = quoteFg },
   BlinkCmpKindTypeParameter = { link = "Type" },
   BlinkCmpKindValue = { link = "String" },
-  BlinkCmpKindVariable = { fg = lotusRed2 },
+  BlinkCmpKindVariable = { fg = dimOrange },
   BlinkCmpLabelMatch = { link = "Special" },
 
   -- gitsigns
   GitSignsAdd = { link = "DiffAdded" },
-  GitSignsChange = { fg = border_purple_ink },
-  GitSignsDelete = { fg = lotusRed0 },
+  GitSignsChange = { fg = brightPurple },
+  GitSignsDelete = { fg = dimRed },
   GitSignsDeletePreview = { link = "DiffDelete" },
   GitSignsDeleteInline = { strikethrough = true },
   GitSignsDeleteLnInline = { link = "GitSignsDeletePreview" },
@@ -437,67 +394,47 @@ local hlgroups = {
   GitSignsAddInline = { underline = true },
   GitSignsAddLnInline = { link = "GitSignsAddLn" },
   GitSignsAddVirtLnInLine = { link = "GitSignsAddLn" },
-  GitSignsCurrentLineBlame = { fg = macroAsh, italic = true },
+  GitSignsCurrentLineBlame = { fg = ashGrey, italic = true },
 
   --noice
   NoicePopupmenuSelected = { link = "Visual" },
-  NoiceScrollBar = { bg = normal_bg },
-
-  -- telescope
-  TelescopeBorder = { link = "FloatBorder" },
-  TelescopeMatching = { fg = macroRed, bold = true },
-  TelescopeNormal = { link = "NormalFloat" },
-  TelescopeResultsClass = { link = "Structure" },
-  TelescopeResultsField = { link = "@variable.member" },
-  TelescopeResultsMethod = { link = "Function" },
-  TelescopeResultsStruct = { link = "Structure" },
-  TelescopeResultsVariable = { link = "@variable" },
-  TelescopeSelection = { link = "Visual" },
-  TelescopeTitle = { link = "SpecialKey" },
-  TelescopePromptBorder = { link = "TelescopeBorder" },
+  NoiceScrollBar = { bg = normalBg },
 
   -- nvim-dap-ui (one day I'll use this)
-  DapUIBreakpointsCurrentLine = { bold = true, fg = macroFg0 },
+  DapUIBreakpointsCurrentLine = { bold = true, fg = normalFg },
   DapUIBreakpointsDisabledLine = { link = "Comment" },
-  DapUIBreakpointsInfo = { fg = macroBlue0 },
+  DapUIBreakpointsInfo = { fg = dimBlue },
   DapUIBreakpointsPath = { link = "Directory" },
-  DapUIDecoration = { fg = border_purple_ink },
-  DapUIFloatBorder = { fg = border_purple_ink },
-  DapUILineNumber = { fg = macroTeal },
-  DapUIModifiedValue = { bold = true, fg = macroTeal },
-  DapUIPlayPause = { fg = macroGreen1 },
-  DapUIRestart = { fg = macroGreen1 },
+  DapUIDecoration = { fg = brightPurple },
+  DapUIFloatBorder = { fg = brightPurple },
+  DapUILineNumber = { fg = brightTeal },
+  DapUIModifiedValue = { bold = true, fg = brightTeal },
+  DapUIPlayPause = { fg = dimGreen },
+  DapUIRestart = { fg = dimGreen },
   DapUIScope = { link = "Special" },
-  DapUISource = { fg = macroRed },
-  DapUIStepBack = { fg = macroTeal },
-  DapUIStepInto = { fg = macroTeal },
-  DapUIStepOut = { fg = macroTeal },
-  DapUIStepOver = { fg = macroTeal },
-  DapUIStop = { fg = lotusRed0 },
-  DapUIStoppedThread = { fg = macroTeal },
-  DapUIThread = { fg = macroFg0 },
+  DapUISource = { fg = dimRed },
+  DapUIStepBack = { fg = brightTeal },
+  DapUIStepInto = { fg = brightTeal },
+  DapUIStepOut = { fg = brightTeal },
+  DapUIStepOver = { fg = brightTeal },
+  DapUIStop = { fg = dimRed },
+  DapUIStoppedThread = { fg = brightTeal },
+  DapUIThread = { fg = normalFg },
   DapUIType = { link = "Type" },
   DapUIUnavailable = { link = "Comment" },
-  DapUIWatchesEmpty = { fg = lotusRed0 },
-  DapUIWatchesError = { fg = lotusRed0 },
-  DapUIWatchesValue = { fg = macroFg0 },
+  DapUIWatchesEmpty = { fg = dimRed },
+  DapUIWatchesError = { fg = dimRed },
+  DapUIWatchesValue = { fg = normalFg },
 
   -- lazy.nvim
   LazyProgressTodo = { link = "NonText" },
 
-  -- statusline
-  StatusLineGitAdded = { bg = macroBg3, fg = macroGreen1 },
-  StatusLineGitChanged = { bg = macroBg3, fg = carpYellow },
-  StatusLineGitRemoved = { bg = macroBg3, fg = macroRed },
-  StatusLineHeader = { bg = macroBg5, fg = macroFg1 },
-  StatusLineHeaderModified = { bg = macroRed, fg = normal_bg },
-
   -- mini.files
   -- MiniFilesNormal = { bg = nil },
   MiniFilesNormal = { link = "NormalFloat" },
-  MiniFilesTitle = { bg = nil, fg = macroFg2 },
-  MiniFilesDirectory = { fg = macroBlue1 },
-  MiniFilesTitleFocused = { bg = nil, fg = macroFg2 },
+  MiniFilesTitle = { bg = nil, fg = quoteFg },
+  MiniFilesDirectory = { fg = dimBlue },
+  MiniFilesTitleFocused = { bg = nil, fg = quoteFg },
   MiniFilesBorder = { link = "FloatBorder" },
 
   -- incline
@@ -505,8 +442,8 @@ local hlgroups = {
   InclineNormalNC = { link = "Pmenu" },
 
   -- snacks indent/picker
-  SnacksIndent = { fg = selection_light_gray },
-  SnacksIndentScope = { fg = border_purple_ink },
+  SnacksIndent = { fg = selectionBg },
+  SnacksIndentScope = { fg = brightPurple },
   SnacksPickerListCursorLine = { link = "Visual" },
   SnacksPickerPreviewCursorLine = { link = "CursorLine" },
   -- how to highlight chars that from query that match item in list
@@ -515,24 +452,24 @@ local hlgroups = {
 
   -- neocodeium
   NeoCodeiumSuggestion = { link = "NonText" },
-  NeoCodeiumLabel = { fg = macroFg0, bg = macroBg2 },
+  NeoCodeiumLabel = { fg = normalFg, bg = cursorlineBg },
 
   -- treesitter context
   TreesitterContext = { bg = nil },
-  TreesitterContextLineNumber = { bg = nil, fg = border_purple_ink },
-  TreesitterContextLineNumberBottom = { underdashed = false, bg = nil, sp = border_purple_ink },
-  TreesitterContextBottom = { underdashed = false, bg = nil, sp = border_purple_ink },
+  TreesitterContextLineNumber = { bg = nil, fg = brightPurple },
+  TreesitterContextLineNumberBottom = { underdashed = false, bg = nil, sp = brightPurple },
+  TreesitterContextBottom = { underdashed = false, bg = nil, sp = brightPurple },
 
   -- render-markdown.nvim
-  RenderMarkdownH1Bg = { bg = winterRed2 },
-  RenderMarkdownH2Bg = { bg = winterOrange },
-  RenderMarkdownH3Bg = { bg = winterYellow },
-  RenderMarkdownH4Bg = { link = "DiffAdd" },
-  RenderMarkdownH5Bg = { bg = waveBlue0 },
-  RenderMarkdownH6Bg = { bg = winterPurple },
+  RenderMarkdownH1Bg = { bg = darkRed },
+  RenderMarkdownH2Bg = { bg = darkOrange },
+  RenderMarkdownH3Bg = { link = "@markup.heading.3.markdown" },
+  RenderMarkdownH4Bg = { link = "@markup.heading.4.markdown" },
+  RenderMarkdownH5Bg = { link = "@markup.heading.5.markdown" },
+  RenderMarkdownH6Bg = { link = "@markup.heading.6.markdown" },
 
   -- for lualine
-  HostNameIcon = { fg = macroAsh, bg = nil },
+  HostNameIcon = { fg = ashGrey, bg = nil },
 
   PvsFileIcon = { fg = "#007ad3" },
   -- }}}2
