@@ -19,14 +19,14 @@ require("lazy").setup({
 
     -- these will only be enabled if you set the environment variable
     -- NVIM_FULL_CONFIG to true. Extras in lazyvim.json are always enabled
-    { import = "lazyvim.plugins.extras.dap.core", cond = full_config },
     { import = "lazyvim.plugins.extras.util.dot", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.python", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.tailwind", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.toml", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.yaml", cond = full_config },
+    { import = "lazyvim.plugins.extras.lang.python", cond = full_config },
+    { import = "lazyvim.plugins.extras.lang.tailwind", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.typescript", cond = full_config },
-    { import = "lazyvim.plugins.extras.ai.copilot-chat", cond = full_config },
+    -- { import = "lazyvim.plugins.extras.dap.core", cond = full_config },
+    -- { import = "lazyvim.plugins.extras.ai.copilot-chat", cond = full_config },
     -- { import = "lazyvim.plugins.extras.ui.smear-cursor", cond = full_config },
     -- { import = "lazyvim.plugins.extras.ai.copilot", cond = full_config },
     -- { import = "lazyvim.plugins.extras.lang.java", cond = full_config },
