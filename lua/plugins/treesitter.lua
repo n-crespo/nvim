@@ -1,13 +1,3 @@
--- use c highlighting for pvs filetype
--- vim.filetype.add({
---   extension = { od = "objdump", objdump = "objdump" },
---   pattern = {
---     [".*%.pvs"] = "pvs",
---     [".*%.service"] = "systemd",
---     ["%.objdump$"] = "objdump",
---   },
--- })
-
 return {
   {
     "folke/which-key.nvim",
@@ -45,3 +35,12 @@ return {
     },
   },
 }
+
+-- some filetypes that are sometimes useful:
+-- vim.filetype.add({
+--   extension = { od = "objdump", objdump = "objdump" },
+--   pattern = {
+--     [".*%.service"] = "systemd",
+--     ["%.objdump$"] = "objdump",
+--   },
+-- })
