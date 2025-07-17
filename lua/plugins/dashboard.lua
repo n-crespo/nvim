@@ -17,11 +17,10 @@ return {
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
-        header = vim.g.full_config and "[full]" or "[lite]",
       },
       sections = {
-        { section = "header", padding = 3 },
-        { section = "keys", gap = 1, padding = 0 },
+        { section = "header", padding = 1 },
+        { section = "keys", gap = 1, padding = 2 },
         -- { pane = 2, section = "projects", height = 5 },
         -- { section = "startup" },
       },
