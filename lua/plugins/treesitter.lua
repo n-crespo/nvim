@@ -27,7 +27,7 @@ return {
         keymaps = {
           init_selection = "v<cr>",
           node_incremental = "<cr>",
-          node_decremental = "<S-CR>",
+          node_decremental = "<bs>",
         },
       },
       ensure_installed = {
