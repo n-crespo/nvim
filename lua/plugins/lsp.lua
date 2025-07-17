@@ -4,6 +4,7 @@ return {
     vim.diagnostic.config({
       float = { border = "rounded" },
     })
+    opts.diagnostics.virtual_text.prefix = " ●"
 
     local keys = require("lazyvim.plugins.lsp.keymaps").get()
     -- disable <C-k> insert mode keymap for focusing signature help window
