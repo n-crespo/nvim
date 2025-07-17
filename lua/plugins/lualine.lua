@@ -116,7 +116,7 @@ return {
             end,
             padding = 1,
             color = {
-              fg = vim.g.full_config and Snacks.util.color("DiffAdded") or Snacks.util.color("DiagnosticWarn"), -- grab yellow fg part of
+              fg = vim.g.full_config and Snacks.util.color("String") or Snacks.util.color("DiagnosticWarn"), -- grab yellow fg part of
             },
           },
         },
