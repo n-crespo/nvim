@@ -16,8 +16,4 @@ return {
     "catppuccin", -- i don't use this
     enabled = false,
   },
-  {
-    "iamcco/markdown-preview.nvim",
-    enabled = false,
-  },
 }
