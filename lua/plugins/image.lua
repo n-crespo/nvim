@@ -18,7 +18,15 @@ return {
   "folke/snacks.nvim",
   ---@type snacks.Config
   opts = {
-    image = { enabled = false },
+    image = {
+      enabled = true,
+      math = {
+        enabled = true,
+        latex = {
+          font_size = "large",
+        },
+      },
+    },
   },
   keys = {
     {
