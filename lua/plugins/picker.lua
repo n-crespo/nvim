@@ -274,10 +274,7 @@ return {
       function()
         local dir = require("custom.utils").get_dir_with_fallback()
         ---@diagnostic disable-next-line: missing-fields
-        Snacks.picker.files({
-          cwd = require("custom.utils").get_dir_with_fallback(),
-          title = "Files in " .. vim.fn.fnamemodify(dir, ":~"),
-        })
+        Snacks.picker.files({ cwd = dir, title = "Files in " .. vim.fn.fnamemodify(dir, ":~") })
       end,
       desc = "Here (buffer dir)",
     },
