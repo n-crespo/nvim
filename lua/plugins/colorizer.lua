@@ -18,9 +18,10 @@ return {
       blink_docs = { always_update = true },
       cmp_menu = { always_update = true },
       cmp_docs = { always_update = true },
+      snacks_picker_preview = { always_update = true },
     },
     -- exclude prompt and popup buftypes from highlight
-    buftypes = { "!prompt", "!popup", },
+    buftypes = { "!prompt", "!popup" },
     user_default_options = {
       RGB = false, -- #RGB hex codes
       RGBA = false,
