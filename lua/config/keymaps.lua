@@ -241,10 +241,12 @@ vim.keymap.set("x", "'", "gsa'", { remap = true, desc = "Surround Selection with
 -- better scrolling with mouse
 vim.keymap.set("n", "<ScrollWheelUp>", "<C-y>")
 vim.keymap.set("n", "<ScrollWheelDown>", "<C-e>")
-vim.keymap.set("n", "<M-ScrollWheelUp>", "zh") -- left scroll
-vim.keymap.set("n", "<M-ScrollWheelDown>", "zl") -- right scroll
-vim.keymap.set("n", "<ScrollWheelLeft>", "zh") -- left scroll
-vim.keymap.set("n", "<ScrollWheelRight>", "zl") -- right scroll
+vim.keymap.set("n", "<ScrollWheelLeft><ScrollWheelLeft>", "zh") -- left scroll
+vim.keymap.set("n", "<ScrollWheelRight><ScrollWheelRight>", "zl") -- right scroll
+-- vim.keymap.set("n", "<M-ScrollWheelUp>", "zh") -- left scroll
+-- vim.keymap.set("n", "<M-ScrollWheelDown>", "zl") -- right scroll
+vim.keymap.set("n", "<ScrollWheelLeft>", "")
+vim.keymap.set("n", "<ScrollWheelRight>", "")
 
 vim.keymap.set("n", "zk", "<C-y>", { desc = "Scroll viewport up", remap = true })
 vim.keymap.set("n", "zj", "<C-e>", { desc = "Scroll viewport down", remap = true })
