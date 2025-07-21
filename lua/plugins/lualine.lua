@@ -24,14 +24,27 @@ return {
           LazyVim.lualine.root_dir({ cwd = true }),
           { function() return " " end, },
           -- stylua: ignore stop
-          {
-            "branch",
-            padding = { left = 1, right = 1 },
-            draw_empty = false,
-            icon = { "" },
-          },
         },
         lualine_c = {
+          {
+            "filetype",
+            icon_only = true,
+            padding = { left = 1, right = 0 },
+            colored = true,
+          },
+          -- stylua: ignore
+          { function() return " " end, cond = function () return vim.bo.filetype == '' end }, -- artificial padding
+          {
+            LazyVim.lualine.pretty_path(),
+            color = "Conceal",
+          },
+          {
+            "branch",
+            padding = { left = 2, right = 1 },
+            draw_empty = false,
+            icon = { "" },
+            -- color = "Coneal"
+          },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
