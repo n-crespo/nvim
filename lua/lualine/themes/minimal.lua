@@ -5,15 +5,14 @@ local function to_hex(color)
   return string.format("#%06x", color)
 end
 
-local almost_white = to_hex(vim.api.nvim_get_hl(0, { name = "Normal" }).fg)
-local subtle_grey = to_hex(vim.api.nvim_get_hl(0, { name = "Comment" }).fg)
-local normal_bg = to_hex(vim.api.nvim_get_hl(0, { name = "Normal" }).bg)
+local white = to_hex(vim.api.nvim_get_hl(0, { name = "Normal" }).fg)
+local grey = to_hex(vim.api.nvim_get_hl(0, { name = "Comment" }).fg)
 
 local hls = {
-  a = { fg = almost_white, bg = normal_bg, bold = true },
-  b = { fg = subtle_grey, bg = normal_bg },
-  c = { fg = almost_white, bg = normal_bg },
-  z = { bg = normal_bg },
+  a = { fg = white, bg = nil, bold = true },
+  b = { fg = grey, bg = nil },
+  c = { fg = grey, bg = nil },
+  z = { bg = nil },
 }
 
 return {
