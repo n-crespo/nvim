@@ -25,11 +25,15 @@ return {
     zen = {
       enabled = true,
       backdrop = { transparent = true, blend = 0 },
-      toggles = {
-        dim = false,
-      },
+      toggles = { dim = false },
       zoom = { win = { style = "zen" } },
       win = { style = "quiet" },
+      on_close = function()
+        vim.cmd([[set stal=1]])
+      end,
+      on_open = function()
+        vim.cmd([[set stal=0]]) -- hide tabline/bufferline
+      end,
     },
   },
   keys = {
