@@ -18,12 +18,12 @@ return {
       default = { file = { glyph = "󰈤" } },
       extension = {
         h = { glyph = "", hl = "MiniIconsPurple" },
+        pvs = { glyph = "", hl = "PvsFileIcon" },
       },
       filetype = {
         cf = { glyph = "", hl = "MiniIconsBlue" },
         Rmd = { glyph = "", hl = "MiniIconsBlue" },
         rmd = { glyph = "", hl = "MiniIconsBlue" },
-        pvs = { glyph = "", hl = "PvsFileIcon" },
         autohotkey = { glyph = "", hl = "MiniIconsGreen" },
         minifiles = { glyph = "", hl = "MiniIconsYellow" },
         objdump = { glyph = "󰈤" },
