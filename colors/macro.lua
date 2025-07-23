@@ -148,7 +148,7 @@ local hlgroups = {
   Identifier = { fg = normalFg },
   Keyword = { fg = dimTeal },
   Number = { fg = dimPurple },
-  Operator = { fg = dimRed },
+  Operator = { fg = dimPurple }, -- changed from dimRed
   PreProc = { fg = dimRed },
   Special = { fg = brightTeal },
   SpecialKey = { fg = quoteFg },
