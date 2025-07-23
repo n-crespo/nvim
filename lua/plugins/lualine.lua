@@ -24,27 +24,27 @@ return {
           LazyVim.lualine.root_dir({ cwd = true }),
           { function() return "  " end, },
           -- stylua: ignore stop
-        },
-        lualine_c = {
-          {
-            "filetype",
-            icon_only = true,
-            padding = 0,
-            colored = true,
-            draw_empty = true,
-          },
-          {
-            LazyVim.lualine.pretty_path(),
-            color = "Conceal",
-            padding = { left = 0, right = 2 },
-            draw_empty = false,
-          },
           {
             "branch",
             padding = { left = 0, right = 1 },
             draw_empty = false,
             icon = { "" },
-            -- color = "Coneal"
+            -- color = { "Comment" },
+            color = { gui = 'bold'}
+          },
+        },
+        lualine_c = {
+          {
+            "filetype",
+            icon_only = true,
+            padding = { left = 1 },
+            colored = true,
+            draw_empty = true,
+          },
+          {
+            LazyVim.lualine.pretty_path(),
+            padding = { left = 0, right = 1 },
+            draw_empty = false,
           },
           -- stylua: ignore
           {

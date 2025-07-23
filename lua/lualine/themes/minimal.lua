@@ -6,13 +6,13 @@ local function to_hex(color)
 end
 
 local white = to_hex(vim.api.nvim_get_hl(0, { name = "Normal" }).fg)
-local grey = to_hex(vim.api.nvim_get_hl(0, { name = "Comment" }).fg)
+local grey = to_hex(vim.api.nvim_get_hl(0, { name = "Conceal" }).fg)
 
 local hls = {
   a = { fg = white, bg = nil, bold = true },
-  b = { fg = grey, bg = nil },
-  c = { fg = grey, bg = nil },
-  z = { bg = nil },
+  b = { fg = grey, bg = nil, bold = true },
+  c = { fg = grey, bg = nil, bold = true },
+  z = { bg = nil, bold = true },
 }
 
 return {
