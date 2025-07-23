@@ -19,7 +19,7 @@ local normalBg              = "#0F0F0F"
 local cursorlineBg          = "#1D1D1D"
 local selectionBg           = "#2e2e2e"
 local ashGrey               = "#626462"
-local quoteFg               = "#A6A69C"
+local quoteFg               = "#898989"
 local normalFg              = "#C9C9C9"
 
 local brightRed            = "#C34043"
@@ -94,7 +94,7 @@ local hlgroups = {
   MatchParen = { link = "Visual" },
   ModeMsg = { fg = dimRed, bold = true },
   MoreMsg = { fg = dimBlue },
-  MsgArea = { fg = quoteFg },
+  MsgArea = { link = "Normal" },
   MsgSeparator = { bg = normalFg },
   NonText = { fg = ashGrey },
   SnippetTabstop = { link = "Snippet" },
@@ -399,6 +399,7 @@ local hlgroups = {
   --noice
   NoicePopupmenuSelected = { link = "Visual" },
   NoiceScrollBar = { bg = normalBg },
+  NoiceMini = { link = "Comment" },
 
   -- nvim-dap-ui (one day I'll use this)
   DapUIBreakpointsCurrentLine = { bold = true, fg = normalFg },
