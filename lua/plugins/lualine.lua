@@ -22,25 +22,26 @@ return {
           { function() return " " end, },
           ---@diagnostic disable-next-line: assign-type-mismatch
           LazyVim.lualine.root_dir({ cwd = true }),
-          { function() return " " end, },
+          { function() return "  " end, },
           -- stylua: ignore stop
         },
         lualine_c = {
           {
             "filetype",
             icon_only = true,
-            padding = { left = 1, right = 0 },
+            padding = 0,
             colored = true,
+            draw_empty = true,
           },
-          -- stylua: ignore
-          { function() return " " end, cond = function () return vim.bo.filetype == '' end }, -- artificial padding
           {
             LazyVim.lualine.pretty_path(),
             color = "Conceal",
+            padding = { left = 0, right = 2 },
+            draw_empty = false,
           },
           {
             "branch",
-            padding = { left = 2, right = 1 },
+            padding = { left = 0, right = 1 },
             draw_empty = false,
             icon = { "" },
             -- color = "Coneal"
