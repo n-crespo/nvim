@@ -136,9 +136,7 @@ vim.keymap.set("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear sn
 -- in insert mode auto-correct the last misspelled word
 vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })
 
--- completion cycling in command mode
-vim.keymap.set({ "c", "i" }, "<C-j>", "<C-n>", { remap = true })
-vim.keymap.set({ "c", "i" }, "<C-k>", "<C-p>", { remap = true })
+-- easier navgiation in cmdline
 vim.keymap.set("c", "<C-a>", "<Home>", { remap = true })
 vim.keymap.set("c", "<C-e>", "<End>", { remap = true })
 

@@ -5,7 +5,8 @@ return {
   opts = {
     cmdline = {
       enabled = true,
-      keymap = { preset = "cmdline" },
+      keymap = { preset = "inherit" },
+      completion = { menu = { auto_show = true } },
       sources = function()
         local type = vim.fn.getcmdtype()
         if type == "/" or type == "?" then
@@ -20,6 +21,15 @@ return {
     fuzzy = { sorts = { "exact", "score", "sort_text" } }, -- prioritize exact matches
     sources = {
       providers = {
+        cmdline = {
+          min_keyword_length = function(ctx)
+            -- when typing a command, only show when the keyword is 3 characters or longer
+            if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+              return 3
+            end
+            return 0
+          end,
+        },
         markdown = {
           name = "RenderMarkdown",
           module = "render-markdown.integ.blink",
@@ -46,7 +56,7 @@ return {
       list = {
         selection = {
           preselect = true,
-          auto_insert = false,
+          auto_insert = true,
         },
       },
       menu = {
@@ -83,7 +93,17 @@ return {
       ["<C-p>"] = {}, -- used by neocodeium
       ["<S-CR>"] = {}, -- make new line (ignore cmp)
       ["<CR>"] = {}, -- for accepting from blink
-      ["<Tab>"] = { "select_and_accept", "fallback" }, -- for accepting from blink
+      ["<Tab>"] = {
+        function(cmp)
+          if cmp.snippet_active() then
+            return cmp.accept()
+          else
+            return cmp.select_and_accept()
+          end
+        end,
+        "snippet_forward",
+        "fallback",
+      },
       ["<C-CR>"] = { "select_and_accept", "fallback" }, -- for accepting from blink
       ["<C-e>"] = { "hide", "show", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
