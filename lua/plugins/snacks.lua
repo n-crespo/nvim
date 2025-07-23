@@ -28,7 +28,7 @@ return {
     styles = {
       scratch = { wo = { number = false, cursorline = false, statuscolumn = " " } },
       terminal = { wo = { winbar = "" } },
-      notification = { winblend = 100 },
+      notification = { wo = { winblend = 0 } },
       border = "rounded",
     },
   },
