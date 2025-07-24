@@ -26,7 +26,7 @@ return {
           -- stylua: ignore stop
           {
             "branch",
-            padding = { left = 0, right = 1 },
+            padding = { left = 0, right = 2 },
             draw_empty = false,
             icon = { "" },
             -- color = { "Comment" },
@@ -37,7 +37,7 @@ return {
           {
             "filetype",
             icon_only = true,
-            padding = { left = 1 },
+            padding = { left = 0, right = 0 },
             colored = true,
             draw_empty = true,
           },
