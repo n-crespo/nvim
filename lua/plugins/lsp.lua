@@ -2,10 +2,10 @@ return {
   "neovim/nvim-lspconfig",
   opts = function(_, opts)
     local signs = {
-      ERROR = "",
-      WARN = "",
+      ERROR = " ",
+      WARN = " ",
       HINT = "󰌵",
-      INFO = "",
+      INFO = " ",
     }
 
     vim.diagnostic.config({
