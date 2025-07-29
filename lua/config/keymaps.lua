@@ -331,7 +331,7 @@ else
       let file = exists('a:2') ? a:2 : ''
       call VSCodeCall(direction ==# 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
       if !empty(file)
-        call VSCodeExtensionNz.otify('open-file', expand(file), 'all')
+        call VSCodeExtensionNotify('open-file', expand(file), 'all')
       endif
     endfunction
 
