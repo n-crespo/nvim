@@ -1,5 +1,6 @@
 return {
   "folke/snacks.nvim",
+  dependencies = { "echasnovski/mini.icons" },
   opts = {
     picker = {
       sources = {
