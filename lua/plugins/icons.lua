@@ -18,7 +18,7 @@ return {
       default = { file = { glyph = "󰈤" } },
       extension = {
         h = { glyph = "", hl = "MiniIconsPurple" },
-        pvs = { glyph = "", hl = "PvsFileIcon" },
+        pvs = { glyph = "", hl = "PVSBlue" },
       },
       filetype = {
         cf = { glyph = "", hl = "MiniIconsBlue" },

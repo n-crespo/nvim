@@ -472,7 +472,7 @@ local hlgroups = {
   -- for lualine
   HostNameIcon = { fg = ashGrey, bg = nil },
 
-  PvsFileIcon = { fg = "#007ad3" },
+  PVSBlue = { fg = "#007ad3" },
   -- }}}2
 }
 -- }}}1
