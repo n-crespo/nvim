@@ -9,7 +9,7 @@ vim.g.root_spec = { ".root", "lsp", { ".git", "lua" }, "cwd" }
 
 local opt = vim.opt
 opt.title = true
-opt.titlestring = "neovim"
+opt.titlestring = "nvim"
 opt.scrolloff = 8 -- don't scroll all the way down
 opt.laststatus = 3
 opt.sidescroll = 0 -- see help pages
