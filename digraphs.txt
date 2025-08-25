@@ -1,146 +1,40 @@
-Latin supplement
-n? ñ
-n~ ñ
-o/ ø
+Latin supplement       Vectors (letter hat)       Dots and Lines      Temperature Symbols
+n? ñ                   J> Ĵ   I> Î                -1 ‐   !2 ‖         oC ℃
+n~ ñ                   j> ĵ   i> î                -N –   oo •         oF ℉
+o/ ø                   K< Ǩ   k< ǩ                -M —   %0 ‰
 
-Vectors (letter hat)
-J> Ĵ I> Î
-j> ĵ i> î
-K< Ǩ k< ǩ
+Fractions               Arrows
+12 ½   18 ⅛   38 ⅜      <- ←   UD ↕   >> »
+13 ⅓   23 ⅔   45 ⅘      -! ↑   <= ⇐   <* ≪
+14 ¼   25 ⅖   56 ⅚      -> →   => ⇒   *> ≫
+15 ⅕   34 ¾   58 ⅝      -v ↓   == ⇔   <1 ‹
+16 ⅙   35 ⅗   78 ⅞      <> ↔   << «   >1 ›
+
+Symbols          Dingbats
+*1 ☆   0U ☻      -X ✠   *X ×
+*2 ★   cD ♢      OK ✓   /\ ×
+0u ☺   cH ♡      XX ✗
 
 Greek Letters
-'% ϴ
-a* α
-b* β
-C* Ξ
-d* δ
-D* Δ
-e* ε
-f* φ
-F* Φ
-g* γ
-G* Γ
-h* θ
-H* Θ
-j3 ϵ
-k3 ϟ
-l* λ
-L* Λ
-m* μ My µ
-m3 ϝ
-p* π
-P* Π
-q* ψ
-Q* Ψ
-r* ρ
-s* σ
-S* Σ
-t* τ
-w* ω
-W* Ω Om Ω
-
-Dots and Lines
--1 ‐
--N –
--M —
--3 ―
-!2 ‖
-oo •
-%0 ‰
- 
-Temperature Symbols
-oC ℃
-oF ℉
-
-Fractions
-12 ½
-13 ⅓
-14 ¼
-15 ⅕
-16 ⅙
-18 ⅛
-23 ⅔
-25 ⅖
-34 ¾
-35 ⅗
-38 ⅜
-45 ⅘
-56 ⅚
-58 ⅝
-78 ⅞
-
-Arrows
-<- ←
--! ↑
--> →
--v ↓
-<> ↔
-UD ↕
-<= ⇐
-=> ⇒
-== ⇔
-<< «
->> »
-<* ≪
-*> ≫
-<1 ‹
->1 ›
+'% ϴ        G* Γ         P* Π
+a* α        h* θ         q* ψ
+b* β        H* Θ         Q* Ψ
+C* Ξ        j3 ϵ         r* ρ
+d* δ        k3 ϟ         s* σ
+D* Δ        l* λ         S* Σ
+e* ε        L* Λ         t* τ
+f* φ        m* μ My µ    w* ω
+F* Φ        m3 ϝ         W* Ω Om Ω
+g* γ        p* π
 
 Math Symbols
--: ÷
--) ∋
--V ∠
-!< ≮
-!= ≠
-!> ≯
-?= ≅
-?2 ≈
-(_ ⊆
-(- ∈
-(C ⊂
-(U ∩
-)_ ⊇
-)C ⊃
-)U ∪
-*P ∏
-/0 ∅
-+- ±
-+Z ∑
-=? ≌
-=< ≤
-=3 ≡
->= ≥
-0. ⊙
-00 ∞
-02 ⊚
-1S ¹ 11 ¹
-2S ² 22 ²
-3S ³ 33 ³
-AN ∧
-DE ∆
-DG °
-DI ∬
-dP ∂
-FA ∀
-In ∫
-Ob ∘
-OR ∨
-PP ∥
-RT √
-Sb ∙
-TE ∃
-
-Symbols
-*1 ☆
-*2 ★
-0u ☺
-0U ☻
-cD ♢
-cH ♡
-
-Dingbats
--X ✠
-OK ✓
-XX ✗
-*X ×
-/\ ×
+-: ÷           (C ⊂            =< ≤            DE ∆            Sb ∙
+-) ∋           (U ∩            =3 ≡            DG °            TE ∃
+-V ∠           )_ ⊇            >= ≥            DI ∬
+!< ≮           )C ⊃            0. ⊙            dP ∂
+!= ≠           )U ∪            00 ∞            FA ∀
+!> ≯           *P ∏            02 ⊚            In ∫
+?= ≅           /0 ∅            1S ¹ 11 ¹       Ob ∘
+?2 ≈           +- ±            2S ² 22 ²       OR ∨
+(_ ⊆           +Z ∑            3S ³ 33 ³       PP ∥
+(- ∈           =? ≌            AN ∧            RT √
