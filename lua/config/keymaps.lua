@@ -105,6 +105,7 @@ end, { desc = "Reload plugin" })
 -- search within selection by default when using / in visual mode
 vim.keymap.set("x", "/", "<Esc>/\\%V")
 vim.keymap.set("n", "g/", "*") -- `:h *`
+vim.keymap.set("x", "g/", "*<esc>", { remap = true }) -- `:h default-mappings`
 
 -- go to visual end of line (unless wrap is disabled)
 vim.keymap.set({ "n", "v", "o" }, "E", function()
