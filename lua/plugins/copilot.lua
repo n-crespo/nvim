@@ -1,9 +1,11 @@
 return {
   "zbirenbaum/copilot.lua",
+  enabled = false,
   optional = true,
   opts = {
+    suggestion = { enabled = false, autotrigger = false },
     server_opts_overrides = {
-      settings = {
+      setrings = {
         telemetry = {
           telemetryLevel = "off",
         },
@@ -11,26 +13,6 @@ return {
     },
   },
   keys = {
-    {
-      "<C-n>",
-      function()
-        if package.loaded["copilot.suggestion"] then
-          require("blink.cmp").cancel()
-          require("copilot.suggestion").next()
-        end
-      end,
-      mode = "i",
-    },
-    {
-      "<C-p>",
-      function()
-        if package.loaded["copilot.suggestion"] then
-          require("blink.cmp").cancel()
-          require("copilot.suggestion").prev()
-        end
-      end,
-      mode = "i",
-    },
     {
       "<leader>aa",
       function()
