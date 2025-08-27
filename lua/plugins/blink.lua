@@ -5,7 +5,11 @@ return {
   opts = {
     cmdline = {
       enabled = true,
-      keymap = { preset = "inherit" },
+      keymap = {
+        ["<C-j>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
+      },
       completion = { menu = { auto_show = true } },
       sources = function()
         local type = vim.fn.getcmdtype()
@@ -89,10 +93,15 @@ return {
       },
     },
     keymap = {
-      ["<C-n>"] = {}, -- used by neocodeium
-      ["<C-p>"] = {}, -- used by neocodeium
-      ["<S-CR>"] = {}, -- make new line (ignore cmp)
-      ["<CR>"] = {}, -- for accepting from blink
+      ["<C-n>"] = {},
+      ["<C-p>"] = {},
+      ["<S-CR>"] = {},
+      ["<CR>"] = {},
+      ["<C-space>"] = { "show", "hide" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<C-CR>"] = { "select_and_accept", "fallback" }, -- for accepting from blink
+      ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
       ["<Tab>"] = {
         function(cmp)
           if cmp.snippet_active() then
@@ -104,11 +113,6 @@ return {
         "snippet_forward",
         "fallback",
       },
-      ["<C-CR>"] = { "select_and_accept", "fallback" }, -- for accepting from blink
-      ["<C-e>"] = { "hide", "show", "fallback" },
-      ["<C-j>"] = { "select_next", "fallback" },
-      ["<C-k>"] = { "select_prev", "fallback" },
-      ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
     },
   },
 }

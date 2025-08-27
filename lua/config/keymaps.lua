@@ -141,6 +141,8 @@ vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct
 -- easier navgiation in cmdline
 vim.keymap.set("c", "<C-a>", "<Home>", { remap = true })
 vim.keymap.set("c", "<C-e>", "<End>", { remap = true })
+vim.keymap.set("c", "<C-k>", "<C-p>", { remap = true })
+vim.keymap.set("c", "<C-j>", "<C-n>", { remap = true })
 
 -----------------------------
 -----== TERMINAL MODE ==-----
