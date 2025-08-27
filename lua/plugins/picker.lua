@@ -9,9 +9,9 @@ return {
       layout = {
         cycle = true,
         preset = function()
-          if vim.o.lines <= 23 then
+          if vim.o.lines <= 23 and vim.o.columns <= 22 then
             return "small"
-          elseif vim.o.columns <= 130 then
+          elseif vim.o.columns <= 100 then
             return "vertical"
           else
             return "default"
@@ -64,14 +64,14 @@ return {
               { win = "input", height = 1, border = "bottom" },
               { win = "list", border = "none" },
             },
-            { win = "preview", title = "{preview}", height = 0.4, border = "rounded" },
+            { win = "preview", title = "{preview}", height = 0.45, border = "rounded" },
           },
         },
         default = {
           layout = {
             box = "horizontal",
-            width = 0.85,
-            min_width = 85,
+            width = 0.8,
+            min_width = 80,
             height = 0.8,
             {
               box = "vertical",
@@ -153,6 +153,10 @@ return {
             ["<Tab>"] = { "focus_input", mode = { "i", "n" } },
             ["<S-Tab>"] = { "", mode = { "i", "n" } },
           },
+        },
+        previewers = {
+          -- use native (terminal) or Neovim for previewing git diffs and commits
+          git = { native = true },
         },
         -- preview window
         preview = {
