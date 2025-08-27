@@ -72,8 +72,9 @@ return {
   opts = {
     options = {
       mode = "tabs",
-      tab_size = 10,
+      tab_size = 5,
       enforce_regular_tabs = false,
+      truncate_names = false,
       indicator = { style = "none" },
 
       -- hide things
