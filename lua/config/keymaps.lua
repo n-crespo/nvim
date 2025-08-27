@@ -329,6 +329,39 @@ if not vim.g.vscode then
     end
   end, { desc = "Close window", silent = true })
 else
+  local vscode = require("vscode")
+
+  vim.cmd([[
+    function s:moveCursor(to)
+        normal! m'
+        call VSCodeExtensionNotify('move-cursor', a:to)
+    endfunction
+  ]])
+
+  vim.keymap.set("n", "*", function()
+    vim.cmd(":silent! norm! *")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  vim.keymap.set("n", "n", function()
+    vim.cmd(":silent! norm! n")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  vim.keymap.set("n", "N", function()
+    vim.cmd(":silent! norm! N")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  vim.keymap.set("n", "g/", function()
+    vim.cmd(":silent! norm! *")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
   vim.cmd([[
     function! s:split(...) abort
       let direction = a:1
@@ -343,7 +376,6 @@ else
     nnoremap \| <Cmd>call <SID>split('v')<CR>
   ]])
 
-  local vscode = require("vscode")
   vim.notify = vscode.notify
 
   vim.keymap.del("n", "<leader>qq")
