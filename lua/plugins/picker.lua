@@ -11,7 +11,7 @@ return {
         preset = function()
           if vim.o.lines <= 23 and vim.o.columns <= 22 then
             return "small"
-          elseif vim.o.columns <= 100 then
+          elseif vim.o.columns <= 116 then
             return "vertical"
           else
             return "default"
@@ -70,7 +70,7 @@ return {
         default = {
           layout = {
             box = "horizontal",
-            width = 0.8,
+            width = 0.85,
             min_width = 80,
             height = 0.8,
             {
@@ -206,7 +206,8 @@ return {
     { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info", },
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume", },
     { "<leader>;", function() Snacks.picker.commands({ layout = "vscode", title = "Builtin Commands" }) end, desc = "Commands", },
-    { "<leader>g/", function() Snacks.picker.grep_word() end, desc = "Grep (current word)", },
+    { "<leader>g/", function() Snacks.picker.grep_word({layout = "vertical"}) end, desc = "Grep (current word)", },
+    { "<leader>/", function() Snacks.picker.grep({layout = "vertical"}) end, desc = "Grep", },
     { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
     -- stylua: ignore end
     {
