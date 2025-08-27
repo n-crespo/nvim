@@ -44,6 +44,7 @@ require("lazy").setup({
   change_detection = { notify = false },
   checker = { enabled = false, notify = false }, --   automatically check for plugin updates
   profiling = { require = true },
+  rocks = { enabled = false },
   dev = {
     path = "~/clones",
     fallback = false,
