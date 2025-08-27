@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd({ "BufEnter", "BufReadPre" }, {
-  pattern = { "*.pvs", "pvs-strategies" },
+  pattern = { "*.pvs", "pvs-strategies", "*.md" },
   group = vim.api.nvim_create_augroup("keymaerax_ftdetect", { clear = true }),
   once = true,
   callback = function()
