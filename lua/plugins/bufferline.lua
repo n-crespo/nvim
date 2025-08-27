@@ -11,6 +11,17 @@ vim.api.nvim_create_autocmd("TabClosed", {
   end,
 })
 
+-- https://github.com/akinsho/bufferline.nvim/issues/874#issuecomment-1981151032
+vim.api.nvim_create_autocmd("User", {
+  desc = "Hide bufferline on dashboard",
+  pattern = "LazyLoad",
+  callback = function(args)
+    if args.data == "bufferline.nvim" then
+      vim.o.showtabline = 0
+    end
+  end,
+})
+
 vim.api.nvim_create_user_command("BufferLineRename", function(opts)
   local current_tab = vim.api.nvim_get_current_tabpage()
   if opts.args == "" then
@@ -40,7 +51,7 @@ return {
       show_duplicate_prefix = true,
       default_duplicate_prefix = "",
       show_tab_indicators = false,
-      always_show_bufferline = false,
+      always_show_bufferline = true,
       show_close_icon = false,
       show_buffer_close_icons = false,
       show_buffer_icons = false,
