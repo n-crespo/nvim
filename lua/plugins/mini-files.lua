@@ -73,6 +73,10 @@ return {
     end
     local filter_hide = function(fs_entry)
       return not vim.startswith(fs_entry.name, ".")
+        and not vim.endswith(fs_entry.name, ".jprf")
+        and not vim.endswith(fs_entry.name, ".prf")
+        and not vim.endswith(fs_entry.name, ".prf~")
+        and not vim.endswith(fs_entry.name, ".jprf")
     end
 
     local files_set_cwd = function()
