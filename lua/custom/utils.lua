@@ -24,15 +24,20 @@ end
 function M.get_dir_with_fallback(filename)
   filename = filename or ""
 
-  -- we probably have a regular file
-  if filename ~= "" then
-    local buf_dir_guess = path_to_buf(0) .. "/" .. filename
-    if buf_dir_guess and uv.fs_stat(buf_dir_guess) then
-      return buf_dir_guess -- only if this is a valid directory
+  local cur_buf_path = path_to_buf(0)
+  if cur_buf_path and uv.fs_stat(cur_buf_path) then
+    if filename ~= "" then
+      local filename_path = cur_buf_path .. "/" .. filename
+      if uv.fs_stat(filename_path) then
+        -- using current buffer path (with filename attached)
+        return cur_buf_path .. "/" .. filename
+      end
     end
+    -- use LazyVim's builtin function for finding root directory
+    return LazyVim.root()
   end
 
-  -- try to use alternate buffer's directory
+  -- try to get alternate buffer's directory
   local alt_bufnr = fn.bufnr("#")
   local alt_dir = api.nvim_buf_is_valid(alt_bufnr) and path_to_buf(alt_bufnr)
 
