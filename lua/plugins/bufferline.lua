@@ -2,6 +2,15 @@
 
 local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 
+-- handle (one) edge case in logic to set titlestring
+vim.api.nvim_create_autocmd("TabClosed", {
+  desc = "Handle Titlestring Edge Case",
+  group = vim.api.nvim_create_augroup("group", { clear = true }),
+  callback = function()
+    vim.opt.titlestring = vim.fn.expand("%:t") .. " - nvim"
+  end,
+})
+
 vim.api.nvim_create_user_command("BufferLineRename", function(opts)
   local current_tab = vim.api.nvim_get_current_tabpage()
   if opts.args == "" then
@@ -31,7 +40,7 @@ return {
       show_duplicate_prefix = true,
       default_duplicate_prefix = "",
       show_tab_indicators = false,
-      always_show_bufferline = true,
+      always_show_bufferline = false,
       show_close_icon = false,
       show_buffer_close_icons = false,
       show_buffer_icons = false,
