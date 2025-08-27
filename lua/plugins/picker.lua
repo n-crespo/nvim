@@ -92,10 +92,9 @@ return {
       },
       ---@class snacks.picker.previewers.Config
       previewers = {
-        git = {
-          builtin = false,
-          cmd = { "delta" },
-        },
+        -- use external tool (git) for diffs
+        git = { builtin = false },
+        diff = { builtin = false },
       },
       matcher = {
         frecency = true,
@@ -153,10 +152,6 @@ return {
             ["<Tab>"] = { "focus_input", mode = { "i", "n" } },
             ["<S-Tab>"] = { "", mode = { "i", "n" } },
           },
-        },
-        previewers = {
-          -- use native (terminal) or Neovim for previewing git diffs and commits
-          git = { native = true },
         },
         -- preview window
         preview = {
