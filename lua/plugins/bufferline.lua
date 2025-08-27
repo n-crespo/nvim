@@ -140,6 +140,7 @@ return {
         hls[name] = {
           bg = { attribute = "bg", highlight = "CursorLine" },
           italic = false,
+          bold = false,
         }
       end
       hls["duplicate"] = { italic = false } -- no italic duplicate prefix
