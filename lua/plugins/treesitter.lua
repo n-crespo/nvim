@@ -1,3 +1,17 @@
+-- establish cusotm filetype associations
+vim.filetype.add({
+  extension = {
+    pvs = "pvs",
+    prl = "pvs",
+    prf = "pvs",
+    jprf = "json",
+    kyx = "keymaeraX",
+  },
+  filename = { ["pvs-strategies"] = "lisp" },
+})
+vim.treesitter.language.register("erlang", "pvs")
+vim.treesitter.language.register("haskell", "keymaeraX")
+
 return {
   {
     "folke/which-key.nvim",
