@@ -139,6 +139,7 @@ return {
 
             -- alt mappings
             ["<a-o>"] = { "toggle_maximize", mode = { "i", "n" } },
+            ["<D-o>"] = { "toggle_maximize", mode = { "i", "n" } },
             ["<a-i>"] = { "toggle_ignored", mode = { "i", "n" } },
             ["<a-.>"] = { "toggle_hidden", mode = { "i", "n" } },
             ["<a-p>"] = { "toggle_preview", mode = { "i", "n" } },
