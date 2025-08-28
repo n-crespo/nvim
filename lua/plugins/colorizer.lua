@@ -8,7 +8,7 @@ end, { nargs = 0 })
 return {
   "catgoose/nvim-colorizer.lua",
   cmd = "Colorizer",
-  ft = { "css", "html", "javascript", "typescript", "noice" },
+  ft = { "css", "html", "javascript", "typescript", "noice", "ghostty" },
   opts = {
     lazy_load = false,
     filetypes = {
