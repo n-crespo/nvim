@@ -14,9 +14,9 @@ return {
       { "<leader>qS", false },
     },
   },
-  -- i just do this manually with an alias to
+  -- i just do this manually with an alias now:
   --
-  -- nvim -c "lua require('persistence').load()"
+  -- alias ns="nvim -c \"lua require('persistence').load()\""
   --
   -- load the last saved session when neovim is opened with no args
   -- https://github.com/LazyVim/LazyVim/discussions/5462

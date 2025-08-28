@@ -52,9 +52,6 @@ return {
         if name == "" then
           name = ":checkhealth" -- i think this only happens in health buffers
         end
-        if vim.api.nvim_win_get_tabpage(0) == tabnr then
-          vim.opt.titlestring = name .. "  - nvim"
-        end
         return name
       end,
 
