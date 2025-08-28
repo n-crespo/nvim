@@ -114,7 +114,7 @@ return {
   keys = {
     {
       "<leader>k",
-      ":CodeCompanion<cr>",
+      "<cmd>CodeCompanion<cr>",
       desc = "Prompt AI",
       mode = { "n", "x" },
     },
