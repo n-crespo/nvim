@@ -35,28 +35,4 @@ if LazyVim.is_win() then
   LazyVim.terminal.setup("pwsh")
 end
 
--- properly set `titlestring` option
--- if place in autocmds.lua, this autocmd gets registered by neovim too late and
--- misses the first round of WinEnter events (thus why i moved it here).
-local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
-vim.api.nvim_create_autocmd({ "BufEnter", "TabNewEntered", "WinEnter", "WinLeave" }, {
-  group = vim.api.nvim_create_augroup("group", { clear = true }),
-  callback = function()
-    local name = vim.api.nvim_buf_get_name(0)
-    if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "checkhealth" then
-      vim.opt.titlestring = ":checkhealth - nvim"
-    elseif vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "snacks_dashboard" then
-      vim.opt.titlestring = "nvim"
-    elseif
-      ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = 0 })]
-      or vim.api.nvim_get_option_value("bufhidden", { buf = 0 }) ~= ""
-      or name == ""
-    then
-      -- don't update title string
-    else
-      vim.opt.titlestring = vim.fn.expand("%:t") .. " - nvim"
-    end
-  end,
-})
-
 -- opts set by default lazyvim: ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/config/options.lua
