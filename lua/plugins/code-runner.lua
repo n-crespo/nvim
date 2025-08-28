@@ -2,6 +2,7 @@
 -- this overrides the vim native replace mode which i never use
 return {
   "CRAG666/code_runner.nvim",
+  vscode = false,
   keys = {
     {
       "R",
