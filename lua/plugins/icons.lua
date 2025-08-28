@@ -5,7 +5,7 @@ return {
       icons = {
         kinds = {
           Text = "󰉿 ",
-          Variable = "󰫧 ",
+          Variable = " ",
         },
       },
     },
@@ -14,11 +14,10 @@ return {
     "echasnovski/mini.icons",
     lazy = true,
     opts = {
-      -- Override default glyph for "file" category (reuse highlight group)
-      default = { file = { glyph = "󰈤" } },
       extension = {
         h = { glyph = "", hl = "MiniIconsPurple" },
         pvs = { glyph = "", hl = "PVSBlue" },
+        prf = { glyph = "󱇚", hl = "MiniIconsGrey" },
       },
       filetype = {
         cf = { glyph = "", hl = "MiniIconsBlue" },
@@ -26,7 +25,7 @@ return {
         rmd = { glyph = "", hl = "MiniIconsBlue" },
         autohotkey = { glyph = "", hl = "MiniIconsGreen" },
         minifiles = { glyph = "", hl = "MiniIconsYellow" },
-        objdump = { glyph = "󰈤" },
+        objdump = { glyph = "󰘨" },
         c = { glyph = "", hl = "MiniIconsBlue" },
       },
     },
