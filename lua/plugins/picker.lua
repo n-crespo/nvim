@@ -23,14 +23,14 @@ return {
           layout = {
             preview = false,
             backdrop = false,
-            row = 1,
-            width = 0.4,
-            min_width = 80,
-            height = 0.4,
+            row = 2,
+            width = 64,
+            min_width = 64,
+            height = 0.45,
             border = "none",
             box = "vertical",
             { win = "input", height = 1, border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
-            { win = "list", border = "single" },
+            { win = "list", border = "rounded" },
             { win = "preview", title = "{preview}", border = "rounded" },
           },
         },
@@ -209,9 +209,10 @@ return {
     { "<leader>fH", function() Snacks.picker.highlights() end, desc = "Highlights", },
     { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info", },
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume", },
-    { "<leader>;", function() Snacks.picker.commands({ layout = "vscode", title = "Builtin Commands" }) end, desc = "Commands", },
+    { "<leader>;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
     { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical" }) end, desc = "Grep (current word)", },
     { "<leader>/", function() Snacks.picker.grep({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep", },
+    { "<M-p>", function() Snacks.picker.files({ layout = "vscode", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Pick", },
     { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
     -- stylua: ignore end
     {
