@@ -62,11 +62,11 @@ return {
         elseif
           ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = buf_number })]
           or vim.api.nvim_get_option_value("bufhidden", { buf = buf_number }) ~= ""
-          or vim.api.nvim_buf_get_name(buf_number) == ""
         then
           return false
+        else
+          return true
         end
-        return true
       end,
     },
     -- show selected tab with TabLineSel bg highlights
