@@ -250,8 +250,12 @@ vim.keymap.set("n", "<ScrollWheelRight><ScrollWheelRight>", "zl") -- right scrol
 vim.keymap.set("n", "<ScrollWheelLeft>", "")
 vim.keymap.set("n", "<ScrollWheelRight>", "")
 
-vim.keymap.set("n", "zk", "<C-y>", { desc = "Scroll viewport up", remap = true })
-vim.keymap.set("n", "zj", "<C-e>", { desc = "Scroll viewport down", remap = true })
+vim.keymap.set("n", "zk", "zt", { remap = true })
+vim.keymap.set("n", "zj", "zb", { remap = true })
+
+vim.keymap.set("n", "<C-f>", "<C-e>", { remap = true })
+vim.keymap.set("n", "<C-x>", "<C-e>", { remap = true })
+vim.keymap.set("n", "<C-b>", "<C-y>", { remap = true })
 
 -- media control buttons (don't send keypresses)
 vim.keymap.set({ "i", "n" }, "", "<Nop>") -- volume up
