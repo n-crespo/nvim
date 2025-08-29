@@ -39,7 +39,6 @@ return {
       themable = false,
       modified_icon = "",
       separator_style = { "", "" },
-
       name_formatter = function(buf)
         local tabnr = buf.tabnr
         local custom_name = vim.g["BufferLineCustomName" .. tabnr]
@@ -54,9 +53,7 @@ return {
         end
         return name
       end,
-
-      -- don'd update tabline with random floating windows
-      custom_filter = function(buf_number)
+      custom_filter = function(buf_number) -- don't update tabline with random floating windows
         if vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "checkhealth" then
           return true -- allow :checkhealth buffers
         elseif

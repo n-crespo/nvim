@@ -96,27 +96,9 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
 })
 
 -- properly set `titlestring` option
-local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 vim.api.nvim_create_autocmd({ "BufEnter", "TabNewEntered", "WinEnter", "WinLeave" }, {
-  group = vim.api.nvim_create_augroup("group", { clear = true }),
+  group = vim.api.nvim_create_augroup("titlestring", { clear = true }),
   callback = function()
-    local ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-    if ft == "checkhealth" then
-      vim.opt.titlestring = ":checkhealth - nvim"
-    elseif
-      ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = 0 })]
-      or vim.api.nvim_get_option_value("bufhidden", { buf = 0 }) ~= ""
-    then
-      -- don't update title string
-    else
-      local name = vim.fn.expand("%:t")
-      if name == "" then -- detect empty buffers
-        name = "[No Name]"
-      end
-      if name ~= "" then
-        name = name .. " - "
-      end
-      vim.opt.titlestring = name .. "nvim"
-    end
+    require("custom.utils").set_titlestring()
   end,
 })

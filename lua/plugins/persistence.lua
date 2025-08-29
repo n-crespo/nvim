@@ -1,3 +1,13 @@
+local group = vim.api.nvim_create_augroup("titlestring", { clear = false })
+-- properly set titlestring when persistence is loaded
+vim.api.nvim_create_autocmd("User", {
+  group = group,
+  pattern = "PersistenceLoadPost",
+  callback = function()
+    require("custom.utils").set_titlestring()
+  end,
+})
+
 return {
   {
     "folke/persistence.nvim",
@@ -5,6 +15,9 @@ return {
     opts = {
       pre_save = function()
         vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
+      end,
+      on_load = function()
+        vim.api.nvim_exec_autocmds("WinEnter", { group = "titlestring" })
       end,
     },
     keys = {

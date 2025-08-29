@@ -283,4 +283,33 @@ function M.toggle_checkbox()
   end
 end
 
+-- returns true if picker is open (don't want tabline changing)
+local function picker_open()
+  local P = package.loaded["snacks.picker.core.picker"]
+  return P and #P.get() > 0
+end
+
+local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
+
+function M.set_titlestring()
+  if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "checkhealth" then
+    vim.opt.titlestring = ":checkhealth - nvim"
+  elseif
+    ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = 0 })]
+    or vim.api.nvim_get_option_value("bufhidden", { buf = 0 }) ~= ""
+    or picker_open()
+  then
+    -- don't update title string
+  else
+    local name = vim.fn.expand("%:t")
+    if name == "" then -- detect empty buffers
+      name = "[No Name]"
+    end
+    if name ~= "" then
+      name = name .. " - "
+    end
+    vim.opt.titlestring = name .. "nvim"
+  end
+end
+
 return M
