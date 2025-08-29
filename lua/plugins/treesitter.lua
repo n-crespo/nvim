@@ -1,4 +1,4 @@
--- establish cusotm filetype associations
+-- establish custom filetype associations
 vim.filetype.add({
   extension = {
     pvs = "pvs",
