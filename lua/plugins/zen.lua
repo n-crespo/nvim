@@ -13,7 +13,7 @@ return {
         zindex = 40,
         wo = {
           winhighlight = "NormalFloat:Normal",
-          statuscolumn = "",
+          statuscolumn = " ",
           number = false,
           cul = false,
         },
