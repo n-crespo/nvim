@@ -1,33 +1,35 @@
+local map = vim.keymap.set
+
 ---------------------------
 -----== NORMAL MODE ==-----
 ---------------------------
 
 -- Replace the word cursor is on globally
-vim.keymap.set("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change instances" })
+map("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change instances" })
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true })
-vim.keymap.set("n", "n", "nzzzv", { noremap = true })
-vim.keymap.set("n", "N", "Nzzzv", { noremap = true })
+map("n", "<C-d>", "<C-d>zz", { noremap = true })
+map("n", "<C-u>", "<C-u>zz", { noremap = true })
+map("n", "n", "nzzzv", { noremap = true })
+map("n", "N", "Nzzzv", { noremap = true })
 
 -- don't let cursor fly around when using J
-vim.keymap.set("n", "J", "mzJ`z<cmd>delm z<CR>", { silent = true })
-vim.keymap.set("n", "\\j", "j", { remap = false })
-vim.keymap.set("n", "\\k", "k", { remap = false })
+map("n", "J", "mzJ`z<cmd>delm z<CR>", { silent = true })
+map("n", "\\j", "j", { remap = false })
+map("n", "\\k", "k", { remap = false })
 
 -- follow links!
-vim.keymap.set("n", "<CR>", function()
+map("n", "<CR>", function()
   require("custom.utils").follow_link()
 end, { noremap = true, silent = true, desc = "Follow link" })
-vim.keymap.set("n", "<S-CR>", function()
+map("n", "<S-CR>", function()
   require("custom.utils").follow_link(true)
 end, { noremap = true, silent = true, desc = "Follow link in new tab" })
 
 -- select entire file
-vim.keymap.set("n", "<C-a>", "ggVG")
+map("n", "<C-a>", "ggVG")
 
 -- select last changed/yanked text
-vim.keymap.set(
+map(
   "n",
   "gp",
   '"`[" . strpart(getregtype(), 0, 1) . "`]"',
@@ -35,34 +37,34 @@ vim.keymap.set(
 )
 
 -- apply last created macro over selected region
-vim.keymap.set("x", "Q", ":norm @@<cr>", { desc = "Play Q macro", silent = true })
+map("x", "Q", ":norm @@<cr>", { desc = "Play Q macro", silent = true })
 
 -- duplicate lines
-vim.keymap.set("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" })
+map("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" })
 
 -- create a new tab
-vim.keymap.set("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
-vim.keymap.set("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
+map("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
+map("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
 
 -- close tabs/all buffers
-vim.keymap.set("n", "<leader>Q", "<cmd>bufdo bd<cr>", { desc = "Close all buffers", silent = true })
-vim.keymap.set("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader>Q", "<cmd>bufdo bd<cr>", { desc = "Close all buffers", silent = true })
+map("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- exclude "desc" so they don't populate which-key
-vim.keymap.set("n", "<leader>1", "<cmd>silent! tabn 1<cr>", { silent = true })
-vim.keymap.set("n", "<leader>2", "<cmd>silent! tabn 2<cr>", { silent = true })
-vim.keymap.set("n", "<leader>3", "<cmd>silent! tabn 3<cr>", { silent = true })
-vim.keymap.set("n", "<leader>4", "<cmd>silent! tabn 4<cr>", { silent = true })
-vim.keymap.set("n", "<leader>5", "<cmd>silent! tabn 5<cr>", { silent = true })
-vim.keymap.set("n", "<leader>6", "<cmd>silent! tabn 6<cr>", { silent = true })
-vim.keymap.set("n", "<leader>7", "<cmd>silent! tabn 7<cr>", { silent = true })
-vim.keymap.set("n", "<leader>8", "<cmd>silent! tabn 8<cr>", { silent = true })
-vim.keymap.set("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
+map("n", "<leader>1", "<cmd>silent! tabn 1<cr>", { silent = true })
+map("n", "<leader>2", "<cmd>silent! tabn 2<cr>", { silent = true })
+map("n", "<leader>3", "<cmd>silent! tabn 3<cr>", { silent = true })
+map("n", "<leader>4", "<cmd>silent! tabn 4<cr>", { silent = true })
+map("n", "<leader>5", "<cmd>silent! tabn 5<cr>", { silent = true })
+map("n", "<leader>6", "<cmd>silent! tabn 6<cr>", { silent = true })
+map("n", "<leader>7", "<cmd>silent! tabn 7<cr>", { silent = true })
+map("n", "<leader>8", "<cmd>silent! tabn 8<cr>", { silent = true })
+map("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
 
 -- splits/windows
-vim.keymap.set("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
-vim.keymap.set("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
-vim.keymap.set("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
+map("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
+map("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
+map("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
 
 -- z= with vim.ui.select() (selection UI)
 -- (you can also type a number to pick the nth suggestion)
@@ -79,12 +81,12 @@ local spell_select = function()
   local cword = vim.fn.expand("<cword>")
   vim.ui.select(vim.fn.spellsuggest(cword, vim.o.lines), { prompt = "Change " .. cword .. " to:" }, spell_on_choice)
 end
-vim.keymap.set("n", "z=", spell_select)
+map("n", "z=", spell_select)
 
 -- auto pick the first spelling suggestion and apply it
-vim.keymap.set("n", "<leader>fs", "1z=", { remap = false, silent = true, desc = "Fix spelling" })
+map("n", "<leader>fs", "1z=", { remap = false, silent = true, desc = "Fix spelling" })
 
-vim.keymap.set("n", "<leader>R", function()
+map("n", "<leader>R", function()
   local plugins = require("lazy").plugins()
   local plugin_names = {}
   for _, plugin in ipairs(plugins) do
@@ -103,19 +105,19 @@ end, { desc = "Reload plugin" })
 ---------------------------
 
 -- search within selection by default when using / in visual mode
-vim.keymap.set("x", "/", "<Esc>/\\%V")
-vim.keymap.set("n", "g/", "*") -- `:h *`
-vim.keymap.set("x", "g/", "*<esc>", { remap = true }) -- `:h default-mappings`
+map("x", "/", "<Esc>/\\%V")
+map("n", "g/", "*") -- `:h *`
+map("x", "g/", "*<esc>", { remap = true }) -- `:h default-mappings`
 
 -- go to visual end of line (unless wrap is disabled)
-vim.keymap.set({ "n", "v", "o" }, "E", function()
+map({ "n", "v", "o" }, "E", function()
   if vim.opt.wrap:get() then
     vim.cmd("normal! g$")
   else
     vim.cmd("normal! $")
   end
 end, { silent = true })
-vim.keymap.set({ "n", "v", "o" }, "B", function()
+map({ "n", "v", "o" }, "B", function()
   if vim.opt.wrap:get() then
     vim.cmd("normal! g^")
   else
@@ -123,112 +125,112 @@ vim.keymap.set({ "n", "v", "o" }, "B", function()
   end
 end, { silent = true })
 
-vim.keymap.set("x", "<bs>", "d", { remap = true })
+map("x", "<bs>", "d", { remap = true })
 
 ---------------------------
 -----== INSERT MODE ==-----
 ---------------------------
 
-vim.keymap.set("i", "<C-Del>", "<C-o>de") -- traditional functionality of <C-delete>
-vim.keymap.set("i", "<M-BS>", "<C-u>") -- clean line (windows keymap)
-vim.keymap.set("i", "<C-BS>", "<C-w>") -- clean line (windows keymap)
-vim.keymap.set("i", "<D-BS>", "<C-u>") -- clean line (windows keymap)
-vim.keymap.set("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear snippets
+map("i", "<C-Del>", "<C-o>de") -- traditional functionality of <C-delete>
+map("i", "<M-BS>", "<C-u>") -- clean line (windows keymap)
+map("i", "<C-BS>", "<C-w>") -- clean line (windows keymap)
+map("i", "<D-BS>", "<C-u>") -- clean line (windows keymap)
+map("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear snippets
 
 -- in insert mode auto-correct the last misspelled word
-vim.keymap.set("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })
+map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })
 
 -- easier navgiation in cmdline
-vim.keymap.set("c", "<C-a>", "<Home>", { remap = true })
-vim.keymap.set("c", "<C-e>", "<End>", { remap = true })
-vim.keymap.set("c", "<C-k>", "<C-p>", { remap = true })
-vim.keymap.set("c", "<C-j>", "<C-n>", { remap = true })
+map("c", "<C-a>", "<Home>", { remap = true })
+map("c", "<C-e>", "<End>", { remap = true })
+map("c", "<C-k>", "<C-p>", { remap = true })
+map("c", "<C-j>", "<C-n>", { remap = true })
 
 -----------------------------
 -----== TERMINAL MODE ==-----
 -----------------------------
 
 -- paste easier in terminal
-vim.keymap.set("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
-vim.keymap.set("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
+map("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
+map("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
 
 --------------------------
 -----== MANY MODES ==-----
 --------------------------
 
-vim.keymap.set("i", "<C-.>", "<C-t>")
-vim.keymap.set("i", "<C-,>", "<C-d>")
-vim.keymap.set({ "n", "x" }, "<C-.>", ">>", { remap = true })
-vim.keymap.set({ "n", "x" }, "<C-,>", "<<", { remap = true })
+map("i", "<C-.>", "<C-t>")
+map("i", "<C-,>", "<C-d>")
+map({ "n", "x" }, "<C-.>", ">>", { remap = true })
+map({ "n", "x" }, "<C-,>", "<<", { remap = true })
 
 -- for macos (vscode native)
-vim.keymap.set("n", "<D-]>", ">>")
-vim.keymap.set("i", "<D-]>", "<C-t>")
-vim.keymap.set("v", "<D-]>", ">gv")
-vim.keymap.set("n", "<D-[>", "<<")
-vim.keymap.set("i", "<D-[>", "<C-d>")
-vim.keymap.set("v", "<D-[>", "<gv")
+map("n", "<D-]>", ">>")
+map("i", "<D-]>", "<C-t>")
+map("v", "<D-]>", ">gv")
+map("n", "<D-[>", "<<")
+map("i", "<D-[>", "<C-d>")
+map("v", "<D-[>", "<gv")
 
 -- for windows
-vim.keymap.set("n", "<M-]>", ">>")
-vim.keymap.set("i", "<M-]>", "<C-t>")
-vim.keymap.set("v", "<M-]>", ">gv")
-vim.keymap.set("n", "<M-[>", "<<")
-vim.keymap.set("i", "<M-[>", "<C-d>")
-vim.keymap.set("v", "<M-[>", "<gv")
+map("n", "<M-]>", ">>")
+map("i", "<M-]>", "<C-t>")
+map("v", "<M-]>", ">gv")
+map("n", "<M-[>", "<<")
+map("i", "<M-[>", "<C-d>")
+map("v", "<M-[>", "<gv")
 
 -- follow links better
-vim.keymap.set({ "n", "x" }, "gx", function()
+map({ "n", "x" }, "gx", function()
   vim.ui.open(vim.fn.expand("<cfile>"))
 end, { silent = true })
 
 -- increment and decrement with plus and minus (since i override <c-a>)
-vim.keymap.set({ "n", "v" }, "+", "<c-a>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "-", "<C-x>", { noremap = true, silent = true })
+map({ "n", "v" }, "+", "<c-a>", { noremap = true, silent = true })
+map({ "n", "v" }, "-", "<C-x>", { noremap = true, silent = true })
 
 -- : (easier to hit when using in combination with <C-k>)
-vim.keymap.set({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Commmand mode" })
+map({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Commmand mode" })
 
 -- allow changing and deleting without overriding current paste registers
 -- in other words automatically delete or change to the void register
-vim.keymap.set({ "n", "v" }, "D", '"_D', { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "C", '"_C', { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "x", '"_x', { noremap = true, silent = true })
-vim.keymap.set("v", "p", '"_dp', { noremap = true, silent = true })
-vim.keymap.set("n", "X", "0D", { remap = true, desc = "Clear line", silent = true })
+map({ "n", "v" }, "D", '"_D', { noremap = true, silent = true })
+map({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
+map({ "n", "v" }, "C", '"_C', { noremap = true, silent = true })
+map({ "n", "v" }, "c", '"_c', { noremap = true, silent = true })
+map({ "n", "v" }, "x", '"_x', { noremap = true, silent = true })
+map("v", "p", '"_dp', { noremap = true, silent = true })
+map("n", "X", "0D", { remap = true, desc = "Clear line", silent = true })
 
 -- paste from system clipboard
-vim.keymap.set("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
-vim.keymap.set("c", "<C-v>", "<C-r>+")
+map("i", "<C-v>", "<C-r>+", { noremap = true, silent = true })
+map("c", "<C-v>", "<C-r>+")
 
 -- delete to register
-vim.keymap.set("v", "<leader>D", '"+d', { desc = "Delete and copy", silent = true, remap = false })
-vim.keymap.set("n", "<leader>D", '"+dd', { desc = "Delete and copy", silent = true })
+map("v", "<leader>D", '"+d', { desc = "Delete and copy", silent = true, remap = false })
+map("n", "<leader>D", '"+dd', { desc = "Delete and copy", silent = true })
 
 -- move lines of code with <C-n> and <C-p> (since M-j/k are taken by window manager)
-vim.keymap.set({ "n", "x" }, "<C-p>", "<M-k>", { remap = true, silent = true })
-vim.keymap.set({ "n", "x" }, "<C-n>", "<M-j>", { remap = true, silent = true })
+map({ "n", "x" }, "<C-p>", "<M-k>", { remap = true, silent = true })
+map({ "n", "x" }, "<C-n>", "<M-j>", { remap = true, silent = true })
 
-vim.keymap.set({ "n", "i" }, "<M-z>", function()
+map({ "n", "i" }, "<M-z>", function()
   vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Wrap" })
 
-vim.keymap.set({ "n", "v" }, "go", "%", { desc = "Go to other pair" })
+map({ "n", "v" }, "go", "%", { desc = "Go to other pair" })
 
 -----------------------
 -----== SPECIAL ==-----
 -----------------------
 
 -- default mappings, just removing description so they're hidden from whichkey
-vim.keymap.set("x", "Y", "y$")
-vim.keymap.set("x", "&", ":&&<CR>")
+map("x", "Y", "y$")
+map("x", "&", ":&&<CR>")
 
 -- Executes shell command from neovim making file executable
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make executable" })
+map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make executable" })
 
-vim.keymap.set("n", "<leader>o", function()
+map("n", "<leader>o", function()
   if vim.fn.executable("wsl-open") == 1 then
     vim.cmd([[silent! !wsl-open %]])
   else
@@ -237,33 +239,31 @@ vim.keymap.set("n", "<leader>o", function()
 end, { desc = "Open buffer in system viewer" })
 
 -- requires mini.surround
-vim.keymap.set("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })
-vim.keymap.set("x", "'", "gsa'", { remap = true, desc = "Surround Selection with Quotes" })
+map("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })
+map("x", "'", "gsa'", { remap = true, desc = "Surround Selection with Quotes" })
 
 -- better scrolling with mouse
-vim.keymap.set("n", "<ScrollWheelUp>", "<C-y>")
-vim.keymap.set("n", "<ScrollWheelDown>", "<C-e>")
-vim.keymap.set("n", "<ScrollWheelLeft><ScrollWheelLeft>", "zh") -- left scroll
-vim.keymap.set("n", "<ScrollWheelRight><ScrollWheelRight>", "zl") -- right scroll
--- vim.keymap.set("n", "<M-ScrollWheelUp>", "zh") -- left scroll
--- vim.keymap.set("n", "<M-ScrollWheelDown>", "zl") -- right scroll
-vim.keymap.set("n", "<ScrollWheelLeft>", "")
-vim.keymap.set("n", "<ScrollWheelRight>", "")
+map("n", "<ScrollWheelUp>", "<C-y>")
+map("n", "<ScrollWheelDown>", "<C-e>")
+map("n", "<ScrollWheelLeft><ScrollWheelLeft>", "zh") -- left scroll
+map("n", "<ScrollWheelRight><ScrollWheelRight>", "zl") -- right scroll
+-- k("n", "<M-ScrollWheelUp>", "zh") -- left scroll
+-- k("n", "<M-ScrollWheelDown>", "zl") -- right scroll
+map("n", "<ScrollWheelLeft>", "")
+map("n", "<ScrollWheelRight>", "")
 
-vim.keymap.set("n", "zk", "zt", { remap = true })
-vim.keymap.set("n", "zj", "zb", { remap = true })
+map("n", "zm", "zz")
 
-vim.keymap.set("n", "<C-f>", "<C-e>", { remap = true })
-vim.keymap.set("n", "<C-x>", "<C-e>", { remap = true })
-vim.keymap.set("n", "<C-b>", "<C-y>", { remap = true })
+map("n", "<C-f>", "<C-e>", { remap = true })
+map("n", "<C-b>", "<C-y>", { remap = true })
 
 -- media control buttons (don't send keypresses)
-vim.keymap.set({ "i", "n" }, "", "<Nop>") -- volume up
-vim.keymap.set({ "i", "n" }, "", "<Nop>") -- volume down
-vim.keymap.set({ "i", "n" }, "", "<Nop>") -- mute
-vim.keymap.set({ "i", "n" }, "", "<Nop>") -- mute
-vim.keymap.set({ "i", "n" }, "", "<Nop>") -- prev
-vim.keymap.set({ "i", "n" }, "", "<Nop>") -- skip
+map({ "i", "n" }, "", "<Nop>") -- volume up
+map({ "i", "n" }, "", "<Nop>") -- volume down
+map({ "i", "n" }, "", "<Nop>") -- mute
+map({ "i", "n" }, "", "<Nop>") -- mute
+map({ "i", "n" }, "", "<Nop>") -- prev
+map({ "i", "n" }, "", "<Nop>") -- skip
 
 -- note: these will work in every filetype
 local abbrevations = {
@@ -299,12 +299,12 @@ vim.cmd("cnoreabbrev F !prettier -w --parser=markdown")
 vim.api.nvim_create_user_command("Clean", "silent! %s/\r//g", { nargs = 0, desc = "Clean newline characters" })
 
 -- save without removing trailing whitespace
-vim.keymap.set({ "n", "i" }, "<C-D-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
-vim.keymap.set({ "n", "i" }, "<D-s>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
-vim.keymap.set("n", "<M-C-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
+map({ "n", "i" }, "<C-D-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
+map({ "n", "i" }, "<D-s>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
+map("n", "<M-C-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
 
 -- get word count of current file
-vim.keymap.set("n", "<C-S-C>", function()
+map("n", "<C-S-C>", function()
   vim.notify(
     "Word Count: " .. vim.fn.wordcount().words .. "\nChar Count: " .. vim.fn.wordcount().chars,
     vim.log.levels.INFO
@@ -321,10 +321,10 @@ end, { desc = "Display word and character count of the current file" })
 
 -- setup vscode overrides
 if not vim.g.vscode then
-  vim.keymap.set("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
-  vim.keymap.set("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+  map("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
+  map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
-  vim.keymap.set("n", "<leader>q", function()
+  map("n", "<leader>q", function()
     -- stylua: ignore
     local close_window = function() vim.cmd("close") end
     local ok, _ = pcall(close_window)
@@ -342,25 +342,25 @@ else
     endfunction
   ]])
 
-  vim.keymap.set("n", "*", function()
+  map("n", "*", function()
     vim.cmd(":silent! norm! *")
     local curline = vim.fn.line(".")
     vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
   end, { noremap = true, silent = true })
 
-  vim.keymap.set("n", "n", function()
+  map("n", "n", function()
     vim.cmd(":silent! norm! n")
     local curline = vim.fn.line(".")
     vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
   end, { noremap = true, silent = true })
 
-  vim.keymap.set("n", "N", function()
+  map("n", "N", function()
     vim.cmd(":silent! norm! N")
     local curline = vim.fn.line(".")
     vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
   end, { noremap = true, silent = true })
 
-  vim.keymap.set("n", "g/", function()
+  map("n", "g/", function()
     vim.cmd(":silent! norm! *")
     local curline = vim.fn.line(".")
     vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
@@ -383,21 +383,16 @@ else
   vim.notify = vscode.notify
 
   vim.keymap.del("n", "<leader>qq")
-  vim.keymap.set(
-    "n",
-    "<leader>q",
-    "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>",
-    { silent = true }
-  )
+  map("n", "<leader>q", "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", { silent = true })
 end
 
--- vim.keymap.set({ "n", "t" }, "<C-S-H>", "<cmd>wincmd h<cr>")
--- vim.keymap.set({ "n", "t" }, "<S-NL>", "<cmd>wincmd j<cr>")
--- vim.keymap.set({ "n", "t" }, "<C-S-K>", "<cmd>wincmd k<cr>")
--- vim.keymap.set({ "n", "t" }, "<C-S-L>", "<cmd>wincmd l<cr>")
+-- k({ "n", "t" }, "<C-S-H>", "<cmd>wincmd h<cr>")
+-- k({ "n", "t" }, "<S-NL>", "<cmd>wincmd j<cr>")
+-- k({ "n", "t" }, "<C-S-K>", "<cmd>wincmd k<cr>")
+-- k({ "n", "t" }, "<C-S-L>", "<cmd>wincmd l<cr>")
 
 -- -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
--- vim.keymap.set("n", "<C-S-S>", function()
+-- k("n", "<C-S-S>", function()
 --   vim.cmd([[silent! %s/\r//g]])
 --   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
 -- end, { remap = false, desc = "Clean ^M", silent = true })
