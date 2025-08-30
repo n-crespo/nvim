@@ -252,8 +252,6 @@ map("n", "<ScrollWheelRight><ScrollWheelRight>", "zl") -- right scroll
 map("n", "<ScrollWheelLeft>", "")
 map("n", "<ScrollWheelRight>", "")
 
-map("n", "zm", "zz")
-
 map("n", "<C-f>", "<C-e>", { remap = true })
 map("n", "<C-b>", "<C-y>", { remap = true })
 
