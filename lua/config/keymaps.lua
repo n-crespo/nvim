@@ -158,26 +158,13 @@ map("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
 -----== MANY MODES ==-----
 --------------------------
 
-map("i", "<C-.>", "<C-t>")
-map("i", "<C-,>", "<C-d>")
-map({ "n", "x" }, "<C-.>", ">>", { remap = true })
-map({ "n", "x" }, "<C-,>", "<<", { remap = true })
-
--- for macos (vscode native)
-map("n", "<D-]>", ">>")
-map("i", "<D-]>", "<C-t>")
-map("v", "<D-]>", ">gv")
-map("n", "<D-[>", "<<")
-map("i", "<D-[>", "<C-d>")
-map("v", "<D-[>", "<gv")
-
--- for windows
-map("n", "<M-]>", ">>")
-map("i", "<M-]>", "<C-t>")
-map("v", "<M-]>", ">gv")
-map("n", "<M-[>", "<<")
-map("i", "<M-[>", "<C-d>")
-map("v", "<M-[>", "<gv")
+-- for vscode on macos (see mini.move)
+map("n", "<D-]>", "<M-]>", { remap = true })
+map("i", "<D-]>", "<M-]>", { remap = true })
+map("v", "<D-]>", "<M-]>", { remap = true })
+map("n", "<D-[>", "<M-[>", { remap = true })
+map("i", "<D-[>", "<M-[>", { remap = true })
+map("v", "<D-[>", "<M-[>", { remap = true })
 
 -- follow links better
 map({ "n", "x" }, "gx", function()
@@ -208,10 +195,6 @@ map("c", "<C-v>", "<C-r>+")
 -- delete to register
 map("v", "<leader>D", '"+d', { desc = "Delete and copy", silent = true, remap = false })
 map("n", "<leader>D", '"+dd', { desc = "Delete and copy", silent = true })
-
--- move lines of code with <C-n> and <C-p> (since M-j/k are taken by window manager)
-map({ "n", "x" }, "<C-p>", "<M-k>", { remap = true, silent = true })
-map({ "n", "x" }, "<C-n>", "<M-j>", { remap = true, silent = true })
 
 map({ "n", "i" }, "<M-z>", function()
   vim.wo.wrap = not vim.wo.wrap
@@ -317,10 +300,15 @@ vim.api.nvim_create_user_command("Wordcount", function()
   )
 end, { desc = "Display word and character count of the current file" })
 
+-----------------------
+-----== VSCODE ==------
+-----------------------
+
 -- setup vscode overrides
 if not vim.g.vscode then
-  map("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
-  map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
+  -- done with bufferline
+  -- map("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
+  -- map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
   map("n", "<leader>q", function()
     -- stylua: ignore
@@ -384,13 +372,9 @@ else
   map("n", "<leader>q", "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", { silent = true })
 end
 
--- k({ "n", "t" }, "<C-S-H>", "<cmd>wincmd h<cr>")
--- k({ "n", "t" }, "<S-NL>", "<cmd>wincmd j<cr>")
--- k({ "n", "t" }, "<C-S-K>", "<cmd>wincmd k<cr>")
--- k({ "n", "t" }, "<C-S-L>", "<cmd>wincmd l<cr>")
-
--- -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
--- k("n", "<C-S-S>", function()
+-- no idea why this doesnt work
+-- clean ^Ms (windows newlines created when pasting into WSL from winddows)
+-- map("n", "<C-S-S>", function()
 --   vim.cmd([[silent! %s/\r//g]])
 --   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
 -- end, { remap = false, desc = "Clean ^M", silent = true })
