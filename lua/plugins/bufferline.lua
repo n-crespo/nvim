@@ -15,6 +15,13 @@ end, {
   desc = "Rename the current tab",
 })
 
+vim.api.nvim_create_autocmd("TabClosed", {
+  desc = "Clear custom tabnames on tab close",
+  callback = function(args)
+    vim.g["BufferLineCustomName" .. args.file] = nil
+  end,
+})
+
 return {
   "n-crespo/bufferline.nvim",
   event = "LazyFile",
@@ -42,16 +49,16 @@ return {
       name_formatter = function(buf)
         local tabnr = buf.tabnr
         local custom_name = vim.g["BufferLineCustomName" .. tabnr]
-        local name
+        -- local name
         if custom_name and custom_name ~= "" then
-          name = custom_name
+          return custom_name
         else
-          name = buf.name
+          return buf.name
         end
-        if name == "" then
-          name = ":checkhealth" -- i think this only happens in health buffers
-        end
-        return name
+        -- if name == "" then
+        --   name = ":checkhealth" -- i think this only happens in health buffers
+        -- end
+        -- return name
       end,
       custom_filter = function(buf_number) -- don't update tabline with random floating windows
         if vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "checkhealth" then
