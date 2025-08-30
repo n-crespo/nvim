@@ -9,7 +9,7 @@ return {
   enabled = false,
   event = "LazyFile",
   dependencies = {
-    { "echasnovski/mini.icons" },
+    { "nvim-mini/mini.icons" },
     {
       "folke/snacks.nvim",
       opts = {

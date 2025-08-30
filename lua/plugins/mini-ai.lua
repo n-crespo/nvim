@@ -1,8 +1,8 @@
 return {
-  "echasnovski/mini.ai",
+  "nvim-mini/mini.ai",
   opts = {
     custom_textobjects = {
-      w = {
+      s = {
         {
           -- __-1, __-U, __-l, __-1_, __-U_, __-l_
           "[^_%-]()[_%-]+()%w()()[%s%p]",
