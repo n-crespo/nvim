@@ -20,7 +20,7 @@ opt.swapfile = false -- don't make backup swap files
 opt.modeline = false
 opt.smartcase = true -- casing in search
 opt.ignorecase = true -- casing in search
-opt.sidescrolloff = 7 -- see :h sidescrolloff
+opt.sidescrolloff = 5 -- see :h sidescrolloff
 opt.startofline = true
 opt.breakindent = true -- indent smartly
 opt.isfname:append("@-@")
