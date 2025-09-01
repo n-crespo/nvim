@@ -11,6 +11,7 @@ vim.filetype.add({
 })
 vim.treesitter.language.register("erlang", "pvs")
 vim.treesitter.language.register("haskell", "keymaeraX")
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 return {
   {
@@ -26,6 +27,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "LazyFile",
     opts = {
+      indent = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {
