@@ -117,13 +117,14 @@ function M.find_link_under_cursor()
 end
 
 --- Follows a given path string (optionally in a new tab). Returns true if path
---- was navigated to.
+--- was navigated to. Works well with `opt.path:append(",**")` which improves
+--- the :find command AND the native functionality of `gf`.
 ---
 --- @param path string defaults to relative path, provide full for absolute
 --- @param tab boolean? open in new tab?
 --- @return boolean success if path was navigated to
 function M.follow_path(path, tab)
-  local ecmd = tab and "tabe " or "e "
+  local ecmd = tab and "tabfind " or "find "
   path = path:gsub('^"(.-)[.,"]?$', "%1") -- remove quotes, trailing commas/peridos
 
   if path:match("^[~/]") then
