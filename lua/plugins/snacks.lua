@@ -11,7 +11,7 @@ return {
   opts = {
     words = { enabled = false },
     scroll = { enabled = false },
-    animate = { enabled = false },
+    animate = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     input = { enabled = true },
