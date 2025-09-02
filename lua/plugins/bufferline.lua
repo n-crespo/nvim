@@ -52,13 +52,11 @@ return {
         -- local name
         if custom_name and custom_name ~= "" then
           return custom_name
+        elseif buf.name == "" then
+          return ":checkhealth" -- i think this only happens in health buffers
         else
           return buf.name
         end
-        -- if name == "" then
-        --   name = ":checkhealth" -- i think this only happens in health buffers
-        -- end
-        -- return name
       end,
       custom_filter = function(buf_number) -- don't update tabline with random floating windows
         if vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "checkhealth" then
