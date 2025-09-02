@@ -1,3 +1,4 @@
+vim.keymap.set("", "<M-/>", "<C-/>", { remap = true })
 local function insert_mode_comment()
   local line = vim.api.nvim_get_current_line()
   if line:match("^%s*$") then
