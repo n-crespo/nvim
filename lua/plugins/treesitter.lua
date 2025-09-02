@@ -1,18 +1,3 @@
--- establish custom filetype associations
-vim.filetype.add({
-  extension = {
-    pvs = "pvs",
-    prl = "pvs",
-    prf = "pvs",
-    jprf = "json",
-    kyx = "keymaeraX",
-  },
-  filename = { ["pvs-strategies"] = "lisp" },
-})
-vim.treesitter.language.register("erlang", "pvs")
-vim.treesitter.language.register("haskell", "keymaeraX")
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
 return {
   {
     "folke/which-key.nvim",
@@ -26,6 +11,26 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     event = "LazyFile",
+    init = function(plugin)
+      -- below is from lazyvim config
+      require("lazy.core.loader").add_to_rtp(plugin)
+      require("nvim-treesitter.query_predicates")
+
+      -- establish custom filetype associations
+      vim.filetype.add({
+        extension = {
+          pvs = "pvs",
+          prl = "pvs",
+          prf = "pvs",
+          jprf = "json",
+          kyx = "keymaeraX",
+        },
+        filename = { ["pvs-strategies"] = "lisp" },
+      })
+      vim.treesitter.language.register("erlang", "pvs")
+      vim.treesitter.language.register("haskell", "keymaeraX")
+      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    end,
     opts = {
       indent = { enable = true },
       incremental_selection = {
