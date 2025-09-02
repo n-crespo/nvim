@@ -6,10 +6,29 @@ return {
     cmdline = {
       enabled = true,
       keymap = {
-        ["<C-j>"] = { "select_next", "fallback" },
-        ["<C-k>"] = { "select_prev", "fallback" },
-        ["<C-n>"] = {},
-        ["<C-p>"] = {},
+        ["<C-j>"] = {
+          "select_next",
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, true, true), "n", true)
+          end,
+        },
+        ["<C-k>"] = {
+          "select_prev",
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, true, true), "n", true)
+          end,
+        },
+        ["<C-n>"] = {
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Down>", true, true, true), "n", true)
+          end,
+        },
+        ["<C-p>"] = {
+
+          function()
+            vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, true, true), "n", true)
+          end,
+        },
         ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
         ["<Tab>"] = {
           "select_and_accept",

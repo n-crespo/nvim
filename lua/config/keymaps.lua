@@ -141,10 +141,8 @@ map("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear snippets
 map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })
 
 -- easier navgiation in cmdline
-map("c", "<C-a>", "<Home>", { remap = true })
-map("c", "<C-e>", "<End>", { remap = true })
-map("c", "<C-k>", "<C-p>", { remap = true })
-map("c", "<C-j>", "<C-n>", { remap = true })
+map("c", "<C-a>", "<Home>")
+map("c", "<C-e>", "<End>")
 
 -----------------------------
 -----== TERMINAL MODE ==-----
