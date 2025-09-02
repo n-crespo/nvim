@@ -8,6 +8,8 @@ return {
       keymap = {
         ["<C-j>"] = { "select_next", "fallback" },
         ["<C-k>"] = { "select_prev", "fallback" },
+        ["<C-n>"] = {},
+        ["<C-p>"] = {},
         ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
         ["<Tab>"] = {
           "select_and_accept",
