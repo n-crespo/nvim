@@ -1,5 +1,6 @@
 return {
   "nvim-mini/mini.move",
+  vscode = true,
   opts = {
     mappings = {
       left = "<M-[>",
