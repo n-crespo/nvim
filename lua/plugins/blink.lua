@@ -10,14 +10,7 @@ return {
         ["<C-k>"] = { "select_prev", "fallback" },
         ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
         ["<Tab>"] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.accept()
-            else
-              return cmp.select_and_accept()
-            end
-          end,
-          "snippet_forward",
+          "select_and_accept",
           "fallback",
         },
       },
@@ -36,15 +29,6 @@ return {
     fuzzy = { sorts = { "exact", "score", "sort_text" } }, -- prioritize exact matches
     sources = {
       providers = {
-        cmdline = {
-          min_keyword_length = function(ctx)
-            -- when typing a command, only show when the keyword is 3 characters or longer
-            if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
-              return 3
-            end
-            return 0
-          end,
-        },
         markdown = {
           name = "RenderMarkdown",
           module = "render-markdown.integ.blink",
