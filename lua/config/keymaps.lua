@@ -65,6 +65,8 @@ map("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
 map("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
 map("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
 map("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
+map("n", "<M-\\>", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
+map("n", "<M-->", "<cmd>split<cr>", { remap = true, silent = true, desc = "Vertical split" })
 
 -- z= with vim.ui.select() (selection UI)
 -- (you can also type a number to pick the nth suggestion)
