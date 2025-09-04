@@ -18,6 +18,14 @@ return {
         end,
       },
       layouts = {
+        dropdown = {
+          layout = {
+            width = 0.8,
+            min_width = 40,
+            height = 0.8,
+            min_height = 20,
+          },
+        },
         vscode = {
           layout = {
             preview = false,
@@ -173,14 +181,12 @@ return {
   keys = {
     -- stylua: ignore start
     ----------- PICKER KEYMAPS -------------
-    { "<leader>gc", nil },
     { "<leader>sg", nil },
     { "<leader>fb", nil },
     { "<leader>fB", nil },
     { "<leader>fr", nil },
     { "<leader>ff", nil },
     { "<leader>sc", nil },
-    { "<leader>sq", nil }, -- quickfix list
     { "<leader>sC", nil },
     { "<leader>sG", nil },
     { "<leader>sl", nil },
@@ -198,7 +204,6 @@ return {
     { "<leader>sM", nil },
     { "<leader>sm", nil },
     { "<leader>sb", nil },
-    { "<leader>sj", nil },
     { "<leader>sR", nil },
     { "<leader>fO", function() Snacks.picker.recent() end, desc = "Old Files (dumb)", },
     { "<leader>fo", function() Snacks.picker.smart() end, desc = "Old Files (smart)", },
@@ -209,8 +214,9 @@ return {
     { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info", },
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume", },
     { "<leader>;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
-    { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical" }) end, desc = "Grep (current word)", },
-    { "<leader>/", function() Snacks.picker.grep({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep", },
+    { "<leader>g/", function() Snacks.picker.grep_word({ layout = "dropdown" }) end, desc = "Grep (current word)", },
+    { "<leader>/", function() Snacks.picker.grep({ layout = "dropdown", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep", },
+    { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
     { "<M-p>", function() Snacks.picker.files({ layout = "vscode", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Pick", },
     { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
     -- stylua: ignore end
