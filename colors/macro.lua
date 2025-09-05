@@ -77,8 +77,8 @@ local hlgroups = {
   DiffDeleted = { fg = brightRed },
   DiffNewFile = { link = "DiffAdded" },
   DiffOldFile = { link = "DiffDeleted" },
-  DiffRemoved = { link = "DiffDeleted" }, --hello
-  DiffText = { bg = darkGreen, underdashed = true },
+  DiffRemoved = { link = "DiffDeleted" },
+  DiffText = { bg = darkGreen },
   Directory = { fg = dimBlue },
   EndOfBuffer = { fg = normalBg },
   ErrorMsg = { fg = dimRed },
