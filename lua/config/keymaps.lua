@@ -200,7 +200,7 @@ map({ "n", "i" }, "<M-z>", function()
   vim.wo.wrap = not vim.wo.wrap
 end, { desc = "Toggle Wrap" })
 
-map({ "n", "v" }, "go", "%", { desc = "Go to other pair" })
+map({ "n", "v", "o" }, "go", "%", { desc = "Go to other pair" })
 
 -----------------------
 -----== SPECIAL ==-----
