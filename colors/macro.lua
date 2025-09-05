@@ -154,7 +154,7 @@ local hlgroups = {
   SpecialKey = { fg = quoteFg },
   Statement = { fg = dimTeal },
   String = { fg = dimGreen },
-  Todo = { fg = normalBg, bg = dimBlue, bold = true },
+  Todo = { fg = dimGreen },
   Type = { fg = dimBlue },
   -- }}}2
 
