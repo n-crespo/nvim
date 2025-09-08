@@ -11,7 +11,6 @@ vim.api.nvim_create_autocmd("User", {
 return {
   {
     "folke/persistence.nvim",
-    enabled = not LazyVim.is_win(),
     opts = {
       pre_save = function()
         vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
