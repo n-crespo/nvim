@@ -48,6 +48,24 @@ local brightPurple         = "#5F5F87"
 local dimPurple            = "#A292A3" -- used for number
 local darkPurple           = "#292E42"
 
+vim.g.terminal_color_0="#0D0D0D"
+vim.g.terminal_color_1="#C4746E"
+vim.g.terminal_color_2="#8A9A7B"
+vim.g.terminal_color_3="#C8AE81"
+vim.g.terminal_color_4="#88a3bc"
+vim.g.terminal_color_5="#A292A3"
+vim.g.terminal_color_6="#8992A7"
+vim.g.terminal_color_7="#C5C9C9"
+
+vim.g.terminal_color_8="#949494"
+vim.g.terminal_color_9="#C34043"
+vim.g.terminal_color_10="#98BB6C"
+vim.g.terminal_color_11="#FF9E3B"
+vim.g.terminal_color_12="#2D4F67"
+vim.g.terminal_color_13="#5F5F87"
+vim.g.terminal_color_14="#949FB5"
+vim.g.terminal_color_15="#FFFFFF"
+
 -- stylua: ignore end
 -- }}}
 
@@ -116,8 +134,8 @@ local hlgroups = {
   StatusLine = { bg = nil, fg = normalFg },
   StatusLineNC = { bg = cursorlineBg, fg = ashGrey },
   Substitute = { bg = brightRed, fg = normalFg },
-  TabLine = { link = "Comment" },
-  TabLineFill = { bg = nil, fg = normalFg },
+  TabLine = { link = "Normal" },
+  TabLineFill = { link = "Normal" },
   TabLineSel = { bg = cursorlineBg, fg = normalFg, bold = true },
   TermCursor = { link = "Cursor" },
   TermCursorNC = { fg = normalBg, bg = ashGrey },
