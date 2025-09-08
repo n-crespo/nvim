@@ -135,7 +135,7 @@ map("x", "<bs>", "d", { remap = true })
 
 map("i", "<C-Del>", "<C-o>de") -- traditional functionality of <C-delete>
 map("i", "<M-BS>", "<C-u>") -- clean line (windows keymap)
-map({ "i", "c", "t" }, "<C-BS>", "<C-w>") -- clean line (windows keymap)
+map({ "i", "c", "t" }, "<C-BS>", "<C-w>", { remap = true }) -- clean line (windows keymap)
 map("i", "<D-BS>", "<C-u>") -- clean line (windows keymap)
 map("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear snippets
 
