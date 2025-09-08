@@ -12,7 +12,7 @@ if vim.g.neovide then
   vim.g.neovide_fullscreen = false
 
   -- Replace it with any font you like. `h12` is the font size.
-  vim.o.guifont = "JetBrainsMono NF:h12"
+  vim.o.guifont = "JetBrainsMono NF:h10"
   vim.opt.linespace = 5
 
   -- zoom keymaps
@@ -21,6 +21,9 @@ if vim.g.neovide then
   end)
   vim.keymap.set("n", "<c-->", function()
     change_font_size(1 / font_size_factor)
+  end)
+  vim.keymap.set("n", "<c-0>", function()
+    vim.g.neovide_scale_factor = 1
   end)
 
   -- padding
