@@ -94,6 +94,8 @@ return {
         }
       end
       hls["duplicate"] = { italic = false } -- no italic duplicate prefix
+      hls["fill"] = { bg = { attribute = "bg", highlight = "TabLineFill" } }
+      hls["background"] = { bg = { attribute = "bg", highlight = "TabLineFill" } }
       return hls
     end,
   },
