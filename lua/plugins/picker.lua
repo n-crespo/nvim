@@ -105,7 +105,7 @@ return {
       },
       matcher = {
         frecency = true,
-        cwd_bonus = true,
+        cwd_bonus = false,
         history_bonus = true,
       },
       win = {
