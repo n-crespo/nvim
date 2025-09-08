@@ -1,5 +1,6 @@
 return {
   "sphamba/smear-cursor.nvim",
+  enabled = false,
   opts = {
     anticipation = 0,
     damping = 0.999, -- setting this to 1 is a bit buggy
