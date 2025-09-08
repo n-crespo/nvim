@@ -117,6 +117,7 @@ return {
             ["<Tab>"] = { "cycle_win", mode = { "i", "n" } },
             ["<S-CR>"] = { "tab", mode = { "i", "n" } },
             ["<C-CR>"] = { "tab", mode = { "i", "n" } },
+            ["<C-BS>"] = { "<c-s-w>", mode = { "i" }, expr = true, desc = "delete word" },
 
             ["<C-p>"] = { "history_back", mode = { "i", "n" } },
             ["<C-n>"] = { "history_forward", mode = { "i", "n" } },
