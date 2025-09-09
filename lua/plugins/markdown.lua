@@ -1,4 +1,4 @@
--- SEE after/ftplugin/markdown.lua
+-- see after/ftplugin/markdown.lua
 local M = {
   {
     "MeanderingProgrammer/render-markdown.nvim",
