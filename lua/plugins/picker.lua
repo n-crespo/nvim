@@ -229,15 +229,16 @@ return {
         end
         Snacks.picker.zoxide({
           title = "Projects",
-          -- load session at directory
           confirm = function(picker, item)
-            picker:close()
-            vim.fn.chdir(item._path)
-            local session = Snacks.dashboard.sections.session()
-            if session then
-              vim.cmd(session.action:sub(2))
-              vim.notify("Loading Session at: " .. vim.fn.fnamemodify(item._path, ":~"), "info")
+            if item then
+              vim.fn.chdir(item._path)
+              local session = Snacks.dashboard.sections.session()
+              if session then
+                vim.cmd(session.action:sub(2))
+                vim.notify("Loading Session at: " .. vim.fn.fnamemodify(item._path, ":~"), "info")
+              end
             end
+            picker:close()
           end,
         })
       end,
@@ -250,13 +251,15 @@ return {
           return vim.notify("Zoxide is not installed", vim.log.levels.WARN)
         end
         Snacks.picker.zoxide({
-          title = "Jump picker to...",
+          title = "Jump picker to",
           confirm = function(picker, item)
-            Snacks.picker.files({
-              cwd = item._path,
-              title = vim.fn.fnamemodify(item._path, ":~"),
-              hidden = true,
-            })
+            if item then
+              Snacks.picker.files({
+                cwd = item._path,
+                title = vim.fn.fnamemodify(item._path, ":~"),
+                hidden = true,
+              })
+            end
             picker:close()
           end,
         })
