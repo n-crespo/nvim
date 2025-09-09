@@ -22,14 +22,17 @@ Comes in two varieties:
   - `B`, `E`: wrap-friendly version of `0` and `$`
   - `w`, `e`, and `b`: improved with [spider](./lua/plugins/spider.lua)
 - these [auto commands](./lua/config/autocmds.lua)
-  - plugin-less autosave
+  - pluginless autosave
   - trim trailing whitespace on save
-  - smarter cursor line (in active window only)
+  - smarter cursorline (in active window only)
 
 ## Install
 
 ```bash
-brew install neovim
+brew install cargo
+cargo install bob-nvim
+bob install nightly
+bob use nightly
 ```
 
 ### Dependencies
