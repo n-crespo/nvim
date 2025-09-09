@@ -13,9 +13,7 @@ return {
       return mapping.desc and mapping.desc ~= ""
     end,
     show_help = false,
-    delay = function(ctx)
-      return ctx.plugin and 0 or 350
-    end,
+    delay = 0,
     plugins = {
       marks = true,
       spelling = false,
