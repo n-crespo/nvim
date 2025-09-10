@@ -2,22 +2,14 @@
 return {
   "folke/which-key.nvim",
   opts = {
-    icons = { mappings = true }, -- disable icons
-    filter = function(mapping)
-      -- exclude mappings without a description but enable vimtext keymaps
-      if type(mapping.rhs) == "string" and mapping.rhs:find("vimtex") then
-        mapping.rhs = mapping.rhs:gsub("vimtex%-", "")
-        mapping.rhs = mapping.rhs:sub(1, -2)
-        return true
-      end
-      return mapping.desc and mapping.desc ~= ""
+    filter = function(mapping) -- exclude mappings without a description
+      return mapping.desc ~= "" and mapping.desc
     end,
     show_help = false,
-    delay = 0,
     plugins = {
       marks = true,
       spelling = false,
-      presets = { motions = false, operators = false },
+      presets = { motions = true, operators = true },
     },
     win = {
       no_overlap = false,
