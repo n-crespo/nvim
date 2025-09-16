@@ -1,5 +1,5 @@
 vim.cmd([[cab cc CodeCompanion]]) -- works in visual mode too!
-vim.cmd([[cab cmd CodeCompanionCmd]])
+-- vim.cmd([[cab cmd CodeCompanionCmd]])
 
 -- https://github.com/olimorris/codecompanion.nvim/discussions/813#discussioncomment-13081665
 local spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
