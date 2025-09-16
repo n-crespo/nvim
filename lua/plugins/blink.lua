@@ -50,6 +50,11 @@ return {
     fuzzy = { sorts = { "exact", "score", "sort_text" } }, -- prioritize exact matches
     sources = {
       providers = {
+        snippets = {
+          should_show_items = function(ctx)
+            return ctx.trigger.initial_kind ~= "trigger_character"
+          end,
+        },
         markdown = {
           name = "RenderMarkdown",
           module = "render-markdown.integ.blink",
