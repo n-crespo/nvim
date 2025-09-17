@@ -33,14 +33,6 @@ return {
     end,
     opts = {
       indent = { enable = true },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "v<cr>",
-          node_incremental = "<cr>",
-          node_decremental = "<bs>",
-        },
-      },
       ensure_installed = {
         "comment",
         "css",
