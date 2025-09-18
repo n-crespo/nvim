@@ -13,6 +13,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufReadCmd" }, {
     })
   end,
 })
+
 return {
   -- this doesn't work in windows terminal but sixel does (used in yazi)
   "folke/snacks.nvim",
@@ -26,15 +27,6 @@ return {
           font_size = "large",
         },
       },
-    },
-  },
-  keys = {
-    {
-      "<CR>",
-      "<cmd>silent! !open %<CR>",
-      ft = "image",
-      buffer = true,
-      desc = "Open Image in System Viewer",
     },
   },
 }
