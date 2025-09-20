@@ -28,7 +28,6 @@ opt.relativenumber = false
 opt.cursorlineopt = "number,screenline" -- cursorline respects wrapped lines
 opt.spelloptions = "noplainbuffer,camel"
 opt.completeopt = "menu,menuone,noselect,noinsert,popup"
-opt.path:append(",**")
 -- opt.winborder = "rounded" -- this adds some visual artifacts occasionally
 -- opt.autochdir = true -- this breaks things
 
