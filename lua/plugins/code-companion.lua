@@ -119,7 +119,7 @@ return {
       mode = { "n", "x" },
     },
     {
-      "<leader>ac",
+      "<leader>a",
       function()
         require("codecompanion").chat()
       end,
@@ -127,7 +127,7 @@ return {
       mode = "n",
     },
     {
-      "<leader>ac",
+      "<leader>a",
       function()
         require("codecompanion").chat()
         vim.cmd([[normal! o]])
