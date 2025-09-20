@@ -76,7 +76,6 @@ local M = {
     -- preview markdown
     "fmorroni/peek.nvim",
     branch = "my-main",
-    cond = vim.fn.executable("deno") == 1,
     ft = "markdown",
     build = "deno task --quiet build:fast",
     opts = function()
