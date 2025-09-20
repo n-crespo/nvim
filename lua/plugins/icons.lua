@@ -14,6 +14,9 @@ return {
     "nvim-mini/mini.icons",
     lazy = true,
     opts = {
+      default = {
+        file = { glyph = "󰈤" },
+      },
       extension = {
         h = { glyph = "", hl = "MiniIconsPurple" },
         pvs = { glyph = "", hl = "PVSBlue" },
