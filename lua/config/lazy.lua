@@ -1,6 +1,6 @@
 -- NOTE: set the environment variable NVIM_FULL_CONFIG to 1 to enable all
 -- features. set to 0 or leave unset to use default lite version
-vim.g.full_config = vim.env.NVIM_FULL_CONFIG == "1" or false
+vim.g.full_config = vim.env.NVIM_FULL_CONFIG == "true" or false
 local full_config = vim.g.full_config
 
 -- bootstrap lazy.nvim
