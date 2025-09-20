@@ -124,37 +124,28 @@ end
 --- @param tab boolean? open in new tab?
 --- @return boolean success if path was navigated to
 function M.follow_path(path, tab)
-  local ecmd = tab and "tabfind " or "find "
-  path = path:gsub('^"(.-)[.,"]?$', "%1") -- remove quotes, trailing commas/peridos
-
+  local ecmd = (tab and "tabe " or "e ")
+  path = path:gsub('^"(.-)[.,"]?$', "%1")
+  local candidates = {}
   if path:match("^[~/]") then
-    -- an absolute path (starts with ~ or /)
-    if uv.fs_stat(fn.expand(path)) then
-      vim.cmd(ecmd .. path)
-      return true
-    else
-      return false -- this is an invalid link
-    end
+    table.insert(candidates, fn.expand(path))
   else
-    -- does it exist relative to current buffer?
-    local relative_path = fn.expand("%:p:h") .. "/" .. path
-    if uv.fs_stat(relative_path) then
-      vim.cmd(ecmd .. relative_path)
+    table.insert(candidates, fn.expand("%:p:h") .. "/" .. path)
+    table.insert(candidates, vim.fn.getcwd(0, 0) .. "/" .. path)
+  end
+  for _, p in ipairs(candidates) do
+    if uv.fs_stat(p) then
+      vim.cmd(ecmd .. p)
       return true
     end
-  end
-  local with_cwd_prefix = vim.fn.getcwd(0, 0) .. "/" .. path
-  if uv.fs_stat(with_cwd_prefix) then
-    vim.cmd(ecmd .. with_cwd_prefix)
-    return true
   end
   return false
 end
 
 --- Follow a link under the cursor. Optionally opens links in a new tab.
 ---
---- Combines the functionality of `gf`, `za` and `gx`, with markdown support and
---- other improvements. Inspired by http://github.com/ixru/nvim-markdown.
+--- Combines the functionality of `gf` and `gx`, with markdown support and other
+--- improvements. Inspired by http://github.com/ixru/nvim-markdown.
 ---
 --- @param tab boolean? When true, links open in a new tab/checkboxes are toggled.
 function M.follow_link(tab)
