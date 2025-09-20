@@ -293,23 +293,19 @@ end
 local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 
 function M.set_titlestring()
-  if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "checkhealth" then
+  local ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+  local bt = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+  local bh = vim.api.nvim_get_option_value("bufhidden", { buf = 0 })
+  if ft == "checkhealth" then
     vim.opt.titlestring = ":checkhealth - nvim"
-  elseif
-    ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = 0 })]
-    or vim.api.nvim_get_option_value("bufhidden", { buf = 0 }) ~= ""
-    or picker_open()
-  then
-    -- don't update title string
+  elseif ignored_bt[bt] or bh ~= "" or picker_open() then
+    return
   else
     local name = vim.fn.expand("%:t")
-    if name == "" then -- detect empty buffers
+    if name == "" then
       name = "[No Name]"
     end
-    if name ~= "" then
-      name = name .. " - "
-    end
-    vim.opt.titlestring = name .. "nvim"
+    vim.opt.titlestring = name .. (name ~= "" and " - " or "") .. "nvim"
   end
 end
 
