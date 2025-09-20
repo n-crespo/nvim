@@ -3,17 +3,10 @@
 local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
 
 vim.api.nvim_create_user_command("BufferLineRename", function(opts)
-  local current_tab = vim.api.nvim_get_current_tabpage()
-  if opts.args == "" then
-    vim.g["BufferLineCustomName" .. current_tab] = nil
-  else
-    vim.g["BufferLineCustomName" .. current_tab] = opts.args
-  end
+  local key = "BufferLineCustomName" .. vim.api.nvim_get_current_tabpage()
+  vim.g[key] = opts.args ~= "" and opts.args or nil
   vim.api.nvim_exec_autocmds("User", { pattern = "BufferLineRenamed" })
-end, {
-  nargs = "?",
-  desc = "Rename the current tab",
-})
+end, { nargs = "?", desc = "Rename the current tab" })
 
 vim.api.nvim_create_autocmd("TabClosed", {
   desc = "Clear custom tabnames on tab close",
@@ -23,129 +16,66 @@ vim.api.nvim_create_autocmd("TabClosed", {
 })
 
 return {
-  "n-crespo/bufferline.nvim",
-  event = "LazyFile",
-  dev = { false },
+  "akinsho/bufferline.nvim",
+  event = "VeryLazy",
   opts = {
     options = {
+      style_preset = require("bufferline").style_preset.no_italic,
       mode = "tabs",
-      tab_size = 10,
+      tab_size = 22,
       enforce_regular_tabs = false,
       truncate_names = false,
-      indicator = { style = "none" },
-
-      -- hide things
-      show_duplicate_prefix = true,
-      default_duplicate_prefix = "",
-      show_tab_indicators = false,
-      always_show_bufferline = false,
+      show_duplicate_prefix = false,
       show_close_icon = false,
-      show_buffer_close_icons = false,
-      show_buffer_icons = true,
-      diagnostics = false,
-      themable = false,
-      modified_icon = "",
-      separator_style = { "", "" },
       name_formatter = function(buf)
-        local tabnr = buf.tabnr
-        local custom_name = vim.g["BufferLineCustomName" .. tabnr]
-        -- local name
-        if custom_name and custom_name ~= "" then
-          return custom_name
-        elseif buf.name == "" then
-          return ":checkhealth" -- i think this only happens in health buffers
-        else
-          return buf.name
-        end
+        local name = vim.g["BufferLineCustomName" .. buf.tabnr]
+        return (name and name ~= "" and name) or (buf.name == "" and ":checkhealth") or buf.name
       end,
-      custom_filter = function(buf_number) -- don't update tabline with random floating windows
-        if vim.api.nvim_get_option_value("filetype", { buf = buf_number }) == "checkhealth" then
-          return true -- allow :checkhealth buffers
-        elseif
-          ignored_bt[vim.api.nvim_get_option_value("buftype", { buf = buf_number })]
-          or vim.api.nvim_get_option_value("bufhidden", { buf = buf_number }) ~= ""
-        then
-          return false
-        else
-          return true
-        end
+      custom_filter = function(buf_number)
+        local ft = vim.api.nvim_get_option_value("filetype", { buf = buf_number })
+        local bt = vim.api.nvim_get_option_value("buftype", { buf = buf_number })
+        local bh = vim.api.nvim_get_option_value("bufhidden", { buf = buf_number })
+        return ft == "checkhealth" or (not ignored_bt[bt] and bh == "")
       end,
     },
-    -- show selected tab with TabLineSel bg highlights
-    highlights = function()
-      local hl_names = {
-        "tab_selected",
-        "tab_separator_selected",
-        "close_button_selected",
-        "buffer_selected",
-        "numbers_selected",
-        "modified_selected",
-        "duplicate_selected",
-        "separator_selected",
-        "indicator_selected",
-        "pick_selected",
-      }
-      local hls = {}
-      for _, name in ipairs(hl_names) do
-        hls[name] = {
-          bg = { attribute = "bg", highlight = "CursorLine" },
-          italic = false,
-          bold = false,
-        }
-      end
-      hls["duplicate"] = { italic = false } -- no italic duplicate prefix
-      hls["fill"] = { bg = { attribute = "bg", highlight = "TabLineFill" } }
-      hls["background"] = { bg = { attribute = "bg", highlight = "TabLineFill" } }
-      return hls
-    end,
   },
-  keys = function()
-    return {
-      { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-      { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      { "<C-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-      { "<C-S-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-      {
-        "<leader>p",
-        function()
-          require("bufferline").pick()
-        end,
-      },
-      {
-        "<leader>r",
-        function()
-          vim.ui.input({ prompt = "Rename tab to: " }, function(input)
-            if input then
-              vim.cmd("BufferLineRename " .. input) -- custom defined vim cmd (see top of file)
-            end
-          end)
-        end,
-        desc = "Rename Tab",
-      },
-      {
-        "<A-,>",
-        function()
-          local current_tab = vim.fn.tabpagenr()
-          if current_tab == 1 then
-            vim.cmd("tabmove")
-          else
-            vim.cmd("-tabmove")
+  keys = {
+    { "<leader>bl", false },
+    { "<leader>br", false },
+    { "<leader>bP", false },
+    { "<C-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+    { "<C-S-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
+    {
+      "<leader>bp",
+      require("bufferline").pick,
+      desc = "Pick Buffer",
+    },
+
+    {
+      "<leader>r",
+      function()
+        vim.ui.input({ prompt = "Rename tab to: " }, function(input)
+          if input then
+            vim.cmd("BufferLineRename " .. input)
           end
-        end,
-        desc = "Move Tab Left",
-      },
-      {
-        "<A-;>",
-        function()
-          local current_tab = vim.fn.tabpagenr()
-          if current_tab == vim.fn.tabpagenr("$") then
-            vim.cmd("0tabmove")
-          else
-            vim.cmd("+tabmove")
-          end
-        end,
-        desc = "Move Tab Right",
-      },
-    }
-  end,
+        end)
+      end,
+      desc = "Rename Tab",
+    },
+
+    {
+      "<A-,>",
+      function()
+        vim.cmd(vim.fn.tabpagenr() == 1 and "tabmove" or "-tabmove")
+      end,
+      desc = "Move Tab Left",
+    },
+    {
+      "<A-;>",
+      function()
+        vim.cmd(vim.fn.tabpagenr() == vim.fn.tabpagenr("$") and "0tabmove" or "+tabmove")
+      end,
+      desc = "Move Tab Right",
+    },
+  },
 }
