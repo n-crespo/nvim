@@ -64,7 +64,7 @@ return {
   opts = {
     display = {
       chat = {
-        intro_message = "  What can I help with? (Press ? for options)",
+        intro_message = "  What can I help with? (Press ? for options)",
         show_references = true,
         show_header_separator = false,
         show_settings = true,
@@ -114,7 +114,7 @@ return {
   keys = {
     {
       "<leader>k",
-      "<cmd>CodeCompanion<cr>",
+      ":CodeCompanion<cr>",
       desc = "Prompt AI",
       mode = { "n", "x" },
     },
