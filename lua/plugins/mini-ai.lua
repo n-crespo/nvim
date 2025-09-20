@@ -1,5 +1,8 @@
 return {
   "nvim-mini/mini.ai",
+  event = function()
+    return "LazyFile"
+  end,
   opts = {
     custom_textobjects = {
       s = {

@@ -1,7 +1,7 @@
 -- fast file system viewer, less intrusive oil.nvim
 return {
   "nvim-mini/mini.files",
-  event = "VeryLazy",
+  event = "LazyFile",
   keys = {
     -- open mini.files in current buffer's directory, if error is thrown fallback to cwd
     {

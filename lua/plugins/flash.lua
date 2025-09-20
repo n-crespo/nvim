@@ -1,7 +1,9 @@
 return {
   "folke/flash.nvim",
   enabled = true,
-  event = "VeryLazy",
+  event = function()
+    return "LazyFile"
+  end,
   opts = {
     search = {
       mode = "fuzzy",
