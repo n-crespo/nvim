@@ -256,7 +256,7 @@ function M.follow_link(tab)
   if tab then
     vim.cmd([[tabe]])
   else
-    api.nvim_feedkeys(api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+    vim.cmd([[silent! normal! gF]])
   end
 end
 
