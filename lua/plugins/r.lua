@@ -119,7 +119,6 @@ if vim.fn.executable("R") == 1 then
     },
     {
       "saghen/blink.cmp",
-      optional = true,
       dependencies = {
         "R-nvim/cmp-r",
         "saghen/blink.compat",
