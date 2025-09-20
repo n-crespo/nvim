@@ -12,12 +12,11 @@ Comes in two varieties:
 
 ## Cool Things
 
-- macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
 - zoxide integration in [snacks.picker](./lua/plugins/picker.lua)
 - sensible [markdown functionality](./lua/plugins/markdown.lua)
-- these [keymaps](./lua/config/keymaps.lua)
+- macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
+- [ ] these [keymaps](./lua/config/keymaps.lua)
   - `<C-S-C>`: show word/char count
-  - `<S-CR>`: follow link in new tab
   - `<CR>`: follow links, `gf`, toggle checkboxes, etc
   - `B`, `E`: wrap-friendly version of `0` and `$`
   - `w`, `e`, and `b`: improved with [spider](./lua/plugins/spider.lua)
