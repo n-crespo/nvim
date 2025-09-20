@@ -1,3 +1,8 @@
+-- i no longer write R regularly
+do
+  return {}
+end
+
 M = {}
 
 if vim.fn.executable("R") == 1 then
