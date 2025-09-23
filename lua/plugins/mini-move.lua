@@ -16,7 +16,7 @@ return {
       line_up = "<C-P>",
     },
     options = {
-      reindent_linewise = true,
+      reindent_linewise = false,
     },
   },
   keys = {
