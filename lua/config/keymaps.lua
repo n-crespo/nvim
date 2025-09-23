@@ -232,8 +232,10 @@ map("n", "<ScrollWheelLeft><ScrollWheelLeft>", "zh") -- left scroll
 map("n", "<ScrollWheelRight><ScrollWheelRight>", "zl") -- right scroll
 -- k("n", "<M-ScrollWheelUp>", "zh") -- left scroll
 -- k("n", "<M-ScrollWheelDown>", "zl") -- right scroll
-map("n", "<ScrollWheelLeft>", "")
-map("n", "<ScrollWheelRight>", "")
+map({ "n", "i" }, "<ScrollWheelLeft>", "")
+map({ "n", "i" }, "<ScrollWheelRight>", "")
+map("i", "<ScrollWheelUp>", "")
+map("i", "<ScrollWheelDown>", "")
 
 map("n", "<C-f>", "<C-e>", { remap = true })
 map("n", "<C-b>", "<C-y>", { remap = true })
