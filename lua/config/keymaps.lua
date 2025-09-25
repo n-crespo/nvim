@@ -217,7 +217,7 @@ map("n", "<leader>o", function()
   if vim.fn.executable("wsl-open") == 1 then
     vim.cmd([[silent! !wsl-open %]])
   else
-    vim.cmd([[silent! !open %]])
+    vim.cmd([[Open %]])
   end
 end, { desc = "Open buffer in system viewer" })
 
