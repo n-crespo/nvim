@@ -28,4 +28,25 @@ return {
       },
     },
   },
+  keys = {
+    -- Simulate nvim-treesitter incremental selection
+    {
+      "v<cr>",
+      mode = { "n", "o", "x" },
+      function()
+        require("flash").treesitter({
+          actions = {
+            ["<CR>"] = "next",
+            ["<BS>"] = "prev",
+          },
+        })
+      end,
+      desc = "Treesitter Incremental Selection",
+    },
+    {
+      "<C-space>",
+      mode = { "n", "o", "x" },
+      false,
+    },
+  },
 }
