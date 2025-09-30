@@ -84,16 +84,16 @@ return {
           auto_insert = true,
         },
       },
-      menu = {
-        border = "none",
-        auto_show = true,
-        draw = {
-          columns = {
-            { "label", "label_description", gap = 1 },
-            { "kind_icon", "kind", gap = 0 },
-          },
-        },
-      },
+      -- menu = {
+      -- border = "none",
+      -- auto_show = true,
+      -- draw = {
+      --   columns = {
+      --     { "label", "label_description", gap = 1 },
+      --     { "kind_icon", "kind", gap = 0 },
+      --   },
+      -- },
+      -- },
       documentation = {
         window = {
           border = "rounded",
