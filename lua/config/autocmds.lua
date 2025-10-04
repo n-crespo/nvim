@@ -92,3 +92,23 @@ vim.api.nvim_create_autocmd({ "BufEnter", "TabNewEntered", "WinEnter", "WinLeave
     require("custom.utils").set_titlestring()
   end,
 })
+
+local function remove_from_qflist()
+  local idx = vim.fn.line(".")
+  local qflist = vim.fn.getqflist()
+  table.remove(qflist, idx)
+  vim.fn.setqflist(qflist, "r")
+  vim.api.nvim_feedkeys(vim.keycode("<Esc>"), "n", true)
+end
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "*",
+  group = vim.api.nvim_create_augroup("qf", { clear = true }),
+  callback = function()
+    if vim.bo.buftype == "quickfix" then
+      vim.keymap.set({ "n", "v" }, "D", remove_from_qflist, { buffer = true }) -- for VD
+      vim.keymap.set("n", "dd", remove_from_qflist, { buffer = true })
+      vim.keymap.set("v", "d", remove_from_qflist, { buffer = true })
+    end
+  end,
+})
