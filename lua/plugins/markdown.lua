@@ -73,9 +73,18 @@ local M = {
     },
   },
   {
-    -- preview markdown
+    -- preview markdown (only on full config)
     "fmorroni/peek.nvim",
     branch = "my-main",
+    cond = vim.g.full_config,
+    dependencies = {
+      {
+        "mason-org/mason.nvim",
+        ensure_installed = {
+          "deno",
+        },
+      },
+    },
     ft = "markdown",
     build = "deno task --quiet build:fast",
     opts = function()
@@ -109,6 +118,13 @@ local M = {
       },
     },
   },
+  {
+    "barreiroleo/ltex_extra.nvim",
+    cond = vim.g.full_connfig,
+    ft = { "markdown", "tex" },
+    dependencies = { "neovim/nvim-lspconfig" },
+    opts = {},
+  },
 }
 
 -- enable marksman lsp/markdown-toc formatter in full config
@@ -133,17 +149,10 @@ then
       -- likes to not work on windows
       ensure_installed = { "latex" }, -- proper math block colors
     },
-    {
-      "neovim/nvim-lspconfig",
-      opts = {
-        servers = {
-          marksman = {},
-        },
-      },
-    },
+
     {
       "mason-org/mason.nvim",
-      opts = { ensure_installed = { "markdownlint-cli2", "marksman" } },
+      opts = { ensure_installed = { "markdownlint-cli2" } },
     },
     {
       "stevearc/conform.nvim",

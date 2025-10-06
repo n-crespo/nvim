@@ -9,9 +9,7 @@ return {
         width = 0.8,
         height = 0.8,
       },
-      ensure_installed = {
-        "deno",
-      },
+      ensure_installed = {},
     },
   },
 }
