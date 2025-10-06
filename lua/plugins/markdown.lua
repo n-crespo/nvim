@@ -186,6 +186,12 @@ then
       },
     },
     {
+      "mason-org/mason.nvim",
+      ensure_installed = {
+        "mdslw", -- install mdslw for linter
+      },
+    },
+    {
       "mfussenegger/nvim-lint",
       opts = {
         linters_by_ft = {
