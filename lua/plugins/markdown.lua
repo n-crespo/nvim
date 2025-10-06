@@ -119,11 +119,24 @@ local M = {
     },
   },
   {
-    "barreiroleo/ltex_extra.nvim",
-    cond = vim.g.full_connfig,
-    ft = { "markdown", "tex" },
-    dependencies = { "neovim/nvim-lspconfig" },
-    opts = {},
+    "barreiroleo/ltex_extra.nvim", -- companion to ltex_plus LSP
+    -- ft = { "markdown", "tex" },
+    event = "LspAttach",
+    dependencies = {
+      {
+        "neovim/nvim-lspconfig",
+        opts = {
+          servers = {
+            ltex_plus = {
+              enabled = false, -- this easily uses 1GB of ram
+              on_attach = function()
+                require("ltex_extra").setup()
+              end,
+            },
+          },
+        },
+      },
+    },
   },
 }
 
