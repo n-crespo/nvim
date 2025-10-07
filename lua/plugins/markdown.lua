@@ -119,28 +119,14 @@ local M = {
     },
   },
   {
-    "barreiroleo/ltex_extra.nvim", -- companion to ltex_plus LSP
-    -- ft = { "markdown", "tex" },
-    event = "LspAttach",
-    dependencies = {
-      {
-        "neovim/nvim-lspconfig",
-        opts = {
-          servers = {
-            ltex_plus = {
-              enabled = false, -- this easily uses 1GB of ram
-              on_attach = function()
-                require("ltex_extra").setup()
-              end,
-            },
-          },
-        },
-      },
+    "mason-org/mason.nvim",
+    ensure_installed = {
+      "mdslw", -- this cuts off lines for better diffing
     },
   },
 }
 
--- enable marksman lsp/markdown-toc formatter in full config
+-- only enable cbfmt in full config if config file exists (in dotfiles repo)
 if
   vim.g.full_config
   and (
@@ -148,60 +134,21 @@ if
     or vim.fn.getftype(vim.fn.expand("~/.cbfmt.toml")) == "link"
   )
 then
-  -- cbfmt requires a config file
-  --   vim.api.nvim_echo({
-  --     {
-  --       "Please create a ~/.cbfmt.toml file for markdown codeblock formatting.",
-  --       "WarningMsg",
-  --     },
-  --   }, true, {})
-  -- end
+  if vim.fn.executable("cbfmt") then
+    -- cbfmt requires a config file
+    vim.api.nvim_echo({
+      {
+        "Please create a ~/.cbfmt.toml file for markdown codeblock formatting.",
+        "WarningMsg",
+      },
+    }, true, {})
+  end
   table.insert(M, {
-    {
-      "nvim-treesitter/nvim-treesitter",
-      -- likes to not work on windows
-      ensure_installed = { "latex" }, -- proper math block colors
-    },
-
-    {
-      "mason-org/mason.nvim",
-      opts = { ensure_installed = { "markdownlint-cli2" } },
-    },
     {
       "stevearc/conform.nvim",
       opts = {
         formatters_by_ft = {
-          ["markdown"] = { "markdownlint-cli2", "cbfmt" },
-        },
-        formatters = {
-          ["markdownlint-cli2"] = {
-            condition = function(_, ctx)
-              local diag = vim.tbl_filter(function(d)
-                return d.source == "markdownlint"
-              end, vim.diagnostic.get(ctx.buf))
-              return #diag > 0
-            end,
-          },
-        },
-      },
-    },
-    {
-      "mason-org/mason.nvim",
-      ensure_installed = {
-        "mdslw", -- install mdslw for linter
-      },
-    },
-    {
-      "mfussenegger/nvim-lint",
-      opts = {
-        linters_by_ft = {
-          ["markdown"] = { "mdslw", "markdownlint-cli2" },
-        },
-        linters = {
-          ["markdownlint-cli2"] = {
-            -- explicitly provide config file (in dotfiles repo)
-            args = { "--config", vim.fn.expand("~/.markdownlint.yaml") },
-          },
+          ["markdown"] = { "mdslw", "cbfmt" },
         },
       },
     },
