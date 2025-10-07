@@ -132,6 +132,7 @@ function M.follow_path(path, tab)
   else
     table.insert(candidates, fn.expand("%:p:h") .. "/" .. path)
     table.insert(candidates, vim.fn.getcwd(0, 0) .. "/" .. path)
+    table.insert(candidates, LazyVim.root() .. "/" .. path)
   end
   for _, p in ipairs(candidates) do
     if uv.fs_stat(p) then
