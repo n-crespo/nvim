@@ -1,5 +1,20 @@
 -- see after/ftplugin/markdown.lua
 local M = {
+
+  {
+    "mason-org/mason.nvim",
+    ensure_installed = {
+      "mdslw", -- this cuts off lines for better diffing
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        ["markdown"] = { "mdslw" },
+      },
+    },
+  },
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ---@module 'render-markdown'
@@ -62,21 +77,14 @@ local M = {
         end,
       }):map("<leader>um")
     end,
-    keys = {
-      {
-        "<leader>um",
-        function()
-          require("render-markdown").toggle()
-        end,
-        desc = "Toggle Markdown Preview",
-      },
-    },
   },
   {
-    -- preview markdown (only on full config)
+    -- preview markdown (full config only)
     "fmorroni/peek.nvim",
     branch = "my-main",
     cond = vim.g.full_config,
+    ft = "markdown",
+    build = "deno task --quiet build:fast",
     dependencies = {
       {
         "mason-org/mason.nvim",
@@ -85,25 +93,20 @@ local M = {
         },
       },
     },
-    ft = "markdown",
-    build = "deno task --quiet build:fast",
     opts = function()
       vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-
       local opts = {
         app = "webview",
         theme = "dark",
         close_on_bdelete = false,
       }
-
       if vim.fn.has("wsl") == 1 then
         -- opts.app = { "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe", "--new-window" }
         opts.app = { "/mnt/c/Program Files/Zen Browser/zen.exe", "--new-window" }
       else
         opts.app = { "zen", "--new-window" }
       end
-
       return opts
     end,
     keys = {
@@ -116,12 +119,6 @@ local M = {
         ft = "markdown",
         buffer = true,
       },
-    },
-  },
-  {
-    "mason-org/mason.nvim",
-    ensure_installed = {
-      "mdslw", -- this cuts off lines for better diffing
     },
   },
 }
