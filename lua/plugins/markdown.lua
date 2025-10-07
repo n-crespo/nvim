@@ -1,17 +1,18 @@
 -- see after/ftplugin/markdown.lua
 local M = {
-
   {
     "mason-org/mason.nvim",
-    ensure_installed = {
-      "mdslw", -- this cuts off lines for better diffing
+    opts = {
+      ensure_installed = {
+        "mdslw", -- this cuts off lines for better diffing
+      },
     },
   },
   {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["markdown"] = { "mdslw" },
+        ["markdown"] = { "mdslw", "cbfmt" },
       },
     },
   },
@@ -123,32 +124,19 @@ local M = {
   },
 }
 
--- only enable cbfmt in full config if config file exists (in dotfiles repo)
+-- send warning when cbfmt is not working
 if
   vim.g.full_config
-  and (
-    vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0
-    or vim.fn.getftype(vim.fn.expand("~/.cbfmt.toml")) == "link"
-  )
+  and vim.fn.executable("cbfmt") == 1
+  and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0
+  and not vim.g.cbfmt_warn
 then
-  if vim.fn.executable("cbfmt") then
-    -- cbfmt requires a config file
-    vim.api.nvim_echo({
-      {
-        "Please create a ~/.cbfmt.toml file for markdown codeblock formatting.",
-        "WarningMsg",
-      },
-    }, true, {})
-  end
-  table.insert(M, {
+  vim.api.nvim_echo({
     {
-      "stevearc/conform.nvim",
-      opts = {
-        formatters_by_ft = {
-          ["markdown"] = { "mdslw", "cbfmt" },
-        },
-      },
+      "cbfmt for markdown codeblock formatting requires a config file at ~/.cbfmt.toml",
+      "WarningMsg",
     },
-  })
+  }, true, {})
+  vim.g.cbfmt_warn = true
 end
 return M
