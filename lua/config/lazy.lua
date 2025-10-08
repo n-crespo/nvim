@@ -1,5 +1,7 @@
 -- NOTE: set the environment variable NVIM_FULL_CONFIG to 1 to enable all
 -- features. set to 0 or leave unset to use default lite version
+
+---@type boolean
 vim.g.full_config = vim.env.NVIM_FULL_CONFIG == "true" or false
 local full_config = vim.g.full_config
 
@@ -46,15 +48,14 @@ require("lazy").setup({
     -- version = "*",  try installing the latest stable version for plugins that support semver
   },
   ui = { border = "rounded" },
-  -- don't show message on config change/reload
-  change_detection = { notify = false },
+  change_detection = { notify = false }, -- don't show message on config change/reload
   checker = { enabled = false, notify = false }, --   automatically check for plugin updates
-  profiling = { require = true },
+  profiling = { require = false }, -- this has performance overhead
   rocks = { enabled = false },
-  dev = {
-    path = "~/clones",
-    fallback = false,
-  },
+  -- dev = {
+  --   path = "~/clones",
+  --   fallback = false,
+  -- },
   performance = {
     rtp = {
       disabled_plugins = {
