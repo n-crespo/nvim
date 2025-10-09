@@ -3,7 +3,7 @@
 -- current neovim process since the nvim-remote preset doesn't fully work
 return {
   "willothy/flatten.nvim",
-  enabled = LazyVim.is_win(),
+  enabled = vim.g.full_config or LazyVim.is_win(),
   lazy = false,
   config = true,
   opts = {
