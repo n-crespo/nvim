@@ -111,7 +111,7 @@ return {
           { "progress", padding = 1 },
           {
             function()
-              return ""
+              return "󰖳"
             end,
             cond = function()
               return LazyVim.is_win()
