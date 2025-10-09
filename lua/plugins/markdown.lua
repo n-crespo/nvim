@@ -12,7 +12,7 @@ local M = {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["markdown"] = { "mdslw", "cbfmt" },
+        ["markdown"] = { "mdslw" },
       },
     },
   },
@@ -124,12 +124,11 @@ local M = {
   },
 }
 
--- send warning when cbfmt is not working
+-- use cmfmt if config file exists
 if
   vim.g.full_config
-  and vim.fn.executable("cbfmt") == 1
-  and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 0
-  and not vim.g.cbfmt_warn
+  and vim.fn.executable("cbfmt") == 1 -- cbfmt is installed
+  and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 1 -- config file exists
 then
   vim.api.nvim_echo({
     {
@@ -137,6 +136,13 @@ then
       "WarningMsg",
     },
   }, true, {})
-  vim.g.cbfmt_warn = true
+  table.insert(M, {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        ["markdown"] = { "mdslw", "cbfmt" },
+      },
+    },
+  })
 end
 return M
