@@ -8,7 +8,7 @@ return {
         minimal = false,
         width = 120,
         height = 0,
-        backdrop = { transparent = true, blend = 40 },
+        backdrop = { transparent = true, blend = 0 },
         keys = { q = false },
         zindex = 40,
         wo = {
