@@ -130,12 +130,6 @@ if
   and vim.fn.executable("cbfmt") == 1 -- cbfmt is installed
   and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 1 -- config file exists
 then
-  vim.api.nvim_echo({
-    {
-      "cbfmt for markdown codeblock formatting requires a config file at ~/.cbfmt.toml",
-      "WarningMsg",
-    },
-  }, true, {})
   table.insert(M, {
     "stevearc/conform.nvim",
     opts = {
