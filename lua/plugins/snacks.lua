@@ -33,7 +33,7 @@ return {
     },
     lazygit = {
       enabled = true,
-      configure = false,
+      configure = not vim.g.is_win,
     },
   },
   keys = {
