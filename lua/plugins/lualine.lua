@@ -114,7 +114,7 @@ return {
               return "󰖳"
             end,
             cond = function()
-              return LazyVim.is_win()
+              return vim.g.is_win
             end,
             padding = { left = 1, right = 0 },
             color = nil,

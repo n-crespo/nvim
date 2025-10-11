@@ -32,6 +32,7 @@ opt.completeopt = "menu,menuone,noselect,noinsert,popup"
 -- opt.autochdir = true -- this breaks things
 
 if LazyVim.is_win() then
+  vim.g.is_win = true
   LazyVim.terminal.setup("pwsh")
 end
 
