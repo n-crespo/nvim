@@ -103,8 +103,8 @@ local M = {
         close_on_bdelete = false,
       }
       if vim.fn.has("wsl") == 1 then
-        -- opts.app = { "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe", "--new-window" }
-        opts.app = { "/mnt/c/Program Files/Zen Browser/zen.exe", "--new-window" }
+        opts.app = { "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe", "--new-window" }
+        -- opts.app = { "/mnt/c/Program Files/Zen Browser/zen.exe", "--new-window" }
       else
         opts.app = { "zen", "--new-window" }
       end
