@@ -84,16 +84,6 @@ return {
           auto_insert = true,
         },
       },
-      -- menu = {
-      -- border = "none",
-      -- auto_show = true,
-      -- draw = {
-      --   columns = {
-      --     { "label", "label_description", gap = 1 },
-      --     { "kind_icon", "kind", gap = 0 },
-      --   },
-      -- },
-      -- },
       documentation = {
         window = {
           border = "rounded",
@@ -104,7 +94,7 @@ return {
     signature = {
       enabled = true,
       trigger = {
-        show_on_insert = true,
+        show_on_insert = false,
         show_on_insert_on_trigger_character = true,
       },
       window = {
