@@ -5,6 +5,7 @@
 -- NOTE; these save to the `r` register arbitrarily as to not clog up system
 -- clipboard bold/italicize in visual mode
 vim.keymap.set("i", "<C-b>", "****<left><left>", { buffer = true, silent = true })
+vim.keymap.set("i", "<S-tab>", "<C-d>", { buffer = true, silent = true })
 vim.keymap.set("x", "<C-b>", '"rc****<esc>h"rP', { buffer = true, desc = "Bold" })
 vim.keymap.set("x", "<C-i>", '"rc__<esc>"rP', { buffer = true, desc = "Italicize" })
 vim.opt_local.foldmethod = "expr" -- folds headers and lists nicely
@@ -30,7 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
 ------------- TABLE FORMATTING ----------------
 -----------------------------------------------
 
--- this is a fairly rudimentary table formatting support on save
+-- this is a rudimentary table formatting
 local pattern = "^%s*|.*|%s*$"
 
 local function findTableBorders(line_num)
@@ -97,12 +98,8 @@ vim.api.nvim_buf_create_user_command(0, "TableFormat", function()
   tableFormat()
 end, {})
 
-vim.api.nvim_create_autocmd("BufWrite", {
-  callback = function()
-    pcall(tableFormat)
-  end,
-})
-
-vim.api.nvim_buf_create_user_command(0, "TableFormat", function()
-  tableFormat()
-end, {})
+-- vim.api.nvim_create_autocmd("BufWrite", {
+--   callback = function()
+--     pcall(tableFormat)
+--   end,
+-- })

@@ -9,6 +9,13 @@ local M = {
     },
   },
   {
+    "ixru/nvim-markdown",
+    ft = "markdown",
+    keys = function()
+      vim.cmd([[map <Plug> <Plug>Markdown_Fold]])
+    end,
+  },
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
