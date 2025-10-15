@@ -4,7 +4,7 @@ vim.g.maplocalleader = "\\"
 vim.g.loaded_ruby_provider = 0 -- never use this
 vim.g.loaded_perl_provider = 0 -- never use this
 vim.g.loaded_python3_provider = 0
-vim.g.lazyvim_python_lsp = "pylsp"
+vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.root_spec = { ".root", "lsp", { ".git", "lua" }, "cwd" }
 
 local opt = vim.opt
