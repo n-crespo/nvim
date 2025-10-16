@@ -3,7 +3,7 @@ return {
   opts = {
     picker = {
       db = { sqlite3_path = "/lib/x86_64-linux-gnu/libsqlite3.so.0" },
-      sources = { files = { hidden = true, ignored = true } },
+      sources = { files = { hidden = true, ignored = false } },
       layout = {
         cycle = true,
         preset = function()
