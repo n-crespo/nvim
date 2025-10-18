@@ -113,7 +113,7 @@ local M = {
         opts.app = { "/mnt/c/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe", "--new-window" }
         -- opts.app = { "/mnt/c/Program Files/Zen Browser/zen.exe", "--new-window" }
       else
-        opts.app = { "zen", "--new-window" }
+        opts.app = { "brave", "--new-window" }
       end
       return opts
     end,
