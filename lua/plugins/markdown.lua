@@ -39,7 +39,7 @@ local M = {
         end,
       },
       file_types = { "markdown", "norg", "rmd", "org", "codecompanion" },
-      latex = { enabled = false },
+      latex = { enabled = true },
       code = {
         sign = true,
         width = "block",
@@ -66,7 +66,10 @@ local M = {
         checked = { icon = "󰄲" },
         unchecked = { icon = "󰄱" },
       },
-      indent = { enabled = false },
+      indent = { enabled = true },
+      -- anti_conceal = {
+      --   enabled = false,
+      -- },
     },
     config = function(_, opts)
       require("render-markdown").setup(opts)
