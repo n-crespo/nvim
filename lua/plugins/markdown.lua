@@ -113,7 +113,7 @@ local M = {
         close_on_bdelete = false,
       }
       if vim.fn.has("wsl") == 1 then
-        opts.app = { "C:/Users/nicol/AppData/Local/imput/Helium/Application/chrome.exe", "--new-window" }
+        opts.app = { "/mnt/c/Users/nicol/AppData/Local/imput/Helium/Application/chrome.exe", "--new-window" }
       else
         opts.app = { "chrome", "--new-window" }
       end
