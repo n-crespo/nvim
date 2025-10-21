@@ -25,6 +25,7 @@ return {
       tab_size = 22,
       enforce_regular_tabs = false,
       truncate_names = false,
+      always_show_bufferline = true,
       show_duplicate_prefix = false,
       show_close_icon = false,
       name_formatter = function(buf)
