@@ -12,7 +12,9 @@ local M = {
     "ixru/nvim-markdown",
     ft = "markdown",
     keys = function()
+      -- disable <Tab> for folding in normal mode/indenting in insert mode
       vim.cmd([[map <Plug> <Plug>Markdown_Fold]])
+      vim.cmd([[imap <Plug> <Plug>Markdown_Jump]])
     end,
   },
   {
@@ -66,7 +68,7 @@ local M = {
         checked = { icon = "󰄲" },
         unchecked = { icon = "󰄱" },
       },
-      indent = { enabled = true },
+      indent = { enabled = false },
       -- anti_conceal = {
       --   enabled = false,
       -- },
