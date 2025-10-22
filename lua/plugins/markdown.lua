@@ -9,17 +9,21 @@ local M = {
     },
   },
   {
-    "ixru/nvim-markdown",
-    ft = "markdown",
-    keys = function()
-      -- disable <Tab> for folding in normal mode/indenting in insert mode
-      vim.cmd([[map <Plug> <Plug>Markdown_Fold]])
-      vim.cmd([[imap <Plug> <Plug>Markdown_Jump]])
-      -- disable <c-k> to create a link
-      vim.cmd([[nmap <Plug> <Plug>Markdown_CreateLink]])
-      vim.cmd([[imap <Plug> <Plug>Markdown_CreateLink]])
-      vim.cmd([[vmap <Plug> <Plug>Markdown_CreateLink]])
-    end,
+    "yousefhadder/markdown-plus.nvim",
+    ft = { "markdown", "text" }, -- Load on markdown files by default
+    opts = {
+      enabled = true,
+      features = {
+        list_management = true,
+        text_formatting = true,
+        headers_toc = true,
+        links = true,
+      },
+      keymaps = {
+        enabled = true,
+      },
+      -- filetypes = { "markdown" }, -- Filetypes to enable the plugin for
+    },
   },
   {
     "stevearc/conform.nvim",
