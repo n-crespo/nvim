@@ -15,6 +15,7 @@ local M = {
       -- disable <Tab> for folding in normal mode/indenting in insert mode
       vim.cmd([[map <Plug> <Plug>Markdown_Fold]])
       vim.cmd([[imap <Plug> <Plug>Markdown_Jump]])
+      vim.cmd([[map <Plug> <Plug>Markdown_CreateLink]])
     end,
   },
   {
