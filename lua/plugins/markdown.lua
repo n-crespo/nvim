@@ -1,14 +1,6 @@
 -- see after/ftplugin/markdown.lua
 local M = {
   {
-    "mason-org/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "mdslw", -- this cuts off lines for better diffing
-      },
-    },
-  },
-  {
     "yousefhadder/markdown-plus.nvim",
     ft = { "markdown", "text" }, -- Load on markdown files by default
     opts = {
@@ -23,14 +15,6 @@ local M = {
         enabled = true,
       },
       -- filetypes = { "markdown" }, -- Filetypes to enable the plugin for
-    },
-  },
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        ["markdown"] = { "mdslw" },
-      },
     },
   },
   {
@@ -153,7 +137,7 @@ then
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["markdown"] = { "mdslw", "cbfmt" },
+        ["markdown"] = { "cbfmt" },
       },
     },
   })
