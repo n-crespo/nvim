@@ -5,8 +5,6 @@ return {
     opts = {
       linters_by_ft = {
         fish = { "fish" },
-        javascript = { "oxlint" },
-        javascriptreact = { "oxlint" },
         ["*"] = { "typos" },
         -- Use the "*" filetype to run linters on all filetypes.
         -- ['*'] = { 'global linter' },
