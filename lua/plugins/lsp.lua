@@ -1,23 +1,24 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      -- space around dot in virt text diagnostic
-      opts.diagnostics.virtual_text.prefix = " " .. opts.diagnostics.virtual_text.prefix .. " "
-
-      -- disable <C-k> insert mode keymap for focusing signature help window and more
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<C-K>", false, mode = "i" }
-      keys[#keys + 1] = { "<leader>cA", false, mode = "n" }
-      keys[#keys + 1] = { "<leader>cc", false, mode = "n" }
-      keys[#keys + 1] = { "<leader>cC", false, mode = "n" }
-      keys[#keys + 1] = { "<leader>cR", false, mode = "n" }
-      keys[#keys + 1] = { "<M-n>", false, mode = "n" }
-      keys[#keys + 1] = { "<M-p>", false, mode = "n" }
-      keys[#keys + 1] = { "]]", false, mode = "n" }
-      keys[#keys + 1] = { "[[", false, mode = "n" }
-      return opts
-    end,
+    opts = {
+      servers = {
+        ["*"] = {
+          keys = {
+            -- disable <C-k> insert mode keymap for focusing signature help window
+            { "<C-K>", false, mode = "i" },
+            { "<leader>cA", false, mode = "n" },
+            { "<leader>cc", false, mode = "n" },
+            { "<leader>cC", false, mode = "n" },
+            { "<leader>cR", false, mode = "n" },
+            { "<M-n>", false, mode = "n" },
+            { "<M-p>", false, mode = "n" },
+            -- { "]]", false, mode = "n" },
+            -- { "[[", false, mode = "n" },
+          },
+        },
+      },
+    },
   },
   -- rounded border around <leader>cd
   {
@@ -45,5 +46,13 @@ return {
         },
       },
     },
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      -- space around dot in virt text diagnostic
+      opts.diagnostics.virtual_text.prefix = " " .. opts.diagnostics.virtual_text.prefix .. " "
+      return opts
+    end,
   },
 }
