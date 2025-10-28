@@ -23,7 +23,7 @@ return {
   opts = {
     project_path = vim.fn.expand("~/.config/nvim/project_manager.json"),
     mode = "term",
-    startinsert = false,
+    startinsert = true,
     filetype = {
       python = "python3 -u '$dir/$fileName'",
       ghostty = "echo Validating config...;ghostty +validate-config --config-file=$dir/$fileName",
