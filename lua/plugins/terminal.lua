@@ -1,4 +1,3 @@
-vim.opt.shell = vim.fn.has("wsl") == 1 and "/usr/bin/fish" or vim.opt.shell
 return {
   "folke/snacks.nvim",
   opts = {
