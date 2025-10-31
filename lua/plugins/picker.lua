@@ -2,13 +2,6 @@ return {
   "folke/snacks.nvim",
   opts = {
     picker = {
-      db = {
-        sqlite3_path = function()
-          if vim.fn.has("wsl") then
-            return "/lib/x86_64-linux-gnu/libsqlite3.so.0"
-          end
-        end,
-      },
       sources = { files = { hidden = true, ignored = false } },
       layout = {
         cycle = true,
