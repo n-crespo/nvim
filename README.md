@@ -32,7 +32,6 @@ Comes in two varieties:
 ## Install
 
 ```bash
-brew install cargo
 cargo install bob-nvim
 bob install nightly
 bob use nightly
