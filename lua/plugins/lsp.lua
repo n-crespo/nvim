@@ -35,6 +35,9 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        ruff = {
+          enabled = false,
+        },
         basedpyright = {
           settings = {
             basedpyright = {
