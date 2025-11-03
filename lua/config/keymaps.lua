@@ -304,6 +304,8 @@ vim.api.nvim_create_user_command("Wordcount", function()
   )
 end, { desc = "Display word and character count of the current file" })
 
+map("n", "R", "<cmd>make<cr>")
+
 -----------------------
 -----== VSCODE ==------
 -----------------------
