@@ -20,8 +20,11 @@ local M = {
   {
     "OXY2DEV/markview.nvim",
     dependencies = { "saghen/blink.cmp" },
-    ft = { "markdown", "typst", "yaml", "latex" },
+    ft = { "markdown", "yaml", "latex" },
     opts = {
+      typst = {
+        enable = false,
+      },
       markdown = {
         code_blocks = { pad_amount = 0 },
         headings = {
