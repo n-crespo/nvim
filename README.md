@@ -8,7 +8,7 @@ Comes in two varieties:
 - `lite` (default)
 - `full` (fully featured, enables support for more languages)
 
-> Set the environment variable `NVIM_FULL_CONFIG=1` to switch to the full config.
+> Set the environment variable `NVIM_FULL_CONFIG=true` to switch to the full config.
 
 ## Cool Things
 
@@ -16,14 +16,10 @@ Comes in two varieties:
 - sensible [markdown functionality](./lua/plugins/markdown.lua)
 - macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
 - these [keymaps](./lua/config/keymaps.lua)
-  - `<C-S-C>`:
-    show word/char count
-  - `<CR>`:
-    follow links, `gf`, toggle checkboxes, etc
-  - `B`, `E`:
-    wrap-friendly version of `0` and `$`
-  - `w`, `e`, and `b`:
-    improved with [spider](./lua/plugins/spider.lua)
+  - `<C-S-C>`: show word/char count
+  - `<CR>`: follow links, `gf`, toggle checkboxes, etc
+  - `B`, `E`: wrap-friendly version of `0` and `$`
+  - `w`, `e`, and `b`: improved with [spider](./lua/plugins/spider.lua)
 - these [auto commands](./lua/config/autocmds.lua)
   - pluginless autosave
   - trim trailing whitespace on save
