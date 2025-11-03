@@ -18,71 +18,37 @@ local M = {
     },
   },
   {
-    "MeanderingProgrammer/render-markdown.nvim",
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
+    "OXY2DEV/markview.nvim",
+    dependencies = { "saghen/blink.cmp" },
+    ft = { "markdown", "typst", "yaml", "latex" },
     opts = {
-      render_modes = { "n", "c", "i", "\x16", "t", "no", "V", "nov", "noV", "vs", "v" },
-      on = {
-        render = function()
-          vim.wo.conceallevel = 3
-        end,
-        clear = function()
-          vim.wo.conceallevel = 0
-        end,
+      markdown = {
+        code_blocks = { pad_amount = 0 },
+        headings = {
+          shift_width = 0,
+          org_indent = false,
+        },
+        list_items = {
+          shift_width = function(buffer, item)
+            ---@type integer Parent list items indent. Must be at least 1.
+            local parent_indent = math.max(1, item.indent - vim.bo[buffer].shiftwidth)
+            return item.indent * (1 / (parent_indent * 2))
+          end,
+          marker_minus = {
+            add_padding = function(_, item)
+              return item.indent > 1
+            end,
+          },
+        },
       },
-      file_types = { "markdown", "norg", "rmd", "org", "codecompanion" },
-      latex = { enabled = true },
-      code = {
-        sign = false,
-        width = "block",
-        position = "right",
-        style = "full",
-        language_icon = false,
-        language_name = true,
-        right_pad = 2,
-        highlight_language = "Comment",
-        highlight_inline = "DiagnosticOk",
-        border = "thick",
-      },
-      heading = {
-        setext = false,
-        sign = false,
-        position = "inline",
-        border = false,
-        left_pad = 1,
-        right_pad = 1,
-        width = "block",
-        border_virtual = true,
-        icons = {},
-      },
-      checkbox = {
-        checked = { icon = "󰄲" },
-        unchecked = { icon = "󰄱" },
-      },
-      indent = { enabled = false },
-      -- anti_conceal = {
-      --   enabled = false,
-      -- },
     },
-    config = function(_, opts)
-      require("render-markdown").setup(opts)
-      Snacks.toggle({
-        name = "Render Markdown",
-        get = function()
-          return require("render-markdown.state").enabled
-        end,
-        set = function(enabled)
-          local m = require("render-markdown")
-          if enabled then
-            m.enable()
-          else
-            m.disable()
-          end
-        end,
-      }):map("<leader>um")
-    end,
+    keys = {
+      {
+        "<leader>um",
+        "<CMD>Markview<CR>",
+        desc = "Toggle Markview",
+      },
+    },
   },
   {
     -- preview markdown (full config only)
