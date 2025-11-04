@@ -14,40 +14,56 @@ local M = {
       keymaps = {
         enabled = true,
       },
-      -- filetypes = { "markdown" }, -- Filetypes to enable the plugin for
+    },
+    keys = {
+      {
+        "<C-c>",
+        "<Plug>(MarkdownPlusToggleCheckbox)",
+        buffer = true,
+        ft = "markdown",
+      },
     },
   },
   {
-    "OXY2DEV/markview.nvim",
-    dependencies = { "saghen/blink.cmp" },
-    ft = { "markdown", "yaml", "latex" },
-    config = function()
-      local presets = require("markview.presets").headings
-      require("markview").setup({
-        typst = { enable = false },
-        markdown = {
-          code_blocks = { pad_amount = 0 },
-          headings = presets.glow,
-          list_items = {
-            shift_width = function(buffer, item)
-              ---@type integer Parent list items indent. Must be at least 1.
-              local parent_indent = math.max(1, item.indent - vim.bo[buffer].shiftwidth)
-              return item.indent * (1 / (parent_indent * 2))
-            end,
-            marker_minus = {
-              add_padding = function(_, item)
-                return item.indent > 1
-              end,
-            },
-          },
-        },
-      })
-    end,
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
+    opts = {
+      render_modes = { "n", "c", "i", "\x16", "t", "no", "V", "nov", "noV", "vs", "v" },
+      on = {
+        -- stylua: ignore start
+        render = function() vim.wo.conceallevel = 3 end,
+        clear = function() vim.wo.conceallevel = 0 end,
+        -- stylua: ignore end
+      },
+      file_types = { "markdown", "norg", "rmd", "org", "codecompanion" },
+      latex = { enabled = true },
+      code = {
+        width = "block",
+        position = "right",
+        border = "thick",
+        sign = false,
+        right_pad = 1,
+        left_pad = 1,
+      },
+      heading = {
+        setext = false,
+        width = "block",
+        left_pad = 1,
+        right_pad = 1,
+        icons = {},
+      },
+      checkbox = {
+        checked = { icon = "󰄲" },
+        unchecked = { icon = "󰄱" },
+      },
+    },
     keys = {
       {
         "<leader>um",
-        "<CMD>Markview<CR>",
-        desc = "Toggle Markview",
+        function()
+          require("render-markdown").toggle()
+        end,
+        buffer = true,
       },
     },
   },
@@ -93,21 +109,21 @@ local M = {
       },
     },
   },
-}
-
--- use cmfmt if config file exists
-if
-  vim.g.full_config
-  and vim.fn.executable("cbfmt") == 1 -- cbfmt is installed
-  and vim.fn.filereadable(vim.fn.expand("~/.cbfmt.toml")) == 1 -- config file exists
-then
-  table.insert(M, {
+  {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
         ["markdown"] = { "cbfmt" },
       },
     },
-  })
-end
+  },
+  {
+    "mason-org/mason.nvim",
+    event = "LspAttach",
+    opts = {
+      ensure_installed = { "cbfmt" },
+    },
+  },
+}
+
 return M

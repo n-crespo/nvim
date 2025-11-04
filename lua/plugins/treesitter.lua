@@ -44,6 +44,8 @@ return {
         "objdump",
         "ssh_config",
         "todotxt",
+        "latex",
+        "markdown",
       },
     },
   },
