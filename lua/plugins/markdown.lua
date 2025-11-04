@@ -21,30 +21,28 @@ local M = {
     "OXY2DEV/markview.nvim",
     dependencies = { "saghen/blink.cmp" },
     ft = { "markdown", "yaml", "latex" },
-    opts = {
-      typst = {
-        enable = false,
-      },
-      markdown = {
-        code_blocks = { pad_amount = 0 },
-        headings = {
-          shift_width = 0,
-          org_indent = false,
-        },
-        list_items = {
-          shift_width = function(buffer, item)
-            ---@type integer Parent list items indent. Must be at least 1.
-            local parent_indent = math.max(1, item.indent - vim.bo[buffer].shiftwidth)
-            return item.indent * (1 / (parent_indent * 2))
-          end,
-          marker_minus = {
-            add_padding = function(_, item)
-              return item.indent > 1
+    config = function()
+      local presets = require("markview.presets").headings
+      require("markview").setup({
+        typst = { enable = false },
+        markdown = {
+          code_blocks = { pad_amount = 0 },
+          headings = presets.glow,
+          list_items = {
+            shift_width = function(buffer, item)
+              ---@type integer Parent list items indent. Must be at least 1.
+              local parent_indent = math.max(1, item.indent - vim.bo[buffer].shiftwidth)
+              return item.indent * (1 / (parent_indent * 2))
             end,
+            marker_minus = {
+              add_padding = function(_, item)
+                return item.indent > 1
+              end,
+            },
           },
         },
-      },
-    },
+      })
+    end,
     keys = {
       {
         "<leader>um",
