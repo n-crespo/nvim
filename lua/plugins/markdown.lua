@@ -99,7 +99,7 @@ local M = {
     end,
     keys = {
       {
-        "<leader>o",
+        "<leader>cp",
         function()
           require("peek").open()
         end,
