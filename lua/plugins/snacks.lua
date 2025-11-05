@@ -21,9 +21,7 @@ return {
     notifier = { enabled = true },
     gitbrowse = { enabled = true },
     scratch = {
-      ft = "scratch",
-      win = { zindex = 50 },
-      bo = { autoformat = false },
+      ft = "md", -- so markdown formatter doesn't kick in and error out
     },
     styles = {
       scratch = { wo = { number = false, cursorline = false, statuscolumn = " " } },
