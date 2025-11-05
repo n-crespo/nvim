@@ -24,7 +24,7 @@ return {
       ft = "md", -- so markdown formatter doesn't kick in and error out
     },
     styles = {
-      scratch = { wo = { number = false, cursorline = false, statuscolumn = " " } },
+      scratch = { wo = { number = false, cursorline = false, statuscolumn = " ", wrap = true } },
       terminal = { wo = { winbar = "" } },
       notification = { wo = { winblend = 0 } },
       border = "rounded",
