@@ -22,6 +22,20 @@ local M = {
         buffer = true,
         ft = "markdown",
       },
+      {
+        "<C-i>",
+        "<Plug>(MarkdownPlusItalic)",
+        buffer = true,
+        ft = "markdown",
+        mode = { "n", "v" },
+      },
+      {
+        "<C-b>",
+        "<Plug>(MarkdownPlusBold)",
+        buffer = true,
+        ft = "markdown",
+        mode = { "n", "v" },
+      },
     },
   },
   {
