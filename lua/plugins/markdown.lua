@@ -61,6 +61,7 @@ local M = {
       },
       heading = {
         setext = false,
+        sign = false,
         width = "block",
         left_pad = 1,
         right_pad = 1,
