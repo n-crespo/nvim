@@ -215,7 +215,7 @@ map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make exec
 
 map("n", "<leader>o", function()
   if vim.fn.has("win32") == 1 then
-    vim.cmd([[Open .]])
+    vim.cmd([[!start %]])
   elseif vim.fn.executable("wsl-open") == 1 then
     vim.cmd([[silent! !wsl-open %]])
   else
