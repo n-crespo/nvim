@@ -46,6 +46,7 @@ return {
         "todotxt",
         "latex",
         "markdown",
+        "zsh",
       },
     },
   },
