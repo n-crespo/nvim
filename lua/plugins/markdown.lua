@@ -1,5 +1,5 @@
 -- see after/ftplugin/markdown.lua
-local M = {
+return {
   {
     "yousefhadder/markdown-plus.nvim",
     ft = { "markdown", "text" }, -- Load on markdown files by default
@@ -123,21 +123,4 @@ local M = {
       },
     },
   },
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        ["markdown"] = { "cbfmt" },
-      },
-    },
-  },
-  {
-    "mason-org/mason.nvim",
-    event = "LspAttach",
-    opts = {
-      ensure_installed = { "cbfmt" },
-    },
-  },
 }
-
-return M

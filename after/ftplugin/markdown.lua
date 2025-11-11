@@ -1,4 +1,3 @@
--- i no longer use prettier for markdown, cbfmt instead
 -- vim.cmd([[inoreabbrev <buffer> ps <!-- prettier-ignore-start -->]])
 -- vim.cmd([[inoreabbrev <buffer> pe <!-- prettier-ignore-end -->]])
 
