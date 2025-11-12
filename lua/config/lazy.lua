@@ -1,5 +1,5 @@
--- NOTE: set the environment variable NVIM_FULL_CONFIG to 1 to enable all
--- features. set to 0 or leave unset to use default lite version
+-- set the environment variable NVIM_FULL_CONFIG to "true" to enable all
+-- features. set to "false" or leave unset to use default lite version
 
 ---@type boolean
 vim.g.full_config = vim.env.NVIM_FULL_CONFIG == "true" or false
