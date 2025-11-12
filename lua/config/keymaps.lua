@@ -210,7 +210,7 @@ map("x", "Y", "y$")
 map("x", "&", ":&&<CR>")
 
 -- Executes shell command from neovim making file executable
-map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make executable" })
+map("n", "<leader>X", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make Executable" })
 
 map("n", "<leader>o", function()
   if vim.fn.has("win32") == 1 then
