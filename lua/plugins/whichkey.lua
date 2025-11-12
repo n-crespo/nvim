@@ -30,6 +30,7 @@ return {
     { "<leader><Tab>]", nil },
     { "<leader><Tab>[", nil },
     { "<leader><Tab>f", nil },
+    { "<leader><Tab>d", nil },
     { "<leader><Tab>l", nil },
     { "<leader><Tab>l", nil },
     { "<leader>-", nil },
@@ -38,8 +39,6 @@ return {
     { "<leader>|", nil },
     { "<leader>bb", nil },
     { "<leader>bD", nil },
-    { "<leader>ft", nil },
-    { "<leader>fT", nil },
     { "<leader>qq", nil },
   },
 }

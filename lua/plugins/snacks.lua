@@ -39,12 +39,13 @@ return {
     { "<leader>dph", nil },
     { "<leader>dps", nil },
     { "<leader>S", nil },
+    { "<leader>n", nil },
     {
-      "<leader>n",
+      "<leader>un",
       function()
-        Snacks.notifier.show_history()
+        Snacks.notifier.hide()
       end,
-      desc = "Notification History",
+      desc = "Dismiss All Notifications",
     },
   },
 }

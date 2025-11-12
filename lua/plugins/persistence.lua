@@ -20,10 +20,10 @@ return {
       end,
     },
     keys = {
-      { "<leader>qs", false },
-      { "<leader>ql", false },
-      { "<leader>qd", false },
-      { "<leader>qS", false },
+      { "<leader>qs", nil },
+      { "<leader>ql", nil },
+      { "<leader>qd", nil },
+      { "<leader>qS", nil },
     },
   },
   -- i just do this manually with an alias now:

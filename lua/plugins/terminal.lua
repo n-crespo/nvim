@@ -10,6 +10,8 @@ return {
     -- note: this assumes your terminal can recognize the <C-/> and <C-S-/> keys
     { "<C-S-_>", nil },
     { "<C-_>", nil },
+    { "<leader>ft", nil },
+    { "<leader>fT", nil },
     {
       "<C-q>",
       function()

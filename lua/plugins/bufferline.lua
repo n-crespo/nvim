@@ -41,17 +41,11 @@ return {
     },
   },
   keys = {
-    { "<leader>bl", false },
-    { "<leader>br", false },
-    { "<leader>bP", false },
+    { "<leader>bl", nil },
+    { "<leader>br", nil },
+    { "<leader>bP", nil },
     { "<C-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
     { "<C-S-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    {
-      "<leader>bp",
-      require("bufferline").pick,
-      desc = "Pick Buffer",
-    },
-
     {
       "<leader>r",
       function()

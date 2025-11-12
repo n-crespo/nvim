@@ -3,92 +3,6 @@ return {
   opts = {
     picker = {
       sources = { files = { hidden = true, ignored = false } },
-      layout = {
-        cycle = true,
-        preset = function()
-          if vim.o.lines <= 23 and vim.o.columns <= 22 then
-            return "small"
-          elseif vim.o.columns <= 116 then
-            return "vertical"
-          else
-            return "default"
-          end
-        end,
-      },
-      layouts = {
-        dropdown = {
-          layout = {
-            width = 0.8,
-            min_width = 40,
-            height = 0.8,
-            min_height = 20,
-          },
-        },
-        vscode = {
-          layout = {
-            preview = false,
-            backdrop = false,
-            row = 2,
-            width = 64,
-            min_width = 64,
-            height = 0.45,
-            border = "none",
-            box = "vertical",
-            { win = "input", height = 1, border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
-            { win = "list", border = "rounded" },
-            { win = "preview", title = "{preview}", border = "rounded" },
-          },
-        },
-        -- this is just vertical but without a preview
-        small = {
-          layout = {
-            box = "horizontal",
-            width = 0.8,
-            min_width = 60,
-            height = 0.8,
-            {
-              box = "vertical",
-              border = "rounded",
-              title = "{title} {live} {flags}",
-              { win = "input", height = 1, border = "bottom" },
-              { win = "list", border = "none" },
-            },
-          },
-        },
-        vertical = {
-          layout = {
-            box = "vertical",
-            width = 0.8,
-            min_width = 40,
-            height = 0.8,
-            min_height = 20,
-            {
-              box = "vertical",
-              border = "rounded",
-              title = "{title} {live} {flags}",
-              { win = "input", height = 1, border = "bottom" },
-              { win = "list", border = "none" },
-            },
-            { win = "preview", title = "{preview}", height = 0.45, border = "rounded" },
-          },
-        },
-        default = {
-          layout = {
-            box = "horizontal",
-            width = 0.85,
-            min_width = 80,
-            height = 0.8,
-            {
-              box = "vertical",
-              border = "rounded",
-              title = "{title} {live} {flags}",
-              { win = "input", height = 1, border = "bottom" },
-              { win = "list", border = "none" },
-            },
-            { win = "preview", title = "{preview}", border = "rounded", width = 0.5 },
-          },
-        },
-      },
       formatters = {
         file = {
           filename_first = true, -- display filename before the file path
@@ -179,7 +93,6 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    ----------- PICKER KEYMAPS -------------
     { "<leader>sg", nil },
     { "<leader>fb", nil },
     { "<leader>fB", nil },
@@ -190,9 +103,9 @@ return {
     { "<leader>sG", nil },
     { "<leader>sl", nil },
     { '<leader>s"', nil },
-    { "<leader>sd", nil }, -- search diagnostics
-    { "<leader>sD", nil }, -- buffer diagnostics
-    { "<leader>s/", nil }, -- search history
+    { "<leader>sd", nil },
+    { "<leader>sD", nil },
+    { "<leader>s/", nil },
     { "<leader>qp", nil },
     { "<leader>sB", nil },
     { "<leader>fF", nil },
@@ -203,22 +116,38 @@ return {
     { "<leader>sM", nil },
     { "<leader>sm", nil },
     { "<leader>sb", nil },
+    { "<leader>sj", nil },
+    { "<leader>:", nil },
     { "<leader>sR", nil },
+    { "<leader>sq", nil }, -- quickfix list
+    { "<leader>gp", nil }, -- github pull requests
+    { "<leader>gP", nil },
+    { "<leader>gi", nil }, -- github issues
+    { "<leader>gI", nil },
+    { "<leader>gG", nil }, -- lazygit cwd
     { "<leader>fo", function() Snacks.picker.recent() end, desc = "Old Files (dumb)", },
     { "<leader>fO", function() Snacks.picker.smart() end, desc = "Old Files (smart)", },
     { "<leader>fp", function() Snacks.picker.files({ cwd = require("lazy.core.config").options.root, title = "Plugin Files" }) end, desc = "Plugin Files", },
-    { "<leader>fP", function() Snacks.picker.lazy({ title = "Search for Plugin Spec" }) end, desc = "Search for Plugin Spec", },
+    { "<leader>fP", function() Snacks.picker.lazy({ title = "Plugin Configs" }) end, desc = "Plugin Configs", },
     { "<leader>sp", function() Snacks.picker.pickers() end, desc = "Pickers", },
-    { "<leader>fH", function() Snacks.picker.highlights() end, desc = "Highlights", },
     { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info", },
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume", },
-    { "<leader>;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
-    { "<leader>g/", function() Snacks.picker.grep_word({ layout = "dropdown" }) end, desc = "Grep (current word)", },
-    { "<leader>/", function() Snacks.picker.grep({ layout = "dropdown", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep", },
+    { "<leader>s;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
+    { "<leader>/", function() Snacks.picker.grep({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep", },
+    { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep (current word)", },
     { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-    { "<M-p>", function() Snacks.picker.files({ layout = "vscode", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Pick", },
+    -- { "<M-p>", function() Snacks.picker.files({ layout = "vscode", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Pick", },
     { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
     -- stylua: ignore end
+    {
+      "<leader>ff",
+      function()
+        local dir = require("custom.utils").get_dir_with_fallback()
+        ---@diagnostic disable-next-line: missing-fields
+        Snacks.picker.files({ cwd = dir, title = "Files in " .. vim.fn.fnamemodify(dir, ":~") })
+      end,
+      desc = "Files (buffer dir)",
+    },
     {
       "<leader>F",
       function()
@@ -264,58 +193,40 @@ return {
       end,
       desc = "Jump with Zoxide",
     },
-    {
-      "<leader>sH",
-      function()
-        Snacks.picker.grep({
-          title = "Help Grep",
-          glob = { "**/doc/*.txt" },
-          rtp = true,
-          previewers = { file = { ft = "help" } },
-        })
-      end,
-      desc = "Help Grep",
-    },
-    {
-      "<leader>fw",
-      function()
-        ---@diagnostic disable-next-line: missing-fields
-        local dir = require("custom.utils").get_dir_with_fallback()
-        Snacks.picker.grep({ cwd = dir, title = "Files in " .. vim.fn.fnamemodify(dir, ":~") })
-      end,
-      desc = "Grep (buffer dir)",
-    },
-    {
-      "<leader>fh",
-      function()
-        local dir = require("custom.utils").get_dir_with_fallback()
-        ---@diagnostic disable-next-line: missing-fields
-        Snacks.picker.files({ cwd = dir, title = "Files in " .. vim.fn.fnamemodify(dir, ":~") })
-      end,
-      desc = "Here (buffer dir)",
-    },
-    {
-      "<leader>st",
-      function()
-        ---@diagnostic disable-next-line: undefined-field
-        Snacks.picker.todo_comments({
-          cwd = require("custom.utils").get_dir_with_fallback(),
-        })
-      end,
-      desc = "Todo",
-    },
-    {
-      "<leader>sT",
-      function()
-        local dir = require("custom.utils").get_dir_with_fallback()
-        ---@diagnostic disable-next-line: undefined-field
-        Snacks.picker.todo_comments({
-          title = "Todo Comments in " .. vim.fn.fnamemodify(dir, ":~"),
-          keywords = { "TODO", "FIX", "FIXME" },
-          cwd = dir,
-        })
-      end,
-      desc = "Todo/Fix/Fixme",
-    },
+    -- {
+    --   "<leader>sH",
+    --   function()
+    --     Snacks.picker.grep({
+    --       title = "Help Grep",
+    --       glob = { "**/doc/*.txt" },
+    --       rtp = true,
+    --       previewers = { file = { ft = "help" } },
+    --     })
+    --   end,
+    --   desc = "Help Grep",
+    -- },
+    -- {
+    --   "<leader>st",
+    --   function()
+    --     ---@diagnostic disable-next-line: undefined-field
+    --     Snacks.picker.todo_comments({
+    --       cwd = require("custom.utils").get_dir_with_fallback(),
+    --     })
+    --   end,
+    --   desc = "Todo",
+    -- },
+    -- {
+    --   "<leader>sT",
+    --   function()
+    --     local dir = require("custom.utils").get_dir_with_fallback()
+    --     ---@diagnostic disable-next-line: undefined-field
+    --     Snacks.picker.todo_comments({
+    --       title = "Todo Comments in " .. vim.fn.fnamemodify(dir, ":~"),
+    --       keywords = { "TODO", "FIX", "FIXME" },
+    --       cwd = dir,
+    --     })
+    --   end,
+    --   desc = "Todo/Fix/Fixme",
+    -- },
   },
 }

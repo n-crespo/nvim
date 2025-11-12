@@ -8,7 +8,7 @@ return {
     },
     keywords = {
       TODO = {
-        color = "#76946a", -- c_autumnGreen
+        color = "#8A9A7B",
       },
     },
   },
@@ -16,10 +16,12 @@ return {
     {
       "<leader>st",
       function()
+        ---@diagnostic disable-next-line: undefined-field
         Snacks.picker.todo_comments({
           cwd = require("custom.utils").get_dir_with_fallback(),
         })
       end,
+      desc = "Todo",
     },
     {
       "<leader>sT",

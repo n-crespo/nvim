@@ -47,7 +47,6 @@ map("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
 map("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
 
 -- close tabs/all buffers
-map("n", "<leader>Q", "<cmd>bufdo bd<cr>", { desc = "Close all buffers", silent = true })
 map("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- exclude "desc" so they don't populate which-key
@@ -221,7 +220,7 @@ map("n", "<leader>o", function()
   else
     vim.cmd([[Open %]])
   end
-end, { desc = "Open buffer in system viewer" })
+end, { desc = "Open with OS" })
 
 -- requires mini.surround
 map("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })

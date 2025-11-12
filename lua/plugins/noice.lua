@@ -21,13 +21,18 @@ return {
     },
   },
   keys = {
-    { "<leader>snt", false },
+    { "<leader>snt", nil },
+    { "<leader>sna", nil },
+    { "<leader>snh", nil },
+    { "<leader>snl", nil },
+    { "<leader>sn", nil },
+    { "<leader>snd", nil },
     {
-      "<leader>m",
+      "<leader>n",
       function()
         require("noice").cmd("all")
       end,
-      desc = "Messages",
+      desc = "Noice/Messages",
     },
   },
 }
