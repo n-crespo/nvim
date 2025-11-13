@@ -142,12 +142,12 @@ return {
     {
       "<leader>ff",
       function()
-        local dir = require("custom.utils").get_dir_with_fallback()
+        local dir = vim.fn.expand("%:p:h")
         ---@diagnostic disable-next-line: missing-fields
-        Snacks.picker.files({ cwd = dir, title = "Files in " .. vim.fn.fnamemodify(dir, ":~") })
+        Snacks.picker.files({ cwd = dir, title = "Files (buffer dir)" })
       end,
-      desc = "Files (buffer dir)",
     },
+    desc = "Files (buffer dir)",
     {
       "<leader>F",
       function()
