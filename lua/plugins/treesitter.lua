@@ -47,6 +47,8 @@ return {
         "latex",
         "markdown",
         "zsh",
+        "make",
+        "cmake",
       },
     },
   },
