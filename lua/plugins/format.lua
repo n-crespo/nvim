@@ -4,6 +4,7 @@ return {
     opts = {
       formatters_by_ft = {
         ["html"] = { "superhtml" },
+        ["c"] = { "clang-format" },
       },
     },
   },
