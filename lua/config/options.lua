@@ -34,6 +34,9 @@ opt.completeopt = "menu,menuone,noselect,noinsert,popup"
 if LazyVim.is_win() then
   vim.g.is_win = true
   LazyVim.terminal.setup("pwsh")
+else
+  opt.fileformat = "unix"
+  opt.fileformats = { "unix", "dos" }
 end
 
 -- opts set by default lazyvim: ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/config/options.lua
