@@ -3,6 +3,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   desc = "Remove all trailing whitespace on save",
   pattern = { "*" },
   callback = function()
+    if vim.b.autoformat == false then
+      return
+    end
     local save_cursor = vim.fn.getpos(".")
     pcall(function()
       vim.cmd([[%s/\s\+$//e]])
