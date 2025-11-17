@@ -65,5 +65,3 @@ Open Neovim (if using custom install path):
 ```bash
 NVIM_APPNAME=n-crespo/nvim-config/ nvim
 ```
-
-[snackspicker]: ./lua/plugins/picker.lua
