@@ -7,6 +7,11 @@ return {
         ["c"] = { "clang-format" },
         ["zsh"] = { "beautysh" },
       },
+      formatters = {
+        beautysh = {
+          append_args = { "--indent-size", "2" },
+        },
+      },
     },
   },
   {
