@@ -2,40 +2,18 @@
 return {
   {
     "yousefhadder/markdown-plus.nvim",
-    ft = { "markdown", "text" }, -- Load on markdown files by default
-    opts = {
-      enabled = true,
-      features = {
-        list_management = true,
-        text_formatting = true,
-        headers_toc = true,
-        links = true,
-      },
-      keymaps = {
-        enabled = true,
-      },
-    },
+    ft = { "markdown", "text" },
+    opts = { keymaps = { enabled = false } }, -- don't initialize default keymaps
     keys = {
-      {
-        "<C-c>",
-        "<Plug>(MarkdownPlusToggleCheckbox)",
-        buffer = true,
-        ft = "markdown",
-      },
-      {
-        "<C-i>",
-        "<Plug>(MarkdownPlusItalic)",
-        buffer = true,
-        ft = "markdown",
-        mode = { "v" },
-      },
-      {
-        "<C-b>",
-        "<Plug>(MarkdownPlusBold)",
-        buffer = true,
-        ft = "markdown",
-        mode = { "n", "v" },
-      },
+      { "o", "<Plug>(MarkdownPlusNewListItemBelow)", buffer = true, ft = "markdown", mode = "n" },
+      { "O", "<Plug>(MarkdownPlusNewListItemAbove)", buffer = true, ft = "markdown", mode = "n" },
+      { "<CR>", "<Plug>(MarkdownPlusListEnter)<M-BS>\n", buffer = true, ft = "markdown", mode = "i" },
+      { "<BS>", "<Plug>(MarkdownPlusListBackspace)", buffer = true, ft = "markdown", mode = "i" },
+      { "<tab>", "<Plug>(MarkdownPlusListIndent)", buffer = true, ft = "markdown", mode = "i" },
+      { "<S-Tab>", "<Plug>(MarkdownPlusListOutdent)", buffer = true, ft = "markdown", mode = "i" },
+      { "<C-c>", "<Plug>(MarkdownPlusToggleCheckbox)", buffer = true, ft = "markdown" },
+      { "<C-i>", "<Plug>(MarkdownPlusItalic)", buffer = true, ft = "markdown", mode = { "v" } },
+      { "<C-b>", "<Plug>(MarkdownPlusBold)", buffer = true, ft = "markdown", mode = { "n", "v" } },
     },
   },
   {
