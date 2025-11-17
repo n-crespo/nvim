@@ -20,9 +20,7 @@ return {
     scope = { enabled = true },
     notifier = { enabled = true },
     gitbrowse = { enabled = true },
-    scratch = {
-      ft = "md", -- so markdown formatter doesn't kick in and error out
-    },
+    scratch = { ft = "markdown" },
     styles = {
       scratch = { wo = { number = false, cursorline = false, statuscolumn = " ", wrap = true } },
       terminal = { wo = { winbar = "" } },
