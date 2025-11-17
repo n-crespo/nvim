@@ -27,7 +27,7 @@ return {
         "<Plug>(MarkdownPlusItalic)",
         buffer = true,
         ft = "markdown",
-        mode = { "n", "v" },
+        mode = { "v" },
       },
       {
         "<C-b>",
