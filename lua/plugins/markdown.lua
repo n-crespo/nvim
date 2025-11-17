@@ -3,7 +3,10 @@ return {
   {
     "yousefhadder/markdown-plus.nvim",
     ft = { "markdown", "text" },
-    opts = { keymaps = { enabled = false } }, -- don't initialize default keymaps
+    opts = {
+      features = { table = false },
+      keymaps = { enabled = false },
+    }, -- don't initialize default keymaps
     keys = {
       { "o", "<Plug>(MarkdownPlusNewListItemBelow)", buffer = true, ft = "markdown", mode = "n" },
       { "O", "<Plug>(MarkdownPlusNewListItemAbove)", buffer = true, ft = "markdown", mode = "n" },
