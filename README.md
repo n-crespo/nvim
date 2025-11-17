@@ -12,7 +12,7 @@ Comes in two varieties:
 
 ## Cool Things
 
-- zoxide integration in [snacks.picker](./lua/plugins/picker.lua)
+- zoxide integration with [snacks.picker](./lua/plugins/picker.lua)
 - sensible [markdown functionality](./lua/plugins/markdown.lua)
 - macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
 - these [keymaps](./lua/config/keymaps.lua)
@@ -46,7 +46,7 @@ bob use nightly
 - `fd`
 - `npm` (for some language servers)
 - `wslu` (if using WSL)
-- `xclip` (if using WSL)
+- `xsel` (if using WSL)
 
 ## Usage
 
@@ -65,3 +65,5 @@ Open Neovim (if using custom install path):
 ```bash
 NVIM_APPNAME=n-crespo/nvim-config/ nvim
 ```
+
+[snackspicker]: ./lua/plugins/picker.lua
