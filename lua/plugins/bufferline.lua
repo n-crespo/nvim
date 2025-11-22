@@ -43,6 +43,7 @@ return {
   keys = {
     { "<leader>bl", nil },
     { "<leader>br", nil },
+    { "<leader>bp", nil },
     { "<leader>bP", nil },
     { "<C-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
     { "<C-S-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
