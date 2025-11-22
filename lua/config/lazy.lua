@@ -35,7 +35,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.typescript", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.typst", cond = full_config },
     { import = "lazyvim.plugins.extras.linting.eslint", cond = full_config },
-    { import = "lazyvim.plugins.extras.util.rest", cond = full_config },
     -- { import = "lazyvim.plugins.extras.dap.core", cond = full_config },
     -- { import = "lazyvim.plugins.extras.ai.copilot-chat", cond = full_config },
     -- { import = "lazyvim.plugins.extras.ui.smear-cursor", cond = full_config },
