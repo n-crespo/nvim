@@ -13,7 +13,7 @@ return {
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
         keys = {
           { icon = " ", key = "e", desc = "Explore", action = "<leader>e" },
-          { icon = " ", key = "o", desc = "Old Files", action = ":lua Snacks.dashboard.pick('recent')" },
+          { icon = " ", key = "o", desc = "Open a File", action = ":lua Snacks.dashboard.pick('smart')" },
           {
             icon = " ",
             key = "c",
