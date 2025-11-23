@@ -10,7 +10,7 @@ return {
     keys = {
       { "o", "<Plug>(MarkdownPlusNewListItemBelow)", buffer = true, ft = "markdown", mode = "n" },
       { "O", "<Plug>(MarkdownPlusNewListItemAbove)", buffer = true, ft = "markdown", mode = "n" },
-      { "<CR>", "<Plug>(MarkdownPlusListEnter)<M-BS>\n", buffer = true, ft = "markdown", mode = "i" },
+      { "<CR>", "<Plug>(MarkdownPlusListEnter)", buffer = true, ft = "markdown", mode = "i" },
       { "<BS>", "<Plug>(MarkdownPlusListBackspace)", buffer = true, ft = "markdown", mode = "i" },
       { "<tab>", "<Plug>(MarkdownPlusListIndent)", buffer = true, ft = "markdown", mode = "i" },
       { "<S-Tab>", "<Plug>(MarkdownPlusListOutdent)", buffer = true, ft = "markdown", mode = "i" },
