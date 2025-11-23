@@ -86,7 +86,7 @@ return {
             ["<Esc>"] = "close",
             ["i"] = "focus_input",
           },
-          wo = { number = false, statuscolumn = " " },
+          -- wo = { number = false, statuscolumn = " " },
         },
       },
     },
