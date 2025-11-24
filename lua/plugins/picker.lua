@@ -133,7 +133,6 @@ return {
     { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info", },
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume", },
     { "<leader>s;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
-    { "<leader>/", function() Snacks.picker.grep({ layout = "vertical" }) end, desc = "Grep", },
     { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep (current word)", },
     { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
     { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find File" },
