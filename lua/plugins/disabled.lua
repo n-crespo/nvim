@@ -2,18 +2,18 @@
 return {
   {
     "MagicDuck/grug-far.nvim",
-    enabled = false,
+    cond = false,
   },
   {
     "nvim-neo-tree/neo-tree.nvim", -- mini files better
-    enabled = false,
+    cond = false,
   },
   {
     "folke/tokyonight.nvim",
-    enabled = false,
+    cond = false,
   },
   {
     "catppuccin", -- i don't use this
-    enabled = false,
+    cond = false,
   },
 }

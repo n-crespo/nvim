@@ -1,6 +1,5 @@
 return {
   "folke/flash.nvim",
-  enabled = true,
   event = function()
     return "LazyFile"
   end,

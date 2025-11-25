@@ -48,9 +48,9 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 return {
   "olimorris/codecompanion.nvim",
-  -- enabled = false,
   dependencies = { "saghen/blink.cmp" },
   cmd = "CodeCompanion", -- allow the abbreviation :cc to load the plugin
+  cond = vim.g.full_config,
   config = true,
   init = function()
     vim.api.nvim_create_autocmd({ "User" }, {
