@@ -67,7 +67,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Sync pasting with local clipboard while ssh-ed",
   callback = function()
     if os.getenv("SSH_CONNECTION") ~= nil then
-      vim.highlight.on_yank()
+      -- vim.highlight.on_yank()
       local copy_to_unnamedplus = require("vim.ui.clipboard.osc52").copy("+")
       copy_to_unnamedplus(vim.v.event.regcontents)
       local copy_to_unnamed = require("vim.ui.clipboard.osc52").copy("*")
