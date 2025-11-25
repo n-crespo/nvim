@@ -3,9 +3,9 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        ["html"] = { "superhtml" },
         ["c"] = { "clang-format" },
-        ["zsh"] = { "beautysh" },
+        -- ["html"] = { "superhtml" },
+        -- ["zsh"] = { "beautysh" },
       },
       formatters = {
         beautysh = {
@@ -18,7 +18,7 @@ return {
     "mason-org/mason.nvim",
     event = "LspAttach",
     opts = {
-      ensure_installed = { "superhtml" },
+      -- ensure_installed = { "superhtml" },
     },
   },
 }
