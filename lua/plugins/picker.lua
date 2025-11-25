@@ -135,7 +135,7 @@ return {
     { "<leader>s;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
     { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep (current word)", },
     { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-    { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find File" },
+    -- { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find File" },
     -- { "<M-p>", function() Snacks.picker.files({ layout = "vscode", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Pick", },
     { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
     -- stylua: ignore end
@@ -146,8 +146,20 @@ return {
         ---@diagnostic disable-next-line: missing-fields
         Snacks.picker.files({ cwd = dir, title = "Files (buffer dir)" })
       end,
+      desc = "Files (buffer dir)",
     },
-    desc = "Files (buffer dir)",
+    {
+      "<leader><space>",
+      function()
+        if vim.g.full_config then
+          Snacks.picker.smart()
+        else
+          local dir = vim.fn.expand("%:p:h")
+          ---@diagnostic disable-next-line: missing-fields
+          Snacks.picker.files({ cwd = dir, title = "Files (buffer dir)" })
+        end
+      end,
+    },
     {
       "<leader>F",
       function()
