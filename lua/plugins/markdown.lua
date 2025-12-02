@@ -52,6 +52,9 @@ return {
         checked = { icon = "󰄲" },
         unchecked = { icon = "󰄱" },
       },
+      pipe_table = {
+        border_virtual = true,
+      },
     },
     config = function(_, opts)
       require("render-markdown").setup(opts)
