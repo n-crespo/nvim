@@ -62,6 +62,7 @@ map("n", "<leader>9", "<cmd>silent! tabn 9<cr>", { silent = true })
 
 -- splits/windows
 map("n", "<F25>", "<C-h>", { remap = true }) -- ugly remap for windows since it can't differentiate <C-h> and <BS>
+map("n", "<C-F1>", "<C-h>", { remap = true }) -- ugly remap for windows since it can't differentiate <C-h> and <BS>
 map("n", "<leader>wr", "<C-w>r", { desc = "Rotate window" })
 map("n", "|", "<cmd>vsplit<cr>", { remap = true, silent = true, desc = "Vertical split" })
 map("n", "_", "<cmd>split<cr>", { remap = true, silent = true, desc = "Horizontal split" })
