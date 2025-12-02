@@ -12,8 +12,6 @@ return {
       { "O", "<Plug>(MarkdownPlusNewListItemAbove)", buffer = true, ft = "markdown", mode = "n" },
       { "<CR>", "<Plug>(MarkdownPlusListEnter)", buffer = true, ft = "markdown", mode = "i" },
       { "<BS>", "<Plug>(MarkdownPlusListBackspace)", buffer = true, ft = "markdown", mode = "i" },
-      { "<tab>", "<Plug>(MarkdownPlusListIndent)", buffer = true, ft = "markdown", mode = "i" },
-      { "<S-Tab>", "<Plug>(MarkdownPlusListOutdent)", buffer = true, ft = "markdown", mode = "i" },
       { "<C-c>", "<Plug>(MarkdownPlusToggleCheckbox)", buffer = true, ft = "markdown" },
       { "<C-i>", "<Plug>(MarkdownPlusItalic)", buffer = true, ft = "markdown", mode = { "v" } },
       { "<C-b>", "<Plug>(MarkdownPlusBold)", buffer = true, ft = "markdown", mode = { "n", "v" } },
