@@ -10,7 +10,7 @@ return {
             { "<leader>cA", false, mode = "n" },
             { "<leader>cc", false, mode = "n" },
             { "<leader>cC", false, mode = "n" },
-            { "<leader>cR", false, mode = "n" },
+            -- { "<leader>cR", false, mode = "n" },
             { "<M-n>", false, mode = "n" },
             { "<M-p>", false, mode = "n" },
             -- { "]]", false, mode = "n" },
