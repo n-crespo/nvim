@@ -13,12 +13,12 @@ return {
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
         keys = {
           { icon = " ", key = "e", desc = "Explore", action = "<leader>e" },
-          { icon = " ", key = "o", desc = "Open a File", action = ":lua Snacks.dashboard.pick('smart')" },
+          { icon = " ", key = "o", desc = "Open a File", action = ":lua LazyVim.pick('oldfiles')()" },
           {
             icon = " ",
             key = "c",
             desc = "Config",
-            action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+            action = ":lua LazyVim.pick.config_files()()",
           },
           { icon = " ", key = "s", desc = "Restore Session", section = "session" },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
