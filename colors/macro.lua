@@ -492,7 +492,7 @@ local hlgroups = {
 
   PVSBlue = { fg = "#007ad3" },
 
-  BufferLineFill = { bg = "#0a0a0a" },
+  BufferLineFill = { bg = normalBg },
   -- }}}2
 }
 -- }}}1
