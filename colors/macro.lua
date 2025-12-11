@@ -232,7 +232,7 @@ local hlgroups = {
   ["@comment.todo.unchecked"] = { fg = dimRed },
   ["@markup.link.label.markdown_inline"] = { link = "htmlLink" },
   ["@markup.link.url.markdown_inline"] = { fg = ashGrey, underline = true },
-  -- below are overriden by todo-comments
+  -- below are overridden by todo-comments
   -- ["@comment.error"] = { bg = c_lotusRed1, fg = c_macroFg0, bold = true },
   -- ["@comment.warning"] = { bg = c_roninYellow, fg = c_waveBlue0, bold = true },
   ["@variable"] = { fg = normalFg },
