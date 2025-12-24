@@ -27,11 +27,10 @@ if vim.g.neovide then
 
   -- animation timings (shorter = snappier)
   -- at 120Hz, 0.06 - 0.08s feels instant but smooth
-  vim.g.neovide_cursor_animation_length = 0.07
-  vim.g.neovide_cursor_trail_size = 0.2 -- smaller trail reduces visual clutter/lag feel
-  vim.g.neovide_cursor_animate_command_line = false
-  vim.g.neovide_cursor_smooth_blink = true
-  vim.g.neovide_no_multigrid = true
+  -- vim.g.neovide_cursor_animation_length = 0.07
+  -- vim.g.neovide_cursor_trail_size = 0.2 -- smaller trail reduces visual clutter/lag feel
+  -- vim.g.neovide_cursor_animate_command_line = false
+  -- vim.g.neovide_cursor_smooth_blink = true
 
   -- padding
   vim.g.neovide_padding_top = 7
@@ -45,6 +44,16 @@ if vim.g.neovide then
   vim.g.neovide_floating_corner_radius = 0.2
   vim.g.neovide_show_border = true
   vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_throttled = true
+
+  -- disable cursor animation
+  vim.g.neovide_cursor_animation_length = 0
+  vim.g.neovide_cursor_trail_size = 0
+  vim.g.neovide_cursor_animate_command_line = true
+  vim.g.neovide_cursor_animate_in_insert_mode = true
+  vim.g.neovide_cursor_smooth_blink = true
+
+  -- disable smooth scrolling
+  vim.g.neovide_scroll_animation_length = 0
+  vim.g.neovide_scroll_animation_far_lines = 0
 end
 return {}
