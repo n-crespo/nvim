@@ -4,10 +4,6 @@ if vim.g.neovide then
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * factor
   end
 
-  -- These are optional, here’s the full reference.
-  vim.g.neovide_scroll_animation_length = 0.1
-  vim.g.neovide_hide_mouse_when_typing = true
-
   -- macOS-specific, see if you like it compared to neovide_fullscreen.
   vim.g.neovide_fullscreen = false
 
@@ -34,13 +30,15 @@ if vim.g.neovide then
 
   -- Helper function for transparency formatting
   -- g:neovide_opacity should be 0 if you want to unify transparency of content and title bar.
-  vim.g.neovide_opacity = 1
-  vim.g.transparency = 0
-  vim.g.neovide_background_color = require("snacks").util.color("Normal", "bg")
-  vim.g.neovide_title_background_color = require("snacks").util.color("Normal", "bg")
+  -- vim.g.neovide_opacity = 1
+  -- vim.g.transparency = 0
+  vim.g.neovide_background_color = "#0F0F0F"
+  vim.g.neovide_hide_mouse_when_typing = true
+
+  vim.g.neovide_title_background_color = "#0F0F0F"
   vim.g.neovide_floating_corner_radius = 0.2
   vim.g.neovide_show_border = true
-  vim.g.experimental_layer_grouping = true
+  vim.g.experimental_layer_grouping = false
   vim.g.neovide_refresh_rate = 120
   vim.g.neovide_refresh_rate_idle = 5
   vim.g.neovide_cursor_animation_length = 0.1
