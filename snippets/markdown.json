@@ -6,7 +6,7 @@
   },
   "Insert code block": {
     "prefix": "cb",
-    "body": ["```${1}", "$0", "```"],
+    "body": ["```${1}", "```"],
     "description": "Insert fenced code block"
   },
   "Insert arrow": {
