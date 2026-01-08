@@ -54,6 +54,10 @@ return {
       pipe_table = {
         border_virtual = true,
       },
+      completions = {
+        lsp = { enabled = true },
+        blink = { enabled = true },
+      },
     },
     config = function(_, opts)
       require("render-markdown").setup(opts)
