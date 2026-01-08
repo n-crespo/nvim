@@ -19,6 +19,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" }, -- if you use standalone mini plugins
     ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
     opts = {
       render_modes = { "n", "c", "i", "\x16", "t", "no", "V", "nov", "noV", "vs", "v" },
@@ -65,6 +66,7 @@ return {
         name = "Render Markdown",
         get = require("render-markdown").get,
         set = require("render-markdown").set,
+        ft = "markdown",
       }):map("<leader>um")
     end,
   },
