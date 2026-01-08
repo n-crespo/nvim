@@ -37,6 +37,7 @@ return {
         sign = false,
         right_pad = 1,
         left_pad = 1,
+        conceal_delimiters = false,
       },
       heading = {
         setext = false,
