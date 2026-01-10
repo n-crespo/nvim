@@ -51,6 +51,9 @@ return {
       checkbox = {
         checked = { icon = "󰄲" },
         unchecked = { icon = "󰄱" },
+        custom = {
+          todo = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+        },
       },
       pipe_table = {
         border_virtual = true,
