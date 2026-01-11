@@ -42,6 +42,7 @@ return {
     -- HACK: prevents Noice from sending "cleanup" signals on exit that resize
     -- terminal (related to windows terminal bug)
     local original_disable = noice.disable
+    ---@diagnostic disable-next-line: duplicate-set-field
     noice.disable = function()
       if vim.v.exiting ~= vim.NIL then
         return
