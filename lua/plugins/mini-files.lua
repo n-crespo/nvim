@@ -417,7 +417,6 @@ return {
         end, "Sort by Name")
 
         map("=", safe_synchronize, "Synchronize & Clear Cache")
-        map("<esc>", mini_files.close, "Close")
       end,
     })
   end,
