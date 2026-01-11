@@ -12,6 +12,19 @@ return {
       mini = { win_options = { winblend = 0 } }, -- transparent lsp progress window
     },
     lsp = {
+      progress = {
+        format = {
+          "({data.progress.percentage}%) ",
+          { "{spinner} ", hl_group = "NoiceLspProgressSpinner" },
+          { "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
+          { "{data.progress.client} ", hl_group = "NoiceLspProgressClient" },
+        },
+        format_done = {
+          { "✔  ", hl_group = "NoiceLspProgressSpinner" },
+          { "{data.progress.title} ", hl_group = "NoiceLspProgressTitle" },
+          { "{data.progress.client} ", hl_group = "NoiceLspProgressClient" },
+        },
+      },
       hover = { enabled = true, silent = true },
       signature = { enabled = false },
       documentation = {
