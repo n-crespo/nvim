@@ -1,45 +1,45 @@
 -- called bufferline but i use it for tabs
 
-local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
-
-vim.api.nvim_create_user_command("BufferLineRename", function(opts)
-  local key = "BufferLineCustomName" .. vim.api.nvim_get_current_tabpage()
-  vim.g[key] = opts.args ~= "" and opts.args or nil
-  vim.api.nvim_exec_autocmds("User", { pattern = "BufferLineRenamed" })
-end, { nargs = "?", desc = "Rename the current tab" })
-
-vim.api.nvim_create_autocmd("TabClosed", {
-  desc = "Clear custom tabnames on tab close",
-  callback = function(args)
-    vim.g["BufferLineCustomName" .. args.file] = nil
-  end,
-})
-
 return {
   "akinsho/bufferline.nvim",
-  event = "VeryLazy",
-  opts = {
-    options = {
-      style_preset = require("bufferline").style_preset.no_italic,
-      mode = "tabs",
-      tab_size = 22,
-      enforce_regular_tabs = false,
-      truncate_names = false,
-      always_show_bufferline = true,
-      show_duplicate_prefix = false,
-      show_close_icon = false,
-      name_formatter = function(buf)
-        local name = vim.g["BufferLineCustomName" .. buf.tabnr]
-        return (name and name ~= "" and name) or (buf.name == "" and ":checkhealth") or buf.name
+  event = "BufEnter",
+  opts = function()
+    local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
+    vim.api.nvim_create_user_command("BufferLineRename", function(opts)
+      local key = "BufferLineCustomName" .. vim.api.nvim_get_current_tabpage()
+      vim.g[key] = opts.args ~= "" and opts.args or nil
+      vim.api.nvim_exec_autocmds("User", { pattern = "BufferLineRenamed" })
+    end, { nargs = "?", desc = "Rename the current tab" })
+
+    vim.api.nvim_create_autocmd("TabClosed", {
+      desc = "Clear custom tabnames on tab close",
+      callback = function(args)
+        vim.g["BufferLineCustomName" .. args.file] = nil
       end,
-      custom_filter = function(buf_number)
-        local ft = vim.api.nvim_get_option_value("filetype", { buf = buf_number })
-        local bt = vim.api.nvim_get_option_value("buftype", { buf = buf_number })
-        local bh = vim.api.nvim_get_option_value("bufhidden", { buf = buf_number })
-        return ft == "checkhealth" or (not ignored_bt[bt] and bh == "")
-      end,
-    },
-  },
+    })
+    return {
+      options = {
+        style_preset = require("bufferline").style_preset.no_italic,
+        mode = "tabs",
+        tab_size = 22,
+        enforce_regular_tabs = false,
+        truncate_names = false,
+        always_show_bufferline = true,
+        show_duplicate_prefix = false,
+        show_close_icon = false,
+        name_formatter = function(buf)
+          local name = vim.g["BufferLineCustomName" .. buf.tabnr]
+          return (name and name ~= "" and name) or (buf.name == "" and ":checkhealth") or buf.name
+        end,
+        custom_filter = function(buf_number)
+          local ft = vim.api.nvim_get_option_value("filetype", { buf = buf_number })
+          local bt = vim.api.nvim_get_option_value("buftype", { buf = buf_number })
+          local bh = vim.api.nvim_get_option_value("bufhidden", { buf = buf_number })
+          return ft == "checkhealth" or (not ignored_bt[bt] and bh == "")
+        end,
+      },
+    }
+  end,
   keys = {
     { "<leader>bl", nil },
     { "<leader>br", nil },
