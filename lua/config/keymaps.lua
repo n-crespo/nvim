@@ -141,7 +141,7 @@ map("s", "<BS>", "<C-O>c", { remap = true }) -- backspace to clear snippets
 -- in insert mode auto-correct the last misspelled word
 map("i", "<C-l>", "<c-g>u<Esc>[s1z=`]a<c-g>u", { desc = "Auto correct", silent = true })
 
--- easier navgiation in cmdline
+-- easier navigation in cmdline
 map("c", "<C-a>", "<Home>")
 map("c", "<C-e>", "<End>")
 
@@ -175,7 +175,7 @@ map({ "n", "v" }, "+", "<c-a>", { noremap = true, silent = true })
 map({ "n", "v" }, "-", "<C-x>", { noremap = true, silent = true })
 
 -- : (easier to hit when using in combination with <C-k>)
-map({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Commmand mode" })
+map({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Command mode" })
 
 -- allow changing and deleting without overriding current paste registers
 -- in other words automatically delete or change to the void register
@@ -250,7 +250,7 @@ map({ "i", "n" }, "", "<Nop>") -- prev
 map({ "i", "n" }, "", "<Nop>") -- skip
 
 -- note: these will work in every filetype
-local abbrevations = {
+local abbreviations = {
   { "dont", "don't" },
   { "shouldnt", "shouldn't" },
   { "cant", "can't" },
@@ -261,7 +261,7 @@ local abbrevations = {
   { "thats", "that's" },
   { "itll", "it'll" },
 }
-for _, v in ipairs(abbrevations) do
+for _, v in ipairs(abbreviations) do
   vim.cmd(string.format("iabbrev %s %s", v[1], v[2]))
 end
 
