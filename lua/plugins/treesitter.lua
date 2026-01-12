@@ -30,7 +30,6 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "LazyFile",
     opts = {
       indent = { enable = true },
       ensure_installed = {
