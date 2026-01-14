@@ -400,8 +400,8 @@ return {
         vim.keymap.set("n", "<C-u>", "<C-u>", { remap = false, buffer = b })
 
         -- split keymaps
-        map_split(b, opts.mappings and opts.mappings.go_in_horizontal or "<C-w>s", "horizontal", false)
-        map_split(b, opts.mappings and opts.mappings.go_in_vertical or "<C-w>v", "vertical", false)
+        map_split(b, opts.mappings and opts.mappings.go_in_horizontal or "_", "horizontal", false)
+        map_split(b, opts.mappings and opts.mappings.go_in_vertical or "|", "vertical", false)
         map_split(b, opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S", "horizontal", true)
         map_split(b, opts.mappings and opts.mappings.go_in_vertical_plus or "<C-w>V", "vertical", true)
 
