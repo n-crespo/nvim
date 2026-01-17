@@ -2,7 +2,7 @@ return {
   "folke/snacks.nvim",
   opts = {
     dashboard = {
-      width = 45,
+      width = 50,
       preset = {
         header = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
