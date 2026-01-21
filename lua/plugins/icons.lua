@@ -25,6 +25,7 @@ return {
       },
       filetype = {
         cf = { glyph = "", hl = "MiniIconsBlue" },
+        mermaid = { glyph = " ", hl = "MiniIconsBlue" },
         Rmd = { glyph = "", hl = "MiniIconsBlue" },
         rmd = { glyph = "", hl = "MiniIconsBlue" },
         autohotkey = { glyph = "", hl = "MiniIconsGreen" },
