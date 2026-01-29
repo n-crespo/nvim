@@ -1,10 +1,3 @@
-vim.api.nvim_create_user_command("Colorizer", function()
-  if package.loaded["colorizer"] then
-    require("colorizer").reload_all_buffers()
-  end
-  require("colorizer").attach_to_buffer(0)
-end, { nargs = 0 })
-
 return {
   "catgoose/nvim-colorizer.lua",
   cmd = "Colorizer",
