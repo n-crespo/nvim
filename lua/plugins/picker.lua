@@ -208,40 +208,5 @@ return {
       end,
       desc = "Jump with Zoxide",
     },
-    -- {
-    --   "<leader>sH",
-    --   function()
-    --     Snacks.picker.grep({
-    --       title = "Help Grep",
-    --       glob = { "**/doc/*.txt" },
-    --       rtp = true,
-    --       previewers = { file = { ft = "help" } },
-    --     })
-    --   end,
-    --   desc = "Help Grep",
-    -- },
-    -- {
-    --   "<leader>st",
-    --   function()
-    --     ---@diagnostic disable-next-line: undefined-field
-    --     Snacks.picker.todo_comments({
-    --       cwd = require("custom.utils").get_dir_with_fallback(),
-    --     })
-    --   end,
-    --   desc = "Todo",
-    -- },
-    -- {
-    --   "<leader>sT",
-    --   function()
-    --     local dir = require("custom.utils").get_dir_with_fallback()
-    --     ---@diagnostic disable-next-line: undefined-field
-    --     Snacks.picker.todo_comments({
-    --       title = "Todo Comments in " .. vim.fn.fnamemodify(dir, ":~"),
-    --       keywords = { "TODO", "FIX", "FIXME" },
-    --       cwd = dir,
-    --     })
-    --   end,
-    --   desc = "Todo/Fix/Fixme",
-    -- },
   },
 }
