@@ -1,6 +1,6 @@
 return {
   "chrisgrieser/nvim-origami",
-  event = "LazyFile",
+  event = "VeryLazy",
   opts = {
     foldtext = {
       lineCount = {
