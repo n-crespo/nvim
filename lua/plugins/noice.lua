@@ -3,7 +3,7 @@
 
 return {
   "folke/noice.nvim",
-  event = "BufEnter", -- required to avoid weird terminal resizing
+  lazy = false,
   opts = {
     presets = { lsp_doc_border = true },
     cmdline = { view = "cmdline" },
