@@ -1,7 +1,7 @@
 return {
   "nvim-mini/mini.move",
   event = function()
-    return "LazyFile"
+    return {}
   end,
   vscode = true,
   opts = {
