@@ -93,7 +93,7 @@ return {
       vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
       local opts = {
         app = "webview",
-        theme = "dark",
+        theme = "light",
         close_on_bdelete = false,
       }
       if vim.fn.has("wsl") == 1 then
