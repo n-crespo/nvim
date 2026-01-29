@@ -1,6 +1,5 @@
 return {
   "ckolkey/ts-node-action",
-  event = "LazyFile",
   vscode = true,
   keys = {
     {
