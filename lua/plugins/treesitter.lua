@@ -1,22 +1,22 @@
--- establish custom filetype associations
-vim.filetype.add({
-  extension = {
-    pvs = "pvs",
-    prl = "pvs",
-    prf = "pvs",
-    jprf = "json",
-    kyx = "keymaeraX",
-    od = "objdump",
-    objdump = "objdump",
-  },
-  pattern = {
-    [".*%.service"] = "systemd",
-    ["%.objdump$"] = "objdump",
-  },
-  filename = { ["pvs-strategies"] = "lisp" },
-})
-vim.treesitter.language.register("erlang", "pvs")
-vim.treesitter.language.register("haskell", "keymaeraX")
+-- establish custom filetype associations (this takes like 4ms)
+-- vim.filetype.add({
+--   extension = {
+--     pvs = "pvs",
+--     prl = "pvs",
+--     prf = "pvs",
+--     jprf = "json",
+--     kyx = "keymaeraX",
+--     od = "objdump",
+--     objdump = "objdump",
+--   },
+--   pattern = {
+--     [".*%.service"] = "systemd",
+--     ["%.objdump$"] = "objdump",
+--   },
+--   filename = { ["pvs-strategies"] = "lisp" },
+-- })
+-- vim.treesitter.language.register("erlang", "pvs")
+-- vim.treesitter.language.register("haskell", "keymaeraX")
 
 return {
   {
