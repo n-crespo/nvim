@@ -1,5 +1,5 @@
 return {
   "monkoose/matchparen.nvim",
-  event = "LazyFile",
+  event = "VeryLazy",
   opts = {},
 }
