@@ -486,6 +486,7 @@ local hlgroups = {
   RenderMarkdownH4Bg = { link = "@markup.heading.4.markdown" },
   RenderMarkdownH5Bg = { link = "@markup.heading.5.markdown" },
   RenderMarkdownH6Bg = { link = "@markup.heading.6.markdown" },
+  RenderMarkdownInlineHighlight = { bg = nil, underline = true },
 
   -- for lualine
   HostNameIcon = { fg = ashGrey, bg = nil },
