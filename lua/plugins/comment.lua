@@ -57,7 +57,6 @@ end
 
 return {
   "numToStr/Comment.nvim",
-  event = "LazyFile",
   vscode = true,
   opts = {},
   keys = {
