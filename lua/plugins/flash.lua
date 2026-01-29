@@ -1,7 +1,7 @@
 return {
   "folke/flash.nvim",
   event = function()
-    return "LazyFile"
+    return {}
   end,
   opts = {
     search = {
