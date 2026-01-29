@@ -1,5 +1,8 @@
 return {
   "folke/todo-comments.nvim",
+  event = function()
+    return {}
+  end,
   vscode = true,
   opts = {
     highlight = {
