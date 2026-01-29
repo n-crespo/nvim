@@ -1,6 +1,6 @@
 return {
   "nvim-mini/mini.pairs",
   event = function()
-    return { "LazyFile", "CmdlineEnter" }
+    return { "InsertEnter", "CmdlineEnter" }
   end,
 }
