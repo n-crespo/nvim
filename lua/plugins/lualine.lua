@@ -146,6 +146,7 @@ return {
         if pretty_path ~= "" then pretty_path = "\n" .. pretty_path .. "" end
         vim.notify("[" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~") .. "]" .. pretty_path)
       end,
+      desc = "Print current file name",
     },
   },
 }
