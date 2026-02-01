@@ -952,6 +952,7 @@ return {
     dependencies = { "nvim-mini/mini.icons" },
     init = function()
       vim.g.trouble_lualine = false
+      vim.g.lualine_laststatus = 3
     end,
     opts = function()
       local icons = LazyVim.config.icons
