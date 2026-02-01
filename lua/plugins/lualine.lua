@@ -1,8 +1,9 @@
-vim.g.trouble_lualine = false
-
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-mini/mini.icons" },
+  init = function()
+    vim.g.trouble_lualine = false
+  end,
   opts = function()
     local icons = LazyVim.config.icons
     local opts = {
