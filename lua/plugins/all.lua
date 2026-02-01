@@ -1418,9 +1418,6 @@ return {
   },
   {
     "nvim-mini/mini.move",
-    event = function()
-      return {}
-    end,
     vscode = true,
     opts = {
       mappings = {
@@ -1451,7 +1448,7 @@ return {
         function()
           require("mini.move").move_line("right")
         end,
-        mode = "i",
+        mode = { "n", "i", "v" },
         desc = "Indent line",
       },
       {
@@ -1459,7 +1456,7 @@ return {
         function()
           require("mini.move").move_line("left")
         end,
-        mode = "i",
+        mode = { "n", "i", "v" },
         desc = "Un-indent line",
       },
     },
