@@ -21,6 +21,14 @@ return {
   },
   keys = {
     {
+      "<C-P>",
+      desc = "Move line up",
+    },
+    {
+      "<C-N>",
+      desc = "Move line down",
+    },
+    {
       "<M-]>",
       function()
         require("mini.move").move_line("right")
