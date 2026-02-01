@@ -115,3 +115,25 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
+
+-- from snacks.lua
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "scratch",
+  callback = function()
+    vim.bo.filetype = "markdown"
+    vim.b.autoformat = false
+  end,
+})
+
+local formats =
+  { "png", "jpg", "jpeg", "gif", "bmp", "webp", "tiff", "heic", "avif", "mp4", "mov", "avi", "mkv", "webm", "pdf" }
+vim.api.nvim_create_autocmd({ "FileType", "BufReadCmd" }, {
+  desc = "Set image filetypes",
+  pattern = "*." .. table.concat(formats, ",*."),
+  callback = function(e)
+    vim.api.nvim_set_option_value("filetype", "image", { buf = e.buf })
+    vim.api.nvim_set_option_value("modifiable", false, { buf = e.buf })
+    vim.api.nvim_set_option_value("modified", false, { buf = e.buf })
+    vim.api.nvim_set_option_value("swapfile", false, { buf = e.buf })
+  end,
+})
