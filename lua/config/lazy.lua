@@ -42,7 +42,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.java", cond = full_config },
 
     -- this enables user define plugins, from ../plugins/
-    { import = "plugins" },
+    { import = "plugins.all" },
   },
   defaults = {
     lazy = true,
