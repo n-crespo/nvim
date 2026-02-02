@@ -1551,6 +1551,13 @@ return {
       return {}
     end,
     keys = {
+      {
+        "<leader>S",
+        function()
+          require("persistence").load({ last = true })
+        end,
+        desc = "Restore Last Session",
+      },
       { "<leader>qs", nil },
       { "<leader>ql", nil },
       { "<leader>qd", nil },
