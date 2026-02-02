@@ -130,7 +130,9 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
-    event = "BufEnter",
+    event = function()
+      return "LazyFile"
+    end,
     opts = function()
       local ignored_bt = { prompt = true, nofile = true, terminal = true, quickfix = true }
       vim.api.nvim_create_user_command("BufferLineRename", function(opts)
