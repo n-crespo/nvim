@@ -1182,7 +1182,7 @@ return {
       "fmorroni/peek.nvim",
       branch = "my-main",
       cond = vim.g.full_config,
-      ft = "markdown",
+      cmd = { "PeekOpen", "PeekClose" },
       build = "deno task --quiet build:fast",
       dependencies = {
         {
