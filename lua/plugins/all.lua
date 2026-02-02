@@ -1398,7 +1398,7 @@ return {
           end
 
           map(opts.mappings and opts.mappings.toggle_hidden or "g.", toggle_dotfiles, "Toggle hidden files")
-          map(opts.mappings and opts.mappings.go_here or "gH", files_set_cwd)
+          map(opts.mappings and opts.mappings.go_here or "gH", files_set_cwd, "Go here (cwd)")
           map(opts.mappings and opts.mappings.go_config or "gd", function()
             mini_files.open(vim.api.nvim_get_runtime_file("", true)[1])
           end, "Go to config directory")
