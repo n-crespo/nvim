@@ -1378,6 +1378,7 @@ return {
         },
         mappings = {
           go_in_plus = "<CR>",
+          go_out_plus = "",
           go_in_horizontal_plus = "_",
           go_in_vertical_plus = "|",
           go_home = "gh",
