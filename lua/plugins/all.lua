@@ -1335,6 +1335,28 @@ return {
         mini_files.refresh({ content = { filter = new_filter } })
       end
 
+      -- open file in new tab
+      local map_tab = function(buf_id, lhs)
+        local rhs = function()
+          local cur_entry_path = MiniFiles.get_fs_entry().path
+
+          -- ignore if directory
+          local stat = vim.loop.fs_stat(cur_entry_path)
+          if stat and stat.type == "directory" then
+            return
+          end
+
+          if cur_entry_path ~= nil then
+            mini_files.close()
+            -- create new tab and capture its window id
+            vim.cmd("tabedit " .. cur_entry_path)
+          end
+        end
+
+        local desc = "Open in new tab"
+        vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
+      end
+
       -- for setting up mappings to open file in split
       local map_split = function(buf_id, lhs, direction, close_on_file)
         local rhs = function()
@@ -1412,10 +1434,9 @@ return {
           vim.keymap.set("n", "<C-u>", "<C-u>", { remap = false, buffer = b })
 
           -- split keymaps
-          map_split(b, opts.mappings and opts.mappings.go_in_horizontal or "_", "horizontal", false)
-          map_split(b, opts.mappings and opts.mappings.go_in_vertical or "|", "vertical", false)
-          map_split(b, opts.mappings and opts.mappings.go_in_horizontal_plus or "<C-w>S", "horizontal", true)
-          map_split(b, opts.mappings and opts.mappings.go_in_vertical_plus or "<C-w>V", "vertical", true)
+          map_split(b, "_", "horizontal", false)
+          map_split(b, "|", "vertical", false)
+          map_tab(b, "<S-CR>")
         end,
       })
     end,
