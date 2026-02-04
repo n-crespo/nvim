@@ -420,30 +420,30 @@ local hlgroups = {
   NoiceMini = { link = "Comment" },
 
   -- nvim-dap-ui (one day I'll use this)
-  DapUIBreakpointsCurrentLine = { bold = true, fg = normalFg },
-  DapUIBreakpointsDisabledLine = { link = "Comment" },
-  DapUIBreakpointsInfo = { fg = dimBlue },
-  DapUIBreakpointsPath = { link = "Directory" },
-  DapUIDecoration = { fg = brightPurple },
-  DapUIFloatBorder = { fg = brightPurple },
-  DapUILineNumber = { fg = brightTeal },
-  DapUIModifiedValue = { bold = true, fg = brightTeal },
-  DapUIPlayPause = { fg = dimGreen },
-  DapUIRestart = { fg = dimGreen },
-  DapUIScope = { link = "Special" },
-  DapUISource = { fg = dimRed },
-  DapUIStepBack = { fg = brightTeal },
-  DapUIStepInto = { fg = brightTeal },
-  DapUIStepOut = { fg = brightTeal },
-  DapUIStepOver = { fg = brightTeal },
-  DapUIStop = { fg = dimRed },
-  DapUIStoppedThread = { fg = brightTeal },
-  DapUIThread = { fg = normalFg },
-  DapUIType = { link = "Type" },
-  DapUIUnavailable = { link = "Comment" },
-  DapUIWatchesEmpty = { fg = dimRed },
-  DapUIWatchesError = { fg = dimRed },
-  DapUIWatchesValue = { fg = normalFg },
+  -- DapUIBreakpointsCurrentLine = { bold = true, fg = normalFg },
+  -- DapUIBreakpointsDisabledLine = { link = "Comment" },
+  -- DapUIBreakpointsInfo = { fg = dimBlue },
+  -- DapUIBreakpointsPath = { link = "Directory" },
+  -- DapUIDecoration = { fg = brightPurple },
+  -- DapUIFloatBorder = { fg = brightPurple },
+  -- DapUILineNumber = { fg = brightTeal },
+  -- DapUIModifiedValue = { bold = true, fg = brightTeal },
+  -- DapUIPlayPause = { fg = dimGreen },
+  -- DapUIRestart = { fg = dimGreen },
+  -- DapUIScope = { link = "Special" },
+  -- DapUISource = { fg = dimRed },
+  -- DapUIStepBack = { fg = brightTeal },
+  -- DapUIStepInto = { fg = brightTeal },
+  -- DapUIStepOut = { fg = brightTeal },
+  -- DapUIStepOver = { fg = brightTeal },
+  -- DapUIStop = { fg = dimRed },
+  -- DapUIStoppedThread = { fg = brightTeal },
+  -- DapUIThread = { fg = normalFg },
+  -- DapUIType = { link = "Type" },
+  -- DapUIUnavailable = { link = "Comment" },
+  -- DapUIWatchesEmpty = { fg = dimRed },
+  -- DapUIWatchesError = { fg = dimRed },
+  -- DapUIWatchesValue = { fg = normalFg },
 
   -- lazy.nvim
   LazyProgressTodo = { link = "NonText" },
@@ -457,8 +457,8 @@ local hlgroups = {
   MiniFilesBorder = { link = "FloatBorder" },
 
   -- incline
-  InclineNormal = { link = "Pmenu" },
-  InclineNormalNC = { link = "Pmenu" },
+  -- InclineNormal = { link = "Pmenu" },
+  -- InclineNormalNC = { link = "Pmenu" },
 
   -- snacks indent/picker
   SnacksIndent = { fg = selectionBg },
@@ -470,8 +470,8 @@ local hlgroups = {
   SnacksPickerMatch = {},
 
   -- neocodeium
-  NeoCodeiumSuggestion = { link = "NonText" },
-  NeoCodeiumLabel = { fg = normalFg, bg = cursorlineBg },
+  -- NeoCodeiumSuggestion = { link = "NonText" },
+  -- NeoCodeiumLabel = { fg = normalFg, bg = cursorlineBg },
 
   -- treesitter context
   TreesitterContext = { bg = nil },
