@@ -1463,10 +1463,12 @@ return {
     keys = {
       {
         "<C-P>",
+        mode = { "n", "i", "v" },
         desc = "Move line up",
       },
       {
         "<C-N>",
+        mode = { "n", "i", "v" },
         desc = "Move line down",
       },
       {
