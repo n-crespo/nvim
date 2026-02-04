@@ -707,6 +707,7 @@ return {
           autohotkey = { glyph = "", hl = "MiniIconsGreen" },
           minifiles = { glyph = "", hl = "MiniIconsYellow" },
           objdump = { glyph = "󰘨" },
+          matlab = { glyph = "", hl = "MiniIconsRed" },
           c = { glyph = "", hl = "MiniIconsBlue" },
         },
       },
