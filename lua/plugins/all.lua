@@ -1727,8 +1727,9 @@ return {
     { "<leader>cl", function() Snacks.picker.lsp_config() end, desc = "Lsp Info", },
     { "<leader>sr", function() Snacks.picker.resume() end, desc = "Resume", },
     { "<leader>s;", function() Snacks.picker.commands({ layout = "vscode", title = "Commands" }) end, desc = "Commands", },
-    { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Grep (current word)", },
+    { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = LazyVim.root.get({ normalize = true }) }) end, desc = "Grep (current word)", },
     { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+    { "<leader>gs", function() Snacks.picker.git_status({cwd = LazyVim.root.get({ normalize = true })}) end, desc = "Git Status" },
     -- { "<leader><space>", function() Snacks.picker.smart() end, desc = "Find File" },
     -- { "<M-p>", function() Snacks.picker.files({ layout = "vscode", cwd = require("custom.utils").get_dir_with_fallback() }) end, desc = "Pick", },
     { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
@@ -1745,13 +1746,8 @@ return {
       {
         "<leader><space>",
         function()
-          if vim.g.full_config then
-            Snacks.picker.smart()
-          else
-            local dir = vim.fn.expand("%:p:h")
-            ---@diagnostic disable-next-line: missing-fields
-            Snacks.picker.files({ cwd = dir, title = "Files (buffer dir)" })
-          end
+          -- Snacks.picker.smart()
+          Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Picker" })
         end,
       },
       {
@@ -2002,7 +1998,7 @@ return {
         function()
           ---@diagnostic disable-next-line: undefined-field
           Snacks.picker.todo_comments({
-            cwd = require("custom.utils").get_dir_with_fallback(),
+            cwd = LazyVim.root.get({ normalize = true }),
           })
         end,
         desc = "Todo",
@@ -2012,7 +2008,7 @@ return {
         function()
           Snacks.picker.todo_comments({
             keywords = { "TODO", "FIX", "FIXME" },
-            cwd = require("custom.utils").get_dir_with_fallback(),
+            cwd = LazyVim.root.get({ normalize = true }),
           })
         end,
         desc = "Todo/Fix/Fixme",
