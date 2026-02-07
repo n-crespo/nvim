@@ -175,7 +175,9 @@ return {
       { "<leader>br", nil },
       { "<leader>bp", nil },
       { "<leader>bP", nil },
-      { "<C-tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
+      { "<C-CR>", "<cmd>tabedit<cr>", { desc = "New Tab" } },
+      { "<C-Space>", "<cmd>tabedit<cr>", { desc = "New Tab" } },
+      { "<C-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
       { "<C-S-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
       {
         "<leader>r",

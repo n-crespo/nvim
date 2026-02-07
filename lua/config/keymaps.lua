@@ -42,10 +42,6 @@ map("x", "Q", ":norm @@<cr>", { desc = "Play Q macro", silent = true })
 -- duplicate lines
 map("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" })
 
--- create a new tab
-map("n", "<C-space>", "<cmd>tabe<cr>", { desc = "New Tab" })
-map("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "New Tab" })
-
 -- close tabs/all buffers
 map("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
