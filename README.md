@@ -12,14 +12,16 @@ Comes in two varieties:
 
 ## Cool Things
 
-- zoxide integration with [snacks.picker](./lua/plugins/picker.lua)
-- sensible [markdown functionality](./lua/plugins/markdown.lua)
+> [!NOTE]
+> See all plugin configurations in [`lua/plugins/all.lua`](./lua/plugins/all.lua).
+
+- zoxide integration with snacks.picker
+- sensible markdown functionality
 - macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
-- these [keymaps](./lua/config/keymaps.lua)
+- some [keymaps](./lua/config/keymaps.lua)
   - `<C-S-C>`: show word/char count
-  - `<CR>`: follow links, `gf`, toggle checkboxes, etc
+  - `<CR>`: to follow all kinds of links
   - `B`, `E`: wrap-friendly version of `0` and `$`
-  - `w`, `e`, and `b`: improved with [spider](./lua/plugins/spider.lua)
 - these [auto commands](./lua/config/autocmds.lua)
   - pluginless autosave
   - trim trailing whitespace on save
@@ -36,17 +38,16 @@ bob use nightly
 ### Dependencies
 
 - `neovim` (>= 0.11 preferred)
+- `ripgrep`/`rg`
+- `fd`
+- `lazygit`
+- `node`/`npm` (for some language servers)
+- `wslu` (if using WSL)
+- `xsel` (if using WSL)
+- `clang`
 - `gcc`
 - `python`
 - `go`
-- `lazygit`
-- `clang`
-- `node`
-- `ripgrep`/`rg`
-- `fd`
-- `npm` (for some language servers)
-- `wslu` (if using WSL)
-- `xsel` (if using WSL)
 
 ## Usage
 
@@ -56,7 +57,7 @@ Clone the repository and install the plugins:
 # will not override current config
 git clone git@github.com:n-crespo/nvim-config ~/.config/n-crespo/nvim-config
 #                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#                           change this path to ~/.config/nvim to override current config
+#                    change this path to ~/.config/nvim to override current config
 NVIM_APPNAME=n-crespo/nvim-config/ nvim --headless +"Lazy! sync" +qa
 ```
 
