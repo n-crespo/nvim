@@ -9,7 +9,7 @@ return {
   --
 
   -- UI --
-  { -- set my custom colorscheme (colors/macro.lua)
+  { -- set my custom colorscheme (../../colors/macro.lua)
     "LazyVim/LazyVim",
     opts = { colorscheme = "macro" },
   },
@@ -25,7 +25,7 @@ return {
       local opts = {
         options = {
           padding = 0,
-          theme = "minimal",
+          theme = "minimal", -- use my theme in ../lualine/themes/minimal.lua
           always_divide_middle = true,
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
