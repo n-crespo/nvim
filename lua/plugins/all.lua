@@ -1,5 +1,13 @@
 return {
 
+  -- NOTE: search for a plugin's config with <leader>fP (or just browse this file)
+  --
+  -- Use `zMzr` to fold this file into more manageable chunks (this works well
+  -- with the nvim-origami plugin installed). My config is in one file because
+  -- file reads are SO SLOW on windows that having a scattered config slowed
+  -- down my startup.
+  --
+
   -- UI --
   { -- set my custom colorscheme (colors/macro.lua)
     "LazyVim/LazyVim",
