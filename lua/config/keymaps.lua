@@ -373,9 +373,8 @@ else
   map("n", "<leader>q", "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", { silent = true })
 end
 
--- no idea why this doesnt work
 -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
--- map("n", "<C-S-S>", function()
---   vim.cmd([[silent! %s/\r//g]])
---   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
--- end, { remap = false, desc = "Clean ^M", silent = true })
+vim.keymap.set("n", "<C-S-s>", function()
+  vim.cmd([[silent! %s/\r//g]])
+  vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
+end, { desc = "clean ^M" })
