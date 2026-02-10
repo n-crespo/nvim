@@ -522,6 +522,7 @@ return {
           map_split(b, "_", "horizontal", false)
           map_split(b, "|", "vertical", false)
           map_tab(b, "<S-CR>")
+          map_tab(b, "<C-CR>")
         end,
       })
     end,
