@@ -1460,8 +1460,9 @@ return {
   { -- lspconfig (virtual text)
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      -- space around dot in virt text diagnostic
-      opts.diagnostics.virtual_text.prefix = " " .. opts.diagnostics.virtual_text.prefix .. " "
+      -- adds padding after dot in virt text diagnostic works. well with no in
+      -- bg diagnostic virtual text hl (DiagnosticVirtualText{Error/Warn/Hint/Info})
+      opts.diagnostics.virtual_text.prefix = opts.diagnostics.virtual_text.prefix .. " "
       return opts
     end,
   },
