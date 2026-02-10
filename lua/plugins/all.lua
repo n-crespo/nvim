@@ -2159,6 +2159,10 @@ return {
     "MagicDuck/grug-far.nvim",
     cond = false,
   },
+  { -- tree style file explorer (ew)
+    "nvim-neo-tree/neo-tree.nvim", -- mini files better
+    cond = false,
+  },
   { -- unused colorscheme
     "folke/tokyonight.nvim",
     cond = false,
