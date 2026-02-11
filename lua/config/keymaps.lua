@@ -299,8 +299,6 @@ vim.api.nvim_create_user_command("Wordcount", function()
   )
 end, { desc = "Display word and character count of the current file" })
 
-map("n", "R", "<cmd>make<cr>")
-
 -----------------------
 -----== VSCODE ==------
 -----------------------
@@ -378,3 +376,33 @@ vim.keymap.set("n", "<C-S-s>", function()
   vim.cmd([[silent! %s/\r//g]])
   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
 end, { desc = "clean ^M" })
+
+-----------------------
+-----== RUNNER ==------
+-----------------------
+
+local runners = {
+  python = "python3",
+  javascript = "node",
+  lua = "lua",
+  go = "go run",
+  sh = "bash",
+  cpp = "g++ % -o %< && ./%<",
+}
+
+local function run_current_file()
+  local filetype = vim.bo.filetype
+  local filename = vim.fn.expand("%")
+  local cmd = runners[filetype]
+
+  if cmd then
+    -- create a terminal in a vertical split
+    vim.cmd("split | term " .. cmd .. " " .. filename)
+    -- enter insert mode automatically to see output/interact
+    vim.cmd("startinsert")
+  else
+    print("no runner configured for filetype: " .. filetype)
+  end
+end
+
+map("n", "R", run_current_file, { desc = "run current file in terminal" })
