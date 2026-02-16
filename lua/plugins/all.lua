@@ -1897,13 +1897,24 @@ return {
       keymaps = { enabled = false }, -- don't initialize default keymaps
     },
     keys = {
-      { "o", "<Plug>(MarkdownPlusNewListItemBelow)", buffer = true, ft = "markdown", mode = "n" },
-      { "O", "<Plug>(MarkdownPlusNewListItemAbove)", buffer = true, ft = "markdown", mode = "n" },
-      { "<CR>", "<Plug>(MarkdownPlusListEnter)", buffer = true, ft = "markdown", mode = "i" },
-      { "<BS>", "<Plug>(MarkdownPlusListBackspace)", buffer = true, ft = "markdown", mode = "i" },
-      { "<C-c>", "<Plug>(MarkdownPlusToggleCheckbox)", buffer = true, ft = "markdown" },
-      { "<C-i>", "<Plug>(MarkdownPlusItalic)", buffer = true, ft = "markdown", mode = { "v" } },
-      { "<C-b>", "<Plug>(MarkdownPlusBold)", buffer = true, ft = "markdown", mode = { "n", "v" } },
+      -- stylua: ignore start
+      { "O", function() require("markdown-plus").list.handle_normal_O() end, buffer = true, ft = "markdown", mode = "n" },
+      { "o", function() require("markdown-plus").list.handle_normal_o() end, buffer = true, ft = "markdown", mode = "n" },
+      { "<CR>", function() require("markdown-plus").list.handle_enter() end, buffer = true, ft = "markdown", mode = "i" },
+      { "<BS>", function() require("markdown-plus").list.handle_backspace() end, buffer = true, ft = "markdown", mode = "i" },
+      { "<M-]>", function() require("markdown-plus").list.handle_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Indent" },
+      { "<M-[>", function() require("markdown-plus").list.handle_shift_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Indent" },
+      { "<C-c>", function() require("markdown-plus").list.toggle_checkbox_insert() end, buffer = true, ft = "markdown", desc = "Toggle Checkbox" },
+      { "<C-i>", function() require("markdown-plus").format.toggle_format("italic") end, buffer = true, ft = "markdown", mode = { "v" }, desc = "Italicize" },
+      { "<C-b>", function() require("markdown-plus").format.toggle_format("bold") end, buffer = true, ft = "markdown", mode = "v", desc = "Bold"  },
+      { "<C-x>", function() require("markdown-plus").format.toggle_format("strikethrough") end, buffer = true, ft = "markdown", mode = "v", desc = "Strikethrough"  },
+      { "<C-b>", function() require("markdown-plus").format.toggle_format_word("bold") end, buffer = true, ft = "markdown", mode = "n", desc = "Bold" },
+      { "<C-x>", function() require("markdown-plus").format.toggle_format_word("strikethrough") end, buffer = true, ft = "markdown", mode = "n", desc = "Strikethrough" },
+      { "<C-\\>", function() require("markdown-plus").format.clear_formatting_word() end, buffer = true, ft = "markdown", mode = "n", desc = "Clear Formatting"},
+      { "<C-\\>", function() require("markdown-plus").format.clear_formatting() end, buffer = true, ft = "markdown", mode = "v", desc = "Clear Formatting" },
+      -- { "<C-S-U>", function() require("markdown-plus").format.toggle_format("underline") end, buffer = true, ft = "markdown", mode = { "n", "v" } },
+      -- { "<C-S-U>", function() require("markdown-plus").format.toggle_format("underline") end, buffer = true, ft = "markdown", mode = { "n", "v" } },
+      -- stylua: ignore end
     },
   },
   { -- render-markdown.nvim (editor preview)
