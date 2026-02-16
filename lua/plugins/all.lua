@@ -698,7 +698,7 @@ return {
           { section = "header", padding = 1 },
           { section = "keys", gap = 1, padding = 2 },
           -- { pane = 2, section = "projects", height = 5 },
-          { section = "startup" },
+          -- { section = "startup" },
         },
       },
     },
