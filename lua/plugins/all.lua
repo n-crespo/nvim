@@ -1890,11 +1890,12 @@ return {
   -- MARKDOWN SUPPORT --
   { -- markdown-plus.nvim (better editing)
     "yousefhadder/markdown-plus.nvim",
-    ft = { "markdown", "text" },
+    ft = { "markdown", "text", "txt" },
     opts = {
+      filetypes = { "markdown", "text", "txt" },
       features = { table = false },
-      keymaps = { enabled = false },
-    }, -- don't initialize default keymaps
+      keymaps = { enabled = false }, -- don't initialize default keymaps
+    },
     keys = {
       { "o", "<Plug>(MarkdownPlusNewListItemBelow)", buffer = true, ft = "markdown", mode = "n" },
       { "O", "<Plug>(MarkdownPlusNewListItemAbove)", buffer = true, ft = "markdown", mode = "n" },
