@@ -104,7 +104,7 @@ end, { desc = "Reload plugin" })
 -- search within selection by default when using / in visual mode
 map("x", "/", "<Esc>/\\%V")
 map("n", "g/", "*") -- `:h *`
-map("x", "g/", "*<esc>", { remap = true }) -- `:h default-mappings`
+map("v", "g/", "*", { remap = true }) -- `:h default-mappings`
 
 -- go to visual end of line (unless wrap is disabled)
 map({ "n", "v", "o" }, "E", function()
