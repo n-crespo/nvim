@@ -1423,6 +1423,7 @@ return {
   { -- lspconfig (general)
     "neovim/nvim-lspconfig",
     opts = {
+      inlay_hints = { enabled = false },
       diagnostics = {
         float = {
           border = "rounded", -- rounded border around <leader>cd
