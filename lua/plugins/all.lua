@@ -1702,7 +1702,14 @@ return {
   { -- comment.nvim (commenting)
     "numToStr/Comment.nvim",
     vscode = true,
-    opts = {},
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    opts = {
+      pre_hook = function()
+        require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      end,
+    },
     keys = function()
       vim.keymap.set("", "<M-/>", "<C-/>", { remap = true })
       local function insert_mode_comment()
