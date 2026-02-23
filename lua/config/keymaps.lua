@@ -382,27 +382,37 @@ end, { desc = "clean ^M" })
 -----------------------
 
 local runners = {
-  python = "python3",
-  javascript = "node",
-  lua = "lua",
-  go = "go run",
-  sh = "bash",
-  cpp = "g++ % -o %< && ./%<",
+  python = { cmd = "python3", terminal = true },
+  javascript = { cmd = "node", terminal = true },
+  lua = { cmd = "lua", terminal = true },
+  go = { cmd = "go run", terminal = true },
+  sh = { cmd = "bash", terminal = true },
+  cpp = { cmd = "g++ % -o %< && ./%<", terminal = true },
+  autohotkey = { cmd = "open", terminal = false },
 }
 
 local function run_current_file()
+  -- Executes the current buffer's file using the configured runner.
   local filetype = vim.bo.filetype
   local filename = vim.fn.expand("%")
-  local cmd = runners[filetype]
+  local runner = runners[filetype]
 
-  if cmd then
-    -- create a terminal in a vertical split
-    vim.cmd("split | term " .. cmd .. " " .. filename)
-    -- enter insert mode automatically to see output/interact
-    vim.cmd("startinsert")
+  if runner then
+    -- build the execution string
+    local full_cmd = runner.cmd .. " " .. filename
+
+    if runner.terminal then
+      -- create a terminal in a horizontal split
+      vim.cmd("split | term " .. full_cmd)
+      -- enter insert mode automatically to see output or interact
+      vim.cmd("startinsert")
+    else
+      -- run command in the background non-blockingly
+      vim.fn.jobstart(full_cmd)
+    end
   else
-    print("no runner configured for filetype: " .. filetype)
+    vim.notify("no runner configured for filetype: " .. filetype)
   end
 end
 
-map("n", "R", run_current_file, { desc = "run current file in terminal" })
+map("n", "R", run_current_file, { desc = "run current file" })
