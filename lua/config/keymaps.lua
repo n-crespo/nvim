@@ -387,46 +387,46 @@ local runners = {
   lua = { cmd = "lua" },
   go = { cmd = "go run" },
   sh = { cmd = "bash" },
-  -- using a function for complex commands allows better escaping
-  cpp = {
-    cmd = function(f)
-      return string.format("g++ %s -o %s && %s", f, f:match("(.*)%.") or f, f:match("(.*)%.") or f)
-    end,
-  },
+  cpp = { cmd = "g++ % -o %< && ./%<" },
+  autohotkey = { cmd = "open", term = false },
 }
 
 local function run_current_file()
+  -- Executes the current buffer's file using the configured runner.
   local filetype = vim.bo.filetype
-  local filename = vim.fn.expand("%:p") -- use full path to be safe
+  local filename = vim.fn.expand("%")
   local runner = runners[filetype]
 
-  if not runner then
-    vim.notify("No runner for: " .. filetype, vim.log.levels.WARN)
-    return
+  if runner.term == nil then
+    runner.term = true
   end
 
-  -- resolve command
-  local cmd = type(runner.cmd) == "function" and runner.cmd(filename)
-    or (runner.cmd .. " " .. vim.fn.shellescape(filename))
+  if runner then
+    local full_cmd = runner.cmd .. " " .. filename -- build the execution string
 
-  -- logic for terminal runners
-  vim.cmd("split")
+    if runner.term then
+      -- make the terminal window
+      vim.cmd("split")
+      local buf = vim.api.nvim_create_buf(false, true)
+      vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+      vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
+      vim.api.nvim_win_set_buf(0, buf)
 
-  -- create a scratch buffer that deletes itself on close
-  local buf = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
-  vim.api.nvim_buf_set_option(buf, "buflisted", false)
-  vim.api.nvim_win_set_buf(0, buf)
+      -- run the command
+      vim.fn.jobstart(full_cmd, { term = true })
 
-  -- start terminal and handle auto-scroll
-  vim.fn.termopen(cmd)
-
-  -- buffer-local mappings
-  local opts = { buffer = buf, silent = true }
-  vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], opts)
-  vim.keymap.set("n", "q", "<cmd>close<cr>", opts)
-
-  vim.cmd("startinsert")
+      -- set buffer local keymaps to close/escape to normal mode
+      local opts = { buffer = buf, silent = true }
+      vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], opts)
+      vim.keymap.set("n", "q", [[<cmd>close<cr>]], opts)
+      vim.cmd("startinsert")
+    else
+      -- run command in the background non-blockingly if term=false
+      vim.fn.jobstart(full_cmd)
+    end
+  else
+    vim.notify("no runner configured for filetype: " .. filetype)
+  end
 end
 
 map("n", "R", run_current_file, { desc = "run current file" })
