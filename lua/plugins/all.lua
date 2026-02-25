@@ -1710,21 +1710,75 @@ return {
         "gcc",
         mode = "n",
         remap = true,
-        desc = "Comment Line",
+        desc = "Toggle Comment Line",
       },
       {
         "<C-/>",
         "gcgv",
         mode = "v",
         remap = true,
-        desc = "Comment Line",
+        desc = "Toggle Comment Line",
       },
       {
         "<C-/>",
-        "<esc>gccgi",
+        function()
+          local api = vim.api
+          local cs = vim.bo.commentstring
+          if cs == "" or not cs:find("%%s") then
+            return
+          end
+
+          local cursor = api.nvim_win_get_cursor(0)
+          local line = api.nvim_get_current_line()
+          local row, col = cursor[1], cursor[2]
+
+          -- extract markers and trim them
+          local prefix, suffix = cs:match("^(.-)%%s(.-)$")
+          local trim_pre = prefix:gsub("%s+", "")
+          local trim_suf = suffix:gsub("%s+", "")
+
+          -- identify indentation and content
+          local indent, content = line:match("^(%s*)(.*)")
+
+          -- check if currently commented
+          local is_commented = content:sub(1, #trim_pre) == trim_pre
+          if #trim_suf > 0 then
+            is_commented = is_commented and content:sub(-#trim_suf) == trim_suf
+          end
+
+          local new_line
+          local offset = 0
+
+          if is_commented then
+            -- remove markers and the single space padding
+            local pattern = "^" .. vim.pesc(trim_pre) .. "%s?(.*)"
+            local inner = content:match(pattern)
+            if #trim_suf > 0 then
+              inner = inner:gsub("%s?" .. vim.pesc(trim_suf) .. "$", "")
+            end
+            new_line = indent .. (inner or "")
+            -- calculate how much to move cursor back
+            offset = -(#content - #inner)
+          else
+            -- always add a space after the prefix
+            local padding = " "
+            if #trim_suf > 0 then
+              -- block comment: "/* content */"
+              new_line = indent .. trim_pre .. padding .. content .. padding .. trim_suf
+            else
+              -- line comment: "// content"
+              new_line = indent .. trim_pre .. padding .. content
+            end
+            -- move cursor forward by prefix length + the mandatory space
+            offset = #trim_pre + #padding
+          end
+
+          api.nvim_set_current_line(new_line)
+          api.nvim_win_set_cursor(0, { row, math.max(0, col + offset) })
+        end,
         mode = "i",
         remap = true,
-        desc = "Comment Line",
+        desc = "Toggle Comment Line",
       },
     },
   },
