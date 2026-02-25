@@ -419,7 +419,7 @@ local function run_current_file()
       local opts = { buffer = buf, silent = true }
       vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], opts)
       vim.keymap.set("n", "q", [[<cmd>close<cr>]], opts)
-      vim.cmd("startinsert")
+      -- vim.cmd("startinsert")
     else
       -- run command in the background non-blockingly if term=false
       vim.fn.jobstart(full_cmd)
