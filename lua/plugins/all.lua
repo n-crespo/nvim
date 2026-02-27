@@ -963,7 +963,7 @@ return {
       -- Simulate nvim-treesitter incremental selection
       {
         "v<cr>",
-        mode = { "n", "o", "x" },
+        mode = { "n", "o" },
         function()
           require("flash").treesitter({
             actions = {
