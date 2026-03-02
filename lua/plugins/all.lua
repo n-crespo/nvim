@@ -216,6 +216,7 @@ return {
       { "<leader>br", nil },
       { "<leader>bp", nil },
       { "<leader>bP", nil },
+      { "<leader>bj", nil },
       { "<C-CR>", "<cmd>tabedit<cr>", { desc = "New Tab" } },
       { "<C-Space>", "<cmd>tabedit<cr>", { desc = "New Tab" } },
       { "<C-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
