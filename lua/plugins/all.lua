@@ -1033,7 +1033,9 @@ return {
   { -- snacks (terminal)
     "folke/snacks.nvim", -- terminal
     opts = function(_, opts)
-      LazyVim.terminal.setup("pwsh")
+      if vim.g.is_win then
+        LazyVim.terminal.setup("pwsh")
+      end
       opts.terminal = {
         enabled = true,
         win = { keys = { nav_l = "<C-l>", nav_j = "<C-j>", nav_k = "<C-k>" } },
