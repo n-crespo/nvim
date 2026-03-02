@@ -1027,12 +1027,14 @@ return {
   },
   { -- snacks (terminal)
     "folke/snacks.nvim", -- terminal
-    opts = {
-      terminal = {
+    opts = function(_, opts)
+      LazyVim.terminal.setup("pwsh")
+      opts.terminal = {
         enabled = true,
         win = { keys = { nav_l = "<C-l>", nav_j = "<C-j>", nav_k = "<C-k>" } },
-      },
-    },
+      }
+      return opts
+    end,
     keys = {
       -- note: this assumes your terminal can recognize the <C-/> and <C-S-/> keys
       { "<C-S-_>", nil },
