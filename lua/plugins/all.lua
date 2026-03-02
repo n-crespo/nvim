@@ -1993,47 +1993,66 @@ return {
       }):map("<leader>um")
     end,
   },
-  { -- peek.nvim (external preview)
-    "fmorroni/peek.nvim",
-    branch = "my-main",
-    cond = vim.g.full_config,
-    cmd = { "PeekOpen", "PeekClose" },
-    build = "deno task --quiet build:fast",
-    dependencies = {
-      {
-        "mason-org/mason.nvim",
-        ensure_installed = {
-          "deno",
-        },
-      },
-    },
-    opts = function()
-      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
-      local opts = {
-        app = "webview",
-        theme = "light",
-        close_on_bdelete = false,
-      }
-      if vim.fn.has("wsl") == 1 then
-        opts.app = { "/mnt/c/Users/nicol/AppData/Local/imput/Helium/Application/chrome.exe", "--new-window" }
-      else
-        opts.app = { "chrome", "--new-window" }
-      end
-      return opts
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = function()
+      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+      vim.fn["mkdp#util#install"]()
     end,
     keys = {
       {
         "<leader>cp",
-        function()
-          require("peek").open()
-        end,
-        desc = "Preview Markdown",
         ft = "markdown",
-        buffer = true,
+        "<cmd>MarkdownPreviewToggle<cr>",
+        desc = "Markdown Preview",
       },
     },
+    config = function()
+      vim.cmd([[do FileType]])
+    end,
   },
+  -- { -- peek.nvim (external preview)
+  --   "fmorroni/peek.nvim",
+  --   branch = "my-main",
+  --   cond = vim.g.full_config,
+  --   cmd = { "PeekOpen", "PeekClose" },
+  --   build = "deno task --quiet build:fast",
+  --   dependencies = {
+  --     {
+  --       "mason-org/mason.nvim",
+  --       ensure_installed = {
+  --         "deno",
+  --       },
+  --     },
+  --   },
+  --   opts = function()
+  --     vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+  --     vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+  --     local opts = {
+  --       app = "webview",
+  --       theme = "light",
+  --       close_on_bdelete = false,
+  --     }
+  --     if vim.fn.has("wsl") == 1 then
+  --       opts.app = { "/mnt/c/Users/nicol/AppData/Local/imput/Helium/Application/chrome.exe", "--new-window" }
+  --     else
+  --       opts.app = { "chrome", "--new-window" }
+  --     end
+  --     return opts
+  --   end,
+  --   keys = {
+  --     {
+  --       "<leader>cp",
+  --       function()
+  --         require("peek").open()
+  --       end,
+  --       desc = "Preview Markdown",
+  --       ft = "markdown",
+  --       buffer = true,
+  --     },
+  --   },
+  -- },
 
   -- AI --
   { -- codecompanion.nvim (kinda meh)
