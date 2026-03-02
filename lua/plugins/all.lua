@@ -1673,10 +1673,11 @@ return {
     vscode = true,
     opts = {
       mappings = {
+        -- visual mode mappings
         left = "<M-[>",
         right = "<M-]>",
-        down = "<C-N>",
-        up = "<C-P>",
+
+        -- normal mode mappings
         line_left = "<M-[>",
         line_right = "<M-]>",
         line_down = "<C-N>",
@@ -1689,13 +1690,36 @@ return {
     keys = {
       {
         "<C-P>",
-        mode = { "n", "i", "v" },
+        mode = "n",
         desc = "Move line up",
       },
       {
         "<C-N>",
-        mode = { "n", "i", "v" },
+        mode = "n",
         desc = "Move line down",
+      },
+      {
+        "<C-p>",
+        function()
+          if vim.fn.mode() == "v" then
+            vim.cmd([[norm! V]])
+          end
+          require("mini.move").move_selection("up")
+        end,
+        remap = false,
+        mode = { "x" },
+        desc = "!Move line up",
+      },
+      {
+        "<C-n>",
+        function()
+          if vim.fn.mode() == "v" then
+            vim.cmd([[norm! V]])
+          end
+          require("mini.move").move_selection("down")
+        end,
+        mode = { "x" },
+        desc = "!Move line down",
       },
       {
         "<M-]>",
