@@ -34,20 +34,19 @@ return {
         sections = {
           lualine_a = {},
           lualine_b = {
-          -- stylua: ignore start
-          { function() return " " end, },
-          ---@diagnostic disable-next-line: assign-type-mismatch
-          LazyVim.lualine.root_dir({ cwd = true }),
-          { function() return "  " end, },
-          -- stylua: ignore stop
-          {
-            "branch",
-            padding = { left = 0, right = 2 },
-            draw_empty = false,
-            icon = { "" },
-            -- color = { "Comment" },
-            color = { gui = 'bold'}
-          },
+            -- stylua: ignore start
+            { function() return " " end, },
+            ---@diagnostic disable-next-line: assign-type-mismatch
+            LazyVim.lualine.root_dir({ cwd = true }),
+            { function() return "  " end, },
+            -- stylua: ignore stop
+            {
+              "branch",
+              padding = { left = 0, right = 2 },
+              draw_empty = false,
+              icon = { "" },
+              color = { gui = 'bold' }
+            },
           },
           lualine_c = {
             {
@@ -62,12 +61,12 @@ return {
               padding = { left = 0, right = 1 },
               draw_empty = false,
             },
-          -- stylua: ignore
-          {
-            function() return "  " .. require("dap").status() end,
-            cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = function() return { fg = Snacks.util.color("Debug") } end,
-          },
+            -- stylua: ignore
+            {
+              function() return "  " .. require("dap").status() end,
+              cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+              color = function() return { fg = Snacks.util.color("Debug") } end,
+            },
             {
               "diagnostics",
               symbols = {
@@ -78,20 +77,21 @@ return {
               },
               padding = { left = 1 },
             },
-          -- {
-          --   require("lualine_require").require("lazy.status").updates,
-          --   cond = require("lualine_require").require("lazy.status").has_updates,
-          --   color = "Special",
-          --   padding = { left = 1 },
-          -- },
-          -- stylua: ignore
-          {
-            -- this is for showing when a macro is recording
-            function() return require("lualine_require").require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("lualine_require").require("noice").api.status.mode.has() end,
-            color = "WarningMsg",
-            padding = { left = 1 },
-          },
+            -- {
+            --   require("lualine_require").require("lazy.status").updates,
+            --   cond = require("lualine_require").require("lazy.status").has_updates,
+            --   color = "Special",
+            --   padding = { left = 1 },
+            -- },
+            -- stylua: ignore
+            {
+              -- this is for showing when a macro is recording
+              function() return require("lualine_require").require("noice").api.status.mode.get() end,
+              cond = function() return package.loaded["noice"] and
+                require("lualine_require").require("noice").api.status.mode.has() end,
+              color = "WarningMsg",
+              padding = { left = 1 },
+            },
           },
           ------- RIGHT SIDE of statusline -----
           lualine_x = {},
@@ -157,12 +157,14 @@ return {
     keys = {
       {
         "<C-g>", -- :h CTRL_G
-      -- stylua: ignore
-      function()
-        local pretty_path = require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
-        if pretty_path ~= "" then pretty_path = "\n" .. pretty_path .. "" end
-        vim.notify("[" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~") .. "]" .. pretty_path)
-      end,
+        function()
+          local pretty_path =
+            require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
+          if pretty_path ~= "" then
+            pretty_path = "\n" .. pretty_path .. ""
+          end
+          vim.notify("[" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~") .. "]" .. pretty_path)
+        end,
         desc = "Print current file name",
       },
     },
@@ -1098,7 +1100,13 @@ return {
               height = 0.45,
               border = "none",
               box = "vertical",
-              { win = "input", height = 1, border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
+              {
+                win = "input",
+                height = 1,
+                border = "rounded",
+                title = "{title} {live} {flags}",
+                title_pos = "center",
+              },
               { win = "list", border = "rounded" },
               { win = "preview", title = "{preview}", border = "rounded" },
             },
