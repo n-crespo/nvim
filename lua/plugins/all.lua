@@ -535,6 +535,7 @@ return {
     ft = { "css", "html", "javascript", "typescriptreact", "typescript", "noice", "ghostty" },
     opts = {
       lazy_load = false,
+      buftypes = { "!prompt", "!popup" }, -- exclude prompt and popup buftypes from highlight
       filetypes = {
         "*",
         noice = { always_update = true },
@@ -543,16 +544,20 @@ return {
         cmp_menu = { always_update = true },
         cmp_docs = { always_update = true },
         snacks_picker_preview = { always_update = true },
+        snacks_picker_list = { always_update = true },
       },
-      -- exclude prompt and popup buftypes from highlight
-      buftypes = { "!prompt", "!popup" },
-      user_default_options = {
-        RGB = false, -- #RGB hex codes
-        RGBA = false,
-        css_fn = true, -- CSS rgb(), rgba() hsl(), and hsla() functions
-        names = false, -- `blue`, `red`
-        tailwind = true,
-        tailwind_opts = { update_names = false },
+      options = {
+        parsers = {
+          css_fn = true, -- rgb, hsl, oklch
+          hex = {
+            enable = true,
+            rgb = true, -- #RGB
+            rgba = true, -- #RGBA
+            rrggbb = true, -- #RRGGBB
+            rrggbbaa = true, -- #RRGGBBAA
+          },
+          tailwind = { enable = true, lsp = true, update_names = true },
+        },
       },
     },
     keys = {
