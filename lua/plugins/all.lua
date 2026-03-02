@@ -550,7 +550,7 @@ return {
         parsers = {
           css_fn = true, -- rgb, hsl, oklch
           hex = {
-            enable = true,
+            default = false,
             rgb = true, -- #RGB
             rgba = true, -- #RGBA
             rrggbb = true, -- #RRGGBB
