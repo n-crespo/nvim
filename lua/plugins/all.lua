@@ -557,6 +557,7 @@ return {
             rrggbbaa = true, -- #RRGGBBAA
           },
           tailwind = { enable = true, lsp = true, update_names = true },
+          names = { enable = false },
         },
       },
     },
