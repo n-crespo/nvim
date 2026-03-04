@@ -535,7 +535,7 @@ return {
     ft = { "css", "html", "javascript", "typescriptreact", "typescript", "noice", "ghostty" },
     opts = {
       lazy_load = false,
-      buftypes = { "!prompt", "!popup" }, -- exclude prompt and popup buftypes from highlight
+      buftypes = { "!prompt", "!popup", "!nofile" },
       filetypes = {
         "*",
         noice = { always_update = true },
