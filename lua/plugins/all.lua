@@ -530,53 +530,52 @@ return {
       })
     end,
   },
-  { -- colorizer (preview color codes)
-    "catgoose/nvim-colorizer.lua",
-    ft = { "css", "html", "javascript", "typescriptreact", "typescript", "noice", "ghostty" },
-    opts = {
-      lazy_load = false,
-      buftypes = { "!prompt", "!popup", "!nofile" },
-      filetypes = {
-        "*",
-        noice = { always_update = true },
-        blink_menu = { always_update = true },
-        blink_docs = { always_update = true },
-        cmp_menu = { always_update = true },
-        cmp_docs = { always_update = true },
-        snacks_picker_preview = { always_update = true },
-        snacks_picker_list = { always_update = true },
-      },
-      options = {
-        parsers = {
-          css_fn = true, -- rgb, hsl, oklch
-          hex = {
-            default = false,
-            rgb = true, -- #RGB
-            rgba = true, -- #RGBA
-            rrggbb = true, -- #RRGGBB
-            rrggbbaa = true, -- #RRGGBBAA
-          },
-          tailwind = { enable = true, lsp = true, update_names = true },
-          names = { enable = false },
+  { -- mini.hipatterns (highlighting colors in code)
+    "nvim-mini/mini.hipatterns",
+    opts = function(_, opts)
+      local hipatterns = require("mini.hipatterns")
+
+      -- Returns hex color group for matching rgb() color.
+      --
+      ---@param match string
+      ---@return string
+      local rgb_color = function(_, match)
+        local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
+        local red, green, blue = match:match("rgb%((%d+), ?(%d+), ?(%d+)%)")
+        local hex = string.format("#%02x%02x%02x", red, green, blue)
+        return hipatterns.compute_hex_color_group(hex, style)
+      end
+
+      -- Returns hex color group for matching rgba() color
+      -- or false if alpha is nil or out of range.
+      -- The use of the alpha value refers to a black background.
+      --
+      ---@param match string
+      ---@return string|false
+      local rgba_color = function(_, match)
+        local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
+        local red, green, blue, alpha = match:match("rgba%((%d+), ?(%d+), ?(%d+), ?(%d*%.?%d*)%)")
+        alpha = tonumber(alpha)
+        if alpha == nil or alpha < 0 or alpha > 1 then
+          return false
+        end
+        local hex = string.format("#%02x%02x%02x", red * alpha, green * alpha, blue * alpha)
+        return hipatterns.compute_hex_color_group(hex, style)
+      end
+
+      -- add support for rgb/rgba color highlights
+      opts.highlighters = {
+        -- `rgb(r, g, b)`
+        rgb_color = { pattern = "rgb%(%d+, ?%d+, ?%d+%)", group = rgb_color, extmark_opts = { priority = 2000 } },
+        -- `rgba(r, g, b, a)`
+        rgba_color = {
+          pattern = "rgba%(%d+, ?%d+, ?%d+, ?%d*%.?%d*%)",
+          group = rgba_color,
+          extmark_opts = { priority = 2000 },
         },
-      },
-    },
-    keys = {
-      {
-        "<leader>uH",
-        function()
-          local attached = require("colorizer").is_buffer_attached()
-          if not attached then
-            require("colorizer").attach_to_buffer(0)
-            vim.notify("Enabled **Colorizer Highlights**", vim.log.levels.INFO, { title = "Tabs" })
-          else
-            require("colorizer").detach_from_buffer(0)
-            vim.notify("Disabled **Colorizer Highlights**", vim.log.levels.WARN, { title = "Tabs" })
-          end
-        end,
-        desc = "Toggle Colorizer",
-      },
-    },
+      }
+      return opts
+    end,
   },
   { -- match paren (highlight matching paren)
     "monkoose/matchparen.nvim",
