@@ -1765,22 +1765,28 @@ return {
         "<C-/>",
         function()
           local api = vim.api
-          local cs = vim.bo.commentstring
+          local cursor = api.nvim_win_get_cursor(0)
+          local row, col = cursor[1], cursor[2]
+          local line = api.nvim_get_current_line()
+
+          -- get treesitter-aware commentstring from mini.comment
+          local cs = require("mini.comment").get_commentstring({ row, col + 1 })
           if cs == "" or not cs:find("%%s") then
             return
           end
 
-          local cursor = api.nvim_win_get_cursor(0)
-          local line = api.nvim_get_current_line()
-          local row, col = cursor[1], cursor[2]
-
-          -- extract markers and trim them
+          -- extract markers and trim them for matching
           local prefix, suffix = cs:match("^(.-)%%s(.-)$")
           local trim_pre = prefix:gsub("%s+", "")
           local trim_suf = suffix:gsub("%s+", "")
 
           -- identify indentation and content
           local indent, content = line:match("^(%s*)(.*)")
+          if content == "" then
+            -- handle empty line: just toggle and stay put
+            require("mini.comment").toggle_lines(row, row)
+            return
+          end
 
           -- check if currently commented
           local is_commented = content:sub(1, #trim_pre) == trim_pre
@@ -1788,38 +1794,27 @@ return {
             is_commented = is_commented and content:sub(-#trim_suf) == trim_suf
           end
 
-          local new_line
           local offset = 0
-
           if is_commented then
-            -- remove markers and the single space padding
-            local pattern = "^" .. vim.pesc(trim_pre) .. "%s?(.*)"
-            local inner = content:match(pattern)
-            if #trim_suf > 0 then
-              inner = inner:gsub("%s?" .. vim.pesc(trim_suf) .. "$", "")
-            end
-            new_line = indent .. (inner or "")
-            -- calculate how much to move cursor back
-            offset = -(#content - #inner)
+            -- calculate offset for uncommenting
+            -- usually involves removing prefix + optional space
+            local pattern = "^" .. vim.pesc(trim_pre) .. "(%s?)"
+            local space_match = content:match(pattern)
+            offset = -(#trim_pre + #space_match)
           else
-            -- always add a space after the prefix
-            local padding = " "
-            if #trim_suf > 0 then
-              -- block comment: "/* content */"
-              new_line = indent .. trim_pre .. padding .. content .. padding .. trim_suf
-            else
-              -- line comment: "// content"
-              new_line = indent .. trim_pre .. padding .. content
-            end
-            -- move cursor forward by prefix length + the mandatory space
-            offset = #trim_pre + #padding
+            -- calculate offset for commenting
+            -- mini.comment adds a space by default if the commentstring has one
+            local padding = prefix:find("%s$") and 1 or 0
+            offset = #trim_pre + padding
           end
 
-          api.nvim_set_current_line(new_line)
+          -- perform the toggle using the API
+          require("mini.comment").toggle_lines(row, row, { ref_position = { row, col + 1 } })
+
+          -- restore cursor and stay in insert mode
           api.nvim_win_set_cursor(0, { row, math.max(0, col + offset) })
         end,
         mode = "i",
-        remap = true,
         desc = "Toggle Comment Line",
       },
     },
