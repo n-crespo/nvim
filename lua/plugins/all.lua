@@ -1769,49 +1769,49 @@ return {
           local row, col = cursor[1], cursor[2]
           local line = api.nvim_get_current_line()
 
-          -- get treesitter-aware commentstring from mini.comment
+          -- get commentstring components
           local cs = require("mini.comment").get_commentstring({ row, col + 1 })
           if cs == "" or not cs:find("%%s") then
             return
           end
 
-          -- extract markers and trim them for matching
           local prefix, suffix = cs:match("^(.-)%%s(.-)$")
-          local trim_pre = prefix:gsub("%s+", "")
-          local trim_suf = suffix:gsub("%s+", "")
+          local trim_pre = prefix:gsub("%s+$", "") -- prefix without trailing space
+          local trim_suf = suffix:gsub("^%s+", "") -- suffix without leading space
 
-          -- identify indentation and content
+          -- capture leading whitespace and everything else
           local indent, content = line:match("^(%s*)(.*)")
-          if content == "" then
-            -- handle empty line: just toggle and stay put
-            require("mini.comment").toggle_lines(row, row)
+
+          -- handle line that is either empty OR only contains the comment markers
+          -- we use vim.pesc to treat markers as literal strings in the regex
+          local pattern = "^" .. vim.pesc(prefix) .. vim.pesc(suffix) .. "$"
+          local pattern_trimmed = "^" .. vim.pesc(trim_pre) .. vim.pesc(trim_suf) .. "$"
+
+          if content == "" or content:match(pattern) or content:match(pattern_trimmed) then
+            if content == "" then
+              -- case: empty line -> add comment, keep indent
+              api.nvim_set_current_line(indent .. prefix .. suffix)
+              api.nvim_win_set_cursor(0, { row, #indent + #prefix })
+            else
+              -- case: only comment markers exist -> remove markers, keep indent
+              api.nvim_set_current_line(indent)
+              api.nvim_win_set_cursor(0, { row, #indent })
+            end
             return
           end
 
-          -- check if currently commented
+          -- standard toggle logic for lines with actual content
           local is_commented = content:sub(1, #trim_pre) == trim_pre
-          if #trim_suf > 0 then
-            is_commented = is_commented and content:sub(-#trim_suf) == trim_suf
-          end
-
           local offset = 0
           if is_commented then
-            -- calculate offset for uncommenting
-            -- usually involves removing prefix + optional space
-            local pattern = "^" .. vim.pesc(trim_pre) .. "(%s?)"
-            local space_match = content:match(pattern)
+            local space_match = content:match("^" .. vim.pesc(trim_pre) .. "(%s?)") or ""
             offset = -(#trim_pre + #space_match)
           else
-            -- calculate offset for commenting
-            -- mini.comment adds a space by default if the commentstring has one
             local padding = prefix:find("%s$") and 1 or 0
             offset = #trim_pre + padding
           end
 
-          -- perform the toggle using the API
           require("mini.comment").toggle_lines(row, row, { ref_position = { row, col + 1 } })
-
-          -- restore cursor and stay in insert mode
           api.nvim_win_set_cursor(0, { row, math.max(0, col + offset) })
         end,
         mode = "i",
