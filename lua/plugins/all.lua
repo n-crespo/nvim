@@ -1436,6 +1436,13 @@ return {
     optional = true, -- enabled with :LazyExtras
     ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   },
+  { -- typst preview (fix for windows tinymist path)
+    "chomosuke/typst-preview.nvim",
+    optional = true,
+    opts = {
+      dependencies_bin = { tinymist = vim.g.is_win and "tinymist.cmd" or "tinymist" },
+    },
+  },
 
   -- LSP/LINT/FORMATTING --
   { -- lspconfig (general)
