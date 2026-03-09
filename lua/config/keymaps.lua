@@ -390,44 +390,76 @@ local runners = {
   go = { cmd = "go run" },
   sh = { cmd = "bash" },
   cpp = { cmd = "g++ % -o %< && ./%<" },
-  autohotkey = { cmd = "open", term = false },
+  autohotkey = { cmd = "start", term = false },
+  typst = { cmd = "typst compile", term = false },
 }
 
 local function run_current_file()
   -- Executes the current buffer's file using the configured runner.
   local filetype = vim.bo.filetype
-  local filename = vim.fn.expand("%")
   local runner = runners[filetype]
 
+  if not runner then
+    vim.notify("no runner configured for filetype: " .. filetype)
+    return
+  end
+
+  -- default to terminal mode
   if runner.term == nil then
     runner.term = true
   end
 
-  if runner then
-    local full_cmd = runner.cmd .. " " .. filename -- build the execution string
+  -- use absolute paths and shell escape them for spaces
+  local path = vim.fn.expand("%:p")
+  local target = vim.fn.expand("%:p:r")
+  local escaped_path = vim.fn.shellescape(path)
+  local escaped_target = vim.fn.shellescape(target)
 
-    if runner.term then
-      -- make the terminal window
-      vim.cmd("split")
-      local buf = vim.api.nvim_create_buf(false, true)
-      vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
-      vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
-      vim.api.nvim_win_set_buf(0, buf)
-
-      -- run the command
-      vim.fn.jobstart(full_cmd, { term = true })
-
-      -- set buffer local keymaps to close/escape to normal mode
-      local opts = { buffer = buf, silent = true }
-      vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], opts)
-      vim.keymap.set("n", "q", [[<cmd>close<cr>]], opts)
-      -- vim.cmd("startinsert")
-    else
-      -- run command in the background non-blockingly if term=false
-      vim.fn.jobstart(full_cmd)
-    end
+  local full_cmd = runner.cmd
+  if full_cmd:find("%%") then
+    -- replace placeholders if present (%% matches literal %)
+    full_cmd = full_cmd:gsub("%%<", function()
+      return escaped_target
+    end)
+    full_cmd = full_cmd:gsub("%%", function()
+      return escaped_path
+    end)
   else
-    vim.notify("no runner configured for filetype: " .. filetype)
+    -- otherwise just append the file path
+    full_cmd = full_cmd .. " " .. escaped_path
+  end
+
+  if runner.term then
+    -- make the terminal window
+    vim.cmd("split")
+    local buf = vim.api.nvim_create_buf(false, true)
+    vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+    vim.api.nvim_set_option_value("buflisted", false, { buf = buf })
+    vim.api.nvim_win_set_buf(0, buf)
+
+    -- run the command
+    vim.fn.jobstart(full_cmd, { term = true })
+
+    -- set buffer local keymaps to close/escape to normal mode
+    local opts = { buffer = buf, silent = true }
+    vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], opts)
+    vim.keymap.set("n", "q", [[<cmd>close<cr>]], opts)
+  else
+    local task_id = "file_runner"
+
+    Snacks.notify.info("Job started: " .. full_cmd, { id = task_id })
+
+    -- run command in the background non-blockingly if term=false
+    vim.fn.jobstart(full_cmd, {
+
+      on_exit = function(_, exit_code)
+        if exit_code == 0 then
+          Snacks.notify.info("Done!", { id = task_id })
+        else
+          Snacks.notify.error("Job failed with exit code: " .. exit_code, { id = task_id })
+        end
+      end,
+    })
   end
 end
 
