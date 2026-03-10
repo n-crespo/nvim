@@ -223,6 +223,7 @@ end, { desc = "Open with OS" })
 -- requires mini.surround
 map("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })
 map("x", "'", "gsa'", { remap = true, desc = "Surround Selection with Quotes" })
+map("x", "<C-b>", "gsab", { remap = true, desc = "Surround Selection with Parens" })
 
 -- better scrolling with mouse
 map("n", "<ScrollWheelUp>", "<C-y>")
