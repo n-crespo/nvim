@@ -1568,16 +1568,12 @@ return {
             end,
           },
           ["<C-p>"] = {
-
             function()
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, true, true), "n", true)
             end,
           },
           ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
-          ["<Tab>"] = {
-            "select_and_accept",
-            "fallback",
-          },
+          ["<Tab>"] = { "select_and_accept", "fallback" },
         },
         completion = { menu = { auto_show = true } },
         sources = function()
@@ -1614,11 +1610,19 @@ return {
               end,
             },
           },
-          path = {
-            opts = {
-              show_hidden_files_by_default = true,
-            },
+          lsp = {
+            enabled = function()
+              local node = vim.treesitter.get_node()
+              if node then
+                local node_type = node:type()
+                if vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node_type) then
+                  return false
+                end
+              end
+              return true
+            end,
           },
+          path = { opts = { show_hidden_files_by_default = true } },
         },
       },
       completion = {
