@@ -2002,25 +2002,45 @@ return {
       }):map("<leader>um")
     end,
   },
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = function()
-      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-      vim.fn["mkdp#util#install"]()
-    end,
+
+  { -- github-preview.nvim (browser preview in gfm flavor)
+    "n-crespo/github-preview.nvim",
+    cmd = { "GithubPreviewToggle" },
+    opts = {
+      cursor_line = { disable = true },
+    },
     keys = {
       {
         "<leader>cp",
+        function()
+          require("github-preview").fns.start()
+        end,
         ft = "markdown",
-        "<cmd>MarkdownPreviewToggle<cr>",
         desc = "Markdown Preview",
       },
     },
-    config = function()
-      vim.cmd([[do FileType]])
-    end,
   },
+
+  -- {
+  --   "iamcco/markdown-preview.nvim",
+  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --   build = function()
+  --     require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+  --     vim.fn["mkdp#util#install"]()
+  --   end,
+  --   keys = {
+  --     {
+  --       "<leader>cp",
+  --       ft = "markdown",
+  --       "<cmd>MarkdownPreviewToggle<cr>",
+  --       desc = "Markdown Preview",
+  --     },
+  --   },
+  --   config = function()
+  --     vim.cmd([[do FileType]])
+  --   end,
+  -- },
+
   -- AI --
   { -- codecompanion.nvim (kinda meh)
     "olimorris/codecompanion.nvim",
