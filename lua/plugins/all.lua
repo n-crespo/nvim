@@ -1440,6 +1440,7 @@ return {
     "chomosuke/typst-preview.nvim",
     optional = true,
     opts = {
+      follow_cursor = true,
       dependencies_bin = { tinymist = vim.g.is_win and "tinymist.cmd" or "tinymist" },
     },
   },
