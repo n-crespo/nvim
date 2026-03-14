@@ -1510,7 +1510,7 @@ return {
     opts = {
       formatters_by_ft = {
         ["asm"] = { "asmfmt" },
-        -- ["html"] = { "superhtml" },
+        ["json"] = { "jq" },
         -- ["zsh"] = { "beautysh" },
       },
       formatters = {
