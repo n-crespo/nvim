@@ -137,3 +137,52 @@ vim.api.nvim_create_autocmd({ "FileType", "BufReadCmd" }, {
     vim.api.nvim_set_option_value("swapfile", false, { buf = e.buf })
   end,
 })
+
+local fts = {
+  "*.pvs",
+  "*.prl",
+  "*.prf",
+  "*.jprf",
+  "pvs-strategies",
+  "*.kyx",
+  "*.od",
+  "*.objdump",
+  "*.service",
+}
+
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+  desc = "lazy-load PVS, KeymaeraX, and objdump filetype definitions",
+  pattern = fts,
+  callback = function(args)
+    vim.filetype.add({
+      extension = {
+        pvs = "pvs",
+        prl = "pvs",
+        prf = "pvs",
+        jprf = "json",
+        kyx = "keymaeraX",
+        od = "objdump",
+        objdump = "objdump",
+      },
+      filename = {
+        ["pvs-strategies"] = "lisp",
+      },
+      pattern = {
+        [".*%.service"] = "systemd",
+        ["%.objdump$"] = "objdump",
+      },
+    })
+
+    -- treesitter mappings
+    vim.treesitter.language.register("erlang", "pvs")
+    vim.treesitter.language.register("haskell", "keymaeraX")
+
+    -- apply detection to the buffer that triggered this
+    local ft = vim.filetype.match({ buf = args.buf })
+    if ft then
+      vim.bo[args.buf].filetype = ft
+    end
+
+    return true -- delete this autocmd!
+  end,
+})
