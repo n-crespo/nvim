@@ -1444,6 +1444,18 @@ return {
       dependencies_bin = { tinymist = vim.g.is_win and "tinymist.cmd" or "tinymist" },
     },
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        tinymist = {
+          settings = {
+            formatterMode = "prettypst",
+          },
+        },
+      },
+    },
+  },
 
   -- LSP/LINT/FORMATTING --
   { -- lspconfig (general)
@@ -1511,6 +1523,7 @@ return {
       formatters_by_ft = {
         ["asm"] = { "asmfmt" },
         ["json"] = { "jq" },
+        ["typst"] = { "prettypst" },
         -- ["zsh"] = { "beautysh" },
       },
       formatters = {
