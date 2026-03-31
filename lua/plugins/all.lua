@@ -1524,6 +1524,7 @@ return {
         ["asm"] = { "asmfmt" },
         ["json"] = { "jq" },
         ["typst"] = { "prettypst" },
+        ["c"] = { "clang-format" },
         -- ["zsh"] = { "beautysh" },
       },
       formatters = {
