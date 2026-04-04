@@ -1,12 +1,5 @@
-local function to_hex(color)
-  if not color then
-    return nil
-  end
-  return string.format("#%06x", color)
-end
-
-local white = to_hex(vim.api.nvim_get_hl(0, { name = "Normal" }).fg)
-local grey = to_hex(vim.api.nvim_get_hl(0, { name = "Conceal" }).fg)
+local white = "#C9C9C9"
+local grey = "#898989"
 
 local hls = {
   a = { fg = white, bg = nil, bold = true },
