@@ -1,12 +1,8 @@
-local white = "#C9C9C9"
 local grey = "#898989"
+local bg_color = "NONE"
 
-local hls = {
-  a = { fg = white, bg = nil, bold = true },
-  b = { fg = grey, bg = nil, bold = true },
-  c = { fg = grey, bg = nil, bold = true },
-  z = { bg = nil, bold = true },
-}
+local config = { fg = grey, bg = bg_color, bold = true }
+local hls = { a = config, b = config, c = config, z = config }
 
 return {
   inactive = hls,
