@@ -813,7 +813,7 @@ return {
     ---@type snacks.Config
     opts = {
       image = {
-        enabled = vim.fn.has("wsl") == 0,
+        enabled = false,
         math = {
           enabled = true,
           latex = {
