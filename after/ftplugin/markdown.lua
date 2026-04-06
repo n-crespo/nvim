@@ -2,6 +2,7 @@
 -- vim.cmd([[inoreabbrev <buffer> pe <!-- prettier-ignore-end -->]])
 
 vim.opt_local.foldmethod = "expr" -- folds headers and lists nicely
+vim.keymap.set("i", "<C-b>", "****<left><left>", { buffer = true })
 
 -----------------------------------------------
 ------------- TABLE FORMATTING ----------------
