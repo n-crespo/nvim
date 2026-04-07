@@ -217,15 +217,13 @@ return {
       }
     end,
     keys = {
-      { "<leader>bl", nil },
-      { "<leader>br", nil },
-      { "<leader>bp", nil },
-      { "<leader>bP", nil },
-      { "<leader>bj", nil },
+      { "<leader>bl", false },
+      { "<leader>br", false },
+      { "<leader>bp", false },
+      { "<leader>bP", false },
+      { "<leader>bj", false },
       { "<C-CR>", "<cmd>tabedit<cr>", { desc = "New Tab" } },
       { "<C-Space>", "<cmd>tabedit<cr>", { desc = "New Tab" } },
-      { "<C-Tab>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-      { "<C-S-tab>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
       {
         "<leader>r",
         function()
@@ -304,12 +302,12 @@ return {
       end
     end,
     keys = {
-      { "<leader>snt", nil },
-      { "<leader>sna", nil },
-      { "<leader>snh", nil },
-      { "<leader>snl", nil },
-      { "<leader>sn", nil },
-      { "<leader>snd", nil },
+      { "<leader>snt", false },
+      { "<leader>sna", false },
+      { "<leader>snh", false },
+      { "<leader>snl", false },
+      { "<leader>sn", false },
+      { "<leader>snd", false },
       {
         "<leader>n",
         function()
@@ -908,13 +906,6 @@ return {
       return {}
     end,
     keys = {
-      {
-        "<leader>S",
-        function()
-          require("persistence").load({ last = true })
-        end,
-        desc = "Restore Last Session",
-      },
       { "<leader>qs", nil },
       { "<leader>ql", nil },
       { "<leader>qd", nil },
