@@ -567,15 +567,17 @@ return {
       end
 
       -- add support for rgb/rgba color highlights
-      opts.highlighters = {
-        -- `rgb(r, g, b)`
-        rgb_color = { pattern = "rgb%(%d+, ?%d+, ?%d+%)", group = rgb_color, extmark_opts = { priority = 2000 } },
-        -- `rgba(r, g, b, a)`
-        rgba_color = {
-          pattern = "rgba%(%d+, ?%d+, ?%d+, ?%d*%.?%d*%)",
-          group = rgba_color,
-          extmark_opts = { priority = 2000 },
-        },
+      -- `rgb(r, g, b)`
+      opts.highlighters.rgb_color = {
+        pattern = "rgb%(%d+, ?%d+, ?%d+%)",
+        group = rgb_color,
+        extmark_opts = { priority = 2000 },
+      }
+      -- `rgba(r, g, b, a)`
+      opts.highlighters.rgba_color = {
+        pattern = "rgba%(%d+, ?%d+, ?%d+, ?%d*%.?%d*%)",
+        group = rgba_color,
+        extmark_opts = { priority = 2000 },
       }
       return opts
     end,
@@ -876,7 +878,7 @@ return {
   { -- flatten.nvim (merge instances)
     "willothy/flatten.nvim",
     cond = vim.g.is_win,
-    lazy = false,
+    event = "TermEnter",
     config = true,
     opts = {
       window = { open = "tab" },
