@@ -878,7 +878,7 @@ return {
   { -- flatten.nvim (merge instances)
     "willothy/flatten.nvim",
     cond = vim.g.is_win,
-    event = "TermEnter",
+    lazy = false,
     config = true,
     opts = {
       window = { open = "tab" },
