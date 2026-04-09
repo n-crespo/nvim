@@ -1990,10 +1990,10 @@ return {
         icons = {},
       },
       checkbox = {
-        checked = { icon = "󰄲" },
-        unchecked = { icon = "󰄱" },
+        checked = { icon = "" },
+        unchecked = { icon = "" },
         custom = {
-          todo = { raw = "[-]", rendered = "󰥔", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+          todo = { raw = "[-]", rendered = "", highlight = "RenderMarkdownTodo", scope_highlight = nil },
         },
       },
       pipe_table = {
