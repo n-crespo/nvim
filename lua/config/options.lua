@@ -31,6 +31,7 @@ opt.spelloptions = "noplainbuffer,camel"
 opt.spellfile = vim.fn.stdpath("data") .. "/spell" .. "/en.utf-8.add"
 opt.completeopt = "menu,menuone,noselect,noinsert,popup"
 opt.background = "dark"
+opt.nrformats = "unsigned"
 -- opt.winborder = "rounded" -- this adds some visual artifacts occasionally
 -- opt.autochdir = true -- this breaks things
 
