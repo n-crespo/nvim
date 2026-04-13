@@ -1475,16 +1475,16 @@ return {
           },
         },
         -- some python things
-        ruff = { enabled = false },
-        basedpyright = {
-          settings = {
-            basedpyright = {
-              analysis = {
-                typeCheckingMode = "standard",
-              },
-            },
-          },
-        },
+        -- ruff = { enabled = false },
+        -- basedpyright = {
+        --   settings = {
+        --     basedpyright = {
+        --       analysis = {
+        --         typeCheckingMode = "standard",
+        --       },
+        --     },
+        --   },
+        -- },
       },
     },
   },
