@@ -1,7 +1,8 @@
 vim.g.mapleader = " "
 vim.g.editorconfig = true
 vim.g.maplocalleader = "\\"
-vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_lsp = "pyright"
+vim.g.lazyvim_ts_lsp = "tsgo"
 vim.g.root_spec = { ".root", "lsp", { ".git", "lua" }, "cwd" }
 vim.g.loaded_ruby_provider = 0 -- never use this
 vim.g.loaded_perl_provider = 0 -- never use this
