@@ -175,7 +175,8 @@ map({ "n", "v" }, "-", "<C-x>", { noremap = true, silent = true })
 -- : (easier to hit when using in combination with <C-k>)
 map({ "n", "v" }, "<C-;>", ":", { remap = true, silent = false, desc = "Command mode" })
 
-local function clean_and_paste(reg, paste_cmd)
+--- Clean carriage returns from the specified register
+local function clean_register(reg)
   local content = vim.fn.getreg(reg)
   if type(content) == "string" then
     vim.fn.setreg(reg, content:gsub("\r", ""))
@@ -185,11 +186,19 @@ local function clean_and_paste(reg, paste_cmd)
     end
     vim.fn.setreg(reg, content)
   end
-  vim.cmd("normal! " .. paste_cmd)
 end
-vim.keymap.set("n", "p", function()
-  clean_and_paste(vim.v.register, "p")
-end)
+
+-- normal mode paste
+map("n", "p", function()
+  clean_register(vim.v.register)
+  vim.cmd("normal! p")
+end, { silent = true })
+
+-- visual mode paste to void register
+map("x", "p", function()
+  clean_register(vim.v.register)
+  vim.cmd('normal! "_p')
+end, { silent = true })
 
 -- allow changing and deleting without overriding current paste registers
 -- in other words automatically delete or change to the void register
@@ -198,7 +207,6 @@ map({ "n", "v" }, "d", '"_d', { noremap = true, silent = true })
 map({ "n", "v" }, "C", '"_C', { noremap = true, silent = true })
 map({ "n", "v" }, "c", '"_c', { noremap = true, silent = true })
 map({ "n", "v" }, "x", '"_x', { noremap = true, silent = true })
-map("v", "p", '"_dp', { remap = true, silent = true })
 map("n", "X", "0D", { remap = true, desc = "Clear line", silent = true })
 
 -- paste from system clipboard
