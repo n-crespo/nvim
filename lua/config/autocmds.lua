@@ -15,19 +15,20 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 -- only show cursorline in active window normal mode
-vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter", "TabEnter", "TermLeave" }, {
+vim.api.nvim_create_autocmd({ "InsertLeave", "BufWinEnter", "TabEnter", "TermLeave" }, {
   group = vim.api.nvim_create_augroup("SmartCursorline", { clear = true }),
-  desc = "Enable cursorline only in active window",
+  desc = "Enable cursorline in active windows",
   callback = function()
     vim.wo.cursorline = vim.bo.buftype == ""
   end,
 })
-
-vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave", "TabLeave" }, {
+vim.api.nvim_create_autocmd({ "InsertEnter", "BufWinLeave", "TabLeave", "TermEnter" }, {
   group = "SmartCursorline",
-  desc = "Enable cursorline only in active window",
+  desc = "Disable cursorline in inactive windows",
   callback = function()
-    vim.wo.cursorline = false
+    if vim.bo.buftype == "" then
+      vim.wo.cursorline = false
+    end
   end,
 })
 
