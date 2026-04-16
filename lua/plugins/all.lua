@@ -777,7 +777,7 @@ return {
         zoom = { win = { style = "zen" } },
         win = { style = "quiet" },
         on_close = function()
-          vim.cmd([[set stal=1]])
+          vim.cmd([[set stal=2]])
         end,
         on_open = function()
           vim.cmd([[set stal=0]]) -- hide tabline/bufferline
