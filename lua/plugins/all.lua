@@ -781,6 +781,7 @@ return {
         end,
         on_open = function()
           vim.cmd([[set stal=0]]) -- hide tabline/bufferline
+          vim.cmd([[norm zz]]) -- center the cursor
         end,
       },
     },
