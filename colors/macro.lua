@@ -20,7 +20,7 @@ local cursorlineBg          = "#1D1D1D"
 local selectionBg           = "#2e2e2e"
 local ashGrey               = "#626462"
 local quoteFg               = "#898989"
-local normalFg              = "#C9C9C9"
+local normalFg              = "#D6D6D6"
 
 local brightRed            = "#C34043"
 local dimRed               = "#C4746E"
