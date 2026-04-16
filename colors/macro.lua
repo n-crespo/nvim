@@ -15,7 +15,7 @@ vim.g.colors_name = "macro"
 
 -- {{{
 -- stylua: ignore start
-local normalBg              = "#0f0f0f"
+local normalBg              = "#151515"
 local cursorlineBg          = "#1D1D1D"
 local selectionBg           = "#2e2e2e"
 local ashGrey               = "#626462"
@@ -492,8 +492,6 @@ local hlgroups = {
   HostNameIcon = { fg = ashGrey, bg = nil },
 
   PVSBlue = { fg = "#007ad3" },
-
-  BufferLineFill = { bg = normalBg },
   -- }}}2
 }
 -- }}}1
