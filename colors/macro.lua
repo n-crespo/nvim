@@ -48,14 +48,14 @@ local brightPurple         = "#5F5F87"
 local dimPurple            = "#A292A3" -- used for number
 local darkPurple           = "#292E42"
 
-vim.g.terminal_color_0="#0D0D0D"
+vim.g.terminal_color_0="#151515"
 vim.g.terminal_color_1="#C4746E"
 vim.g.terminal_color_2="#8A9A7B"
 vim.g.terminal_color_3="#C8AE81"
 vim.g.terminal_color_4="#88a3bc"
 vim.g.terminal_color_5="#A292A3"
 vim.g.terminal_color_6="#8992A7"
-vim.g.terminal_color_7="#C5C9C9"
+vim.g.terminal_color_7="#D6D6D6"
 
 vim.g.terminal_color_8="#949494"
 vim.g.terminal_color_9="#C34043"
