@@ -1322,6 +1322,13 @@ return {
         end,
       },
       {
+        "<M-o>",
+        function()
+          -- Snacks.picker.smart()
+          Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Picker" })
+        end,
+      },
+      {
         "<leader>F",
         function()
           if vim.fn.executable("zoxide") ~= 1 then
