@@ -1371,13 +1371,13 @@ return {
   { -- trouble.nvim (fancy qflist)
     "folke/trouble.nvim",
     keys = {
-      { "<leader>xL", nil },
-      { "<leader>xl", nil },
-      { "<leader>xt", nil },
-      { "<leader>xT", nil },
-      { "<leader>xq", nil },
-      { "<leader>xQ", nil },
-      { "<leader>cS", nil },
+      { "<leader>xL", false },
+      { "<leader>xl", false },
+      { "<leader>xt", false },
+      { "<leader>xT", false },
+      { "<leader>xq", false },
+      { "<leader>xQ", false },
+      { "<leader>cS", false },
       {
         "<S-CR>",
         "o",
