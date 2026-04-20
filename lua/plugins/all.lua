@@ -1320,13 +1320,15 @@ return {
           -- Snacks.picker.smart()
           Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Picker" })
         end,
+        desc = "Pick Files",
       },
       {
-        "<M-o>",
+        "<M-p>",
         function()
           -- Snacks.picker.smart()
           Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Picker" })
         end,
+        desc = "Pick Files",
       },
       {
         "<leader>F",
