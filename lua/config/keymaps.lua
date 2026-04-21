@@ -7,7 +7,19 @@ local map = vim.keymap.set
 -- Replace the word cursor is on globally
 map("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change instances" })
 
-map("n", "<C-d>", "<C-d>zz", { noremap = true })
+vim.keymap.set("n", "<C-d>", function()
+  if vim.fn.line(".") == 1 then
+    return "M"
+  end
+  return "<C-d>zz"
+end, { expr = true })
+
+vim.keymap.set("n", "<C-u>", function()
+  if vim.fn.line(".") == vim.fn.line("$") then
+    return "M"
+  end
+  return "<C-u>zz"
+end, { expr = true })
 map("n", "<C-u>", "<C-u>zz", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
