@@ -1488,6 +1488,15 @@ return {
             -- { "[[", false, mode = "n" },
           },
         },
+        clangd = {
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--query-driver=/usr/bin/gcc",
+          },
+        },
         -- some python things
         -- ruff = { enabled = false },
         -- basedpyright = {
