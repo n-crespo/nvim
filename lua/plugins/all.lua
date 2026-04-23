@@ -944,7 +944,7 @@ return {
       label = {
         uppercase = false,
         style = "inline",
-        exclude = "cdo",
+        exclude = "cdoy",
       },
       jump = {
         nohlsearch = true, -- clear highlight after jump
