@@ -941,7 +941,11 @@ return {
         mode = "fuzzy",
         multi_window = false,
       },
-      label = { uppercase = false },
+      label = {
+        uppercase = false,
+        style = "inline",
+        exclude = "cdo",
+      },
       jump = {
         nohlsearch = true, -- clear highlight after jump
         autojump = false, -- automatically jump when there is only one match
