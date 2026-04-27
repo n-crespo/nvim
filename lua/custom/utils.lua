@@ -176,8 +176,7 @@ function M.follow_link(tab)
         if tab then
           vim.cmd([[tabe %]])
         end
-        -- now follow the anchor link
-        fn.search("^#* " .. anchor:gsub("-", "[%- ]"))
+        fn.search("^#* " .. link.text) -- search for header with same text as link
         return
       end
       -- try to follow a file path (assume relative since expected in markdown)
