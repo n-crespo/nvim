@@ -1335,6 +1335,14 @@ return {
         desc = "Pick Files",
       },
       {
+        "<M-o>",
+        function()
+          -- Snacks.picker.smart()
+          Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Picker" })
+        end,
+        desc = "Pick Files",
+      },
+      {
         "<leader>F",
         function()
           if vim.fn.executable("zoxide") ~= 1 then
