@@ -19,7 +19,9 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter", "TabEnter", "TermLeave"
   group = vim.api.nvim_create_augroup("SmartCursorline", { clear = true }),
   desc = "Enable cursorline only in active window",
   callback = function()
-    vim.wo.cursorline = vim.bo.buftype == ""
+    if vim.bo.buftype == "" then
+      vim.wo.cursorline = true
+    end
   end,
 })
 
@@ -27,7 +29,9 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave", "TabLeave" }, {
   group = "SmartCursorline",
   desc = "Enable cursorline only in active window",
   callback = function()
-    vim.wo.cursorline = false
+    if vim.bo.buftype == "" then
+      vim.wo.cursorline = false
+    end
   end,
 })
 
