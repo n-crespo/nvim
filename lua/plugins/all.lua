@@ -1289,10 +1289,6 @@ return {
       { "<leader>:", nil },
       { "<leader>sR", nil },
       { "<leader>sq", nil }, -- quickfix list
-      { "<leader>gp", nil }, -- github pull requests
-      { "<leader>gP", nil },
-      { "<leader>gi", nil }, -- github issues
-      { "<leader>gI", nil },
       { "<leader>gG", nil }, -- lazygit cwd
       { "<leader>fo", function() Snacks.picker.recent() end, desc = "Old Files (dumb)", },
       { "<leader>fO", function() Snacks.picker.smart() end, desc = "Old Files (smart)", },
