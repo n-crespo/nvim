@@ -13,11 +13,6 @@ return {
     "LazyVim/LazyVim",
     opts = { colorscheme = "macro" },
   },
-  {
-    "ribru17/bamboo.nvim",
-    priority = 1000,
-    opts = {},
-  },
   { -- lualine.nvim (statusbar)
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-mini/mini.icons" },
