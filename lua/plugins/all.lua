@@ -1611,7 +1611,7 @@ return {
         },
       },
       linters_by_ft = {
-        fish = { "fish" },
+        -- fish = { "fish" },
         ["*"] = { "typos" },
         -- Use the "*" filetype to run linters on all filetypes.
         -- ['*'] = { 'global linter' },
