@@ -2293,7 +2293,7 @@ return {
   -- prettierd
   {
     "mason-org/mason.nvim",
-    opts = { ensure_installed = { "prettierd" } },
+    opts = { ensure_installed = { "prettierd", "prettier" } },
   },
 
   -- conform
