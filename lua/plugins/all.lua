@@ -1590,6 +1590,7 @@ return {
         ["json"] = { "jq" },
         ["typst"] = { "prettypst" },
         ["c"] = { "clang-format" },
+        ["python"] = { "ruff" },
         -- ["zsh"] = { "beautysh" },
       },
       formatters = {
