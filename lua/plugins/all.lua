@@ -332,21 +332,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      local noice = require("noice")
-      noice.setup(opts)
-
-      -- HACK: prevents Noice from sending "cleanup" signals on exit that resize
-      -- terminal (related to windows terminal bug)
-      local original_disable = noice.disable
-      ---@diagnostic disable-next-line: duplicate-set-field
-      noice.disable = function()
-        if vim.v.exiting ~= vim.NIL then
-          return
-        end
-        original_disable()
-      end
-    end,
     keys = {
       { "<leader>snt", false },
       { "<leader>sna", false },
