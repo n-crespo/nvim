@@ -2278,7 +2278,7 @@ return {
   -- prettierd
   {
     "mason-org/mason.nvim",
-    opts = { ensure_installed = { "prettierd", "prettier" } },
+    opts = { ensure_installed = { "oxfmt", "prettier" } },
   },
 
   -- conform
@@ -2290,26 +2290,15 @@ return {
       opts.formatters_by_ft = opts.formatters_by_ft or {}
       for _, ft in ipairs(supported) do
         opts.formatters_by_ft[ft] = opts.formatters_by_ft[ft] or {}
-        table.insert(opts.formatters_by_ft[ft], "prettierd")
+        table.insert(opts.formatters_by_ft[ft], "oxfmt")
       end
 
       opts.formatters = opts.formatters or {}
-      opts.formatters.prettierd = {
+      opts.formatters.oxfmt = {
         condition = function(_, ctx)
           return M.has_parser(ctx) and (vim.g.lazyvim_prettier_needs_config ~= true or M.has_config(ctx))
         end,
       }
-    end,
-  },
-
-  -- none-ls support
-  {
-    "nvimtools/none-ls.nvim",
-    optional = true,
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, nls.builtins.formatting.prettierd)
     end,
   },
 }
