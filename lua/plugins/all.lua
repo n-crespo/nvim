@@ -2020,6 +2020,7 @@ return {
         },
       },
       pipe_table = {
+        enabled = false,
         border_virtual = true,
       },
       completions = {
@@ -2032,7 +2033,14 @@ return {
       Snacks.toggle({
         name = "Render Markdown",
         get = require("render-markdown").get,
-        set = require("render-markdown").set,
+        set = function(enable)
+          require("render-markdown").set()
+          if enable then
+            require("markdown-table-wrap").enable_auto_preview()
+          else
+            require("markdown-table-wrap").disable_auto_preview()
+          end
+        end,
         ft = "markdown",
       }):map("<leader>um")
     end,
@@ -2277,5 +2285,25 @@ return {
         table.insert(opts.formatters_by_ft[ft], "oxfmt")
       end
     end,
+  },
+
+  {
+    "ice345/markdown-table-wrap.nvim",
+    ft = "markdown",
+    opts = {
+      link = {
+        wiki = { icon = " ", highlight = "MarkdownTableWrapWikiLink", scope_highlight = "MarkdownTableWrapWikiLink" },
+        image = " ",
+        custom = {
+          github = { pattern = "github", icon = " " },
+          gitlab = { pattern = "gitlab", icon = "󰮠 " },
+          youtube = { pattern = "youtube", icon = " " },
+          cern = { pattern = "cern.ch", icon = " " },
+        },
+      },
+    },
+    keys = {
+      { "<leader>t", "<cmd>MarkdownTableTogglePreview<cr>", desc = "Toggle Markdown table preview" },
+    },
   },
 }
