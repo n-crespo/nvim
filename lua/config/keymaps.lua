@@ -94,6 +94,7 @@ map("n", "z=", spell_select)
 
 -- auto pick the first spelling suggestion and apply it
 map("n", "<leader>fs", "1z=", { remap = false, silent = true, desc = "Fix spelling" })
+map("n", "<leader>fl", "[s1z=", { remap = false, silent = true, desc = "Fix last spelling" })
 
 map("n", "<leader>R", function()
   local plugins = require("lazy").plugins()
