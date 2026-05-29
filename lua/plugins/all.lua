@@ -1757,7 +1757,7 @@ return {
         end,
         remap = false,
         mode = { "x" },
-        desc = "!Move line up",
+        desc = "Move line up",
       },
       {
         "<C-n>",
@@ -1768,7 +1768,7 @@ return {
           require("mini.move").move_selection("down")
         end,
         mode = { "x" },
-        desc = "!Move line down",
+        desc = "Move line down",
       },
       {
         "<M-]>",
