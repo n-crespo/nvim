@@ -1894,43 +1894,15 @@ return {
       "xml",
     },
   },
-  { -- mini.ai (text objects)
+  {
     "nvim-mini/mini.ai",
     event = "LazyFile",
-    opts = {
-      custom_textobjects = {
-        s = {
-          {
-            -- __-1, __-U, __-l, __-1_, __-U_, __-l_
-            "[^_%-]()[_%-]+()%w()()[%s%p]",
-            "^()[_%-]+()%w()()[%s%p]",
-            -- __-123SNAKE
-            "[^_%-]()[_%-]+()%d+%u[%u%d]+()()",
-            "^()[_%-]+()%d+%u[%u%d]+()()",
-            -- __-123snake
-            "[^_%-]()[_%-]+()%d+%l[%l%d]+()()",
-            "^()[_%-]+()%d+%l[%l%d]+()()",
-            -- __-SNAKE, __-SNAKE123
-            "[^_%-]()[_%-]+()%u[%u%d]+()()",
-            "^()[_%-]+()%u[%u%d]+()()",
-            -- __-snake, __-Snake, __-snake123, __-Snake123
-            "[^_%-]()[_%-]+()%a[%l%d]+()()",
-            "^()[_%-]+()%a[%l%d]+()()",
-            -- UPPER, UPPER123, UPPER-__, UPPER123-__
-            -- No support: 123UPPER
-            "[^_%-%u]()()%u[%u%d]+()[_%-]*()",
-            "^()()%u[%u%d]+()[_%-]*()",
-            -- UPlower, UPlower123, UPlower-__, UPlower123-__
-            "%u%u()()[%l%d]+()[_%-]*()",
-            -- lower, lower123, lower-__, lower123-__
-            "[^_%-%w]()()[%l%d]+()[_%-]*()",
-            "^()()[%l%d]+()[_%-]*()",
-            -- Camel, Camel123, Camel-__, Camel123-__
-            "[^_%-%u]()()%u[%l%d]+()[_%-]*()",
-            "^()()%u[%l%d]+()[_%-]*()",
-          },
-        },
-      },
+    keys = {
+      -- markdown cell actions (scuffed)
+      { "cic", "ci|", desc = "Change inside cell", mode = "n", remap = true },
+      { "cac", "ca|", desc = "Change around cell", mode = "n", remap = true },
+      { "yic", "yi|", desc = "Yank inside cell", mode = "n", remap = true },
+      { "dic", "di|", desc = "Delete inside cell", mode = "n", remap = true },
     },
   },
   { -- ts-node-action (fancy treesitter things)
@@ -2291,6 +2263,7 @@ return {
     "ice345/markdown-table-wrap.nvim",
     ft = "markdown",
     opts = {
+      auto_preview_in_insert = true,
       link = {
         wiki = { icon = " ", highlight = "MarkdownTableWrapWikiLink", scope_highlight = "MarkdownTableWrapWikiLink" },
         image = " ",
