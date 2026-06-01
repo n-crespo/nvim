@@ -478,28 +478,27 @@ end
 
 map("n", "R", run_current_file, { desc = "run current file" })
 
--- MAPPINGS FOR MIN
+-- MIN SPECIFIC MAPPINGS --
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- map ciq to handle double, single, or backtick quotes automatically
-vim.keymap.set("n", "ciq", function()
+-- q text object to be quotes
+local function get_closest_quote()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
   local closest_quote = nil
   local min_dist = math.huge
 
-  -- search for the closest pair of quotes surrounding or ahead of the cursor
   for _, q in ipairs({ '"', "'", "`" }) do
     local s = 1
     while true do
       local start_idx, end_idx = line:find(q .. "[^" .. q .. "]*" .. q, s)
       if not start_idx then break end
 
-      -- check if cursor is inside or before this quote pair
       if col <= end_idx then
         local dist = start_idx - col
-        if dist < 0 then dist = 0 end -- cursor is inside the quotes
+        if dist < 0 then dist = 0 end
 
         if dist < min_dist then
           min_dist = dist
@@ -510,14 +509,16 @@ vim.keymap.set("n", "ciq", function()
       s = end_idx + 1
     end
   end
-
-  -- execute the native change command if a quote pair was found
-  if closest_quote then
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("ci" .. closest_quote, true, false, true), "n", false)
-  else
-    print("No quotes found ahead on this line")
-  end
-end, { desc = "Change inside closest quotes" })
+  return closest_quote
+end
+for _, text_obj in ipairs({ "i", "a" }) do
+  vim.keymap.set({ "x", "o" }, text_obj .. "q", function()
+    local q = get_closest_quote()
+    if q then
+      vim.api.nvim_feedkeys(text_obj .. q, "n", false)
+    end
+  end, { desc = "Target closest quote" })
+end
 
 -- lazyvim defaults --
 
@@ -622,3 +623,6 @@ end, { desc = "Print current file name" })
 -- traverse command history
 map("c", "<C-k>", "<C-p>")
 map("c", "<C-j>", "<C-n>")
+
+map("n", "<C-/>", "gcc")
+map("n", "<leader>n", "<cmd>messages<cr>")
