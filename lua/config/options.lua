@@ -33,10 +33,19 @@ opt.spellfile = vim.fn.stdpath("data") .. "/spell" .. "/en.utf-8.add"
 opt.completeopt = "menu,menuone,noselect,noinsert,popup"
 opt.background = "dark"
 opt.nrformats = "unsigned"
+opt.clipboard = "unnamedplus"
 -- opt.winborder = "rounded" -- this adds some visual artifacts occasionally
 -- opt.autochdir = true -- this breaks things
 
-if LazyVim.is_win() then
+vim.opt.path:append("**")
+opt.number = true
+
+vim.opt.path:append("**") -- make find work better
+vim.opt.wildignore:append({ "*/node_modules/*", "*/.git/*", "*/build/*", "*/target/*" })
+vim.opt.wildoptions:append("pum")
+vim.opt.wildmode = "longest:full,full"
+
+if vim.fn.has("win32") then
   vim.g.is_win = true
 else
   opt.fileformat = "unix"
