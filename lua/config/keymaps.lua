@@ -96,20 +96,6 @@ map("n", "z=", spell_select)
 map("n", "<leader>fs", "1z=", { remap = true, silent = true, desc = "Fix spelling" })
 map("n", "<leader>fl", "[s1z=", { remap = true, silent = true, desc = "Fix last spelling" })
 
-map("n", "<leader>R", function()
-  local plugins = require("lazy").plugins()
-  local plugin_names = {}
-  for _, plugin in ipairs(plugins) do
-    table.insert(plugin_names, plugin.name)
-  end
-
-  vim.ui.select(plugin_names, {
-    title = "Reload plugin",
-  }, function(selected)
-    require("lazy").reload({ plugins = { selected } })
-  end)
-end, { desc = "Reload plugin" })
-
 ---------------------------
 -----== VISUAL MODE ==-----
 ---------------------------
@@ -256,11 +242,6 @@ map("n", "<leader>o", function()
     vim.cmd([[Open %]])
   end
 end, { desc = "Open with OS" })
-
--- requires mini.surround
-map("x", '"', "gsaq", { remap = true, desc = "Surround Selection with Quotes" })
-map("x", "'", "gsa'", { remap = true, desc = "Surround Selection with Quotes" })
-map("x", "<C-b>", "gsab", { remap = true, desc = "Surround Selection with Parens" })
 
 -- better scrolling with mouse
 map("n", "<ScrollWheelUp>", "<C-y>")
@@ -479,18 +460,16 @@ local function run_current_file()
     map("t", "<esc><esc>", [[<C-\><C-n>]], opts)
     map("n", "q", [[<cmd>close<cr>]], opts)
   else
-    local task_id = "file_runner"
-
-    Snacks.notify.info("Job started: " .. full_cmd, { id = task_id })
+    vim.notify("Job started: " .. full_cmd)
 
     -- run command in the background non-blockingly if term=false
     vim.fn.jobstart(full_cmd, {
 
       on_exit = function(_, exit_code)
         if exit_code == 0 then
-          Snacks.notify.info("Done!", { id = task_id })
+          vim.notify("Done!")
         else
-          Snacks.notify.error("Job failed with exit code: " .. exit_code, { id = task_id })
+          vim.notify("Job failed with exit code: " .. exit_code)
         end
       end,
     })
