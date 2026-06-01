@@ -627,5 +627,84 @@ end, { desc = "Print current file name" })
 map("c", "<C-k>", "<C-p>")
 map("c", "<C-j>", "<C-n>")
 
-map("n", "<C-/>", "gcc")
-map("n", "<leader>n", "<cmd>messages<cr>")
+map("n", "<leader>n", function()
+  -- create a new split buffer and set it to a scratchpad/log filetype
+  vim.cmd("new")
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.bo.swapfile = false
+  vim.bo.filetype = "messages"
+  vim.wo.number = false
+
+  -- redirect the output of the :messages command straight into our new buffer
+  vim.cmd("redir => l_messages")
+  vim.cmd("silent messages")
+  vim.cmd("redir END")
+
+  -- clean up trailing spaces or blank characters from the string stream
+  local lines = vim.split(vim.g.l_messages or "", "\n")
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+
+  -- clear out the temporary global variable
+  vim.g.l_messages = nil
+end, { desc = "Open messages in a scratch buffer" })
+
+-- better commenting
+map("n", "<C-/>", "gcc", { remap = true })
+map("v", "<C-/>", "gcgv", { remap = true })
+map("i", "<C-/>", function()
+  local api = vim.api
+  local cursor = api.nvim_win_get_cursor(0)
+  local row, col = cursor[1], cursor[2]
+  local line = api.nvim_get_current_line()
+
+  -- get commentstring components natively using nvim_get_option_value
+  local cs = api.nvim_get_option_value("commentstring", { buf = 0 })
+  if cs == "" or not cs:find("%%s") then
+    return
+  end
+
+  local prefix, suffix = cs:match("^(.-)%%s(.-)$")
+  local trim_pre = prefix:gsub("%s+$", "") -- prefix without trailing space
+  local trim_suf = suffix:gsub("^%s+", "") -- suffix without leading space
+
+  -- capture leading whitespace and everything else
+  local indent, content = line:match("^(%s*)(.*)")
+
+  -- handle line that is either empty OR only contains the comment markers
+  -- we use vim.pesc to treat markers as literal strings in the regex
+  local pattern = "^" .. vim.pesc(prefix) .. vim.pesc(suffix) .. "$"
+  local pattern_trimmed = "^" .. vim.pesc(trim_pre) .. vim.pesc(trim_suf) .. "$"
+
+  if content == "" or content:match(pattern) or content:match(pattern_trimmed) then
+    if content == "" then
+      -- case: empty line -> add comment, keep indent
+      api.nvim_set_current_line(indent .. prefix .. suffix)
+      api.nvim_win_set_cursor(0, { row, #indent + #prefix })
+    else
+      -- case: only comment markers exist -> remove markers, keep indent
+      api.nvim_set_current_line(indent)
+      api.nvim_win_set_cursor(0, { row, #indent })
+    end
+    return
+  end
+
+  -- standard toggle logic for lines with actual content
+  local is_commented = content:sub(1, #trim_pre) == trim_pre
+  local offset = 0
+  if is_commented then
+    local space_match = content:match("^" .. vim.pesc(trim_pre) .. "(%s?)") or ""
+    offset = -(#trim_pre + #space_match)
+  else
+    local padding = prefix:find("%s$") and 1 or 0
+    offset = #trim_pre + padding
+  end
+
+  -- drop temporarily to normal mode to parse the native gcc lookup mapping recursively
+  api.nvim_feedkeys(api.nvim_replace_termcodes("<C-o>:normal gcc<CR>", true, false, true), "m", false)
+
+  -- ensure cursor matches calculated tracking coordinates after processing
+  vim.schedule(function()
+    api.nvim_win_set_cursor(0, { row, math.max(0, col + offset) })
+  end)
+end, { remap = true })
