@@ -162,10 +162,10 @@ map("n", "<D-[>", "<M-[>", { remap = true })
 map("i", "<D-[>", "<M-[>", { remap = true })
 map("v", "<D-[>", "<M-[>", { remap = true })
 
--- follow links better
-map({ "n", "x" }, "gx", function()
-  vim.ui.open(vim.fn.expand("<cfile>"))
-end, { silent = true })
+-- follow links better (not available in old neovim version)
+-- map({ "n", "x" }, "gx", function()
+--   vim.ui.open(vim.fn.expand("<cfile>"))
+-- end, { silent = true })
 
 -- increment and decrement with plus and minus (since i override <c-a>)
 map({ "n", "v" }, "+", "<c-a>", { noremap = true, silent = true })
@@ -477,3 +477,148 @@ local function run_current_file()
 end
 
 map("n", "R", run_current_file, { desc = "run current file" })
+
+-- MAPPINGS FOR MIN
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- map ciq to handle double, single, or backtick quotes automatically
+vim.keymap.set("n", "ciq", function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+  local closest_quote = nil
+  local min_dist = math.huge
+
+  -- search for the closest pair of quotes surrounding or ahead of the cursor
+  for _, q in ipairs({ '"', "'", "`" }) do
+    local s = 1
+    while true do
+      local start_idx, end_idx = line:find(q .. "[^" .. q .. "]*" .. q, s)
+      if not start_idx then break end
+
+      -- check if cursor is inside or before this quote pair
+      if col <= end_idx then
+        local dist = start_idx - col
+        if dist < 0 then dist = 0 end -- cursor is inside the quotes
+
+        if dist < min_dist then
+          min_dist = dist
+          closest_quote = q
+        end
+        break
+      end
+      s = end_idx + 1
+    end
+  end
+
+  -- execute the native change command if a quote pair was found
+  if closest_quote then
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("ci" .. closest_quote, true, false, true), "n", false)
+  else
+    print("No quotes found ahead on this line")
+  end
+end, { desc = "Change inside closest quotes" })
+
+-- lazyvim defaults --
+
+-- better up/down
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
+
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
+-- Move Lines
+map("n", "<M-n>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<M-p>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("v", "<M-n>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<M-p>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
+
+map(
+  "n",
+  "<leader>ur",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  { desc = "Redraw / Clear hlsearch / Diff Update" }
+)
+
+map({ "i", "n", "s" }, "<esc>", function()
+  vim.cmd("noh")
+  return "<esc>"
+end, { expr = true, desc = "Escape and Clear hlsearch" })
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+
+-- Add undo break-points
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", ";", ";<c-g>u")
+
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+-- better indenting
+map("x", "<", "<gv")
+map("x", ">", ">gv")
+
+-- quickfix list
+map("n", "<leader>xq", function()
+  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+  if not success and err then
+    vim.notify(err, vim.log.levels.ERROR)
+  end
+end, { desc = "Quickfix List" })
+map("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
+map("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
+
+map("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
+map("n", "<leader><tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+
+-- my own --
+
+map("n", "<leader>q", "<C-w>q", { desc = "Close window" } )
+map("n", "<leader>wo", "<cmd>only<cr>")
+
+map("n", "<M-o>", ":find ", { desc = "Open file" })
+map("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "Open new tab" })
+
+map("n", "H", "<cmd>tabp<cr>", { desc = "Previous Tab" })
+map("n", "L", "<cmd>tabn<cr>", { desc = "Next Tab" })
+
+-- indent/unindent lines
+map("n", "<M-]>", ">>", { desc = "indent line" })
+map("n", "<M-[>", "<<", { desc = "unindent line" })
+map("v", "<M-]>", ">gv", { desc = "indent block" })
+map("v", "<M-[>", "<gv", { desc = "unindent block" })
+
+-- lualine keymap
+map("n", "<C-g>", function()
+  local path = vim.fn.expand("%:p:~")
+  local relative = vim.fn.expand("%:.")
+  if relative ~= "" then
+    relative = "\n" .. relative
+  end
+  vim.notify("[" .. path .. "]" .. relative)
+end, { desc = "Print current file name" })
+
+-- traverse command history
+map("c", "<C-k>", "<C-p>")
+map("c", "<C-j>", "<C-n>")
