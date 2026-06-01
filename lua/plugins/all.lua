@@ -1567,23 +1567,6 @@ return {
   { -- nvim-lint (linters)
     "mfussenegger/nvim-lint",
     event = "LazyFile",
-    opts = {
-      linters = {
-        typos = {
-          condition = function()
-            return vim.fn.executable("typos") == 1
-          end,
-        },
-      },
-      linters_by_ft = {
-        -- fish = { "fish" },
-        ["*"] = { "typos" },
-        -- Use the "*" filetype to run linters on all filetypes.
-        -- ['*'] = { 'global linter' },
-        -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
-        -- ['_'] = { 'fallback linter' },
-      },
-    },
   },
 
   -- TEXT EDITING --
