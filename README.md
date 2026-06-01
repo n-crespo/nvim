@@ -66,3 +66,13 @@ Open Neovim (if using custom install path):
 ```bash
 NVIM_APPNAME=n-crespo/nvim-config/ nvim
 ```
+
+## Recommended External Tools
+
+These are not installed by default but are configured to work properly if installed.
+
+- `oxfmt`: replacement to prettier (Mason)
+- `doctoc`: auto generate markdown tables of contents (Mason)
+  - use command: `!doctoc % --notitle` or just `doctoc .`
+- `marksman`: LSP completion/symbols for markdown (Mason)
+- `typos-lsp`: LSP for catching/fixing typos. Also available as linter (no auto fix) (Mason)
