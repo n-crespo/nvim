@@ -2285,7 +2285,7 @@ return {
       },
     },
     keys = {
-      { "<leader>t", "<cmd>MarkdownTableTogglePreview<cr>", desc = "Toggle Markdown table preview" },
+      { "<leader>t", "<cmd>MarkdownTableTogglePreview<cr>", desc = "Toggle table preview", ft = "markdown" },
     },
   },
 }
