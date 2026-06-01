@@ -1459,6 +1459,15 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        marksman = {
+          settings = {
+            markdown = {
+              code_action = {
+                toc = false, -- use doctoc instead!
+              },
+            },
+          },
+        },
         tinymist = {
           settings = {
             formatterMode = "prettypst",
