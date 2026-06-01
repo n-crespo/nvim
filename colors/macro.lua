@@ -9,6 +9,8 @@
 -- credits: https://github.com/Bekaboo/dot/blob/master/.config/nvim/colors/macro.lua
 
 -- Clear hlgroups and set colors_name {{{
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
 vim.cmd.hi("clear")
 vim.g.colors_name = "macro"
 -- }}}
@@ -112,8 +114,8 @@ local hlgroups = {
   MatchParen = { link = "Visual" },
   ModeMsg = { fg = dimRed, bold = true },
   MoreMsg = { fg = dimBlue },
-  MsgArea = { link = "Normal" },
-  MsgSeparator = { bg = normalFg },
+  MsgArea = { fg = quoteFg, bg = normalBg },
+  MsgSeparator = { fg = dimPurple, sp = dimPurple, underline = true },
   NonText = { fg = ashGrey },
   SnippetTabstop = { link = "Snippet" },
   NormalNC = { link = "Normal" },
