@@ -109,6 +109,11 @@ opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 vim.g.markdown_recommended_style = 0 -- fix markdown indent settings
 
+vim.cmd[[
+  set complete-=i   " disable scanning included files
+  set complete-=t   " disable searching tags
+]]
+
 opt.cmdheight = 0
 vim.g.netrw_banner = 1
 
