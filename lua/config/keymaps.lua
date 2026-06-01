@@ -599,7 +599,6 @@ map("n", "<leader><tab>q", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 
 -- my own --
 
-map("n", "<leader>q", "<C-w>q", { desc = "Close window" } )
 map("n", "<leader>wo", "<cmd>only<cr>")
 
 map("n", "<M-o>", ":find ", { desc = "Open file" })
