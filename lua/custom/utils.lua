@@ -33,8 +33,7 @@ function M.get_dir_with_fallback(filename)
         return cur_buf_path .. "/" .. filename
       end
     end
-    -- use LazyVim's builtin function for finding root directory
-    return LazyVim.root()
+    return vim.fn.cwd()
   end
 
   -- try to get alternate buffer's directory
@@ -132,7 +131,6 @@ function M.follow_path(path, tab)
   else
     table.insert(candidates, fn.expand("%:p:h") .. "/" .. path)
     table.insert(candidates, vim.fn.getcwd(0, 0) .. "/" .. path)
-    table.insert(candidates, LazyVim.root() .. "/" .. path)
   end
   for _, p in ipairs(candidates) do
     if uv.fs_stat(p) then
