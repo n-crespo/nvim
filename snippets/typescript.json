@@ -1,9 +1,0 @@
-{
-  "Insert console.log": {
-    "prefix": "cl",
-    "body": [
-      "console.log($1);"
-    ],
-    "description": "Insert fenced C++ code block"
-  }
-}
