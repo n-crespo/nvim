@@ -76,3 +76,7 @@ These are not installed by default but are configured to work properly if instal
   - use command: `!doctoc % --notitle` or just `doctoc .`
 - `marksman`: LSP completion/symbols for markdown (Mason)
 - `typos-lsp`: LSP for catching/fixing typos. Also available as linter (no auto fix) (Mason)
+
+## TODO
+
+- [ ] put together single file Neovim config for portability/no default installs
