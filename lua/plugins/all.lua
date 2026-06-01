@@ -273,7 +273,7 @@ return {
     lazy = false,
     opts = {
       presets = { lsp_doc_border = true },
-      cmdline = { view = "cmdline" },
+      -- cmdline = { view = "cmdline" },
       notify = { enabled = false },
       views = {
         mini = { win_options = { winblend = 0 } }, -- transparent lsp progress window
