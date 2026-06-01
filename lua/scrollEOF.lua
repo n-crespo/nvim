@@ -1,3 +1,4 @@
+-- https://github.com/Aasim-A/scrollEOF.nvim/blob/master/lua/scrollEOF.lua
 local M = {}
 
 local mode_disabled = false
