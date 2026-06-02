@@ -115,5 +115,3 @@ vim.cmd[[
 ]]
 
 opt.cmdheight = 0
-
--- opts set by default lazyvim: ~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/config/options.lua
