@@ -318,3 +318,18 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- indent guides
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  callback = function()
+    sw = vim.fn.shiftwidth()
+    vim.opt.listchars = vim.tbl_deep_extend(
+      "force",
+      vim.opt_local.listchars:get(),
+      {
+        tab = '▏' .. (' '):rep(sw - 1),
+        leadmultispace = '▏' .. (' '):rep(sw - 1)
+      }
+    )
+  end
+})
