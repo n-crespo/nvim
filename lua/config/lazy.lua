@@ -1,6 +1,6 @@
+require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-require("config.options")
 
 -- plugin setup
 require("plugins.explore")
