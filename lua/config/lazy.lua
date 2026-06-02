@@ -1,10 +1,3 @@
--- set the environment variable NVIM_FULL_CONFIG to "true" to enable all
--- features. set to "false" or leave unset to use default lite version
-
----@type boolean
-vim.g.full_config = vim.env.NVIM_FULL_CONFIG == "true" or false
-local full_config = vim.g.full_config
-
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 ---@diagnostic disable-next-line: undefined-field
@@ -13,6 +6,16 @@ if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
+
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+-- NOTE: set this to false to disable most language features (below)
+vim.g.full_config = true
+local full_config = vim.g.full_config
+--------------------------------------------------------------------
+--------------------------------------------------------------------
+--------------------------------------------------------------------
 
 require("lazy").setup({
   spec = {
@@ -28,7 +31,9 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.python", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.tailwind", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.typescript", cond = full_config },
+    { import = "lazyvim.plugins.extras.lang.typescript.tsgo", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.typst", cond = full_config },
+    { import = "lazyvim.plugins.extras.formatting.black", cond = full_config },
     -- { import = "lazyvim.plugins.extras.linting.eslint", cond = full_config },
     -- { import = "lazyvim.plugins.extras.dap.core", cond = full_config },
     -- { import = "lazyvim.plugins.extras.ai.copilot-chat", cond = full_config },

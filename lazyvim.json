@@ -3,9 +3,7 @@
     "lazyvim.plugins.extras.coding.mini-comment",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.editor.snacks_picker",
-    "lazyvim.plugins.extras.formatting.black",
     "lazyvim.plugins.extras.lang.git",
-    "lazyvim.plugins.extras.lang.typescript.tsgo",
     "lazyvim.plugins.extras.ui.treesitter-context",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
@@ -15,3 +13,4 @@
   },
   "version": 8
 }
+
