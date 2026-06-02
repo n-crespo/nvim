@@ -56,7 +56,8 @@ opt.wildignore:append({ "*/node_modules/*", "*/.git/*", "*/build/*", "*/target/*
 opt.wildoptions:append("pum")
 
 opt.wildmode = "longest:full,full"
-opt.conceallevel = 2
+opt.wildignorecase = true
+opt.conceallevel = 3
 opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true -- Use spaces instead of tabs
