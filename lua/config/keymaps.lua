@@ -547,6 +547,8 @@ map("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "Open new tab" })
 
 map("n", "H", "<cmd>tabp<cr>", { desc = "Previous Tab" })
 map("n", "L", "<cmd>tabn<cr>", { desc = "Next Tab" })
+map("n", "<M-,>", function() vim.cmd(vim.fn.tabpagenr() == 1 and "tabmove" or "-tabmove") end, { desc = "Move tab left" })
+map("n", "<M-;>", function() vim.cmd(vim.fn.tabpagenr() == vim.fn.tabpagenr("$") and "0tabmove" or "+tabmove") end, { desc = "Move tab right" })
 
 -- indent/unindent lines
 map("n", "<M-]>", ">>", { desc = "indent line" })
