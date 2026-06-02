@@ -1,5 +1,3 @@
-![image](./images/image.png)
-
 A pluginless\* Neovim configuration focusing on extending native Neovim features.
 
 > \*: 2 plugins (mini.file and scrollEOF) that I decided were not worth
