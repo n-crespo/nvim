@@ -1,19 +1,13 @@
 ![image](./images/image.png)
 
-My Neovim configuration based on the [LazyVim](https://www.lazyvim.org)
-distribution, with custom features to extend or remove functionality.
+A pluginless\* Neovim configuration focusing on extending native Neovim features.
 
-> [!IMPORTANT]
-> See the `min` branch for a more lightweight, plugin-less config with similar
-> functionality implemented natively.
+> \*: 2 plugins (mini.file and scrollEOF) that I decided were not worth
+implementing myself have their source code just in a file in this repo. This is
+because because a) netrw sucks and b) scrollEOF is goated.
 
 ## Cool Things
 
-> [!NOTE]
-> See all plugin configurations in [`lua/plugins/all.lua`](./lua/plugins/all.lua).
-
-- zoxide integration with snacks.picker
-- sensible markdown functionality
 - macro, my custom (borrowed/extended) [color scheme](./colors/macro.lua)
 - some [keymaps](./lua/config/keymaps.lua)
   - `<C-S-C>`: show word/char count
@@ -26,6 +20,23 @@ distribution, with custom features to extend or remove functionality.
 
 ## Install
 
+If you're on ubuntu:
+
+```bash
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt install neovim -y
+```
+
+If you're on some other Linux:
+
+```bash
+curl-LO <tar-url-for-whatever-neovim-release-you-want>
+tar -xvg <that-file>
+# move that somewhere and add to your path
+```
+
+Or if you wanna install `cargo` for some reason:
+
 ```bash
 cargo install bob-nvim
 bob install nightly
@@ -34,42 +45,26 @@ bob use nightly
 
 ### Dependencies
 
-- `neovim` (>= 0.11 preferred)
-- `ripgrep`/`rg`
-- `fd`
-- `lazygit`
-- `node`/`npm` (for some language servers)
-- `wslu` (if using WSL)
-- `xsel` (if using WSL)
-- `clang`
-- `gcc`
-- `python`
-- `go`
+None! Just install Neovim.
 
 ## Usage
 
 Clone the repository and install the plugins:
 
+Override your current config:
+
 ```bash
-# will not override current config
-git clone git@github.com:n-crespo/nvim-config ~/.config/n-crespo/nvim-config
-#                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#                    change this path to ~/.config/nvim to override current config
-NVIM_APPNAME=n-crespo/nvim-config/ nvim --headless +"Lazy! sync" +qa
+git clone -b min git@github.com:n-crespo/nvim ~/.config/n-crespo/nvim
+nvim
 ```
 
-Open Neovim (if using custom install path):
+Or don't:
 
 ```bash
-NVIM_APPNAME=n-crespo/nvim-config/ nvim
+git clone -b min git@github.com:n-crespo/nvim ~/.config/nvim-min
+NVIM_APPNAME=nvim-min/ nvim --headless +"Lazy! sync" +qa
 ```
 
 ## Recommended External Tools
 
-These are not installed by default but are configured to work properly if installed.
-
-- `oxfmt`: replacement to prettier (Mason)
-- `doctoc`: auto generate markdown tables of contents (Mason)
-  - use command: `!doctoc % --notitle` or just `doctoc .`
-- `marksman`: LSP completion/symbols for markdown (Mason)
-- `typos-lsp`: LSP for catching/fixing typos. Also available as linter (no auto fix) (Mason)
+None!
