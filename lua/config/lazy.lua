@@ -19,11 +19,9 @@ local full_config = vim.g.full_config
 
 require("lazy").setup({
   spec = {
-    -- import default LazyVim plugins (some disabled in disabled.lua)
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "LazyVim/LazyVim", import = "lazyvim.plugins" }, -- default lazyvim plugins (some disabled in disabled.lua)
 
-    -- these will only be enabled if you set the environment variable
-    -- NVIM_FULL_CONFIG to true. Extras in lazyvim.json are always enabled
+    -- Extras in lazyvim.json are always enabled
     { import = "lazyvim.plugins.extras.util.dot", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.json", cond = full_config },
     { import = "lazyvim.plugins.extras.lang.toml", cond = full_config },
@@ -41,8 +39,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.ai.copilot", cond = full_config },
     -- { import = "lazyvim.plugins.extras.lang.java", cond = full_config },
 
-    -- this enables user define plugins, from ../plugins/
-    { import = "plugins.all" },
+    { import = "plugins.all" }, -- enable plugins from ../plugins
   },
   defaults = {
     lazy = true,
