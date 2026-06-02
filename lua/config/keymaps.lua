@@ -320,72 +320,13 @@ map("n", "<C-S-C>", "<cmd>Wordcount<cr>", { desc = "Display word/char count" })
 -----------------------
 
 -- setup vscode overrides
-if not vim.g.vscode then
-  -- done with bufferline
-  -- map("n", "<S-h>", "<cmd>tabprev<cr>", { desc = "Previous tab" })
-  -- map("n", "<S-l>", "<cmd>tabnext<cr>", { desc = "Next tab" })
-
-  map("n", "<leader>q", function()
-    -- stylua: ignore
-    local close_window = function() vim.cmd("close") end
-    local ok, _ = pcall(close_window)
-    if not ok then
-      pcall(vim.cmd("bdelete"))
-    end
-  end, { desc = "Close window", silent = true })
-else
-  local vscode = require("vscode")
-
-  vim.cmd([[
-    function s:moveCursor(to)
-        normal! m'
-        call VSCodeExtensionNotify('move-cursor', a:to)
-    endfunction
-  ]])
-
-  map("n", "*", function()
-    vim.cmd(":silent! norm! *")
-    local curline = vim.fn.line(".")
-    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
-  end, { noremap = true, silent = true })
-
-  map("n", "n", function()
-    vim.cmd(":silent! norm! n")
-    local curline = vim.fn.line(".")
-    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
-  end, { noremap = true, silent = true })
-
-  map("n", "N", function()
-    vim.cmd(":silent! norm! N")
-    local curline = vim.fn.line(".")
-    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
-  end, { noremap = true, silent = true })
-
-  map("n", "g/", function()
-    vim.cmd(":silent! norm! *")
-    local curline = vim.fn.line(".")
-    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
-  end, { noremap = true, silent = true })
-
-  vim.cmd([[
-    function! s:split(...) abort
-      let direction = a:1
-      let file = exists('a:2') ? a:2 : ''
-      call VSCodeCall(direction ==# 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
-      if !empty(file)
-        call VSCodeExtensionNotify('open-file', expand(file), 'all')
-      endif
-    endfunction
-
-    nnoremap _ <Cmd>call <SID>split('h')<CR>
-    nnoremap \| <Cmd>call <SID>split('v')<CR>
-  ]])
-
-  vim.notify = vscode.notify
-
-  vim.keymap.del("n", "<leader>qq")
-  map("n", "<leader>q", "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", { silent = true })
-end
+map("n", "<leader>q", function()
+  local close_window = function() vim.cmd("close") end
+  local ok, _ = pcall(close_window)
+  if not ok then
+    pcall(vim.cmd("bdelete"))
+  end
+end, { desc = "Close window", silent = true })
 
 -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
 map("n", "<C-S-s>", function()
