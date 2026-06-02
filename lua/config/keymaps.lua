@@ -425,6 +425,7 @@ local runners = {
   cpp = { cmd = "g++ % -o %< && ./%<" },
   autohotkey = { cmd = "start", term = false },
   typst = { cmd = "typst compile", term = false },
+  markdown = { cmd = "pandoc -V geometry:margin=0.5in % -o %<.pdf && open %<.pdf", term = false },
 }
 
 local function run_current_file()
