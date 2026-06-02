@@ -7,14 +7,14 @@ local map = vim.keymap.set
 -- Replace the word cursor is on globally
 map("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change instances" })
 
-vim.keymap.set("n", "<C-d>", function()
+map("n", "<C-d>", function()
   if vim.fn.line(".") == 1 then
     return "M"
   end
   return "<C-d>zz"
 end, { expr = true })
 
-vim.keymap.set("n", "<C-u>", function()
+map("n", "<C-u>", function()
   if vim.fn.line(".") == vim.fn.line("$") then
     return "M"
   end
@@ -323,21 +323,16 @@ map({ "n", "i" }, "<C-D-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (n
 map({ "n", "i" }, "<D-s>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
 map("n", "<M-C-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
 
--- get word count of current file
-map("n", "<C-S-C>", function()
-  vim.notify(
-    "Word Count: " .. vim.fn.wordcount().words .. "\nChar Count: " .. vim.fn.wordcount().chars,
-    vim.log.levels.INFO
-  )
-end)
-
 -- Define a command to get word and character count of the current file
 vim.api.nvim_create_user_command("Wordcount", function()
   vim.notify(
     "Word Count: " .. vim.fn.wordcount().words .. "\nChar Count: " .. vim.fn.wordcount().chars,
     vim.log.levels.INFO
   )
-end, { desc = "Display word and character count of the current file" })
+end, { desc = "Display word/char count" })
+
+-- get word count of current file
+map("n", "<C-S-C>", "<cmd>Wordcount<cr>", { desc = "Display word/char count" })
 
 -----------------------
 -----== VSCODE ==------
@@ -412,7 +407,7 @@ else
 end
 
 -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
-vim.keymap.set("n", "<C-S-s>", function()
+map("n", "<C-S-s>", function()
   vim.cmd([[silent! %s/\r//g]])
   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
 end, { desc = "clean ^M" })
@@ -480,8 +475,8 @@ local function run_current_file()
 
     -- set buffer local keymaps to close/escape to normal mode
     local opts = { buffer = buf, silent = true }
-    vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], opts)
-    vim.keymap.set("n", "q", [[<cmd>close<cr>]], opts)
+    map("t", "<esc><esc>", [[<C-\><C-n>]], opts)
+    map("n", "q", [[<cmd>close<cr>]], opts)
   else
     local task_id = "file_runner"
 
