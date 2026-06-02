@@ -3,12 +3,9 @@
 My Neovim configuration based on the [LazyVim](https://www.lazyvim.org)
 distribution, with custom features to extend or remove functionality.
 
-Comes in two varieties:
-
-- `lite` (default)
-- `full` (fully featured, enables support for more languages)
-
-> Set the environment variable `NVIM_FULL_CONFIG=true` to switch to the full config.
+> [!IMPORTANT]
+> See the `min` branch for a more lightweight, plugin-less config with similar
+> functionality implemented natively.
 
 ## Cool Things
 
@@ -76,7 +73,3 @@ These are not installed by default but are configured to work properly if instal
   - use command: `!doctoc % --notitle` or just `doctoc .`
 - `marksman`: LSP completion/symbols for markdown (Mason)
 - `typos-lsp`: LSP for catching/fixing typos. Also available as linter (no auto fix) (Mason)
-
-## TODO
-
-- [ ] put together single file Neovim config for portability/no default installs
