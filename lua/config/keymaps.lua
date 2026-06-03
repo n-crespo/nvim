@@ -56,6 +56,7 @@ map("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" 
 
 -- close tabs/all buffers
 map("n", "<leader><Tab>q", "<cmd>tabclose<cr>", { desc = "Close tab" })
+map("n", "<leader><Tab>o", "<cmd>tabonly<cr>", { desc = "Close all other tabs" })
 
 -- exclude "desc" so they don't populate which-key
 map("n", "<leader>1", "<cmd>silent! tabn 1<cr>", { silent = true })
