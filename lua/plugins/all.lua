@@ -1555,6 +1555,7 @@ return {
         ["typst"] = { "prettypst" },
         ["c"] = { "clang-format" },
         ["python"] = { "ruff" },
+        ["tex"] = { "tex-fmt" },
         -- ["zsh"] = { "beautysh" },
       },
       formatters = {
