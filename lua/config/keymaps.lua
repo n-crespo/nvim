@@ -96,6 +96,7 @@ map("n", "z=", spell_select)
 -- auto pick the first spelling suggestion and apply it
 map("n", "<leader>fs", "1z=", { remap = true, silent = true, desc = "Fix spelling" })
 map("n", "<leader>fl", "[s1z=", { remap = true, silent = true, desc = "Fix last spelling" })
+map("n", "<leader>uw", "<cmd>set wrap!<cr>", {silent = true, desc = "Toggle wrap"})
 
 ---------------------------
 -----== VISUAL MODE ==-----
@@ -493,6 +494,27 @@ map("v", "<C-n>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc 
 map("v", "<C-p>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
 
 map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete buffer" })
+map("n", "<leader>bo", "<cmd>%bd!|e#|bd#<cr>", { desc = "Delete all other buffer" })
+
+map("n", "<leader>us", "<cmd>set spell!<cr>", { desc = "Toggle spell" })
+map("n", "<leader>ul", "<cmd>set number!<cr>", { desc = "Toggle line numbers" })
+map("n", "<leader>uL", "<cmd>set relativenumber!<cr>", { desc = "Toggle relative numbers" })
+
+map("n", "<leader>uf", function()
+  vim.b.autoformat = not vim.b.autoformat
+  print("(buffer) Autoformat: " .. (vim.b.autoformat and "Enabled" or "Disabled"))
+end, { desc = "Toggle Auto Format (Global)" })
+
+map("n", "<leader>uF", function()
+  vim.g.autoformat = not vim.g.autoformat
+  print("(global) Autoformat: " .. (vim.g.autoformat and "Enabled" or "Disabled"))
+end, { desc = "Toggle Auto Format (Buffer)" })
+
+map("n", "<leader>uA", function()
+  vim.opt.showtabline = vim.opt.showtabline:get() == 2 and 0 or 2
+  local is_enabled = vim.opt.showtabline:get() == 2
+  print("Tabline: " .. (is_enabled and "Enabled" or "Disabled"))
+end, { desc = "Toggle Tabline" })
 
 map(
   "n",
