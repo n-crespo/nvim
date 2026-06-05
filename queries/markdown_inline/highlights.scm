@@ -1,6 +1,11 @@
 ; From MDeiml/tree-sitter-markdown
 (code_span) @markup.raw @nospell
 
+; Hide inline backtick delimiters completely
+(code_span
+  (code_span_delimiter) @conceal
+  (#set! conceal ""))
+
 (emphasis) @markup.italic
 
 (strong_emphasis) @markup.strong
