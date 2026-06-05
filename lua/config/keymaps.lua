@@ -499,6 +499,15 @@ map("n", "<leader>bo", "<cmd>%bd!|e#|bd#<cr>", { desc = "Delete all other buffer
 map("n", "<leader>us", "<cmd>set spell!<cr>", { desc = "Toggle spell" })
 map("n", "<leader>ul", "<cmd>set number!<cr>", { desc = "Toggle line numbers" })
 map("n", "<leader>uL", "<cmd>set relativenumber!<cr>", { desc = "Toggle relative numbers" })
+map("n", "<leader>uc", function()
+  if vim.opt_local.conceallevel:get() == 0 then
+    vim.opt_local.conceallevel = 2
+    print("Conceal: Enabled")
+  else
+    vim.opt_local.conceallevel = 0
+    print("Conceal: Disabled")
+  end
+end, { desc = "Toggle conceal level" })
 
 map("n", "<leader>uf", function()
   vim.b.autoformat = not vim.b.autoformat
