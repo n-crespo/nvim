@@ -228,6 +228,7 @@ local hlgroups = {
   ["@markup.heading.6.marker.markdown"] = { link = "Delimiter" },
   -- ["@markup.markdown_inline"] = { fg = c_macroFg0 },
   ["@markup.strikethrough.markdown_inline"] = { strikethrough = true },
+  ["@markup.raw.markdown_inline"] = { bg = cursorlineBg, fg = dimGreen },
   ["@comment.todo.checked"] = { link = "Comment" },
   ["@comment.todo.unchecked"] = { fg = dimRed },
   ["@markup.link.label.markdown_inline"] = { link = "htmlLink" },
