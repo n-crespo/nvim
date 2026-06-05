@@ -2,7 +2,7 @@ A pluginless\* Neovim configuration focusing on extending native Neovim features
 
 > \*: 2 plugins (mini.file and scrollEOF) that I decided were not worth
 implementing myself have their source code just in a file in this repo. This is
-because because a) netrw sucks and b) scrollEOF is goated.
+because because a) netrw sucks and b) scrollEOF is really nice.
 
 ## Cool Things
 
