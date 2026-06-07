@@ -662,8 +662,7 @@ return {
         border = "rounded",
       },
       lazygit = {
-        enabled = true,
-        configure = not vim.g.is_win,
+        config = { os = { editPreset = vim.g.is_win and "nvim" } },
       },
     },
     keys = {
