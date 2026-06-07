@@ -2255,6 +2255,8 @@ return {
     ft = "markdown",
     opts = {
       auto_preview_in_insert = true,
+      clear_on_visual = false,
+      clear_on_insert = false,
       link = {
         wiki = { icon = " ", highlight = "MarkdownTableWrapWikiLink", scope_highlight = "MarkdownTableWrapWikiLink" },
         image = " ",
