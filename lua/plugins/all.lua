@@ -1048,7 +1048,7 @@ return {
       {
         "<C-q>",
         function()
-          require("snacks.terminal").toggle(nil, {
+          require("snacks.terminal").focus(nil, {
             win = { position = "bottom" },
             env = { SNACKS_TERM_ID = "bottom_terminal" },
           })
@@ -1059,7 +1059,7 @@ return {
       {
         "<C-s-/>",
         function()
-          require("snacks.terminal").toggle(nil, {
+          require("snacks.terminal").focus(nil, {
             win = { position = "float", border = "rounded" },
             env = { SNACKS_TERM_ID = "floating_terminal" },
           })
@@ -1070,7 +1070,7 @@ return {
       {
         "<C-?>",
         function()
-          require("snacks.terminal").toggle(nil, {
+          require("snacks.terminal").focus(nil, {
             win = { position = "float", border = "rounded" },
             env = { SNACKS_TERM_ID = "floating_terminal" },
           })
