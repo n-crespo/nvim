@@ -422,6 +422,7 @@ local runners = {
   lua = { cmd = "lua" },
   go = { cmd = "go run" },
   sh = { cmd = "bash" },
+  c = { cmd = "gcc % -o %< && ./%<" },
   cpp = { cmd = "g++ % -o %< && ./%<" },
   autohotkey = { cmd = "start", term = false },
   typst = { cmd = "typst compile", term = false },
