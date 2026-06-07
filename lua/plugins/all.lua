@@ -542,7 +542,7 @@ return {
       -- Returns hex color group for matching rgb() color.
       --
       ---@param match string
-      ---@return string
+      ---@return string|nil
       local rgb_color = function(_, match)
         local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
         local red, green, blue = match:match("rgb%((%d+), ?(%d+), ?(%d+)%)")
@@ -555,7 +555,7 @@ return {
       -- The use of the alpha value refers to a black background.
       --
       ---@param match string
-      ---@return string|false
+      ---@return string|nil
       local rgba_color = function(_, match)
         local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
         local red, green, blue, alpha = match:match("rgba%((%d+), ?(%d+), ?(%d+), ?(%d*%.?%d*)%)")
