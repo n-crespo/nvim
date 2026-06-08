@@ -2013,6 +2013,7 @@ return {
     cmd = { "GithubPreviewToggle" },
     opts = {
       cursor_line = { disable = true },
+      single_file = true,
     },
     keys = {
       {
