@@ -1482,7 +1482,7 @@ return {
               vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Up>", true, true, true), "n", true)
             end,
           },
-          ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
+          ["<C-space>"] = { "show", "hide" },
           ["<Tab>"] = { "select_and_accept", "fallback" },
         },
         completion = { menu = { auto_show = true } },
