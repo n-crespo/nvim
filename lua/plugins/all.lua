@@ -1435,7 +1435,7 @@ return {
         ["json"] = { "jq" },
         ["typst"] = { "prettypst" },
         ["c"] = { "clang-format" },
-        ["python"] = { "ruff" },
+        ["python"] = { "black" },
         ["tex"] = { "tex-fmt" },
         -- ["zsh"] = { "beautysh" },
       },
