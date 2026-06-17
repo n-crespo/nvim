@@ -36,6 +36,11 @@ opt.nrformats = "unsigned"
 -- opt.winborder = "rounded" -- this adds some visual artifacts occasionally
 -- opt.autochdir = true -- this breaks things
 
+-- make find work better
+opt.path:append("**")
+opt.wildignore:append({ "*/node_modules/*", "*/.git/*", "*/build/*", "*/target/*" })
+opt.wildoptions:append("pum")
+
 if LazyVim.is_win() then
   vim.g.is_win = true
 else
