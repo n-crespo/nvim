@@ -1332,10 +1332,7 @@ return {
       },
       {
         "<M-o>",
-        function()
-          -- Snacks.picker.smart()
-          Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Picker" })
-        end,
+        ":find ",
         desc = "Pick Files",
       },
       {
