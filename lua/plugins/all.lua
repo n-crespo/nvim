@@ -513,55 +513,6 @@ return {
       })
     end,
   },
-  { -- mini.hipatterns (highlighting colors in code)
-    "nvim-mini/mini.hipatterns",
-    opts = function(_, opts)
-      local hipatterns = require("mini.hipatterns")
-
-      -- Returns hex color group for matching rgb() color.
-      --
-      ---@param match string
-      ---@return string|nil
-      local rgb_color = function(_, match)
-        local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
-        local red, green, blue = match:match("rgb%((%d+), ?(%d+), ?(%d+)%)")
-        local hex = string.format("#%02x%02x%02x", red, green, blue)
-        return hipatterns.compute_hex_color_group(hex, style)
-      end
-
-      -- Returns hex color group for matching rgba() color
-      -- or false if alpha is nil or out of range.
-      -- The use of the alpha value refers to a black background.
-      --
-      ---@param match string
-      ---@return string|nil
-      local rgba_color = function(_, match)
-        local style = "bg" -- 'fg' or 'bg', for extmark_opts_inline use 'fg'
-        local red, green, blue, alpha = match:match("rgba%((%d+), ?(%d+), ?(%d+), ?(%d*%.?%d*)%)")
-        alpha = tonumber(alpha)
-        if alpha == nil or alpha < 0 or alpha > 1 then
-          return false
-        end
-        local hex = string.format("#%02x%02x%02x", red * alpha, green * alpha, blue * alpha)
-        return hipatterns.compute_hex_color_group(hex, style)
-      end
-
-      -- add support for rgb/rgba color highlights
-      -- `rgb(r, g, b)`
-      opts.highlighters.rgb_color = {
-        pattern = "rgb%(%d+, ?%d+, ?%d+%)",
-        group = rgb_color,
-        extmark_opts = { priority = 2000 },
-      }
-      -- `rgba(r, g, b, a)`
-      opts.highlighters.rgba_color = {
-        pattern = "rgba%(%d+, ?%d+, ?%d+, ?%d*%.?%d*%)",
-        group = rgba_color,
-        extmark_opts = { priority = 2000 },
-      }
-      return opts
-    end,
-  },
   { -- match paren (highlight matching paren)
     "monkoose/matchparen.nvim",
     event = "LazyFile",
