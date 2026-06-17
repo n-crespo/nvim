@@ -732,22 +732,6 @@ return {
       },
     },
   },
-  { -- snacks (images)
-    -- this doesn't work in windows terminal but sixel does (used in yazi)
-    "folke/snacks.nvim", -- image
-    ---@type snacks.Config
-    opts = {
-      image = {
-        enabled = false,
-        math = {
-          enabled = true,
-          latex = {
-            font_size = "large",
-          },
-        },
-      },
-    },
-  },
   { -- snacks (indent guides)
     "folke/snacks.nvim",
     opts = {
