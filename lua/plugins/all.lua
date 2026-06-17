@@ -1357,35 +1357,6 @@ return {
     optional = true, -- enabled with :LazyExtras
     ft = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
   },
-  { -- typst preview (fix for windows tinymist path)
-    "chomosuke/typst-preview.nvim",
-    optional = true,
-    opts = {
-      follow_cursor = true,
-      dependencies_bin = { tinymist = vim.g.is_win and "tinymist.cmd" or "tinymist" },
-    },
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        marksman = {
-          settings = {
-            markdown = {
-              code_action = {
-                toc = false, -- use doctoc instead!
-              },
-            },
-          },
-        },
-        tinymist = {
-          settings = {
-            formatterMode = "prettypst",
-          },
-        },
-      },
-    },
-  },
 
   -- LSP/LINT/FORMATTING --
   { -- lspconfig (general)
