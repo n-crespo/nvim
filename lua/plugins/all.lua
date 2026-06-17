@@ -1,24 +1,3 @@
-local supported = {
-  "astro",
-  "css",
-  "graphql",
-  "handlebars",
-  "html",
-  "javascript",
-  "javascriptreact",
-  "json",
-  "jsonc",
-  "less",
-  "markdown",
-  "markdown.mdx",
-  "scss",
-  "svelte",
-  "typescript",
-  "typescriptreact",
-  "vue",
-  "yaml",
-}
-
 return {
 
   -- NOTE: search for a plugin's config with <leader>fP (or just browse this file)
