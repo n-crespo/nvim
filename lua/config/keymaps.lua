@@ -20,7 +20,6 @@ map("n", "<C-u>", function()
   end
   return "<C-u>zz"
 end, { expr = true })
-map("n", "<C-u>", "<C-u>zz", { noremap = true })
 map("n", "n", "nzzzv", { noremap = true })
 map("n", "N", "Nzzzv", { noremap = true })
 
