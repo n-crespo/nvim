@@ -354,6 +354,30 @@ if not vim.g.vscode then
 else
   local vscode = require("vscode")
 
+  map("n", "<C-d>", "18j", { remap = true })
+  map("n", "<C-u>", "18k", { remap = true })
+
+    -- Remap folding keys
+    -- stylua: ignore start
+    map('n', 'zM', function() vscode.call("editor.foldAll") end, { noremap = true, silent = true })
+    map('n', 'zR', function() vscode.call("editor.unfoldAll") end, { noremap = true, silent = true })
+    map('n', 'zc', function() vscode.call("editor.fold") end, { noremap = true, silent = true })
+    map('n', 'zC', function() vscode.call("editor.foldRecursively") end, { noremap = true, silent = true })
+    map('n', 'zo', function() vscode.call("editor.unfold") end, { noremap = true, silent = true })
+    map('n', 'zO', function() vscode.call("editor.unfoldRecursively") end, { noremap = true, silent = true })
+    map('n', 'za', function() vscode.call("editor.toggleFold") end, { noremap = true, silent = true })
+  -- stylua: ignore end
+
+  -- Better up and down (Fix folds were automatically opening when navigating with j, k)
+  -- stylua: ignore start
+  map("n", "j", function()
+    if vim.v.count == 0 then vscode.call("cursorDown") else return "j" end
+  end, { expr = true })
+  map("n", "k", function()
+    if vim.v.count == 0 then vscode.call("cursorUp") else return "k" end
+  end, { expr = true })
+  -- stylua: ignore end
+
   vim.cmd([[
     function s:moveCursor(to)
         normal! m'
