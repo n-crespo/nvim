@@ -190,3 +190,14 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
     return true -- delete this autocmd!
   end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("LazyGit Term", { clear = true }),
+  desc = "<localleader>q to close Lazygit terminal without quitting",
+  callback = function()
+    if vim.bo.filetype == "snacks_terminal" and vim.b.snacks_terminal and vim.b.snacks_terminal.cmd == "lazygit" then
+      -- avoid starting a new lazygit process on every spawn
+      vim.keymap.set("t", "<localleader>q", "<cmd>q<cr>", { remap = true, buf = 0 })
+    end
+  end,
+})
