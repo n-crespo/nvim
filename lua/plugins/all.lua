@@ -163,11 +163,11 @@ return {
           lualine_z = {
             {
               function()
-                return vim.g.full_config and "" or ""
+                return ""
               end,
               padding = 1,
               color = {
-                fg = vim.g.full_config and Snacks.util.color("String") or Snacks.util.color("DiagnosticWarn"), -- grab yellow fg part of
+                fg = Snacks.util.color("String"),
               },
             },
           },
@@ -2023,7 +2023,7 @@ return {
     "olimorris/codecompanion.nvim",
     dependencies = { "saghen/blink.cmp" },
     cmd = "CodeCompanion", -- allow the abbreviation :cc to load the plugin
-    cond = vim.g.full_config,
+    cond = false,
     opts = {
       display = {
         chat = {

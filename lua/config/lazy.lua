@@ -7,37 +7,27 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
---------------------------------------------------------------------
---------------------------------------------------------------------
---------------------------------------------------------------------
--- NOTE: set this to false to disable most language features (below)
-vim.g.full_config = true
-local full_config = vim.g.full_config
---------------------------------------------------------------------
---------------------------------------------------------------------
---------------------------------------------------------------------
-
 require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" }, -- default lazyvim plugins (some disabled in disabled.lua)
 
     -- Extras in lazyvim.json are always enabled
-    { import = "lazyvim.plugins.extras.util.dot", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.json", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.toml", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.yaml", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.python", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.tailwind", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.typescript", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.typescript.tsgo", cond = full_config },
-    { import = "lazyvim.plugins.extras.lang.typst", cond = full_config },
-    { import = "lazyvim.plugins.extras.formatting.black", cond = full_config },
-    -- { import = "lazyvim.plugins.extras.linting.eslint", cond = full_config },
-    -- { import = "lazyvim.plugins.extras.dap.core", cond = full_config },
-    -- { import = "lazyvim.plugins.extras.ai.copilot-chat", cond = full_config },
-    -- { import = "lazyvim.plugins.extras.ui.smear-cursor", cond = full_config },
-    -- { import = "lazyvim.plugins.extras.ai.copilot", cond = full_config },
-    -- { import = "lazyvim.plugins.extras.lang.java", cond = full_config },
+    { import = "lazyvim.plugins.extras.util.dot" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.yaml" },
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.typescript.tsgo" },
+    { import = "lazyvim.plugins.extras.lang.typst" },
+    { import = "lazyvim.plugins.extras.formatting.black" },
+    -- { import = "lazyvim.plugins.extras.linting.eslint" },
+    -- { import = "lazyvim.plugins.extras.dap.core" },
+    -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
+    -- { import = "lazyvim.plugins.extras.ui.smear-cursor" },
+    -- { import = "lazyvim.plugins.extras.ai.copilot" },
+    -- { import = "lazyvim.plugins.extras.lang.java" },
 
     { import = "plugins.all" }, -- enable plugins from ../plugins
   },
