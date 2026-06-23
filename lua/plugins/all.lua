@@ -1946,10 +1946,10 @@ return {
         icons = {},
       },
       checkbox = {
-        checked = { icon = "" },
-        unchecked = { icon = "" },
+        checked = { icon = "", highlight = "Comment", scope_highlight = "BlinkCmpItemAbbrDeprecated" },
+        unchecked = { icon = "", highlight = "Normal" },
         custom = {
-          todo = { raw = "[-]", rendered = "", highlight = "RenderMarkdownTodo", scope_highlight = nil },
+          todo = { raw = "[-]", rendered = "", highlight = "RenderMarkdownTodo", scope_highlight = "DiagnosticWarn" },
         },
       },
       pipe_table = {
