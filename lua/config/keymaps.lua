@@ -676,3 +676,93 @@ map("i", "<C-/>", function()
     api.nvim_win_set_cursor(0, { row, math.max(0, col + offset) })
   end)
 end, { remap = true })
+
+map("n", "<leader>gg", function()
+  local previous_tab = vim.api.nvim_get_current_tabpage()
+  vim.cmd("tabnew")
+
+  local lazygit_tab = vim.api.nvim_get_current_tabpage()
+  local buf = vim.api.nvim_get_current_buf()
+
+  vim.bo[buf].buflisted = false
+  vim.bo[buf].bufhidden = "wipe"
+
+  local job_id
+
+  local function close_lazygit_tab()
+    if vim.api.nvim_tabpage_is_valid(lazygit_tab) then
+      local tabnr = vim.api.nvim_tabpage_get_number(lazygit_tab)
+      pcall(vim.cmd, tabnr .. "tabclose")
+    end
+  end
+
+  local function go_to_previous_tab()
+    if vim.api.nvim_tabpage_is_valid(previous_tab) then
+      vim.api.nvim_set_current_tabpage(previous_tab)
+    else
+      vim.cmd("tabprevious")
+    end
+  end
+
+  local function leave_terminal_then(fn)
+    local keys = vim.api.nvim_replace_termcodes("<C-\\><C-n>", true, false, true)
+    vim.api.nvim_feedkeys(keys, "n", false)
+
+    vim.schedule(function()
+      fn()
+    end)
+  end
+
+  local function quit_lazygit()
+    if job_id then
+      -- Send lazygit's normal quit key.
+      vim.api.nvim_chan_send(job_id, "q")
+    else
+      close_lazygit_tab()
+    end
+  end
+
+  job_id = vim.fn.termopen("lazygit", {
+    on_exit = function()
+      vim.schedule(close_lazygit_tab)
+    end,
+  })
+
+  vim.cmd("startinsert")
+
+  local opts = {
+    buffer = buf,
+    silent = true,
+    nowait = true,
+  }
+
+  -- Terminal mode:
+  -- q goes back to the previous tab instead of quitting lazygit.
+  vim.keymap.set("t", "q", function()
+    leave_terminal_then(go_to_previous_tab)
+  end, opts)
+
+  -- \q actually quits lazygit.
+  vim.keymap.set("t", "\\q", function()
+    quit_lazygit()
+  end, opts)
+
+  -- Esc twice leaves terminal mode.
+  vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
+
+  -- Ctrl-/ goes back to the previous tab.
+  vim.keymap.set("t", "<C-/>", function()
+    leave_terminal_then(go_to_previous_tab)
+  end, opts)
+
+  -- Some terminals report Ctrl-/ as Ctrl-_.
+  vim.keymap.set("t", "<C-_>", function()
+    leave_terminal_then(go_to_previous_tab)
+  end, opts)
+
+  -- Normal mode inside the lazygit terminal buffer:
+  vim.keymap.set("n", "q", go_to_previous_tab, opts)
+  vim.keymap.set("n", "\\q", quit_lazygit, opts)
+  vim.keymap.set("n", "<C-/>", go_to_previous_tab, opts)
+  vim.keymap.set("n", "<C-_>", go_to_previous_tab, opts)
+end, { desc = "Lazygit" })
