@@ -611,6 +611,7 @@ map("n", "<leader>n", function()
   -- clean up trailing spaces or blank characters from the string stream
   local lines = vim.split(vim.g.l_messages or "", "\n")
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  map("n", "q", "<cmd>q<cr>", { buffer = true })
 
   -- clear out the temporary global variable
   vim.g.l_messages = nil
