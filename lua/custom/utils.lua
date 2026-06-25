@@ -33,7 +33,7 @@ function M.get_dir_with_fallback(filename)
         return cur_buf_path .. "/" .. filename
       end
     end
-    return vim.fn.cwd()
+    return uv.cwd()
   end
 
   -- try to get alternate buffer's directory
