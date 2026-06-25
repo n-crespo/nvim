@@ -485,6 +485,7 @@ local function run_current_file()
     end)
   else
     -- otherwise just append the file path
+    escaped_path = escaped_path:gsub('"', "")
     full_cmd = full_cmd .. " " .. escaped_path
   end
 
