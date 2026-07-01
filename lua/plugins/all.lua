@@ -1523,6 +1523,7 @@ return {
         ["json"] = { "jq" },
         ["typst"] = { "prettypst" },
         ["c"] = { "clang-format" },
+        ["cpp"] = { "clang-format" },
         ["python"] = { "black" },
         ["tex"] = { "tex-fmt" },
         -- ["zsh"] = { "beautysh" },
