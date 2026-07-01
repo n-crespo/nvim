@@ -890,11 +890,10 @@ return {
   { -- persistence.nvim (sessions)
     "folke/persistence.nvim",
     event = "VeryLazy",
-    opts = function()
-      local group = vim.api.nvim_create_augroup("titlestring", { clear = false })
+    opts = function(_, opts)
       -- properly set titlestring when persistence is loaded
       vim.api.nvim_create_autocmd("User", {
-        group = group,
+        desc = "set titlestring on persistence.nvim restore",
         pattern = "PersistenceLoadPost",
         callback = function()
           require("custom.utils").set_titlestring()
