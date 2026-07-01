@@ -152,10 +152,11 @@ local fts = {
   "*.od",
   "*.objdump",
   "*.service",
+  "*.int",
 }
 
-vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-  desc = "lazy-load PVS, KeymaeraX, and objdump filetype definitions",
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
+  desc = "lazy-load custom filetype definitions",
   pattern = fts,
   callback = function(args)
     vim.filetype.add({
@@ -167,6 +168,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
         kyx = "keymaeraX",
         od = "objdump",
         objdump = "objdump",
+        int = "conf",
       },
       filename = {
         ["pvs-strategies"] = "lisp",
