@@ -198,6 +198,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
     if vim.bo.filetype == "snacks_terminal" and vim.b.snacks_terminal and vim.b.snacks_terminal.cmd == "lazygit" then
       -- avoid starting a new lazygit process on every spawn
       vim.keymap.set("t", "<localleader>q", "<cmd>q<cr>", { remap = true, buf = 0 })
+      vim.keymap.set("t", "q", "<cmd>wincmd q<cr>", { remap = true, buf = 0 })
     end
   end,
 })
