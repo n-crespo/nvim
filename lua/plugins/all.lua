@@ -1301,7 +1301,7 @@ return {
       { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = LazyVim.root.get({ normalize = true }) }) end, desc = "Grep (current word)", },
       { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
       { "<leader>gs", function() Snacks.picker.git_status({cwd = LazyVim.root.get({ normalize = true })}) end, desc = "Git Status" },
-      { "<M-P>",       function() Snacks.picker.files({ cwd = vim.fn.getcwd(), title = "Files (buffer dir)" }) end, desc = "Files (cwd)", },
+      { "<M-P>",       function() Snacks.picker.files({ cwd = vim.fn.getcwd(), title = "Files (cwd)" }) end, desc = "Files (cwd)", },
       { "<M-p>",      function() Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Pick Files" }) end, desc = "Files (root)", },
       { "<leader><space>", function() Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Pick Files" }) end, desc = "Files (root)", },
       { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
