@@ -315,13 +315,102 @@ map("n", "<C-S-C>", "<cmd>Wordcount<cr>", { desc = "Display word/char count" })
 -----------------------
 
 -- setup vscode overrides
-map("n", "<leader>q", function()
-  local close_window = function() vim.cmd("close") end
-  local ok, _ = pcall(close_window)
-  if not ok then
-    pcall(vim.cmd("bdelete"))
-  end
-end, { desc = "Close window", silent = true })
+if not vim.g.vscode then
+  map("n", "H", "<cmd>tabp<cr>", { desc = "Previous Tab" })
+  map("n", "L", "<cmd>tabn<cr>", { desc = "Next Tab" })
+
+  map("n", "<leader>q", function()
+    -- stylua: ignore
+    local close_window = function() vim.cmd("close") end
+    local ok, _ = pcall(close_window)
+    if not ok then
+      pcall(vim.cmd("bdelete"))
+    end
+  end, { desc = "Close window", silent = true })
+else
+  local vscode = require("vscode")
+
+  map("n", "<S-h>", function()
+    vscode.call("workbench.action.previousEditor")
+  end)
+  map("n", "<S-l>", function()
+    vscode.call("workbench.action.nextEditor")
+  end)
+
+  map("n", "<C-d>", "18j", { remap = true })
+  map("n", "<C-u>", "18k", { remap = true })
+
+    -- Remap folding keys
+    -- stylua: ignore start
+    map('n', 'zM', function() vscode.call("editor.foldAll") end, { noremap = true, silent = true })
+    map('n', 'zR', function() vscode.call("editor.unfoldAll") end, { noremap = true, silent = true })
+    map('n', 'zc', function() vscode.call("editor.fold") end, { noremap = true, silent = true })
+    map('n', 'zC', function() vscode.call("editor.foldRecursively") end, { noremap = true, silent = true })
+    map('n', 'zo', function() vscode.call("editor.unfold") end, { noremap = true, silent = true })
+    map('n', 'zO', function() vscode.call("editor.unfoldRecursively") end, { noremap = true, silent = true })
+    map('n', 'za', function() vscode.call("editor.toggleFold") end, { noremap = true, silent = true })
+  -- stylua: ignore end
+
+  -- Better up and down (Fix folds were automatically opening when navigating with j, k)
+  -- stylua: ignore start
+  map("n", "j", function()
+    if vim.v.count == 0 then vscode.call("cursorDown") else return "j" end
+  end, { expr = true })
+  map("n", "k", function()
+    if vim.v.count == 0 then vscode.call("cursorUp") else return "k" end
+  end, { expr = true })
+  -- stylua: ignore end
+
+  vim.cmd([[
+    function s:moveCursor(to)
+        normal! m'
+        call VSCodeExtensionNotify('move-cursor', a:to)
+    endfunction
+  ]])
+
+  map("n", "*", function()
+    vim.cmd(":silent! norm! *")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  map("n", "n", function()
+    vim.cmd(":silent! norm! n")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  map("n", "N", function()
+    vim.cmd(":silent! norm! N")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  map("n", "g/", function()
+    vim.cmd(":silent! norm! *")
+    local curline = vim.fn.line(".")
+    vscode.call("revealLine", { args = { lineNumber = curline, at = "center" } })
+  end, { noremap = true, silent = true })
+
+  vim.cmd([[
+    function! s:split(...) abort
+      let direction = a:1
+      let file = exists('a:2') ? a:2 : ''
+      call VSCodeCall(direction ==# 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
+      if !empty(file)
+        call VSCodeExtensionNotify('open-file', expand(file), 'all')
+      endif
+    endfunction
+
+    nnoremap _ <Cmd>call <SID>split('h')<CR>
+    nnoremap \| <Cmd>call <SID>split('v')<CR>
+  ]])
+
+  vim.notify = vscode.notify
+
+  -- vim.keymap.del("n", "<leader>qq")
+  map("n", "<leader>q", "<cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", { silent = true })
+end
 
 -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
 map("n", "<C-S-s>", function()
@@ -571,8 +660,6 @@ map("n", "<leader>wo", "<cmd>only<cr>")
 map("n", "<M-o>", ":find ", { desc = "Open file" })
 map("n", "<C-CR>", "<cmd>tabe<cr>", { desc = "Open new tab" })
 
-map("n", "H", "<cmd>tabp<cr>", { desc = "Previous Tab" })
-map("n", "L", "<cmd>tabn<cr>", { desc = "Next Tab" })
 map("n", "<M-,>", function() vim.cmd(vim.fn.tabpagenr() == 1 and "tabmove" or "-tabmove") end, { desc = "Move tab left" })
 map("n", "<M-;>", function() vim.cmd(vim.fn.tabpagenr() == vim.fn.tabpagenr("$") and "0tabmove" or "+tabmove") end, { desc = "Move tab right" })
 
@@ -595,6 +682,9 @@ end, { desc = "Print current file name" })
 -- traverse command history
 map("c", "<C-k>", "<C-p>")
 map("c", "<C-j>", "<C-n>")
+
+-- pick from open buffers
+map("n", "<leader>,", ":b ", { desc = "Pick buffer" })
 
 map("n", "<leader>n", function()
   -- create a new split buffer and set it to a scratchpad/log filetype
