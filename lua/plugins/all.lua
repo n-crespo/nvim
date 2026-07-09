@@ -840,6 +840,7 @@ return {
       },
       extension = {
         h = { glyph = "", hl = "MiniIconsPurple" },
+        hpp = { glyph = "", hl = "MiniIconsPurple" },
         pvs = { glyph = "", hl = "PVSBlue" },
         prf = { glyph = "󱇚", hl = "MiniIconsGrey" },
         prl = { glyph = "󱇚", hl = "MiniIconsGrey" },
