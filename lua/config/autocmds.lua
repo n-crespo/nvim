@@ -194,13 +194,32 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
 })
 
 vim.api.nvim_create_autocmd("TermOpen", {
-  group = vim.api.nvim_create_augroup("LazyGit Term", { clear = true }),
-  desc = "<localleader>q to close Lazygit terminal without quitting",
+  group = vim.api.nvim_create_augroup("LazyGit Custom Close Cmd", { clear = true }),
   callback = function()
-    if vim.bo.filetype == "snacks_terminal" and vim.b.snacks_terminal and vim.b.snacks_terminal.cmd == "lazygit" then
-      -- avoid starting a new lazygit process on every spawn
-      vim.keymap.set("t", "<localleader>q", "<cmd>q<cr>", { remap = true, buf = 0 })
-      vim.keymap.set("t", "q", "<cmd>wincmd q<cr>", { remap = true, buf = 0 })
+    if vim.bo.filetype == "snacks_terminal" and vim.b.snacks_terminal and vim.b.snacks_terminal.cmd[1] == "lazygit" then
+      local lazygit_config_path = vim.fs.normalize(vim.fn.stdpath("cache") .. "/lazygit-theme.yml")
+
+      local check_file = io.open(lazygit_config_path, "rb")
+      if check_file then
+        local content = check_file:read("*a")
+        check_file:close()
+        if content:find("customCommands:") then
+          return
+        end
+      end
+
+      local f = io.open(lazygit_config_path, "ab")
+      if f then
+        f:write("\ncustomCommands:\n")
+        f:write("  - key: 'q'\n")
+        f:write("    context: 'global'\n")
+        f:write("    description: 'Quit (nvim)'\n")
+        -- uses start /min to completely detach the process from lazygit's conpty session
+        f:write(
+          '    command: \'start "LazyGitRemoteClose" /min nvim --server %NVIM% --remote-send "<CMD>wincmd c<CR>"\'\n'
+        )
+        f:close()
+      end
     end
   end,
 })
