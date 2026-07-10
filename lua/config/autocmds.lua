@@ -196,7 +196,12 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("LazyGit Custom Close Cmd", { clear = true }),
   callback = function()
-    if vim.bo.filetype == "snacks_terminal" and vim.b.snacks_terminal and vim.b.snacks_terminal.cmd[1] == "lazygit" then
+    if
+      vim.bo.filetype == "snacks_terminal"
+      and vim.b.snacks_terminal
+      and vim.b.snacks_terminal.cmd
+      and vim.b.snacks_terminal.cmd[1] == "lazygit"
+    then
       local lazygit_config_path = vim.fs.normalize(vim.fn.stdpath("cache") .. "/lazygit-theme.yml")
 
       local check_file = io.open(lazygit_config_path, "rb")
