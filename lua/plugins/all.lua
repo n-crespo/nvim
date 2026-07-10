@@ -666,13 +666,13 @@ return {
           os = {
             -- required since we override `q` to close window and nvim-remote preset sends `q`
             editPreset = vim.g.is_win and "nvim" or "",
-            edit = not vim.g.is_win
-              and '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "<cmd>wincmd c<cr>" && nvim --server "$NVIM" --remote-tab {{filename}})',
-            editAtLine = not vim.g.is_win
-              and '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "<cmd>wincmd c<cr>" &&  nvim --server "$NVIM" --remote-tab {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")',
+            edit = vim.g.is_win and ""
+              or '[ -z "$NVIM" ] && (nvim -- {{filename}}) || (nvim --server "$NVIM" --remote-send "<cmd>wincmd c<cr>" && nvim --server "$NVIM" --remote-tab {{filename}})',
+            editAtLine = vim.g.is_win and ""
+              or '[ -z "$NVIM" ] && (nvim +{{line}} -- {{filename}}) || (nvim --server "$NVIM" --remote-send "<cmd>wincmd c<cr>" &&  nvim --server "$NVIM" --remote-tab {{filename}} && nvim --server "$NVIM" --remote-send ":{{line}}<CR>")',
             editAtLineAndWaitTemplate = "nvim +{{line}} {{filename}}",
-            openDirInEditor = not vim.g.is_win
-              and '[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "<cmd>wincmd c<cr>" && nvim --server "$NVIM" --remote-tab {{dir}})',
+            openDirInEditor = vim.g.is_win and ""
+              or '[ -z "$NVIM" ] && (nvim -- {{dir}}) || (nvim --server "$NVIM" --remote-send "<cmd>wincmd c<cr>" && nvim --server "$NVIM" --remote-tab {{dir}})',
             editInTerminal = true,
           },
         },
