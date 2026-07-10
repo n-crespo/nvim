@@ -39,6 +39,7 @@ opt.nrformats = "unsigned"
 if LazyVim.is_win() then
   vim.g.is_win = true
 else
+  vim.g.is_win = false
   opt.fileformat = "unix"
   opt.fileformats = { "unix", "dos" }
 end
