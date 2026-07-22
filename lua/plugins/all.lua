@@ -1304,7 +1304,7 @@ return {
       { "<leader>sq", nil }, -- quickfix list
       { "<leader>gG", nil }, -- lazygit cwd
       { "<leader>fo", function() Snacks.picker.recent() end, desc = "Old Files", },
-      { "<M-o>",      function() Snacks.picker.recent() end, desc = "Old Files", },
+      { "<M-o>",      function() Snacks.picker.smart() end, desc = "Pick File (smart)", },
       { "<leader>fO", function() Snacks.picker.smart() end, desc = "Files (smart)", },
       { "<leader>fp", function() Snacks.picker.files({ cwd = require("lazy.core.config").options.root, title = "Plugin Files" }) end, desc = "Plugin Files", },
       { "<leader>fP", function() Snacks.picker.lazy({ title = "Plugin Configs" }) end, desc = "Plugin Configs", },
