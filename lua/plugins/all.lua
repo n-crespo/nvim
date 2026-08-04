@@ -1961,7 +1961,7 @@ return {
       },
       checkbox = {
         checked = { icon = "", highlight = "Comment", scope_highlight = "BlinkCmpItemAbbrDeprecated" },
-        unchecked = { icon = "", highlight = "Normal" },
+        unchecked = { icon = "", highlight = "Todo" },
         custom = {
           todo = { raw = "[-]", rendered = "", highlight = "RenderMarkdownTodo", scope_highlight = "DiagnosticWarn" },
         },
