@@ -213,6 +213,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
         end
       end
 
+      vim.keymap.set("t", "\\q", "<cmd>wincmd c<cr>", { desc = "Close LazyGit", buffer = true })
+
       local f = io.open(lazygit_config_path, "ab")
       if f then
         f:write("\ncustomCommands:\n")
