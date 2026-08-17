@@ -1303,6 +1303,7 @@ return {
       { "<leader>sR", nil },
       { "<leader>sq", nil }, -- quickfix list
       { "<leader>gG", nil }, -- lazygit cwd
+      { "<leader>/", function() Snacks.picker.grep({ cwd = LazyVim.root.get({ normalize = true }) }) end, desc = "Old Files", },
       { "<leader>fo", function() Snacks.picker.recent() end, desc = "Old Files", },
       { "<M-o>",      function() Snacks.picker.smart() end, desc = "Pick File (smart)", },
       { "<leader>fO", function() Snacks.picker.smart() end, desc = "Files (smart)", },
