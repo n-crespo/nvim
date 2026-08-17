@@ -1303,10 +1303,10 @@ return {
       { "<leader>sR", nil },
       { "<leader>sq", nil }, -- quickfix list
       { "<leader>gG", nil }, -- lazygit cwd
-      { "<leader>/", function() Snacks.picker.grep({ cwd = LazyVim.root.get({ normalize = true }) }) end, desc = "Old Files", },
-      { "<leader>fo", function() Snacks.picker.recent() end, desc = "Old Files", },
-      { "<M-o>",      function() Snacks.picker.smart() end, desc = "Pick File (smart)", },
-      { "<leader>fO", function() Snacks.picker.smart() end, desc = "Files (smart)", },
+      { "<leader>/", function() Snacks.picker.grep({ cwd = LazyVim.root.get({ normalize = true }) }) end, desc = "Grep", },
+      { "<leader>fo", function() Snacks.picker.recent() end, desc = "Pick Files (old)", },
+      { "<M-o>",      function() Snacks.picker.smart() end, desc = "Pick Files (smart)", },
+      { "<leader>fO", function() Snacks.picker.smart() end, desc = "Pick Files (smart)", },
       { "<leader>fp", function() Snacks.picker.files({ cwd = require("lazy.core.config").options.root, title = "Plugin Files" }) end, desc = "Plugin Files", },
       { "<leader>fP", function() Snacks.picker.lazy({ title = "Plugin Configs" }) end, desc = "Plugin Configs", },
       { "<leader>sp", function() Snacks.picker.pickers() end, desc = "Pickers", },
@@ -1316,9 +1316,9 @@ return {
       { "<leader>g/", function() Snacks.picker.grep_word({ layout = "vertical", cwd = LazyVim.root.get({ normalize = true }) }) end, desc = "Grep (current word)", },
       { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
       { "<leader>gs", function() Snacks.picker.git_status({cwd = LazyVim.root.get({ normalize = true })}) end, desc = "Git Status" },
-      { "<M-P>",       function() Snacks.picker.files({ cwd = vim.fn.getcwd(), title = "Files (cwd)" }) end, desc = "Files (cwd)", },
-      { "<M-p>",      function() Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Pick Files" }) end, desc = "Files (root)", },
-      { "<leader><space>", function() Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Pick Files" }) end, desc = "Files (root)", },
+      { "<M-P>",       function() Snacks.picker.files({ cwd = vim.fn.getcwd(), title = "Pick Files (cwd)" }) end, desc = "Pick Files (cwd)", },
+      { "<M-p>",      function() Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Pick Files" }) end, desc = "Pick Files", },
+      { "<leader><space>", function() Snacks.picker.files({ cwd = LazyVim.root.get({ normalize = true }), title = "Pick Files" }) end, desc = "Pick Files", },
       { "<S-Tab>", "<C-w><C-p>", }, -- this fixes <tab> in preview window
       { "<M-O>", ":find ", desc = "Files (find)", },
       -- stylua: ignore end
