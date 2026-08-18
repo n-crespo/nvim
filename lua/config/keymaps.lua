@@ -440,6 +440,79 @@ end, { desc = "clean ^M" })
 -----== RUNNER ==------
 -----------------------
 
+-- NOTE: requires ~/.netrc:
+--
+-- machine plan.cat
+-- login n1ck
+-- password {password_here}
+--
+local function run_plan()
+  vim.ui.select({
+    "Publish current .plan",
+    "Replace local .plan with published version",
+  }, {
+    prompt = "What do you want to do with .plan?",
+  }, function(choice)
+    if not choice then
+      return
+    end
+
+    if choice == "Publish current .plan" then
+      local text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n") .. "\n"
+
+      vim.system({
+        "curl",
+        "-fsS",
+        "--netrc",
+        "-F",
+        "plan=<-",
+        "https://plan.cat/stdin",
+      }, {
+        text = true,
+        stdin = text,
+      }, function(res)
+        vim.schedule(function()
+          if res.code == 0 then
+            vim.notify("Published .plan")
+          else
+            vim.notify("Failed to publish .plan", vim.log.levels.ERROR)
+          end
+        end)
+      end)
+
+      return
+    end
+
+    if choice == "Replace local .plan with published version" then
+      vim.system({
+        "curl",
+        "-fsSL",
+        "https://plan.cat/~n1ck",
+      }, {
+        text = true,
+      }, function(res)
+        vim.schedule(function()
+          if res.code ~= 0 then
+            vim.notify("Failed to fetch published .plan", vim.log.levels.ERROR)
+            return
+          end
+
+          local lines = vim.split(res.stdout, "\n", { plain = true })
+
+          if lines[#lines] == "" then
+            table.remove(lines)
+          end
+
+          vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+          vim.cmd.write()
+
+          vim.notify("Replaced local .plan with published version")
+        end)
+      end)
+    end
+  end)
+end
+
 local runners = {
   python = { cmd = "python3" },
   javascript = { cmd = "node" },
@@ -454,6 +527,10 @@ local runners = {
 }
 
 local function run_current_file()
+  if vim.bo.filetype == "plan" then
+    run_plan()
+    return
+  end
   -- Executes the current buffer's file using the configured runner.
   local filetype = vim.bo.filetype
   local runner = runners[filetype]
