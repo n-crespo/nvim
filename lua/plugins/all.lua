@@ -1188,7 +1188,7 @@ return {
         formatters = {
           file = {
             filename_first = true, -- display filename before the file path
-            truncate = 60, -- truncate to rougthly this length
+            truncate = "center", -- truncate center of long paths
           },
         },
         ---@class snacks.picker.previewers.Config
