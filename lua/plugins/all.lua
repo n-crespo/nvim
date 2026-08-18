@@ -868,6 +868,7 @@ return {
         objdump = { glyph = "󰘨" },
         matlab = { glyph = "", hl = "MiniIconsRed" },
         c = { glyph = "", hl = "MiniIconsBlue" },
+        plan = { glyph = "", hl = "MiniIconsRed" },
       },
     },
   },
