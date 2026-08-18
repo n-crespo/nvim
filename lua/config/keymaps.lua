@@ -447,17 +447,14 @@ end, { desc = "clean ^M" })
 -- password {password_here}
 --
 local function run_plan()
-  vim.ui.select({
-    "Publish current .plan",
-    "Replace local .plan with published version",
-  }, {
+  vim.ui.select({ "Write", "Read to .plan" }, {
     prompt = "What do you want to do with .plan?",
   }, function(choice)
     if not choice then
       return
     end
 
-    if choice == "Publish current .plan" then
+    if choice == "Write" then
       local text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n") .. "\n"
 
       vim.system({
@@ -483,7 +480,7 @@ local function run_plan()
       return
     end
 
-    if choice == "Replace local .plan with published version" then
+    if choice == "Read" then
       vim.system({
         "curl",
         "-fsSL",
@@ -506,7 +503,7 @@ local function run_plan()
           vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
           vim.cmd.write()
 
-          vim.notify("Replaced local .plan with published version")
+          vim.notify("Read plan to ~/.plan")
         end)
       end)
     end
