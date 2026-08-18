@@ -1193,9 +1193,7 @@ return {
         },
         ---@class snacks.picker.previewers.Config
         previewers = {
-          -- use external tool (git) for diffs
-          git = { builtin = false },
-          diff = { builtin = false },
+          diff = { style = "terminal" },
         },
         matcher = {
           frecency = true,
