@@ -153,6 +153,7 @@ local fts = {
   "*.objdump",
   "*.service",
   "*.int",
+  ".plan",
 }
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
@@ -168,6 +169,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
         kyx = "keymaeraX",
         od = "objdump",
         objdump = "objdump",
+        plan = "plan",
         int = "conf",
       },
       filename = {
@@ -176,6 +178,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
       pattern = {
         [".*%.service"] = "systemd",
         ["%.objdump$"] = "objdump",
+        [".plan$"] = "plan",
       },
     })
 
