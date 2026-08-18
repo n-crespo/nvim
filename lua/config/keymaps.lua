@@ -447,14 +447,14 @@ end, { desc = "clean ^M" })
 -- password {password_here}
 --
 local function run_plan()
-  vim.ui.select({ "Write", "Read to .plan" }, {
+  vim.ui.select({ "write", "read" }, {
     prompt = "What do you want to do with .plan?",
   }, function(choice)
     if not choice then
       return
     end
 
-    if choice == "Write" then
+    if choice == "write" then
       local text = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n") .. "\n"
 
       vim.system({
@@ -480,7 +480,7 @@ local function run_plan()
       return
     end
 
-    if choice == "Read" then
+    if choice == "read" then
       vim.system({
         "curl",
         "-fsSL",
