@@ -1916,6 +1916,8 @@ return {
       { "<BS>", function() require("markdown-plus").list.handle_backspace() end, buffer = true, ft = "markdown", mode = "i" },
       { "<M-]>", function() require("markdown-plus").list.handle_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Indent" },
       { "<M-[>", function() require("markdown-plus").list.handle_shift_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Un-Indent" },
+      { "<Tab>", function() require("markdown-plus").list.handle_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Indent" },
+      { "<S-Tab>", function() require("markdown-plus").list.handle_shift_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Un-Indent" },
       { "<C-c>", function() require("markdown-plus").list.toggle_checkbox_insert() end, buffer = true, ft = "markdown", desc = "Toggle Checkbox" },
       { "<C-i>", function() require("markdown-plus").format.toggle_format("italic") end, buffer = true, ft = "markdown", mode = { "v" }, desc = "(markdown) Toggle Italicize" },
       { "<C-b>", function() require("markdown-plus").format.toggle_format("bold") end, buffer = true, ft = "markdown", mode = "v", desc = "(markdown) Toggle Bold"  },
