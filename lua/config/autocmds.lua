@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end
     local save_cursor = vim.fn.getpos(".")
     pcall(function()
-      vim.cmd([[%s/\s\+$//e]])
+      vim.cmd([[keepp %s/\s\+$//e]])
     end)
     vim.fn.setpos(".", save_cursor)
   end,
