@@ -326,9 +326,6 @@ vim.api.nvim_create_user_command("X", "LazyExtras", { nargs = 0 })
 -- force save as sudo, good for readonly files
 vim.api.nvim_create_user_command("WF", "silent! w !sudo tee %", { nargs = 0, desc = "Force save" })
 
--- use for formatting lines with markdown
-vim.cmd("cnoreabbrev F !prettier -w --parser=markdown")
-
 -- clean ^Ms (windows newlines created when pasting into WSL from windows)
 vim.api.nvim_create_user_command("Clean", "silent! %s/\r//g", { nargs = 0, desc = "Clean newline characters" })
 vim.api.nvim_create_user_command("Trim", [[keepp %s/\s\+$//e]], { nargs = 0, desc = "Trim trailing whitespace" })
