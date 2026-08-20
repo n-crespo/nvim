@@ -317,6 +317,7 @@ vim.cmd("cnoreabbrev F !prettier -w --parser=markdown")
 
 -- clean ^Ms (windows newlines created when pasting into WSL from windows)
 vim.api.nvim_create_user_command("Clean", "silent! %s/\r//g", { nargs = 0, desc = "Clean newline characters" })
+vim.api.nvim_create_user_command("Trim", [[keepp %s/\s\+$//e]], { nargs = 0, desc = "Trim trailing whitespace" })
 
 -- save without removing trailing whitespace
 map({ "n", "i" }, "<C-D-S>", "<cmd>noa up<CR>", { remap = false, desc = "Save (noa)", silent = true })
