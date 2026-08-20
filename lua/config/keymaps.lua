@@ -168,6 +168,20 @@ map("t", "<C-v>", "<c-\\><c-n><cmd>norm p<Cr>a", { remap = true })
 -----== MANY MODES ==-----
 --------------------------
 
+map("n", "<C-g>", function()
+  Snacks.lazygit({ cwd = LazyVim.root.git() })
+end, { desc = "Lazygit (Root Dir)" })
+map("t", "<C-g>", "<cmd>wincmd q<cr>", { desc = "Close Terminal" })
+
+vim.api.nvim_create_user_command("G", function()
+  local pretty_path =
+    require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
+  if pretty_path ~= "" then
+    pretty_path = "\n" .. pretty_path .. ""
+  end
+  vim.notify("[" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~") .. "]" .. pretty_path)
+end, { nargs = 0 })
+
 -- for vscode on macos (see mini.move)
 map("n", "<D-]>", "<M-]>", { remap = true })
 map("i", "<D-]>", "<M-]>", { remap = true })

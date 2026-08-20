@@ -175,20 +175,6 @@ return {
       }
       return opts
     end,
-    keys = {
-      {
-        "<C-g>", -- :h CTRL_G
-        function()
-          local pretty_path =
-            require("lazyvim.util.lualine").pretty_path({ directory_hl = "", filename_hl = "", modified_hl = "" })({})
-          if pretty_path ~= "" then
-            pretty_path = "\n" .. pretty_path .. ""
-          end
-          vim.notify("[" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~") .. "]" .. pretty_path)
-        end,
-        desc = "Print current file name",
-      },
-    },
   },
   { -- bufferline.nvim (tab bar)
     "akinsho/bufferline.nvim",
