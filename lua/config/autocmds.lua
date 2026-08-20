@@ -226,7 +226,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
         f:write("    description: 'Quit (nvim)'\n")
         -- use sstart /min to completely detach the process from lazygit's conpty session
         if vim.g.is_win then
-          f:write("    command: 'nvim --clean --headless --server %NVIM% --remote-send \"<CMD>wincmd c<CR>\"'\n")
+          f:write("    command: ':: Close with \\q!'\n")
         else
           f:write(
             [[    command: 'setsid -f nvim --server "$NVIM" --remote-send "<CMD>wincmd c<CR>" >/dev/null 2>&1']] .. "\n"
