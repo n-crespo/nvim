@@ -205,6 +205,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
       and vim.b.snacks_terminal.cmd
       and vim.b.snacks_terminal.cmd[1] == "lazygit"
     then
+      vim.keymap.set("t", "\\q", "<cmd>wincmd c<cr>", { desc = "Close LazyGit", buffer = true })
       local lazygit_config_path = vim.fs.normalize(vim.fn.stdpath("cache") .. "/lazygit-theme.yml")
 
       local check_file = io.open(lazygit_config_path, "rb")
@@ -215,8 +216,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
           return
         end
       end
-
-      vim.keymap.set("t", "\\q", "<cmd>wincmd c<cr>", { desc = "Close LazyGit", buffer = true })
 
       local f = io.open(lazygit_config_path, "ab")
       if f then
