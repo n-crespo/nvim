@@ -2295,4 +2295,17 @@ return {
       end,
     },
   },
+  {
+    "stevearc/aerial.nvim",
+    optional = true,
+    keys = {
+      {
+        "<leader>ss",
+        function()
+          require("aerial").snacks_picker()
+        end,
+        desc = "Search Symbols (Treesitter)",
+      },
+    },
+  },
 }
