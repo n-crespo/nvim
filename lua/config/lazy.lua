@@ -28,7 +28,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.typst" },
     -- { import = "lazyvim.plugins.extras.linting.eslint" },
 
-    -- auxillary:
+    -- auxiliary:
     -- { import = "lazyvim.plugins.extras.dap.core" },
     -- { import = "lazyvim.plugins.extras.ai.copilot-chat" },
     -- { import = "lazyvim.plugins.extras.ui.smear-cursor" },
