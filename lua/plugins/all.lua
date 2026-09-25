@@ -1572,7 +1572,7 @@ return {
             end,
           },
           ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
-          ["<Tab>"] = { "select_and_accept", "fallback" },
+          ["<Tab>"] = { "select_and_accept", "fallback_to_mappings" },
         },
         completion = { menu = { auto_show = true } },
         sources = function()
