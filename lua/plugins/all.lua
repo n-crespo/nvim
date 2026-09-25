@@ -1892,7 +1892,6 @@ return {
     ft = { "markdown", "text", "txt" },
     opts = {
       filetypes = { "markdown", "text", "txt" },
-      features = { table = false },
       keymaps = { enabled = false }, -- don't initialize default keymaps
     },
     keys = {
@@ -1955,7 +1954,7 @@ return {
         },
       },
       pipe_table = {
-        enabled = false,
+        enabled = true,
         border_virtual = true,
       },
       completions = {
@@ -1968,14 +1967,7 @@ return {
       Snacks.toggle({
         name = "Render Markdown",
         get = require("render-markdown").get,
-        set = function(enable)
-          require("render-markdown").set()
-          if enable then
-            require("markdown-table-wrap").enable_auto_preview()
-          else
-            require("markdown-table-wrap").disable_auto_preview()
-          end
-        end,
+        set = require("render-markdown").set,
         ft = "markdown",
       }):map("<leader>um")
     end,
@@ -2223,29 +2215,6 @@ return {
     end,
   },
 
-  {
-    "ice345/markdown-table-wrap.nvim",
-    ft = "markdown",
-    enabled = false,
-    opts = {
-      auto_preview_in_insert = true,
-      clear_on_visual = false,
-      clear_on_insert = false,
-      link = {
-        wiki = { icon = " ", highlight = "MarkdownTableWrapWikiLink", scope_highlight = "MarkdownTableWrapWikiLink" },
-        image = " ",
-        custom = {
-          github = { pattern = "github", icon = " " },
-          gitlab = { pattern = "gitlab", icon = "󰮠 " },
-          youtube = { pattern = "youtube", icon = " " },
-          cern = { pattern = "cern.ch", icon = " " },
-        },
-      },
-    },
-    keys = {
-      { "<leader>t", "<cmd>MarkdownTableTogglePreview<cr>", desc = "Toggle table preview", ft = "markdown" },
-    },
-  },
   {
     "b0o/incline.nvim",
     enabled = true,
