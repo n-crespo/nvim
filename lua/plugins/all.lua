@@ -2226,6 +2226,7 @@ return {
   {
     "ice345/markdown-table-wrap.nvim",
     ft = "markdown",
+    enabled = false,
     opts = {
       auto_preview_in_insert = true,
       clear_on_visual = false,
