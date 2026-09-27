@@ -73,3 +73,4 @@ These are not installed by default but are configured to work properly if instal
   - use command: `!doctoc % --notitle` or just `doctoc .`
 - `marksman`: LSP completion/symbols for markdown (Mason)
 - `typos-lsp`: LSP for catching/fixing typos. Also available as linter (no auto fix) (Mason)
+- `tombi`: TOML support (use instead of TOML LazyExtra, which uses unmaintained `taplo`)
