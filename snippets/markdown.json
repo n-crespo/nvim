@@ -11,12 +11,27 @@
   },
   "Insert arrow": {
     "prefix": "ar",
-    "body": ["\\$\\to\\$ "],
-    "description": "Insert Latex Arrow"
+    "body": ["→"],
+    "description": "Insert Arrow"
   },
   "Insert math block": {
     "prefix": "math",
     "body": ["\\$\\$", "${1}", "\\$\\$"],
     "description": "Insert fenced LaTeX math block"
+  },
+  "Insert y hat": {
+    "prefix": "yh",
+    "body": ["ŷ"],
+    "description": "Insert y-hat (ŷ)"
+  },
+  "Insert in Symbol (∈)": {
+    "prefix": "in",
+    "body": ["∈"],
+    "description": "Insert in Symbol (∈)"
+  },
+  "Insert sum Symbol (∑)": {
+    "prefix": "sum",
+    "body": ["∑"],
+    "description": "Insert sum Symbol (∑)"
   }
 }
