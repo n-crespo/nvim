@@ -1667,10 +1667,10 @@ return {
         ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
         ["<Tab>"] = {
           function(cmp)
-            if cmp.snippet_active() then
-              return cmp.snippet_forward()
-            elseif cmp.is_visible() then
+            if cmp.is_visible() then
               return cmp.select_and_accept()
+            elseif cmp.snippet_active() then
+              return cmp.snippet_forward()
             end
           end,
           "fallback_to_mappings",
@@ -1928,10 +1928,10 @@ return {
         function()
           -- HACK: sometimes this overrides the blink.cmp keymap, so we call blink directly just in case
           local cmp = require("blink.cmp")
-          if cmp.snippet_active() then
-            cmp.snippet_forward()
-          elseif cmp.is_visible() then
+          if cmp.is_visible() then
             cmp.select_and_accept()
+          elseif cmp.snippet_active() then
+            cmp.snippet_forward()
           else
             require("markdown-plus").list.handle_tab()
           end
