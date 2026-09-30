@@ -1373,6 +1373,11 @@ return {
         ft = "trouble",
         buffer = true,
       },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle<CR>",
+        desc = "Code Symbols",
+      },
     },
   },
 
@@ -2269,6 +2274,7 @@ return {
     "stevearc/aerial.nvim",
     optional = true,
     keys = {
+      { "<leader>cs", false },
       {
         "<leader>ss",
         function()
