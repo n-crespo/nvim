@@ -1577,7 +1577,7 @@ return {
             end,
           },
           ["<C-space>"] = { "show", "hide" }, -- used by neocodeium
-          ["<Tab>"] = { "select_and_accept", "fallback_to_mappings" },
+          ["<Tab>"] = { "select_and_accept" },
         },
         completion = { menu = { auto_show = true } },
         sources = function()
@@ -1668,13 +1668,20 @@ return {
         ["<Tab>"] = {
           function(cmp)
             if cmp.snippet_active() then
-              return cmp.accept()
-            else
+              return cmp.snippet_forward()
+            elseif cmp.is_visible() then
               return cmp.select_and_accept()
             end
           end,
-          "snippet_forward",
-          "fallback",
+          "fallback_to_mappings",
+        },
+        ["<S-Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.snippet_backward()
+            end
+          end,
+          "fallback_to_mappings",
         },
       },
     },
@@ -1907,8 +1914,6 @@ return {
       { "<BS>", function() require("markdown-plus").list.handle_backspace() end, buffer = true, ft = "markdown", mode = "i" },
       { "<M-]>", function() require("markdown-plus").list.handle_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Indent" },
       { "<M-[>", function() require("markdown-plus").list.handle_shift_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Un-Indent" },
-      { "<Tab>", function() require("markdown-plus").list.handle_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Indent" },
-      { "<S-Tab>", function() require("markdown-plus").list.handle_shift_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Un-Indent" },
       { "<C-c>", function() require("markdown-plus").list.toggle_checkbox_insert() end, buffer = true, ft = "markdown", desc = "Toggle Checkbox" },
       { "<C-i>", function() require("markdown-plus").format.toggle_format("italic") end, buffer = true, ft = "markdown", mode = { "v" }, desc = "(markdown) Toggle Italicize" },
       { "<C-b>", function() require("markdown-plus").format.toggle_format("bold") end, buffer = true, ft = "markdown", mode = "v", desc = "(markdown) Toggle Bold"  },
@@ -1917,6 +1922,25 @@ return {
       { "<C-x>", function() require("markdown-plus").format.toggle_format_word("strikethrough") end, buffer = true, ft = "markdown", mode = "n", desc = "(markdown) Toggle Strikethrough" },
       { "<C-\\>", function() require("markdown-plus").format.clear_formatting_word() end, buffer = true, ft = "markdown", mode = "n", desc = "Clear Formatting"},
       { "<C-\\>", function() require("markdown-plus").format.clear_formatting() end, buffer = true, ft = "markdown", mode = "v", desc = "Clear Formatting" },
+      { "<S-Tab>", function() require("markdown-plus").list.handle_shift_tab() end, buffer = true, ft = "markdown", mode = "i", desc = "(markdown) Un-Indent" },
+      {
+        "<Tab>",
+        function()
+          -- HACK: sometimes this overrides the blink.cmp keymap, so we call blink directly just in case
+          local cmp = require("blink.cmp")
+          if cmp.snippet_active() then
+            cmp.snippet_forward()
+          elseif cmp.is_visible() then
+            cmp.select_and_accept()
+          else
+            require("markdown-plus").list.handle_tab()
+          end
+        end,
+        buffer = true,
+        ft = "markdown",
+        mode = "i",
+        desc = "(markdown) Indent"
+      },
       -- { "<C-S-U>", function() require("markdown-plus").format.toggle_format("underline") end, buffer = true, ft = "markdown", mode = { "n", "v" } },
       -- { "<C-S-U>", function() require("markdown-plus").format.toggle_format("underline") end, buffer = true, ft = "markdown", mode = { "n", "v" } },
       -- stylua: ignore end
