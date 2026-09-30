@@ -2006,6 +2006,15 @@ return {
     "touero/markdown-preview.nvim",
     branch = "feature",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    init = function()
+      vim.cmd([[
+  function OpenMarkdownPreview (url)
+    " NOTE: this depends on having chrome.exe in your path
+    execute "silent ! chrome.exe --new-window " . a:url
+  endfunction
+  let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+      ]])
+    end,
     build = function()
       require("lazy").load({ plugins = { "markdown-preview.nvim" } })
       vim.fn["mkdp#util#install"]()
