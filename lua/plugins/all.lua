@@ -1959,7 +1959,7 @@ return {
         -- stylua: ignore end
       },
       file_types = { "markdown", "norg", "rmd", "org", "codecompanion" },
-      latex = { enabled = true },
+      latex = { enabled = false },
       code = {
         width = "block",
         position = "right",
