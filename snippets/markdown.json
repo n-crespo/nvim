@@ -33,5 +33,45 @@
     "prefix": "sum",
     "body": ["∑"],
     "description": "Insert sum Symbol (∑)"
+  },
+  "Insert infinity": {
+    "prefix": "inf",
+    "body": ["∞"],
+    "description": "Insert infinity (∞)"
+  },
+  "Insert left arrow": {
+    "prefix": "lar",
+    "body": ["←"],
+    "description": "Insert left arrow (←)"
+  },
+  "Insert neq": {
+    "prefix": "lar",
+    "body": ["≠"],
+    "description": "Insert not equal sign (≠)"
+  },
+  "Insert implies": {
+    "prefix": "imp",
+    "body": ["⇒"],
+    "description": "Insert implies arrow (⇒)"
+  },
+  "Insert Delta ": {
+    "prefix": "delta",
+    "body": ["Δ"],
+    "description": "Insert Delta (Δ)"
+  },
+  "Insert (lower) delta ": {
+    "prefix": "ldelta",
+    "body": ["δ"],
+    "description": "Insert lowercase delta (δ)"
+  },
+  "Insert lambda": {
+    "prefix": "lam",
+    "body": ["λ"],
+    "description": "Insert lambda (λ)"
+  },
+  "Insert plus/minus": {
+    "prefix": "pm",
+    "body": ["±"],
+    "description": "Insert plus/minus (±)"
   }
 }
