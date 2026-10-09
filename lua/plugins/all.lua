@@ -2288,6 +2288,7 @@ return {
   {
     "stevearc/aerial.nvim",
     optional = true,
+    event = false,
     keys = {
       { "<leader>cs", false },
       {
