@@ -2003,8 +2003,7 @@ return {
   },
 
   {
-    "touero/markdown-preview.nvim",
-    branch = "feature",
+    "sammaji/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     init = function()
       vim.cmd([[
@@ -2014,10 +2013,6 @@ return {
   endfunction
   let g:mkdp_browserfunc = 'OpenMarkdownPreview'
       ]])
-    end,
-    build = function()
-      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-      vim.fn["mkdp#util#install"]()
     end,
     keys = {
       {
