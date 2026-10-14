@@ -50,7 +50,7 @@
     "description": "Insert not equal sign (≠)"
   },
   "Insert implies": {
-    "prefix": "imp",
+    "prefix": "iar",
     "body": ["⇒"],
     "description": "Insert implies arrow (⇒)"
   },
