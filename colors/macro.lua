@@ -15,12 +15,12 @@ vim.g.colors_name = "macro"
 
 -- {{{
 -- stylua: ignore start
-local normalBg              = "#0F0F0F"
+local normalBg              = "#161616"
 local cursorlineBg          = "#1D1D1D"
 local selectionBg           = "#2e2e2e"
 local ashGrey               = "#626462"
 local quoteFg               = "#898989"
-local normalFg              = "#D6D6D6"
+local normalFg              = "#FAFAFA"
 
 local brightRed            = "#C34043"
 local dimRed               = "#C4746E"
