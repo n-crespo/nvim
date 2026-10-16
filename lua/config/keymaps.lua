@@ -522,6 +522,7 @@ local function run_plan()
   end)
 end
 
+local opener = vim.g.is_win and "start" or "open"
 local runners = {
   python = { cmd = "python3" },
   javascript = { cmd = "node" },
@@ -532,7 +533,7 @@ local runners = {
   cpp = { cmd = "g++ % -o %< && ./%<" },
   autohotkey = { cmd = "start", term = false },
   typst = { cmd = "typst compile", term = false },
-  markdown = { cmd = "pandoc -V geometry:margin=1in % -o %<.pdf && open %<.pdf", term = false },
+  markdown = { cmd = "pandoc -V geometry:margin=1in % -o %<.pdf && " .. opener .. " %<.pdf", term = false },
 }
 
 local function run_current_file()
