@@ -559,20 +559,16 @@ local function run_current_file()
   local path = vim.fn.expand("%:p")
   local target = vim.fn.expand("%:p:r")
   local escaped_path = vim.fn.shellescape(path)
-  local escaped_target = vim.fn.shellescape(target)
 
   local full_cmd = runner.cmd
   if full_cmd:find("%%") then
-    -- replace placeholders if present (%% matches literal %)
     full_cmd = full_cmd:gsub("%%<", function()
-      return escaped_target
+      return target
     end)
     full_cmd = full_cmd:gsub("%%", function()
       return escaped_path
     end)
   else
-    -- otherwise just append the file path
-    escaped_path = escaped_path:gsub('"', "")
     full_cmd = full_cmd .. " " .. escaped_path
   end
 
