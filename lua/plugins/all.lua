@@ -256,7 +256,6 @@ return {
   },
   { -- noice.nvim (cmdline, other UI)
     "folke/noice.nvim",
-    lazy = false,
     opts = {
       presets = { lsp_doc_border = true },
       -- cmdline = { view = "cmdline" },
