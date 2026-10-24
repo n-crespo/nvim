@@ -1528,8 +1528,8 @@ return {
         ["typst"] = { "prettypst" },
         ["c"] = { "clang-format" },
         ["cpp"] = { "clang-format" },
-        ["python"] = { "black" },
         ["tex"] = { "tex-fmt" },
+        -- ["python"] = { "black" },
         -- ["zsh"] = { "beautysh" },
       },
       formatters = {
