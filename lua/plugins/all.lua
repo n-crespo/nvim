@@ -679,7 +679,7 @@ return {
     },
   },
   { -- snacks (dashboard)
-    "folke/snacks.nvim",
+    "folke/snacks.nvim", -- dashboard
     opts = {
       dashboard = {
         width = 50,
@@ -709,7 +709,7 @@ return {
     },
   },
   { -- snacks (input UI)
-    "folke/snacks.nvim",
+    "folke/snacks.nvim", -- input
     opts = {
       ---@type table<string, snacks.win.Config>
       styles = {
@@ -745,7 +745,7 @@ return {
     },
   },
   { -- snacks (zen mode)
-    "folke/snacks.nvim",
+    "folke/snacks.nvim", -- zen
     opts = {
       styles = {
         quiet = {
@@ -817,7 +817,7 @@ return {
     },
   },
   { -- snacks (indent guides)
-    "folke/snacks.nvim",
+    "folke/snacks.nvim", -- indent
     opts = {
       indent = {
         enabled = true,
@@ -1080,7 +1080,7 @@ return {
     },
   },
   { -- snacks (picker)
-    "folke/snacks.nvim",
+    "folke/snacks.nvim", -- picker
     opts = {
       picker = {
         layout = {
