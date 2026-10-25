@@ -171,6 +171,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
         objdump = "objdump",
         plan = "plan",
         int = "conf",
+        rtl = "xml",
       },
       filename = {
         ["pvs-strategies"] = "lisp",
@@ -179,6 +180,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile", "VimEnter" }, {
         [".*%.service"] = "systemd",
         ["%.objdump$"] = "objdump",
         [".plan$"] = "plan",
+        ["%.rtl$"] = "rtl",
       },
     })
 
