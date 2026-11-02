@@ -49,7 +49,7 @@ map(
 )
 
 -- apply last created macro over selected region
-map("x", "Q", ":norm @@<cr>", { desc = "Play Q macro", silent = true })
+-- map("x", "Q", ":norm @@<cr>", { desc = "Play Q macro", silent = true })
 
 -- duplicate lines
 map("n", "yc", "yygccp", { remap = true, desc = "Copy and comment current line" })
@@ -180,6 +180,11 @@ vim.api.nvim_create_user_command("G", function()
     pretty_path = "\n" .. pretty_path .. ""
   end
   vim.notify("[" .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:~") .. "]" .. pretty_path)
+end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("C", function()
+  local mc_ns = vim.api.nvim_create_namespace("nvim.multicursor")
+  vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
 end, { nargs = 0 })
 
 -- for vscode on macos (see mini.move)
