@@ -34,7 +34,7 @@ opt.completeopt = "menu,menuone,noselect,noinsert,popup"
 opt.background = "dark"
 opt.nrformats = "unsigned"
 -- opt.winborder = "rounded" -- this adds some visual artifacts occasionally
--- opt.autochdir = true -- this breaks things
+opt.autochdir = false -- this breaks things
 
 if LazyVim.is_win() then
   vim.g.is_win = true
