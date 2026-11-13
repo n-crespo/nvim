@@ -1529,6 +1529,7 @@ return {
         ["c"] = { "clang-format" },
         ["cpp"] = { "clang-format" },
         ["tex"] = { "tex-fmt" },
+        ["make"] = { "mbake" },
         -- ["python"] = { "black" },
         -- ["zsh"] = { "beautysh" },
       },
