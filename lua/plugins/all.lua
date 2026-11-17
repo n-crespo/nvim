@@ -380,9 +380,12 @@ return {
               -- otherwise mini.files saves the builtin and restores it on close
               vim.api.nvim_create_autocmd("UIEnter", {
                 once = true,
-                callback = vim.schedule_wrap(function()
-                  require("mini.files").open()
-                end),
+                callback = function()
+                  -- load mini.files, then let its own directory handling take
+                  -- over (it closes the directory buffer properly on exit)
+                  require("mini.files")
+                  vim.api.nvim_exec_autocmds("BufEnter", { group = "MiniFiles" })
+                end,
               })
             end
           end
