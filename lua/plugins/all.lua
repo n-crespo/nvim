@@ -1936,14 +1936,18 @@ return {
       {
         "<Tab>",
         function()
-          -- HACK: sometimes this overrides the blink.cmp keymap, so we call blink directly just in case
+          -- blink only applies its <Tab> once per buffer; if FileType re-fires afterwards, this
+          -- mapping replaces blink's completely, so i have to handle completion/snippets here too
           local cmp = require("blink.cmp")
           if cmp.is_visible() then
             cmp.select_and_accept()
           elseif cmp.snippet_active() then
             cmp.snippet_forward()
-          else
+          elseif require("markdown-plus").list.parse_list_line(vim.api.nvim_get_current_line(), vim.fn.line(".")) then
             require("markdown-plus").list.handle_tab()
+          else
+            -- not in a list: insert a plain tab (markdown-plus's own fallback re-runs blink's mapping)
+            vim.api.nvim_feedkeys(vim.keycode("<Tab>"), "n", false)
           end
         end,
         buffer = true,
