@@ -6,7 +6,15 @@ local map = vim.keymap.set
 
 -- Replace the word cursor is on globally
 map("n", "<leader>ci", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change instances" })
-map("n", "<leader>a", "<cmd>tcd %:h | pwd<cr>", { desc = "Auto Locate" })
+map("n", "<leader>a", function()
+  local dir = vim.fn.expand("%:p:h")
+  vim.ui.select({ "Yes", "No" }, { prompt = "Switch to " .. dir .. "?" }, function(choice)
+    if choice == "Yes" then
+      vim.cmd.cd(dir)
+      print("Switched to " .. dir)
+    end
+  end)
+end, { desc = "Auto Locate" })
 
 map("n", "<C-d>", function()
   if vim.fn.line(".") == 1 then
