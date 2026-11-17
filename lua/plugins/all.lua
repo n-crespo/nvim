@@ -376,7 +376,14 @@ return {
           else
             local stats = vim.uv.fs_stat(tostring(vim.fn.argv(0)))
             if stats and stats.type == "directory" then
-              require("mini.files").open()
+              -- wait for UIEnter so snacks has replaced vim.ui.select first;
+              -- otherwise mini.files saves the builtin and restores it on close
+              vim.api.nvim_create_autocmd("UIEnter", {
+                once = true,
+                callback = vim.schedule_wrap(function()
+                  require("mini.files").open()
+                end),
+              })
             end
           end
         end,
