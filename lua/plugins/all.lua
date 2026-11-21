@@ -2048,6 +2048,7 @@ return {
     end,
     keys = {
       { "<leader>cp", "<cmd>VimtexView<cr>", ft = "tex", desc = "LaTeX Preview" },
+      { "R", "<cmd>VimtexCompile<cr>", ft = "tex", desc = "Toggle continuous compile" },
     },
   },
 
