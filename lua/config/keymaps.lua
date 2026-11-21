@@ -457,7 +457,9 @@ end
 
 -- clean ^Ms (windows newlines created when pasting into WSL from winddows)
 map("n", "<C-S-s>", function()
-  vim.cmd([[silent! %s/\r//g]])
+  local view = vim.fn.winsaveview()
+  vim.cmd([[silent! keeppatterns %s/\r//ge]])
+  vim.fn.winrestview(view)
   vim.notify("Cleaned all newline characters!", vim.log.levels.INFO, { title = "File Saved" })
 end, { desc = "clean ^M" })
 
