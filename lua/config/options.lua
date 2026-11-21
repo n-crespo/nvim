@@ -8,6 +8,7 @@ vim.g.loaded_ruby_provider = 0 -- never use this
 vim.g.loaded_perl_provider = 0 -- never use this
 vim.g.loaded_node_provider = 0 -- never use this
 vim.g.loaded_python3_provider = 0 -- never use this
+vim.g.vimtex_quickfix_open_on_warning = 0 -- only open qflist on errors, not warnings
 
 local opt = vim.opt
 opt.title = true
