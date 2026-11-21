@@ -2045,10 +2045,15 @@ return {
     init = function()
       vim.g.vimtex_quickfix_open_on_warning = 0 -- only open qflist on errors, not warnings
       vim.g.vimtex_view_automatic = 0 -- don't open the pdf viewer after the first compile
+      vim.g.vimtex_mappings_enabled = 0 -- no default mappings, only the ones below
+      vim.g.vimtex_imaps_enabled = 0 -- no insert mode `-prefixed shortcuts
     end,
     keys = {
+      { "<localLeader>l", false, ft = "tex" }, -- empty +vimtex group from the lazyvim extra
       { "<leader>cp", "<cmd>VimtexView<cr>", ft = "tex", desc = "LaTeX Preview" },
       { "R", "<cmd>VimtexCompile<cr>", ft = "tex", desc = "Toggle continuous compile" },
+      { "]]", "<plug>(vimtex-]])", ft = "tex", mode = { "n", "x", "o" }, remap = true, desc = "Next section" },
+      { "[[", "<plug>(vimtex-[[)", ft = "tex", mode = { "n", "x", "o" }, remap = true, desc = "Prev section" },
     },
   },
 
