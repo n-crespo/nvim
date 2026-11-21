@@ -2040,6 +2040,12 @@ return {
       vim.cmd([[do FileType]])
     end,
   },
+  { -- vimtex (latex)
+    "lervag/vimtex",
+    init = function()
+      vim.g.vimtex_quickfix_open_on_warning = 0 -- only open qflist on errors, not warnings
+    end,
+  },
 
   -- AI --
   { -- codecompanion.nvim (kinda meh)
