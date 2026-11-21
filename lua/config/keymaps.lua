@@ -546,6 +546,7 @@ local runners = {
   cpp = { cmd = "g++ % -o %< && ./%<" },
   autohotkey = { cmd = "start", term = false },
   typst = { cmd = "typst compile", term = false },
+  tex = { cmd = "latexmk -pdf -cd -interaction=nonstopmode", term = false }, -- -cd: output next to the .tex file
   markdown = { cmd = "pandoc -V geometry:margin=1in % -o %<.pdf && " .. opener .. " %<.pdf", term = false },
 }
 
