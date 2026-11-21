@@ -2044,6 +2044,7 @@ return {
     "lervag/vimtex",
     init = function()
       vim.g.vimtex_quickfix_open_on_warning = 0 -- only open qflist on errors, not warnings
+      vim.g.vimtex_view_automatic = 0 -- don't open the pdf viewer after the first compile
     end,
   },
 
